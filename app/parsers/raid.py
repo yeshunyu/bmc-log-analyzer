@@ -16,7 +16,7 @@ FILE_PATTERNS = ["raid", "lsi"]
 FIELD_PATTERNS = {
     "controller":   re.compile(r"^Controller ID\s+:\s*(\S+)", re.IGNORECASE),
     "vd":           re.compile(r"^Virtual Drive\s+:\s*(\S+)", re.IGNORECASE),
-    "pd":           re.compile(r'^"Physical Drive\s+:\s*(\S+)', re.IGNORECASE),
+    "pd":           re.compile(r'^\"Physical Drive\s+:\s*(\S+)', re.IGNORECASE),
     "timestamp":    re.compile(r"^Message Timestamp\s+:\s*(.+)", re.IGNORECASE),
     "event_code":   re.compile(r"^Event code\s+:\s*(\S+)", re.IGNORECASE),
     "class":        re.compile(r"^Class\s+:\s*(\S+)", re.IGNORECASE),
@@ -29,6 +29,17 @@ CLASS_SEVERITY = {
     "warning":   "WARNING",
     "informational": "INFO",
 }
+
+MAX_RAID_READ = 10 * 1024 * 1024  # 10 MB — RAID logs are text, 10MB covers most cases
+
+
+def _read_bounded(path: Path, max_bytes: int = MAX_RAID_READ) -> str:
+    try:
+        with path.open("rb") as f:
+            data = f.read(max_bytes)
+        return data.decode("utf-8", errors="replace")
+    except OSError:
+        return ""
 
 
 def _parse_ts(ts_str: str) -> Optional[datetime]:
@@ -50,7 +61,7 @@ def parse(path: Path):
     """Parse LSI MegaRAID multi-block event logs."""
     entries = []
     parse_errors = 0
-    content = path.read_text(encoding="utf-8", errors="replace")
+    content = _read_bounded(path)
 
     raw_blocks = re.split(r"\n(?=Controller ID\s+:)", content)
 

@@ -407,62 +407,65 @@ def _parse_sel_db(path: Path):
         cur.execute("SELECT name FROM sqlite_master WHERE type='table'")
         tables = [row[0] for row in cur.fetchall()]
 
+        # White-list only known SEL table names — prevents SQL injection
+        _SAFE_TABLES = {"sel", "event", "system_event", "sensor_event"}
         for table in tables:
-            if table.lower() in ("sel", "event", "system_event", "sensor_event"):
-                try:
-                    # Get column names
-                    cur.execute(f"PRAGMA table_info({table})")
-                    cols = [row[1] for row in cur.fetchall()]
-                    col_str = ", ".join(cols)
+            if table.lower() not in _SAFE_TABLES:
+                continue
+            try:
+                # Get column names (table name already validated above)
+                cur.execute(f"PRAGMA table_info({table})")
+                cols = [row[1] for row in cur.fetchall()]
+                col_str = ", ".join(cols)
 
-                    cur.execute(f"SELECT * FROM {table} LIMIT 10000")
-                    rows = cur.fetchall()
+                cur.execute(f"SELECT * FROM {table} LIMIT 10000")
+                rows = cur.fetchall()
 
-                    for row in rows:
-                        row_dict = dict(zip(cols, row))
-                        # Look for timestamp, level, message columns
-                        ts = None
-                        for ts_col in ("timestamp", "time", "datetime", "event_time"):
-                            if ts_col in row_dict and row_dict[ts_col]:
+                for row in rows:
+                    row_dict = dict(zip(cols, row))
+                    # Look for timestamp, level, message columns
+                    ts = None
+                    for ts_col in ("timestamp", "time", "datetime", "event_time"):
+                        if ts_col in row_dict and row_dict[ts_col]:
+                            try:
+                                ts = datetime.strptime(str(row_dict[ts_col])[:19], "%Y-%m-%d %H:%M:%S")
+                                break
+                            except (ValueError, TypeError):
                                 try:
-                                    ts = datetime.strptime(str(row_dict[ts_col])[:19], "%Y-%m-%d %H:%M:%S")
+                                    ts = datetime.fromtimestamp(int(row_dict[ts_col]), tz=timezone.utc)
+                                    ts = ts.replace(tzinfo=None)
                                     break
-                                except (ValueError, TypeError):
-                                    try:
-                                        ts = datetime.fromtimestamp(int(row_dict[ts_col]), tz=timezone.utc)
-                                        ts = ts.replace(tzinfo=None)
-                                        break
-                                    except (ValueError, TypeError, OSError):
-                                        pass
+                                except (ValueError, TypeError, OSError):
+                                    pass
 
-                        level = "INFO"
-                        for lvl_col in ("level", "severity", "type"):
-                            if lvl_col in row_dict and row_dict[lvl_col]:
-                                lvl = str(row_dict[lvl_col]).upper()
-                                if "ERR" in lvl or "CRIT" in lvl or "FAIL" in lvl:
-                                    level = "ERROR"
-                                elif "WARN" in lvl:
-                                    level = "WARNING"
-                                break
+                    level = "INFO"
+                    for lvl_col in ("level", "severity", "type"):
+                        if lvl_col in row_dict and row_dict[lvl_col]:
+                            lvl = str(row_dict[lvl_col]).upper()
+                            if "ERR" in lvl or "CRIT" in lvl or "FAIL" in lvl:
+                                level = "ERROR"
+                            elif "WARN" in lvl:
+                                level = "WARNING"
+                            break
 
-                        message = ""
-                        for msg_col in ("message", "msg", "description", "event", "data"):
-                            if msg_col in row_dict and row_dict[msg_col]:
-                                message = str(row_dict[msg_col])
-                                break
-                        if not message:
-                            message = str(row_dict)
+                    message = ""
+                    for msg_col in ("message", "msg", "description", "event", "data"):
+                        if msg_col in row_dict and row_dict[msg_col]:
+                            message = str(row_dict[msg_col])
+                            break
+                    if not message:
+                        message = str(row_dict)
 
-                        entries.append(LogEntry(
-                            timestamp=ts,
-                            module=f"sel:db:{table}",
-                            level=level,
-                            message=message[:500],
-                            raw=str(row_dict)[:200],
-                        ))
-                except sqlite3.Error as e:
-                    parse_errors += 1
-                break
+                    entries.append(LogEntry(
+                        timestamp=ts,
+                        module=f"sel:db:{table}",
+                        level=level,
+                        message=message[:500],
+                        raw=str(row_dict)[:200],
+                    ))
+            except sqlite3.Error as e:
+                parse_errors += 1
+            break
 
         conn.close()
     except Exception:

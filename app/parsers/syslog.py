@@ -24,7 +24,6 @@ def parse(path: Path):
             m = SYSLOG_RE.match(line)
             if m:
                 ts_str, message = m.groups()
-                ts_str = ts_str.replace("+0000", "+0000")
                 try:
                     ts = datetime.strptime(ts_str, "%Y-%m-%dT%H:%M:%S%z")
                     ts = ts.replace(tzinfo=None)

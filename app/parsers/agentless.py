@@ -16,6 +16,7 @@ _ERROR_KW = (
 _WARN_KW = r"warn|warning|alert|注意|警告"
 _INFO_KW = r"info|start|init|enable|disable|success"
 
+
 def _infer_level(message: str) -> str:
     m = message.lower()
     if re.search(_ERROR_KW, m):
@@ -26,6 +27,7 @@ def _infer_level(message: str) -> str:
         return "INFO"
     return "INFO"
 
+
 FORMAT_NAME = "agentless"
 FILE_PATTERNS = ["agentless"]
 
@@ -33,14 +35,12 @@ FILE_PATTERNS = ["agentless"]
 def parse(path: Path):
     entries = []
     parse_errors = 0
-    content = path.read_text(encoding="utf-8", errors="replace")
-
-    for line in content.splitlines():
+    from app.parsers import read_file_sample_lines
+    for line in read_file_sample_lines(path):
         line = line.rstrip("\n")
         m = AGENTLESS_RE.match(line)
         if m:
             ts_str, uptime, message = m.groups()
-            ts_str = ts_str.replace("+0000", "+0000")
             try:
                 ts = datetime.strptime(ts_str, "%Y-%m-%dT%H:%M:%S%z")
                 ts = ts.replace(tzinfo=None)

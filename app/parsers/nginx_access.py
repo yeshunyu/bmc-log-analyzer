@@ -34,12 +34,15 @@ def parse_nginx_access_log(path: Path):
                 except ValueError:
                     ts = None
                 level = "ERROR" if status.startswith(("4", "5")) else "INFO"
+                # Extract URL path from "GET /path HTTP/1.1" — split once
+                method, path_part, protocol = request.split(" ", 2)
+                source_file = path_part
                 entries.append(LogEntry(
                     timestamp=ts,
                     module=f"nginx:{ip}",
                     level=level,
-                    source_file=request.split(" ")[1] if len(request.split(" ")) > 1 else request,
-                    message=f"{request} -> {status}",
+                    source_file=source_file,
+                    message=f"{method} {path_part} -> {status}",
                     raw=line,
                 ))
             else:
@@ -78,4 +81,3 @@ def parse(path: Path):
 
 # Backward-compat alias
 parse_nginx_access_log_internal = parse_nginx_access_log
-

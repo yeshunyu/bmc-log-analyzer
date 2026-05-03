@@ -69,6 +69,9 @@ async def get_settings():
 
 @router.post("/llm-settings", response_model=LLMSettingsResponse)
 async def post_settings(req: LLMSettingsRequest):
+    # Require api_key for custom provider
+    if req.provider == "custom" and not req.api_key:
+        raise HTTPException(status_code=400, detail="自定义 API 需要提供 api_key")
     cfg = update_llm_config(req.provider, req.api_key, req.api_base, req.model)
     return LLMSettingsResponse(provider=cfg.provider, api_base=cfg.api_base, model=cfg.model)
 
@@ -90,7 +93,7 @@ def build_prompt(req: LLMAnalysisRequest) -> str:
         'npu':  ['npu', 'ascend', 'hiai', 'dvpp', 'aicore', 'aicpu', 'devicecore', 'npu_ex', 'npuinfo', 'npusched', 'ai_core', 'ai_cpu', 'cann'],
     }
 
-    def hw_type(msg):
+    def detect_hw_type(msg):
         if not msg:
             return None
         lower = msg.lower()
@@ -105,7 +108,7 @@ def build_prompt(req: LLMAnalysisRequest) -> str:
     hw_entries = {k: [] for k in HW_KW}
     for e in (req.top_entries or []):
         msg = (e.message or '') + ' ' + (e.module or '')
-        ht = hw_type(msg)
+        ht = detect_hw_type(msg)
         if ht:
             hw_counts[ht] = hw_counts.get(ht, 0) + 1
             if len(hw_entries[ht]) < 3:
@@ -206,8 +209,10 @@ def _call_custom(prompt: str, api_key: str, api_base: str, model: str) -> str:
     import urllib.request
     import urllib.error
 
-    # Auto-detect: Anthropic-compatible endpoint uses /anthropic in path
-    if "/anthropic" in api_base:
+    # Detect endpoint type from URL path — more robust than substring search
+    # /anthropic at the end of the path (not inside a version string) → Anthropic API
+    normalized = api_base.rstrip("/").lower()
+    if normalized.endswith("/anthropic"):
         return _call_anthropic_compatible(prompt, api_key, api_base, model)
     return _call_openai_compatible(prompt, api_key, api_base, model)
 

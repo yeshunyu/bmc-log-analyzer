@@ -576,14 +576,16 @@ _SKIP_SCAN_EXTS = {".gz", ".bin", ".db", ".json", ".csv", ".txt", ".bak", ".sha2
 
 
 def _score_file_by_keywords(path: Path) -> int:
-    """Return count of keyword matches in file. Skips binary/skip-ext files."""
+    """Return count of keyword matches in first 1MB of file. Skips binary/skip-ext files."""
     ext = "." + path.suffix.lower().lstrip(".")
     if ext in _SKIP_SCAN_EXTS or path.name.endswith(".sha256"):
         return 0
     try:
         if path.stat().st_size > 20 * 1024 * 1024:  # skip > 20MB
             return 0
-        text = path.read_text("utf-8", errors="replace")
+        # Read only first 1MB to avoid OOM while still capturing diagnostic keywords
+        with path.open("rb") as f:
+            text = f.read(1024 * 1024).decode("utf-8", errors="replace")
         return len(_KEYWORD_PATTERN.findall(text))
     except OSError:
         return 0
@@ -664,7 +666,9 @@ def _find_top_log_files(extract_dir: Path, top_n: int = _MAX_LOG_FILES) -> list[
         try:
             if p.stat().st_size > 20 * 1024 * 1024:
                 return 0
-            text = p.read_text("utf-8", errors="replace")
+            # Read only first 1MB to avoid OOM
+            with p.open("rb") as f:
+                text = f.read(1024 * 1024).decode("utf-8", errors="replace")
             return len(_KEYWORD_PATTERN.findall(text))
         except OSError:
             return 0
