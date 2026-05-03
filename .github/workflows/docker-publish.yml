@@ -21,16 +21,16 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Extract metadata
-        uses: docker/metadata-action@v5
-        with:
-          images: yuyeshun2/bmc-log-analyzer
-          tags: latest
-
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/bmc-log-analyzer:latest
+            ${{ secrets.DOCKER_HUB_USERNAME }}/bmc-log-analyzer:${{ github.sha }}
+          labels: |
+            org.opencontainers.image.title=bmc-log-analyzer
+            org.opencontainers.image.description=BMC日志解析+异常检测+LLM根因分析工具
+            org.opencontainers.image.source=https://github.com/yeshunyu/bmc-log-analyzer
+            org.opencontainers.image.revision=${{ github.sha }}
