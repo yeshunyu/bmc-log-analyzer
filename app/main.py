@@ -105,6 +105,9 @@ async def upload_log(file: UploadFile) -> AnalysisResult:
         best = _find_best_log_file(decompressed_path, file.filename)
         if best:
             parse_path = best
+        elif all_files:
+            # Fallback: use first extracted file if no known log file matched
+            parse_path = all_files[0]
 
     # Parse based on filename hint
     format_type, entries, parse_errors = _route_parse(file.filename, parse_path)
@@ -181,9 +184,14 @@ def _extract_inner_archives(extract_dir: Path, job_id: str) -> list:
     """Find and extract any .tar / .tar.gz members inside an extracted directory.
 
     One level of recursion only (no deep nesting).
-    Returns flat list of all extracted file paths.
+    Returns flat list of all extracted file paths (top-level + inner archive contents).
     """
     all_files: list = []
+    # Include top-level files from the outer tar.gz extraction
+    for p in extract_dir.iterdir():
+        if p.is_file():
+            all_files.append(p)
+
     for p in extract_dir.rglob("*"):
         if not p.is_file():
             continue
@@ -211,7 +219,14 @@ def _extract_inner_archives(extract_dir: Path, job_id: str) -> list:
     return unique
 
 
-    def _find_best_log_file(extract_dir: Path, filename: str) -> Optional[Path]:
+def _has_rotated_suffix(name: str, pat: str) -> bool:
+    """Check if name has a rotation suffix like .1, .2, .3 or .1.gz, .2.gz."""
+    base = name[len(pat):]  # everything after the pattern
+    import re
+    return bool(re.match(r'^\.(\d+)(\.gz)?$', base))
+
+
+def _find_best_log_file(extract_dir: Path, filename: str) -> Optional[Path]:
     """Find the best log file from an extracted dump directory.
 
     Searches dump_info subdirectories (AppDump/BMC, LogDump, etc.) for
@@ -278,7 +293,7 @@ def _extract_inner_archives(extract_dir: Path, job_id: str) -> list:
         "md_so_strategy_log",
     ]
 
-        def find_best(pat: str) -> Optional[Path]:
+    def find_best(pat: str) -> Optional[Path]:
         """Find the best file matching pat, preferring non-gzipped, non-rotated."""
         logdump = extract_dir / "dump_info" / "LogDump"
         candidates = []
@@ -314,12 +329,6 @@ def _extract_inner_archives(extract_dir: Path, job_id: str) -> list:
         if main_gz:
             return main_gz[0]
         return gz_only[0] if gz_only else None
-
-    def _has_rotated_suffix(name: str, pat: str) -> bool:
-        """Check if name has a rotation suffix like .1, .2, .3 or .1.gz, .2.gz."""
-        base = name[len(pat):]  # everything after the pattern
-        import re
-        return bool(re.match(r'^\.(\d+)(\.gz)?$', base))
 
     for pat in patterns:
         result = find_best(pat)
