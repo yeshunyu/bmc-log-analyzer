@@ -3,15 +3,12 @@ FROM python:3.11-slim AS builder
 
 WORKDIR /app
 
-# Install uv (fast package manager)
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+# Copy requirements first for caching
+COPY requirements.txt ./
 
-# Copy only dependency files first for caching
-COPY pyproject.toml uv.lock* ./
-
-# Install dependencies into local venv
-RUN uv venv /app/.venv && \
-    uv pip install --python /app/.venv --no-cache
+# Install into venv
+RUN python -m venv /app/.venv && \
+    /app/.venv/bin/pip install --no-cache -r requirements.txt
 
 # Copy source code
 COPY . .

@@ -64,7 +64,7 @@ pip install -r requirements.txt
 
 ```bash
 # 默认 8088 端口
-uvicorn app.main:app --port 8088 --reload
+uvicorn app.main:app --port 8000 --reload
 
 # 或直接运行
 python -m app.main
@@ -146,7 +146,7 @@ app/
 
 ```bash
 docker build -t bmc-log-analyzer .
-docker run -d -p 8088:8088 bmc-log-analyzer
+docker run -d -p 8088:8000 yuyeshun2/bmc-log-analyzer
 ```
 
 或使用 `docker-compose.yml`（如已配置）。
