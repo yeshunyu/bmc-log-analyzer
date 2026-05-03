@@ -1,33 +1,37 @@
 # ===== Stage 1: Builder =====
-FROM python:3.11-slim AS builder
+FROM python:3.11-alpine AS builder
 
 WORKDIR /app
 
 # Install build dependencies for compiled Python packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
+RUN apk add --no-cache \
     gcc \
-    libgomp1 \
-    && rm -rf /var/lib/apt/lists/*
+    musl-dev \
+    libffi-dev \
+    openssl-dev \
+    cargo \
+    rust
 
-# Copy requirements first for caching
-COPY requirements.txt ./
-
-# Install packages into /app/.local (shared Python user install)
-RUN pip install --user -r requirements.txt
+# Upgrade pip first so wheel gets a newer version
+RUN pip install --user --upgrade pip wheel
 
 # Copy source code
 COPY . .
 
+# Remove any pre-existing venv/dist that may contain old vulnerable packages
+RUN rm -rf /app/.venv /app/dist
+
+# Copy requirements and install (after clean to avoid old cached packages)
+COPY requirements.txt /tmp/
+RUN pip install --user -r /tmp/requirements.txt
+
 # ===== Stage 2: Runtime =====
-FROM python:3.11-slim
+FROM python:3.11-alpine
 
 WORKDIR /app
 
 # Install runtime dependencies only
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libgomp1 \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache musl
 
 # Copy installed packages from builder
 COPY --from=builder /root/.local /root/.local
