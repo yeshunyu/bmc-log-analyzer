@@ -58,11 +58,25 @@ def _save_manifest(manifest: list[dict]) -> None:
 
 
 def _sync_manifest() -> None:
-    """Remove entries whose files no longer exist."""
+    """Remove entries whose files no longer exist; seed from disk if manifest is empty."""
     manifest = _load_manifest()
     current_files = {p.name for p in UPLOAD_DIR.iterdir()} if UPLOAD_DIR.exists() else set()
     # strip the uuid_ prefix to match manifest names
     kept = [e for e in manifest if f"{e['uuid']}_{e['name']}" in current_files]
+
+    # If manifest is empty but there are files on disk, seed from disk (pre-feature uploads)
+    if not kept and current_files:
+        import re
+        for fname in current_files:
+            if fname == "manifest.json" or fname.endswith("_extract") or "_extract/" in fname:
+                continue
+            m = re.match(r'^([0-9a-f]{32})_(.+)$', fname)
+            if m:
+                uuid_part, orig_name = m.group(1), m.group(2)
+                p = UPLOAD_DIR / fname
+                if p.is_file():
+                    kept.append({"uuid": uuid_part, "name": orig_name, "created_at": p.stat().st_mtime, "size": p.stat().st_size})
+
     if len(kept) != len(manifest):
         _save_manifest(kept)
 
@@ -272,7 +286,9 @@ def _decompress_if_needed(path: Path, job_id: str) -> tuple[Path, list[Path]]:
         if path.stem.endswith(".tar"):
             # It's a .tar.gz — extract all
             extract_dir = path.parent / f"{job_id}_extract"
-            extract_dir.mkdir(exist_ok=True)
+            if extract_dir.exists():
+                shutil.rmtree(extract_dir)
+            extract_dir.mkdir()
             with tarfile.open(path, "r:gz") as tar:
                 tar.extractall(extract_dir)
             # Recurse into any inner tar files (tar inside tar.gz)
