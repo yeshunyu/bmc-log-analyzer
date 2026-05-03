@@ -1,3 +1,4 @@
+import os
 import shutil
 import tarfile
 import uuid
@@ -36,7 +37,7 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 MANIFEST_PATH = UPLOAD_DIR / "manifest.json"
 
 # Files older than this many seconds are candidates for deletion
-TTL_SECONDS = 24 * 3600  # 24 hours
+TTL_SECONDS = 30 * 24 * 3600  # 30 days
 
 
 def _load_manifest() -> list[dict]:
@@ -243,6 +244,9 @@ async def reanalyze(uuid: str):
             break
     else:
         raise HTTPException(status_code=404, detail="File not found (may have expired)")
+
+    # Touch file to reset its TTL timer on each access
+    os.utime(file_path)
 
     decompressed_path, all_files = _decompress_if_needed(file_path, uuid)
     parse_path = decompressed_path
