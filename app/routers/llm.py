@@ -1,12 +1,29 @@
 import json
 import subprocess
 from datetime import datetime
+from typing import Any
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from app.schemas import LLMAnalysisRequest
 from app.config import get_llm_config, update_llm_config, LLMProvider
 
 router = APIRouter(prefix="/api/analyze", tags=["analysis"])
+
+
+def _fmt_ts(ts: Any) -> str:
+    """Safely format a timestamp (datetime object or ISO string) to Y-m-d H:M:S."""
+    if ts is None:
+        return "N/A"
+    if isinstance(ts, datetime):
+        return ts.strftime("%Y-%m-%d %H:%M:%S")
+    if isinstance(ts, str) and ts:
+        try:
+            # Parse ISO format datetime string
+            dt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
+            return dt.strftime("%Y-%m-%d %H:%M:%S")
+        except ValueError:
+            return ts[:19] if len(ts) >= 19 else ts
+    return str(ts)
 
 
 # ---------------------------------------------------------------------------
@@ -66,7 +83,7 @@ def build_prompt(req: LLMAnalysisRequest) -> str:
                 lines.append(f"- 最后发生：{a.last_seen}")
             lines.append("- 示例日志：")
             for e in a.entries[:3]:
-                ts = e.timestamp.strftime("%Y-%m-%d %H:%M:%S") if e.timestamp else "N/A"
+                ts = _fmt_ts(e.timestamp)
                 lines.append(f"  [{ts}] [{e.module}] {e.message}")
             lines.append("")
 
@@ -80,7 +97,7 @@ def build_prompt(req: LLMAnalysisRequest) -> str:
     if req.top_entries:
         lines.append("## Top ERROR 日志（按时间排序）")
         for e in req.top_entries[:20]:
-            ts = e.timestamp.strftime("%Y-%m-%d %H:%M:%S") if e.timestamp else "N/A"
+            ts = _fmt_ts(e.timestamp)
             lines.append(f"[{ts}] [{e.module}] {e.message}")
         lines.append("")
 
@@ -106,7 +123,7 @@ def build_single_prompt(anomaly_type: str, rule_id: str, rule_description: str,
         "## 关联日志（采样最多5条）：",
     ]
     for e in entries[:5]:
-        ts = e.timestamp.strftime("%Y-%m-%d %H:%M:%S") if e.timestamp else "N/A"
+        ts = _fmt_ts(e.timestamp)
         lines.append(f"- [{ts}] [{e.module}] {e.message}")
     lines.append("")
     lines.append("""请分析这条异常，回答：

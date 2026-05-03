@@ -240,7 +240,8 @@
     <div class="tab-content" id="tab-stat"></div>
     <div class="tab-content" id="tab-all">
       <div class="search-bar">
-        <input type="text" id="logSearch" placeholder="搜索日志内容、模块名..." />
+        <input type="text" id="logSearch" placeholder="搜索日志内容、模块名... (回车搜索)" />
+        <button class="btn btn-primary" id="searchBtn" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">🔍 搜索</button>
         <label class="regex-toggle"><input type="checkbox" id="regexMode" /><span>.* 正则</span></label>
         <div class="filter-group">
           <label>从</label>
@@ -265,9 +266,9 @@
           </div>
         </div>
         <select class="page-size-select" id="pageSize">
-          <option value="50">50/页</option>
+          <option value="50" selected>50/页</option>
           <option value="100">100/页</option>
-          <option value="200" selected>200/页</option>
+          <option value="200">200/页</option>
           <option value="500">500/页</option>
         </select>
         <span class="page-info" id="pageInfo"></span>
@@ -324,7 +325,7 @@ const state = {
   timeFrom: null,
   timeTo: null,
   levels: { ERROR: true, WARNING: true, INFO: true },
-  pageSize: 200,
+  pageSize: 50,
   page: 1,
 };
 
@@ -457,9 +458,16 @@ function renderPagination() {
 // ---------------------------------------------------------------------------
 // Event listeners
 // ---------------------------------------------------------------------------
-document.getElementById('logSearch').addEventListener('input', e => {
-  state.search = e.target.value;
+document.getElementById('searchBtn').addEventListener('click', () => {
+  state.search = document.getElementById('logSearch').value;
   triggerUpdate();
+});
+
+document.getElementById('logSearch').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    state.search = e.target.value;
+    triggerUpdate();
+  }
 });
 
 document.getElementById('regexMode').addEventListener('change', e => {
