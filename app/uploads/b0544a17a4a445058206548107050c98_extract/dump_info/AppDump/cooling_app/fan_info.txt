@@ -1,5 +1,0 @@
-Fan                      | Presence          | PWM      | Speed(RPM)         | Maximum rpm range  | Model             |  PartNum           |  DeviceName        |  Location        
-Fan Module1           | present           | 80%      | 11475              | 15000              | 02311VSF 8038+    |  02311VSF          |  Fan1              |  chassis          
-Fan Module2           | present           | 80%      | 11625              | 15000              | 02311VSF 8038+    |  02311VSF          |  Fan2              |  chassis          
-Fan Module3           | present           | 80%      | 11475              | 15000              | 02311VSF 8038+    |  02311VSF          |  Fan3              |  chassis          
-Fan Module4           | present           | 80%      | 11475              | 15000              | 02311VSF 8038+    |  02311VSF          |  Fan4              |  chassis          

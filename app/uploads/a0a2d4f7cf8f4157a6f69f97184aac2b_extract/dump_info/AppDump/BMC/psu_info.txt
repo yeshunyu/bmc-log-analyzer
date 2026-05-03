@@ -1,3 +1,0 @@
-Slot   |  presence  |  Manufacturer     |  Type                              |  SN                                |  Version                    |  Rated Power   |  InputMode  |  PartNum           |  DeviceName        |  Vin     
-1      |  present   |  HUAWEI           |  PAC2000S12-BG                     |  2102312HGYW0N7001616              |  DC:119 PFC:119             |  2000          |  AC        |  02312HGY          |  PSU1              |  217.00  
-2      |  present   |  HUAWEI           |  PAC2000S12-BG                     |  2102312HGYW0N7001127              |  DC:119 PFC:119             |  2000          |  AC        |  02312HGY          |  PSU2              |  217.00  
