@@ -1,6 +1,7 @@
 import re
 from datetime import datetime
 from pathlib import Path
+from typing import Optional
 from app.schemas import LogEntry
 
 FORMAT_NAME = "raid"
@@ -30,7 +31,7 @@ CLASS_SEVERITY = {
 }
 
 
-def _parse_ts(ts_str: str) -> datetime | None:
+def _parse_ts(ts_str: str) -> Optional[datetime]:
     m = re.search(r"(\d{1,2})/(\d{1,2})/(\d{4})\s*;\s*(\d{1,2}):(\d{2}):(\d{2})", ts_str)
     if m:
         month, day, year, hour, minute, second = m.groups()

@@ -31,7 +31,7 @@ import tarfile
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import BinaryIO
+from typing import BinaryIO, Optional
 
 from app.schemas import LogEntry
 
@@ -198,7 +198,7 @@ SENSOR_TYPE = {
 }
 
 
-def _decode_sel_record(data: bytes) -> dict | None:
+def _decode_sel_record(data: bytes) -> Optional[dict]:
     """Decode a single IPMI SEL record from raw bytes.
 
     Returns a dict with keys: record_id, record_type, timestamp,

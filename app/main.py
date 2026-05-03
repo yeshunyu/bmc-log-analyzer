@@ -4,6 +4,7 @@ import uuid
 import gzip
 import time
 from pathlib import Path
+from typing import Optional
 from fastapi import FastAPI, UploadFile, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -176,13 +177,13 @@ def _decompress_if_needed(path: Path, job_id: str) -> tuple[Path, list[Path]]:
     return path, [path]
 
 
-def _extract_inner_archives(extract_dir: Path, job_id: str) -> list[Path]:
+def _extract_inner_archives(extract_dir: Path, job_id: str) -> list:
     """Find and extract any .tar / .tar.gz members inside an extracted directory.
 
     One level of recursion only (no deep nesting).
     Returns flat list of all extracted file paths.
     """
-    all_files: list[Path] = []
+    all_files: list = []
     for p in extract_dir.rglob("*"):
         if not p.is_file():
             continue
@@ -210,7 +211,7 @@ def _extract_inner_archives(extract_dir: Path, job_id: str) -> list[Path]:
     return unique
 
 
-def _find_best_log_file(extract_dir: Path, filename: str) -> Path | None:
+    def _find_best_log_file(extract_dir: Path, filename: str) -> Optional[Path]:
     """Find the best log file from an extracted dump directory.
 
     Searches dump_info subdirectories (AppDump/BMC, LogDump, etc.) for
@@ -277,7 +278,7 @@ def _find_best_log_file(extract_dir: Path, filename: str) -> Path | None:
         "md_so_strategy_log",
     ]
 
-    def find_best(pat: str) -> Path | None:
+        def find_best(pat: str) -> Optional[Path]:
         """Find the best file matching pat, preferring non-gzipped, non-rotated."""
         logdump = extract_dir / "dump_info" / "LogDump"
         candidates = []
