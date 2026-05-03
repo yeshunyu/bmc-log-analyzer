@@ -13,9 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy requirements first for caching
 COPY requirements.txt ./
 
-# Install into venv (no compiled deps needed for plain uvicorn)
-RUN python -m venv /app/.venv && \
-    /app/.venv/bin/pip install --no-cache -r requirements.txt
+# Install packages into /app/.local (shared Python user install)
+RUN pip install --user -r requirements.txt
 
 # Copy source code
 COPY . .
@@ -30,12 +29,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy venv from builder
-COPY --from=builder /app/.venv /app/.venv
+# Copy installed packages from builder
+COPY --from=builder /root/.local /root/.local
+COPY --from=builder /app /app
 
-# Set PATH
-ENV PATH="/app/.venv/bin:$PATH" \
-    PYTHONUNBUFFERED=1
+# Set PATH so .local/bin takes priority
+ENV PATH="/root/.local/bin:$PATH" \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH="/root/.local/lib/python3.11/site-packages:$PYTHONPATH"
 
 # Expose port
 EXPOSE 8000
