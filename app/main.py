@@ -37,7 +37,7 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 MANIFEST_PATH = UPLOAD_DIR / "manifest.json"
 
 # Files older than this many seconds are candidates for deletion
-TTL_SECONDS = 30 * 24 * 3600  # 30 days
+TTL_SECONDS = 2 * 24 * 3600  # 2 days
 
 
 def _load_manifest() -> list[dict]:
