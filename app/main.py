@@ -1,9 +1,11 @@
 import os
+import re
 import shutil
 import tarfile
 import uuid
 import gzip
 import time
+from datetime import datetime as dt, timezone
 from pathlib import Path
 from typing import Optional
 from fastapi import FastAPI, UploadFile, HTTPException
@@ -155,18 +157,19 @@ async def upload_log(file: UploadFile) -> AnalysisResult:
     # Decompress .tar.gz if needed
     decompressed_path, all_files = _decompress_if_needed(save_path, job_id)
 
-    # For tar.gz, find the best log file
-    parse_path = decompressed_path
+    # For tar.gz, scan and score all log files, parse the top-N
+    format_type = "unknown"
+    entries: list = []
+    parse_errors = 0
     if decompressed_path != save_path and decompressed_path.is_dir():
-        best = _find_best_log_file(decompressed_path, file.filename)
-        if best:
-            parse_path = best
+        top_files = _find_top_log_files(decompressed_path)
+        if top_files:
+            format_type, entries, parse_errors = _parse_multi(top_files, file.filename)
         elif all_files:
-            # Fallback: use first extracted file if no known log file matched
-            parse_path = all_files[0]
-
-    # Parse based on filename hint
-    format_type, entries, parse_errors = _route_parse(file.filename, parse_path)
+            # Fallback: use first extracted file
+            format_type, entries, parse_errors = _route_parse(file.filename, all_files[0])
+    else:
+        format_type, entries, parse_errors = _route_parse(file.filename, decompressed_path)
 
     parsed_log = {
         "format_type": format_type,
@@ -249,12 +252,18 @@ async def reanalyze(uuid: str):
     os.utime(file_path)
 
     decompressed_path, all_files = _decompress_if_needed(file_path, uuid)
-    parse_path = decompressed_path
+    format_type = "unknown"
+    entries: list = []
+    parse_errors = 0
     if decompressed_path != file_path and decompressed_path.is_dir():
-        best = _find_best_log_file(decompressed_path, original_name)
-        parse_path = best or all_files[0]
+        top_files = _find_top_log_files(decompressed_path)
+        if top_files:
+            format_type, entries, parse_errors = _parse_multi(top_files, original_name)
+        elif all_files:
+            format_type, entries, parse_errors = _route_parse(original_name, all_files[0])
+    else:
+        format_type, entries, parse_errors = _route_parse(original_name, decompressed_path)
 
-    format_type, entries, parse_errors = _route_parse(original_name, parse_path)
     rule_anomalies = detect_rule_anomalies(entries)
     stat_anomalies = detect_statistical_anomalies(entries)
     level_counts: dict[str, int] = {}
@@ -477,6 +486,184 @@ def _find_best_log_file(extract_dir: Path, filename: str) -> Optional[Path]:
                 return p
 
     return None
+
+
+# Keywords that indicate high-value diagnostic content (ordered by importance)
+# Used to score and prioritize log files during multi-file scanning
+_KEYWORD_PATTERN = re.compile(
+    r"(?i)(error|fail|fault|Critical|Major|Minor|Warning|Asserted|Deasserted|"
+    r"power|fan|thermal|memory|disk|CPU|BIOS|reboot|restart|poweroff|shutdown|"
+    r"power cycle|hang|hung|unresponsive|lockup|reset|oom|out of memory|panic|"
+    r"oops|bug|watchdog|MCE|Machine.Check|correctable|uncorrectable|power loss|"
+    r"AC loss|segfault|core.dump)",
+    re.IGNORECASE,
+)
+
+# Max top log files to parse in multi-file mode
+_MAX_LOG_FILES = 5
+
+# Skip scanning these file extensions when scoring
+_SKIP_SCAN_EXTS = {".gz", ".bin", ".db", ".json", ".csv", ".txt", ".bak", ".sha256", ".ini", ".conf"}
+
+
+def _score_file_by_keywords(path: Path) -> int:
+    """Return count of keyword matches in file. Skips binary/skip-ext files."""
+    ext = "." + path.suffix.lower().lstrip(".")
+    if ext in _SKIP_SCAN_EXTS or path.name.endswith(".sha256"):
+        return 0
+    try:
+        if path.stat().st_size > 20 * 1024 * 1024:  # skip > 20MB
+            return 0
+        text = path.read_text("utf-8", errors="replace")
+        return len(_KEYWORD_PATTERN.findall(text))
+    except OSError:
+        return 0
+
+
+def _find_top_log_files(extract_dir: Path, top_n: int = _MAX_LOG_FILES) -> list[Path]:
+    """Find top-N log files, preferring known log types scored by keyword matches.
+
+    Two-tier selection:
+    1. Priority files matching known log patterns (app_debug_log_all, operate_log,
+       security_log, dfl logs, etc.) — sorted by keyword match count.
+    2. If fewer than top_n found, fill with other scored files.
+    """
+    dump_info = extract_dir / "dump_info"
+    if not dump_info.exists():
+        return []
+
+    # Priority patterns — files known to contain structured BMC log entries
+    priority_pats = [
+        "app_debug_log_all",
+        "ipmi_mass_operate_log",
+        "ipmi_debug_log",
+        "operate_log",
+        "security_log",
+        "strategy_log",
+        "mass_operate_log",
+        "remote_log",
+        "BMC_dfl",
+        "sensor_alarm_dfl",
+        "PowerMgnt_dfl",
+        "UPGRADE_dfl",
+        "BIOS_dfl",
+        "card_manage_dfl",
+        "CpuMem_dfl",
+        "cooling_app_dfl",
+        "Snmp_dfl",
+        "ddns_dfl",
+        "diagnose_dfl",
+        "discovery_dfl",
+        "agentless_dfl",
+        "kvm_vmm_dfl",
+        "ipmi_app_dfl",
+        "fileManage_dfl",
+        "StorageMgnt_dfl",
+        "redfish_dfl",
+        "Dft_dfl",
+        "net_nat_dfl",
+        "PcieSwitch_dfl",
+        "MaintDebug_dfl",
+        "linux_kernel_log",
+        "dmesg",
+        "app_debug",
+        "maintenance_log",
+        "md_so_maintenance_log",
+        "md_so_operate_log",
+        "md_so_strategy_log",
+        "dfm_debug_log",
+        "dfm.log",
+        "raid",
+        "lsi",
+    ]
+
+    all_files: list[Path] = []
+    for p in dump_info.rglob("*"):
+        if p.is_file():
+            ext = "." + p.suffix.lower().lstrip(".")
+            if ext in _SKIP_SCAN_EXTS or p.name.endswith(".sha256") or p.name.endswith(".bak"):
+                continue
+            all_files.append(p)
+
+    if not all_files:
+        return []
+
+    def score_path(p: Path) -> int:
+        ext = "." + p.suffix.lower().lstrip(".")
+        if ext in _SKIP_SCAN_EXTS or p.name.endswith(".sha256"):
+            return 0
+        try:
+            if p.stat().st_size > 20 * 1024 * 1024:
+                return 0
+            text = p.read_text("utf-8", errors="replace")
+            return len(_KEYWORD_PATTERN.findall(text))
+        except OSError:
+            return 0
+
+    # Split into priority and others
+    priority_files: list[tuple[int, Path]] = []
+    other_files: list[tuple[int, Path]] = []
+
+    for p in all_files:
+        score = score_path(p)
+        if score == 0:
+            continue
+        name_lower = p.name.lower()
+        is_priority = any(pat in name_lower for pat in priority_pats)
+        if is_priority:
+            priority_files.append((score, p))
+        else:
+            other_files.append((score, p))
+
+    # Sort descending by score
+    priority_files.sort(key=lambda x: x[0], reverse=True)
+    other_files.sort(key=lambda x: x[0], reverse=True)
+
+    # Deduplicate by base name, prefer priority
+    seen: set[str] = set()
+    result: list[Path] = []
+
+    for score, p in priority_files:
+        base = re.sub(r"\.\d+$", "", p.name)
+        if base not in seen:
+            seen.add(base)
+            result.append(p)
+
+    for score, p in other_files:
+        base = re.sub(r"\.\d+$", "", p.name)
+        if base not in seen:
+            seen.add(base)
+            result.append(p)
+
+    return result[:top_n]
+
+
+def _parse_multi(file_paths: list[Path], original_filename: str) -> tuple[str, list, int]:
+    """Parse multiple log files, aggregate entries, merge parse_errors.
+
+    Returns (format_type, all_entries, total_parse_errors).
+    Each entry's source_file is set to the filename it came from.
+    """
+    all_entries: list = []
+    total_errors = 0
+    format_type = "multi"
+
+    for path in file_paths:
+        try:
+            ft, entries, errs = _route_parse(path.name, path)
+            # Tag each entry with its source file
+            for e in entries:
+                e.source_file = path.name
+            all_entries.extend(entries)
+            total_errors += errs
+            if len(entries) > 0:
+                format_type = ft
+        except Exception:
+            total_errors += 1
+
+    # Sort by timestamp if available
+    all_entries.sort(key=lambda e: e.timestamp or dt.min)
+    return format_type, all_entries, total_errors
 
 
 def _route_parse(filename: str, path: Path):
