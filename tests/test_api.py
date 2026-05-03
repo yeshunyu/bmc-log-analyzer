@@ -266,11 +266,15 @@ class TestSecurityBounds:
         assert res.status_code in (200, 413, 400)
 
     def test_llm_request_entries_field_limit(self):
-        """LLMAnalysisRequest should limit nested entries to prevent memory exhaustion."""
+        """LLMAnalysisRequest should limit nested entries to prevent memory exhaustion.
+
+        Pydantic v2 enforces max_length — oversized entries cause ValidationError.
+        """
         from app.schemas import LLMAnalysisRequest, LogEntry, AnomalyDetection
+        from pydantic import ValidationError
         from datetime import datetime
 
-        # Create a request with many entries
+        # Create 100 entries (exceeds max_length=20)
         entries = [
             LogEntry(
                 timestamp=datetime.now(),
@@ -282,15 +286,27 @@ class TestSecurityBounds:
             for i in range(100)
         ]
 
-        # Should not crash
+        # Should raise ValidationError instead of accepting oversized data
+        with pytest.raises(ValidationError) as exc_info:
+            AnomalyDetection(
+                rule_id="test",
+                rule_description="test",
+                severity="ERROR",
+                count=100,
+                entries=entries,
+            )
+        assert "too_long" in str(exc_info.value)
+
+        # Within limit should succeed
+        small_entries = entries[:5]
         req = LLMAnalysisRequest(
             anomalies=[
                 AnomalyDetection(
                     rule_id="test",
                     rule_description="test",
                     severity="ERROR",
-                    count=100,
-                    entries=entries,
+                    count=5,
+                    entries=small_entries,
                 )
             ],
             statistical_anomalies=[],

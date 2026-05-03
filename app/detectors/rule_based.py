@@ -52,6 +52,12 @@ RULES = [
     AnomalyRule(id="mem_uncorrectable", pattern=r"uncorrectable.*error|memory.*fatal|内存.*不可纠正", description="内存不可纠正错误", severity="ERROR"),
     AnomalyRule(id="cpu_error", pattern=r"CPU.*error|cpu.*thermal|cpu.*fail", description="CPU错误", severity="ERROR"),
 
+    # === NPU/昇腾类 ===
+    AnomalyRule(id="npu_fault", pattern=r"npu.*fault|npu.*fail|npu.*error|devicecore.*error|aicore.*error", description="NPU昇腾设备故障", severity="ERROR"),
+    AnomalyRule(id="npu_predictive", pattern=r"npu.*predictive|npu.*degraded|devicecore.*degraded", description="NPU昇腾预测性故障", severity="WARNING"),
+    AnomalyRule(id="cann_error", pattern=r"cann.*error|aicpu.*error|dvpp.*error", description="CANN运行时错误", severity="ERROR"),
+    AnomalyRule(id="hiai_fault", pattern=r"hiai.*error|ascend.*error|npu_sched.*fail|npuinfo.*error", description="昇腾海思子系统故障", severity="ERROR"),
+
     # === BMC/服务类 ===
     AnomalyRule(id="redfish_fail", pattern=r"get data fail|empty file", description="Redfish数据读取失败", severity="ERROR"),
     AnomalyRule(id="fdm_init", pattern=r"FDM process was initialized", description="FDM进程初始化", severity="INFO"),

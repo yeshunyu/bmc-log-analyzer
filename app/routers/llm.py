@@ -81,11 +81,13 @@ def build_prompt(req: LLMAnalysisRequest) -> str:
 
     # Hardware summary
     HW_KW = {
-        'cpu': ['cpu', 'core', 'processor', 'core_temp', 'package_temp'],
-        'mem': ['mem', 'memory', 'dram', 'ecc', 'ram'],
+        'mb':   ['sensor', 'thermal', 'overheat', 'fan', 'voltage', 'psu', 'chassis', 'bios', 'boot', 'intrusion'],
+        'cpu':  ['cpu', 'core', 'processor', 'core_temp', 'package_temp'],
+        'mem':  ['mem', 'memory', 'dram', 'ecc', 'ram'],
         'disk': ['disk', 'nvme', 'ssd', 'hdd', 'sata', 'pcie', 'block'],
         'raid': ['raid', 'lsi', 'megaraid', 'perc', 'hba', '阵列'],
-        'net': ['eth', 'nic', 'network', 'ethernet', 'port', 'link', 'tcp', 'udp'],
+        'net':  ['eth', 'nic', 'network', 'ethernet', 'port', 'link', 'tcp', 'udp'],
+        'npu':  ['npu', 'ascend', 'hiai', 'dvpp', 'aicore', 'aicpu', 'devicecore', 'npu_ex', 'npuinfo', 'npusched', 'ai_core', 'ai_cpu', 'cann'],
     }
 
     def hw_type(msg):
@@ -111,7 +113,7 @@ def build_prompt(req: LLMAnalysisRequest) -> str:
 
     hw_total = sum(hw_counts.values())
     if hw_total > 0:
-        hw_labels = {'cpu': 'CPU', 'mem': '内存', 'disk': '硬盘/存储', 'raid': 'RAID卡', 'net': '网卡/网络'}
+        hw_labels = {'mb': '主板', 'cpu': 'CPU', 'mem': '内存', 'disk': '硬盘/存储', 'raid': 'RAID卡', 'net': '网卡/网络', 'npu': 'NPU'}
         lines.append("## 硬件相关事件概览")
         for hw, cnt in sorted(hw_counts.items(), key=lambda x: -x[1]):
             if cnt > 0:

@@ -34,7 +34,7 @@ class AnomalyDetection(BaseModel):
     rule_description: str
     severity: str
     count: int
-    entries: list[LogEntry]
+    entries: list[LogEntry] = Field(default_factory=list, max_length=20)
     first_seen: Optional[datetime] = None
     last_seen: Optional[datetime] = None
 
@@ -47,7 +47,7 @@ class StatisticalAnomaly(BaseModel):
     window_end: datetime
     event_count: int
     threshold: float
-    entries: list[LogEntry]
+    entries: list[LogEntry] = Field(default_factory=list, max_length=10)
 
 
 class AnalysisResult(BaseModel):

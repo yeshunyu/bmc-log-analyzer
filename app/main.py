@@ -14,6 +14,25 @@ from fastapi.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 import threading
 
+MAX_FILE_SIZE = 500 * 1024 * 1024  # 500 MB upload limit
+
+
+def _streaming_copy(src: UploadFile, dst_path: Path, max_size: int) -> int:
+    """Stream file in chunks, aborting if max_size is exceeded. Returns bytes written."""
+    written = 0
+    chunk_size = 64 * 1024  # 64 KB
+    with dst_path.open("wb") as f:
+        while True:
+            chunk = src.file.read(chunk_size)
+            if not chunk:
+                break
+            written += len(chunk)
+            if written > max_size:
+                dst_path.unlink(missing_ok=True)
+                raise HTTPException(status_code=413, detail=f"文件超过 {max_size // (1024*1024)} MB 限制")
+            f.write(chunk)
+    return written
+
 from app.schemas import AnalysisResult
 from app.parsers.app_debug import parse_app_debug_log
 from app.parsers.agentless import parse_agentless_log
@@ -140,13 +159,10 @@ async def upload_log(file: UploadFile) -> AnalysisResult:
     if suffix not in (".log", ".txt", ".gz", ".tar.gz", ""):
         raise HTTPException(status_code=400, detail="Unsupported file type")
 
-    # Save uploaded file
+    # Save uploaded file (streaming to disk, with size limit)
     job_id = uuid.uuid4().hex
     save_path = UPLOAD_DIR / f"{job_id}_{file.filename}"
-    with save_path.open("wb") as f:
-        shutil.copyfileobj(file.file, f)
-
-    file_size = save_path.stat().st_size
+    file_size = _streaming_copy(file, save_path, MAX_FILE_SIZE)
 
     # Record in manifest
     import json
@@ -720,34 +736,13 @@ def _parse_multi(file_paths: list[Path], original_filename: str) -> tuple[str, l
 
 
 def _route_parse(filename: str, path: Path):
-    # Try registry first (auto-discovers all FORMAT_NAME+FILE_PATTERNS parsers)
+    # Registry lookup — discovers all registered parsers via __init__.py
     parse_fn, format_name = get_parser(filename)
     if parse_fn is not None:
         return parse_fn(path)
 
-    # Fallback: explicit routing for special cases
-    name = filename.lower()
-    if "app_debug" in name or "debug_log" in name:
-        return parse_app_debug_log(path)
-    elif "agentless" in name:
-        return parse_agentless_log(path)
-    elif "fdm" in name:
-        return parse_fdm_output(path)
-    elif "raid" in name or "lsi" in name:
-        return parse_raid_log(path)
-    elif "ipmi" in name or "sel" in name:
-        return parse_ipmi_log(path)
-    elif "linux_kernel" in name or "kernel_log" in name:
-        return parse_syslog(path)
-    elif "imu" in name or "cpu" in name or "m7" in name:
-        return parse_m7_log(path)
-    elif "maintenance" in name or "operate_log" in name:
-        return parse_maintenance_log(path)
-    elif "nginx" in name or "access_log" in name:
-        return parse_nginx_access_log(path)
-    else:
-        # Final fallback: try app_debug
-        return parse_app_debug_log(path)
+    # Fallback for unregistered filenames: try app_debug as catch-all
+    return parse_app_debug_log(path)
 
 
 if __name__ == "__main__":
