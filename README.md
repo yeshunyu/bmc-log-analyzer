@@ -12,9 +12,9 @@ English version: [README_en.md](README_en.md)
 - 华为一键收集包（iBMC Dump）自动解析内部嵌套归档，智能选择最关键的日志文件
 
 ### 异常检测
-- **规则异常检测**：基于专家规则（SSL握手失败、EDMA链路丢失、内存分配慢、主机注册异常、RAID阵列故障、物理磁盘故障、CPU错误、NPU异常等）
+- **规则异常检测**：基于专家规则（SSL握手失败、EDMA链路丢失、内存分配慢、主机注册异常、RAID阵列故障、物理磁盘故障、CPU错误、NPU昇腾设备故障、CANN运行时错误等，共50+条规则）
 - **统计异常检测**：基于条目级别分布的统计模型，自动发现异常模块/级别
-- **硬件事件分类**：主板 / CPU / 内存 / 硬盘 / RAID卡 / 网卡 / NPU 硬件事件独立分组展示，支持点击查看详情和单独 LLM 分析
+- **硬件事件分类**：主板 / CPU / 内存 / 硬盘 / RAID卡 / 网卡 / NPU 七类硬件事件独立分组展示，支持点击查看详情和单独 LLM 分析
 
 ### LLM 根因分析
 - **全量分析**：对所有规则+统计异常进行批量分析，带5阶段进度条
@@ -119,7 +119,8 @@ app/
 | agentless | agentless_dfl |
 | FDM | dfl 文件 |
 | RAID/LSI MegaRAID | raid, lsi |
-| IPMI/SEL | ipmi, sel |
+| IPMI | ipmi, ipmi_mass_operate_log |
+| SEL | sel, sensor_alarm_sel |
 | syslog | linux_kernel_log, dmesg |
 | maintenance | maintenance_log, md_so_maintenance_log |
 | nginx_access | nginx access_log |
@@ -129,10 +130,16 @@ app/
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
-| POST | `/api/upload` | 上传日志文件，返回解析+检测结果 |
+| POST | `/api/upload` | 上传日志文件（最大 500MB），返回解析+检测结果 |
 | POST | `/api/analyze/llm` | 全量 LLM 根因分析 |
 | POST | `/api/analyze/llm-single` | 单条异常 LLM 分析 |
-| GET | `/` | 前端页面 |
+| GET | `/api/history` | 查询历史上传记录 |
+| DELETE | `/api/history` | 清空全部历史记录 |
+| POST | `/api/reanalyze/{uuid}` | 重新分析历史文件 |
+| DELETE | `/api/reanalyze/{uuid}` | 删除历史文件 |
+| GET | `/api/operation-logs` | 查询操作日志（默认最近7天） |
+| GET | `/api/analyze/llm-settings` | 获取 LLM 配置 |
+| POST | `/api/analyze/llm-settings` | 更新 LLM 配置 |
 
 ## Docker 部署
 
