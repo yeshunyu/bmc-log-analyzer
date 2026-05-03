@@ -376,9 +376,11 @@ def _parse_sel_tar(path: Path):
                                 break
                             except (ValueError, IndexError):
                                 pass
+                        # Sanitize member name to prevent path traversal in module field
+                        safe_name = member.name.replace("/", "_").replace("..", "_")
                         entries.append(LogEntry(
                             timestamp=ts,
-                            module=f"sel:tar:{member.name}",
+                            module=f"sel:tar:{safe_name}",
                             level="ERROR" if record_type >= 0xC0 else "INFO",
                             message=" | ".join(parts[3:]),
                             raw=line,

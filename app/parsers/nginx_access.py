@@ -34,8 +34,10 @@ def parse_nginx_access_log(path: Path):
                 except ValueError:
                     ts = None
                 level = "ERROR" if status.startswith(("4", "5")) else "INFO"
-                # Extract URL path from "GET /path HTTP/1.1" — split once
-                method, path_part, protocol = request.split(" ", 2)
+                # Extract URL path from "GET /path HTTP/1.1" — split safely
+                parts = request.split(" ", 2)
+                method = parts[0] if len(parts) > 0 else "?"
+                path_part = parts[1] if len(parts) > 1 else "?"
                 source_file = path_part
                 entries.append(LogEntry(
                     timestamp=ts,
@@ -76,6 +78,14 @@ def parse_nginx_error_log(path: Path):
 
 
 def parse(path: Path):
+    # Auto-detect: peek first 200 bytes to decide format
+    try:
+        header = path.open("rb").read(200).decode("utf-8", errors="replace")
+    except OSError:
+        return parse_nginx_access_log(path)
+
+    if NGINX_ERROR_RE.match(header.splitlines()[0] if header else ""):
+        return parse_nginx_error_log(path)
     return parse_nginx_access_log(path)
 
 

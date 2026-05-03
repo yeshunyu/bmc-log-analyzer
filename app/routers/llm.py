@@ -82,16 +82,34 @@ async def post_settings(req: LLMSettingsRequest):
 def build_prompt(req: LLMAnalysisRequest) -> str:
     lines = ["# BMC 日志异常分析报告", ""]
 
-    # Hardware summary
+    # ── Hardware taxonomy for Huawei iBMC / standard IPMI ──────────────────
     HW_KW = {
-        'mb':   ['sensor', 'thermal', 'overheat', 'fan', 'voltage', 'psu', 'chassis', 'bios', 'boot', 'intrusion'],
-        'cpu':  ['cpu', 'core', 'processor', 'core_temp', 'package_temp'],
-        'mem':  ['mem', 'memory', 'dram', 'ecc', 'ram'],
-        'disk': ['disk', 'nvme', 'ssd', 'hdd', 'sata', 'pcie', 'block'],
-        'raid': ['raid', 'lsi', 'megaraid', 'perc', 'hba', '阵列'],
-        'net':  ['eth', 'nic', 'network', 'ethernet', 'port', 'link', 'tcp', 'udp'],
-        'npu':  ['npu', 'ascend', 'hiai', 'dvpp', 'aicore', 'aicpu', 'devicecore', 'npu_ex', 'npuinfo', 'npusched', 'ai_core', 'ai_cpu', 'cann'],
+        'mb':    ['sensor', 'thermal', 'overheat', 'fan', 'voltage', 'psu',
+                  'chassis', 'bios', 'boot', 'intrusion', 'sel ',
+                  'system event', 'power on', 'power off', 'reset'],
+        'cpu':   ['cpu', 'core', 'processor', 'core_temp', 'package_temp',
+                  'processor', 'p-state', 'c-state'],
+        'mem':   ['mem', 'memory', 'dram', 'ecc', 'ram', 'corrected', 'uncorrectable'],
+        'disk':  ['disk', 'nvme', 'ssd', 'hdd', 'sata', 'pcie', 'block',
+                  'media', 'media error', 'pcie error', 'drive', 'hdd fault'],
+        'raid':  ['raid', 'lsi', 'megaraid', 'perc', 'hba', '阵列',
+                  'logical drive', 'physical drive', 'vd ', 'pd ', 'bbu',
+                  'rebuild', 'patrol', 'consistency'],
+        'net':   ['eth', 'nic', 'network', 'ethernet', 'port', 'link',
+                  'tcp', 'udp', 'mac', 'arp', 'lldp', 'mlag', 'bond'],
+        'npu':   ['npu', 'ascend', 'hiai', 'dvpp', 'aicore', 'aicpu',
+                  'devicecore', 'npu_ex', 'npuinfo', 'npusched', 'ai_core',
+                  'ai_cpu', 'cann', 'him_config', 'hicama', 'hdc'],
+        'bmc':   ['ipmi', 'sel', 'sensor', 'fru', 'sdr', 'pef', 'bmc watch',
+                  'watchdog', 'webui', 'kvm', 'vmm', 'firmware', 'bmc'],
+        'agent': ['agentless', 'hardware', 'signature', 'maintenance',
+                  'diag', 'diagnosis', 'ism', 'ibmc', 'imanager'],
     }
+
+    # Severity keyword map (for entries without parsed level)
+    ERR_KW = ['fail', 'error', 'critical', 'fault', 'lost', 'miss', 'timeout',
+              'abort', 'unable', 'incorrect', 'critical', 'emergency', 'alert']
+    WARN_KW = ['warn', 'notice', 'info recovery', 'degraded']
 
     def detect_hw_type(msg):
         if not msg:
@@ -103,29 +121,49 @@ def build_prompt(req: LLMAnalysisRequest) -> str:
                     return hw
         return None
 
-    # Count hardware-related entries
+    def entry_level(e):
+        """Return ERROR/WARNING/INFO based on raw message content."""
+        raw = ((e.message or '') + ' ' + (e.module or '')).lower()
+        if any(k in raw for k in ERR_KW):
+            return 'ERROR'
+        if any(k in raw for k in WARN_KW):
+            return 'WARNING'
+        lvl = (e.level or '').upper()
+        if 'ERR' in lvl or 'CRIT' in lvl or 'FAIL' in lvl:
+            return 'ERROR'
+        if 'WARN' in lvl:
+            return 'WARNING'
+        return 'INFO'
+
+    # ── Hardware summary ───────────────────────────────────────────────────
     hw_counts = {k: 0 for k in HW_KW}
     hw_entries = {k: [] for k in HW_KW}
     for e in (req.top_entries or []):
         msg = (e.message or '') + ' ' + (e.module or '')
         ht = detect_hw_type(msg)
         if ht:
-            hw_counts[ht] = hw_counts.get(ht, 0) + 1
-            if len(hw_entries[ht]) < 3:
+            hw_counts[ht] += 1
+            if len(hw_entries[ht]) < 2:
                 hw_entries[ht].append(e)
 
     hw_total = sum(hw_counts.values())
     if hw_total > 0:
-        hw_labels = {'mb': '主板', 'cpu': 'CPU', 'mem': '内存', 'disk': '硬盘/存储', 'raid': 'RAID卡', 'net': '网卡/网络', 'npu': 'NPU'}
+        hw_labels = {
+            'mb': '主板/传感器', 'cpu': 'CPU', 'mem': '内存',
+            'disk': '硬盘/NVMe', 'raid': 'RAID/存储', 'net': '网卡/网络',
+            'npu': 'NPU/昇腾', 'bmc': 'BMC/iBMC', 'agent': 'Agentless',
+        }
         lines.append("## 硬件相关事件概览")
         for hw, cnt in sorted(hw_counts.items(), key=lambda x: -x[1]):
             if cnt > 0:
                 lines.append(f"- **{hw_labels[hw]}**：{cnt} 条")
                 for e in hw_entries[hw][:2]:
                     ts = _fmt_ts(e.timestamp)
-                    lines.append(f"  - [{ts}] [{e.module}] {e.message[:80]}")
+                    lvl = entry_level(e)
+                    lines.append(f"  - `[{lvl}]` [{ts}] [{e.module}] {e.message[:100]}")
         lines.append("")
 
+    # ── Anomaly patterns ──────────────────────────────────────────────────
     if req.anomalies:
         lines.append("## 检测到的异常模式")
         for a in req.anomalies[:10]:
@@ -138,28 +176,37 @@ def build_prompt(req: LLMAnalysisRequest) -> str:
             lines.append("- 示例日志：")
             for e in a.entries[:3]:
                 ts = _fmt_ts(e.timestamp)
-                lines.append(f"  [{ts}] [{e.module}] {e.message}")
+                lvl = entry_level(e)
+                lines.append(f"  - `[{lvl}]` [{ts}] [{e.module}] {e.message}")
             lines.append("")
 
+    # ── Statistical anomalies ──────────────────────────────────────────────
     if req.statistical_anomalies:
         lines.append("## 统计异常")
         for a in req.statistical_anomalies[:5]:
-            lines.append(f"- {a.description}")
+            lines.append(f"- **{a.description}**")
             lines.append(f"  时间窗口：{a.window_start} ~ {a.window_end}")
             lines.append("")
 
+    # ── Raw ERROR log ──────────────────────────────────────────────────────
     if req.top_entries:
-        lines.append("## Top ERROR 日志（按时间排序）")
-        for e in req.top_entries[:20]:
-            ts = _fmt_ts(e.timestamp)
-            lines.append(f"[{ts}] [{e.module}] {e.message}")
-        lines.append("")
+        err_entries = [e for e in req.top_entries if entry_level(e) == 'ERROR']
+        if err_entries:
+            lines.append(f"## ERROR 日志（共 {len(err_entries)} 条，取前 20）")
+            for e in err_entries[:20]:
+                ts = _fmt_ts(e.timestamp)
+                lines.append(f"[{ts}] [{e.module}] {e.message}")
+            lines.append("")
 
-    lines.append("""请分析以上日志，回答：
-1. 这些异常最可能的根本原因是什么？
-2. 哪些异常需要优先处理？（特别是硬件相关）
-3. 建议的解决步骤或进一步的调查方向？
-请用中文回答，简洁专业，突出重点。重点关注 CPU、内存、硬盘/RAID、网络等硬件问题。""")
+    lines.append("""请分析以上日志，回答以下三点：
+1. **根因判断**：这些异常最可能的根本原因是什么？（是否涉及 CPU/内存/硬盘/RAID/网卡/NPU 等硬件？是否是固件/配置问题？）
+2. **优先级建议**：哪些异常需要优先处理？（特别是电源、风扇、温度、过载类异常应最高优先级）
+3. **解决步骤**：建议的解决步骤或进一步调查方向？（如检查硬件健康状态、更新固件、联系华为技术支持等）
+
+**回答要求**：
+- 用中文回答，简洁专业，突出重点，每点 2-4 句话
+- 重点关注 CPU、内存、硬盘/RAID、网络等硬件问题
+- 如果异常具有时间相关性（如每次重启后出现），请特别指出""")
 
     return "\n".join(lines)
 
@@ -167,6 +214,23 @@ def build_prompt(req: LLMAnalysisRequest) -> str:
 def build_single_prompt(anomaly_type: str, rule_id: str, rule_description: str,
                          severity: str, count: int, entries) -> str:
     """Build prompt for a single anomaly card analysis."""
+    ERR_KW = ['fail', 'error', 'critical', 'fault', 'lost', 'miss',
+              'timeout', 'abort', 'unable', 'incorrect', 'emergency', 'alert']
+    WARN_KW = ['warn', 'notice', 'info recovery', 'degraded']
+
+    def entry_level(e):
+        raw = ((_get_entry(e, 'message') or '') + ' ' + (_get_entry(e, 'module') or '')).lower()
+        if any(k in raw for k in ERR_KW):
+            return 'ERROR'
+        if any(k in raw for k in WARN_KW):
+            return 'WARNING'
+        lvl = (_get_entry(e, 'level') or '').upper()
+        if 'ERR' in lvl or 'CRIT' in lvl or 'FAIL' in lvl:
+            return 'ERROR'
+        if 'WARN' in lvl:
+            return 'WARNING'
+        return 'INFO'
+
     lines = [
         "# 单条异常根因分析",
         "",
@@ -178,12 +242,14 @@ def build_single_prompt(anomaly_type: str, rule_id: str, rule_description: str,
     ]
     for e in entries[:5]:
         ts = _fmt_ts(_get_entry(e, 'timestamp'))
-        lines.append(f"- [{ts}] [{_get_entry(e, 'module')}] {_get_entry(e, 'message')}")
+        lvl = entry_level(e)
+        lines.append(f"- `[{lvl}]` [{ts}] [{_get_entry(e, 'module')}] {_get_entry(e, 'message')}")
     lines.append("")
     lines.append("""请分析这条异常，回答：
-1. 最可能的根本原因是什么？（是否涉及 CPU/内存/硬盘/RAID/网卡等硬件？）
-2. 建议的解决步骤或进一步调查方向？
-请用中文回答，简洁专业，突出重点（3-5句话为宜）。""")
+1. **根因判断**：最可能的根本原因是什么？（是否涉及 CPU/内存/硬盘/RAID/网卡/NPU 等硬件？是否是固件/配置/BMC 问题？）
+2. **解决步骤**：建议的解决步骤或进一步调查方向？（如检查硬件健康状态命令、固件版本、联系华为技术支持等）
+
+**回答要求**：用中文回答，简洁专业，突出重点，3-5句话为宜。""")
     return "\n".join(lines)
 
 
@@ -206,15 +272,26 @@ def _call_minimax(prompt: str) -> str:
 # Generic OpenAI-compatible custom API driver (auto-detects Anthropic vs OpenAI by URL)
 # ---------------------------------------------------------------------------
 def _call_custom(prompt: str, api_key: str, api_base: str, model: str) -> str:
-    import urllib.request
-    import urllib.error
+    """Try OpenAI-compatible first, fall back to Anthropic-compatible.
 
-    # Detect endpoint type from URL path — more robust than substring search
-    # /anthropic at the end of the path (not inside a version string) → Anthropic API
-    normalized = api_base.rstrip("/").lower()
-    if normalized.endswith("/anthropic"):
+    Attempts both interfaces with the same prompt and returns whichever
+    responds with a valid structure — no need to guess from URL path.
+    """
+    # Try OpenAI /chat/completions
+    try:
+        result = _call_openai_compatible(prompt, api_key, api_base, model)
+        return result
+    except (KeyError, IndexError, RuntimeError):
+        pass
+
+    # Fall back to Anthropic /messages
+    try:
         return _call_anthropic_compatible(prompt, api_key, api_base, model)
-    return _call_openai_compatible(prompt, api_key, api_base, model)
+    except (KeyError, IndexError, RuntimeError) as e:
+        raise RuntimeError(
+            f"API 接口响应格式错误（尝试了 OpenAI 和 Anthropic 两种接口），"
+            f"请检查 api_base 是否正确。底层错误: {e}"
+        )
 
 
 def _call_openai_compatible(prompt: str, api_key: str, api_base: str, model: str) -> str:

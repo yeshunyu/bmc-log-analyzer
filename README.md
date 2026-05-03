@@ -13,14 +13,14 @@ English version: [README_en.md](README_en.md)
 - 大文件保护：自动采样（每格式最多 200 行），避免 OOM
 
 ### 异常检测
-- **规则异常检测**：基于专家规则（SSL握手失败、EDMA链路丢失、内存分配慢、主机注册异常、RAID阵列故障、物理磁盘故障、CPU错误、NPU昇腾设备故障、CANN运行时错误等，共50+条规则）
+- **规则异常检测**：基于专家规则（SSL握手失败、EDMA链路丢失、内存分配慢、主机注册异常、RAID阵列故障、物理磁盘故障、CPU错误、NPU昇腾设备故障、CANN运行时错误等，共70+条规则）
 - **统计异常检测**：基于条目级别分布的统计模型，自动发现异常模块/级别
 - **硬件事件分类**：主板 / CPU / 内存 / 硬盘 / RAID卡 / 网卡 / NPU 七类硬件事件独立分组展示，支持点击查看详情和单独 LLM 分析
 
 ### LLM 根因分析
 - **全量分析**：对所有规则+统计异常进行批量分析，带5阶段进度条
 - **单条分析**：点击任意异常卡片或硬件分类的「🤖 分析此异常」按钮，单独分析该条异常
-- 支持配置 LLM Provider（Minimax GLM 等）和 API Key
+- 支持配置 LLM Provider（Minimax GLM 等）和 API Key，支持 OpenAI-compatible 和 Anthropic-compatible 双接口自动探测
 
 ### 全部事件
 - 分页展示（50/100/200/500 条每页）
@@ -124,7 +124,7 @@ app/
 | SEL | sel, sensor_alarm_sel |
 | syslog | linux_kernel_log, dmesg |
 | maintenance | maintenance_log, md_so_maintenance_log |
-| nginx_access | nginx access_log |
+| nginx_access + error | nginx access_log, nginx_error_log |
 | M7 IMU | imu, m7 |
 
 ## API 接口
