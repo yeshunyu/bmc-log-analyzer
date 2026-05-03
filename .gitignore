@@ -7,3 +7,4 @@ app/uploads/
 *.egg-info/
 build/
 dist/
+.DS_Store

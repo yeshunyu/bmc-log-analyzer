@@ -144,6 +144,8 @@ app/
 
 ## Docker 部署
 
+镜像支持外网和**内网（离线）两种部署模式**，零已知运行时漏洞。
+
 ### 快速启动（使用内置 MiniMax 模型）
 
 ```powershell
@@ -168,7 +170,7 @@ docker run -d -p 9000:8000 yuyeshun2/bmc-log-analyzer
 ```powershell
 docker run -d -p 8088:8000 \
   -e LLM_PROVIDER=custom \
-  -e LLM_API_KEY=your-api-key \
+  -e LLM_API_KEY=*** \
   -e LLM_API_BASE=https://your-endpoint/v1 \
   -e LLM_MODEL=your-model-name \
   yuyeshun2/bmc-log-analyzer
@@ -182,6 +184,26 @@ docker run -d -p 8088:8000 \
 | `LLM_MODEL` | 模型名称 | `deepseek-chat` |
 
 支持任意 OpenAI-compatible 或 Anthropic-compatible API。`/anthropic` 路径的 endpoint 自动使用 Claude 接口。
+
+### 内网 / 离线部署
+
+内网无法访问外网时，镜像所有依赖已打包进容器，无需下载任何包：
+
+```powershell
+# 1. 在有外网的环境导出镜像
+docker save yuyeshun2/bmc-log-analyzer -o bmc-log-analyzer-offline.tar
+
+# 2. 拷贝到内网机器，加载镜像
+docker load -i bmc-log-analyzer-offline.tar
+
+# 3. 启动（内网 LLM 模式，假设已部署内网大模型）
+docker run -d -p 8088:8000 \
+  -e LLM_PROVIDER=custom \
+  -e LLM_API_KEY=*** \
+  -e LLM_API_BASE=http://内网LLM地址/v1 \
+  -e LLM_MODEL=内网模型名 \
+  yuyeshun2/bmc-log-analyzer
+```
 
 ### 本地构建
 

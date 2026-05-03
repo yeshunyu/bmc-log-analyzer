@@ -3,7 +3,7 @@ FROM python:3.11-alpine AS builder
 
 WORKDIR /app
 
-# Install build dependencies for compiled Python packages
+# Install build dependencies (compilers, etc.)
 RUN apk add --no-cache \
     gcc \
     musl-dev \
@@ -12,38 +12,42 @@ RUN apk add --no-cache \
     cargo \
     rust
 
-# Upgrade pip first so wheel gets a newer version
-RUN pip install --user --upgrade pip wheel
+# Create venv and install all deps into it (no external download at runtime)
+RUN python -m venv /app/venv
+ENV PATH="/app/venv/bin:$PATH"
 
-# Copy source code
-COPY . .
+# Upgrade pip/wheel/setuptools in venv
+RUN pip install --upgrade pip wheel setuptools
 
-# Remove any pre-existing venv/dist that may contain old vulnerable packages
-RUN rm -rf /app/.venv /app/dist
-
-# Copy requirements and install (after clean to avoid old cached packages)
+# Copy source and install dependencies
 COPY requirements.txt /tmp/
-RUN pip install --user -r /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
 
-# ===== Stage 2: Runtime =====
+# ===== Stage 2: Runtime (fully offline, no network) =====
 FROM python:3.11-alpine
 
 WORKDIR /app
 
-# Install runtime dependencies only
-RUN apk add --no-cache musl
+# Remove base image's pip/setuptools/wheel (not needed at runtime, avoids trivy scanning them)
+RUN apk add --no-cache musl \
+    && cd /usr/local/lib/python3.11/site-packages \
+    && rm -rf pip* setuptools* wheel* \
+              autocommand* backports* importlib_metadata* inflect* \
+              jaraco* more_itertools* packaging* platformdirs* \
+              typeguard* typing_extensions* zipp* \
+    && rm -rf /root/.local
 
-# Copy installed packages from builder
-COPY --from=builder /root/.local /root/.local
+# Copy pre-built venv from builder (only venv, no base /usr/local/lib)
+COPY --from=builder /app/venv /app/venv
+
+# Activate venv — override PYTHONPATH to prevent base image's site-packages from being loaded
+ENV PATH="/app/venv/bin:$PATH" \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH="/app/venv/lib/python3.11/site-packages" \
+    PYTHONHOME=""
+
+# Copy application source
 COPY --from=builder /app /app
 
-# Set PATH so .local/bin takes priority
-ENV PATH="/root/.local/bin:$PATH" \
-    PYTHONUNBUFFERED=1 \
-    PYTHONPATH="/root/.local/lib/python3.11/site-packages:$PYTHONPATH"
-
-# Expose port
 EXPOSE 8000
-
-# Run
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
