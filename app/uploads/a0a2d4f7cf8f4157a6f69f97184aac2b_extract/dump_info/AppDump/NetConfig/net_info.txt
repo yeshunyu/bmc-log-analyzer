@@ -1,0 +1,81 @@
+EthGroup ID               :  1
+Net Mode                  :  Manual
+Net Type                  :  Dedicated
+IPv4 Information          :
+IP Mode                   :  static
+IP Address                :  32.68.253.48
+Subnet Mask               :  255.255.255.0
+Default Gateway           :  32.68.253.254
+Backup IP Address     :  192.168.2.100 (Deactivated)
+Backup Subnet Mask    :  255.255.255.0 (Deactivated)
+MAC Address               :  8c:2a:8e:8b:9e:3e
+IPv6 Information          :
+IPv6 Mode                 :  static
+IPv6 Address 1            :  
+Default Gateway IPv6      :  
+Link-Local Address        :  fe80::8e2a:8eff:fe8b:9e3e/64
+VLAN Information          :
+NCSI Port VLAN State      :  disabled
+Dedicated Port VLAN State :  disabled
+
+EthGroup ID               :  3
+Net Mode                  :  Manual
+Net Type                  :  PCIE
+Net Port                     :  2
+IPv4 Information          :
+IP Mode                   :  static
+IP Address                :  
+Subnet Mask               :  255.255.255.0
+Default Gateway           :  
+MAC Address               :  
+IPv6 Information          :
+IPv6 Mode                 :  static
+IPv6 Address 1            :  
+Default Gateway IPv6      :  
+Link-Local Address        :  fe80::9e7d:a3ff:fe28:6ffa/64
+
+eth0      Link encap:Ethernet  HWaddr 8C:2A:8E:8B:9E:3E  
+          inet6 addr: fe80::8e2a:8eff:fe8b:9e3e/64 Scope:Link
+          UP BROADCAST RUNNING  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:8 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:696 (696.0 B)
+          Base address:0xa000 Memory:cd00000-0 
+
+eth1      Link encap:Ethernet  HWaddr 8C:2A:8E:8B:9E:3E  
+          inet6 addr: fe80::8e2a:8eff:fe8b:9e3e/64 Scope:Link
+          UP BROADCAST RUNNING  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:7 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:618 (618.0 B)
+          Base address:0x4000 Memory:cd01000-0 
+
+eth2      Link encap:Ethernet  HWaddr 8C:2A:8E:8B:9E:3E  
+          inet addr:32.68.253.48  Bcast:32.68.253.255  Mask:255.255.255.0
+          inet6 addr: fe80::8e2a:8eff:fe8b:9e3e/64 Scope:Link
+          UP BROADCAST RUNNING  MTU:1500  Metric:1
+          RX packets:111029050942 errors:0 dropped:4215556 overruns:0 frame:0
+          TX packets:24198823 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:25677247120162 (23.3 TiB)  TX bytes:9566506741 (8.9 GiB)
+          Base address:0xe000 Memory:cd02000-0 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:20305997 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:20305997 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:4829327543 (4.4 GiB)  TX bytes:4829327543 (4.4 GiB)
+
+veth      Link encap:Ethernet  HWaddr 9C:7D:A3:28:6F:FA  
+          inet6 addr: fe80::9e7d:a3ff:fe28:6ffa/64 Scope:Link
+          UP BROADCAST RUNNING  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:34 overruns:0 carrier:0
+          collisions:0 txqueuelen:128 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+

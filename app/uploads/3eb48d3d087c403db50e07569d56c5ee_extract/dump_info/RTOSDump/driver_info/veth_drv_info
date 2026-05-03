@@ -1,0 +1,60 @@
+cat /sys/module/bmc_veth_drv/parameters/statistics
+==========================VETH INFO======================
+[version]    :8.05.02
+[link state]:0
+[running_time] :694D 03:49:11
+[bspveth_dev]:MAX_QUEUE_NUM :0x1                   MAX_QUEUE_BDNUM :0x80              
+[bspveth_dev]:pnetdev       :0xffffcfb1f9d10000    ppcidev         :0x(null)          
+[bspveth_dev]:pshmpool_p    :0x84820000            pshmpool_v      :0xffff000009f00000
+[bspveth_dev]:shmpoolsize   :0xdf000               debug       :0x0               
+=============RXQUEUE STATIS============
+QUEUE[0]--[pkt]    :0
+QUEUE[0]--[pktbyte]:0
+QUEUE[0]--[refill] :0
+QUEUE[0]--[freetx] :0
+======SHARE=======
+QUEUE[0]--[next_to_fill]:0
+QUEUE[0]--[next_to_free]:0
+QUEUE[0]--[head]        :0
+QUEUE[0]--[tail]        :0
+======ERROR=======
+QUEUE[0]--[dropped_pkt] :0
+QUEUE[0]--[tx_timeout]  :0
+QUEUE[0]--[netifrx_err] :0
+QUEUE[0]--[null_point]  :0
+QUEUE[0]--[retry_err]   :0
+QUEUE[0]--[allocskb_err]:0
+QUEUE[0]--[q_full]      :0
+QUEUE[0]--[q_emp]       :0
+QUEUE[0]--[need_fill]   :0
+QUEUE[0]--[need_free]   :0
+QUEUE[0]--[type_err]    :0
+QUEUE[0]--[dma_need_offset]:0
+=============TXQUEUE STATIS============
+QUEUE[0]--[pkt]    :0
+QUEUE[0]--[pktbyte]:0
+QUEUE[0]--[refill] :0
+QUEUE[0]--[freetx] :0
+======SHARE=======
+QUEUE[0]--[next_to_fill]:0
+QUEUE[0]--[next_to_free]:0
+QUEUE[0]--[head]        :0
+QUEUE[0]--[tail]        :0
+======ERROR=======
+QUEUE[0]--[dropped_pkt] :19
+QUEUE[0]--[tx_timeout]  :0
+QUEUE[0]--[netifrx_err] :0
+QUEUE[0]--[null_point]  :0
+QUEUE[0]--[retry_err]   :0
+QUEUE[0]--[allocskb_err]:0
+QUEUE[0]--[q_full]      :0
+QUEUE[0]--[q_emp]       :0
+QUEUE[0]--[need_fill]   :0
+QUEUE[0]--[need_free]   :0
+QUEUE[0]--[type_err]    :0
+QUEUE[0]--[dma_need_offset]:0
+=============BSPVETH STATIS============
+[bspveth_dev]:run_skbRXtask :0x0       (0)
+[bspveth_dev]:run_skbFRtask :0x0       (0)
+[bspveth_dev]:recv_int      :0x0       (0)
+[bspveth_dev]:tohost_int    :0x0       (0)

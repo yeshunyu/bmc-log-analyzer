@@ -1,0 +1,1281 @@
+2025-06-23 11:03:20.644848 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-24 02:50:54.251101 redfish ERROR: redfish_util.c(1367): read_history_data_from_file: empty file, file path is /opt/pme/pram/env_web_view.dat.
+2025-06-24 03:20:54.579721 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-06-24 03:20:54.580024 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/06/18 08:50.
+2025-06-24 10:19:33.950528 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 42 times)
+2025-06-24 10:19:33.950912 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-06-24 10:19:33.951135 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-24 10:19:44.003681 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-24 10:19:44.004062 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-24 10:19:44.004695 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-24 10:19:45.005775 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-06-24 10:19:46.013306 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-24 10:19:46.013659 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-24 10:19:47.050250 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-06-24 10:19:50.140369 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-06-24 11:15:17.610685 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-24 19:50:54.601788 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-06-24 19:50:54.602148 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/06/24 07.
+2025-06-25 02:00:54.986355 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-06-25 02:00:54.987776 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/.
+2025-06-25 10:19:42.750876 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 25 times)
+2025-06-25 10:19:42.751177 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-06-25 10:19:42.751387 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-25 10:19:51.363265 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-25 10:19:51.363630 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-25 10:19:51.363868 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-25 10:19:52.364664 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-06-25 10:19:53.306543 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-25 10:19:53.306867 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-25 10:19:54.526706 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-06-25 10:19:57.832232 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-06-25 10:58:53.131673 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-26 10:19:36.469654 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 38 times)
+2025-06-26 10:19:36.469959 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-06-26 10:19:36.470200 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-26 10:19:40.857393 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-26 10:19:40.857738 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-26 10:19:40.857962 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-26 10:19:41.859231 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-06-26 10:19:41.859707 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-26 10:19:41.860013 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-26 10:19:42.874632 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=5, errno=0, ret = -1.
+2025-06-26 10:19:42.875029 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-26 10:19:42.875385 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-26 11:40:41.544251 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-27 10:20:09.573539 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 44 times)
+2025-06-27 10:20:09.574095 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-06-27 10:20:09.574307 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-27 10:20:15.165833 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-27 10:20:15.166245 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-27 10:20:15.166737 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-27 10:20:16.167933 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-06-27 10:20:16.168384 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-27 10:20:16.168679 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-27 10:20:17.183806 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=5, errno=0, ret = -1.
+2025-06-27 10:20:17.185556 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-27 10:20:17.187250 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-27 10:33:52.298289 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-28 09:50:55.704746 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-06-28 09:50:55.705342 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/06/.
+2025-06-28 10:20:04.881066 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 47 times)
+2025-06-28 10:20:04.881331 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-06-28 10:20:04.881543 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-28 10:20:09.882584 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-28 10:20:09.882974 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-28 10:20:09.883239 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-28 10:52:00.138700 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-28 17:00:55.781058 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-06-28 17:00:55.781376 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/0.
+2025-06-29 10:19:54.558535 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 39 times)
+2025-06-29 10:19:54.558817 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-06-29 10:19:54.559017 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-29 10:20:01.905750 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-29 10:20:01.906139 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-29 10:20:01.906380 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-29 10:20:02.907167 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-06-29 10:20:03.819879 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-29 10:20:03.820224 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-29 10:20:04.981835 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-06-29 10:20:09.107998 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-06-29 10:35:26.639532 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-29 12:00:58.070362 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-06-29 12:00:58.070683 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2.
+2025-06-29 18:40:57.660648 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-06-29 18:40:57.660939 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/06/24 00:10.
+2025-06-30 02:58:31.288921 StorageMgnt ERROR: sl_pd.c(2589): smlib: LSI:GetPDInfo failed, CtrlId = 0, DeviceId = 5, SlotId = 4, return 0x1001
+2025-06-30 02:58:31.318421 StorageMgnt : ERROR: sl_pd.c(2589): smlib: LSI:GetPDInfo failed, CtrlId = 0, DeviceId = 5, SlotId = 4, return 0x1001   (repeated 13 times)
+2025-06-30 02:58:31.318705 StorageMgnt ERROR: oob_pd.c(513): Get Physical Drive Hdd4-2 capacity failed, result=0x10c8
+2025-06-30 02:58:31.321031 StorageMgnt ERROR: sl_pd.c(2589): smlib: LSI:GetPDInfo failed, CtrlId = 0, DeviceId = 5, SlotId = 4, return 0x1001
+2025-06-30 02:58:31.748675 StorageMgnt : ERROR: sl_pd.c(2589): smlib: LSI:GetPDInfo failed, CtrlId = 0, DeviceId = 5, SlotId = 4, return 0x1001   (repeated 10 times)
+2025-06-30 02:58:31.748961 StorageMgnt ERROR: sl_pd.c(2589): smlib: LSI:GetPDInfo failed, CtrlId = 0, DeviceId = 7, SlotId = 6, return 0x1001
+2025-06-30 05:58:31.557076 StorageMgnt : ERROR: sl_pd.c(2589): smlib: LSI:GetPDInfo failed, CtrlId = 0, DeviceId = 7, SlotId = 6, return 0x1001   (repeated 6 times)
+2025-06-30 05:58:31.557396 StorageMgnt ERROR: sl_ld.c(2669): smlib: LSI:GetLDInfo failed, CtrlId = 0, TargetId = 0, return 0x1001
+2025-06-30 05:58:31.560992 StorageMgnt ERROR: sl_ctrl.c(2493): smlib: LSI:SetLDBootable -> MR_DCMD_CTRL_BIOS_DATA_GET cmd failed, return 0x1001
+2025-06-30 05:58:31.562469 StorageMgnt ERROR: sml_ctrl.c(1152): is_logical_drive_epd:Get LD target id failed, return 4097
+2025-06-30 05:58:31.567151 StorageMgnt ERROR: sl_ld.c(2669): smlib: LSI:GetLDInfo failed, CtrlId = 0, TargetId = 0, return 0x1001
+2025-06-30 05:58:31.570630 StorageMgnt ERROR: sl_ctrl.c(2493): smlib: LSI:SetLDBootable -> MR_DCMD_CTRL_BIOS_DATA_GET cmd failed, return 0x1001
+2025-06-30 05:58:31.574180 StorageMgnt ERROR: sl_ld.c(2669): smlib: LSI:GetLDInfo failed, CtrlId = 0, TargetId = 0, return 0x1001
+2025-06-30 05:58:31.576852 StorageMgnt ERROR: sl_ctrl.c(2493): smlib: LSI:SetLDBootable -> MR_DCMD_CTRL_BIOS_DATA_GET cmd failed, return 0x1001
+2025-06-30 05:58:31.580176 StorageMgnt ERROR: sl_ld.c(2669): smlib: LSI:GetLDInfo failed, CtrlId = 0, TargetId = 0, return 0x1001
+2025-06-30 05:58:31.582743 StorageMgnt ERROR: sl_ctrl.c(2493): smlib: LSI:SetLDBootable -> MR_DCMD_CTRL_BIOS_DATA_GET cmd failed, return 0x1001
+2025-06-30 05:58:31.585193 StorageMgnt ERROR: sl_ld.c(2669): smlib: LSI:GetLDInfo failed, CtrlId = 0, TargetId = 0, return 0x1001
+2025-06-30 05:58:31.587690 StorageMgnt ERROR: sl_ctrl.c(2493): smlib: LSI:SetLDBootable -> MR_DCMD_CTRL_BIOS_DATA_GET cmd failed, return 0x1001
+2025-06-30 05:58:31.590407 StorageMgnt ERROR: sl_ld.c(2669): smlib: LSI:GetLDInfo failed, CtrlId = 0, TargetId = 0, return 0x1001
+2025-06-30 05:58:31.593127 StorageMgnt ERROR: sl_ctrl.c(2493): smlib: LSI:SetLDBootable -> MR_DCMD_CTRL_BIOS_DATA_GET cmd failed, return 0x1001
+2025-06-30 05:58:31.595649 StorageMgnt ERROR: sl_ld.c(2669): smlib: LSI:GetLDInfo failed, CtrlId = 0, TargetId = 0, return 0x1001
+2025-06-30 05:58:31.598131 StorageMgnt ERROR: sl_ctrl.c(2493): smlib: LSI:SetLDBootable -> MR_DCMD_CTRL_BIOS_DATA_GET cmd failed, return 0x1001
+2025-06-30 05:58:31.600605 StorageMgnt ERROR: sl_ld.c(2669): smlib: LSI:GetLDInfo failed, CtrlId = 0, TargetId = 0, return 0x1001
+2025-06-30 05:58:31.603156 StorageMgnt ERROR: sl_ctrl.c(2493): smlib: LSI:SetLDBootable -> MR_DCMD_CTRL_BIOS_DATA_GET cmd failed, return 0x1001
+2025-06-30 05:58:31.605891 StorageMgnt ERROR: sl_ld.c(2669): smlib: LSI:GetLDInfo failed, CtrlId = 0, TargetId = 0, return 0x1001
+2025-06-30 05:58:31.608645 StorageMgnt ERROR: sl_ctrl.c(2493): smlib: LSI:SetLDBootable -> MR_DCMD_CTRL_BIOS_DATA_GET cmd failed, return 0x1001
+2025-06-30 05:58:31.611200 StorageMgnt ERROR: sl_ld.c(2669): smlib: LSI:GetLDInfo failed, CtrlId = 0, TargetId = 0, return 0x1001
+2025-06-30 05:58:31.614248 StorageMgnt ERROR: sl_ctrl.c(2493): smlib: LSI:SetLDBootable -> MR_DCMD_CTRL_BIOS_DATA_GET cmd failed, return 0x1001
+2025-06-30 05:58:31.617120 StorageMgnt ERROR: sl_ld.c(2669): smlib: LSI:GetLDInfo failed, CtrlId = 0, TargetId = 0, return 0x1001
+2025-06-30 05:58:33.046147 StorageMgnt ERROR: sascable.c(955): sas_cable_config_object_init_all: result 0x0
+2025-06-30 05:58:33.047672 StorageMgnt ERROR: sascable.c(836): sas_cable_object_init sas_port_cnt[10] by obj [SASCableInfo]
+2025-06-30 05:58:33.050185 StorageMgnt ERROR: sascable.c(868): sas_cable_object_init result 0.
+2025-06-30 05:58:33.051487 StorageMgnt ERROR: sascable.c(836): sas_cable_object_init sas_port_cnt[10] by obj [Rear12BackplaneHddInfo]
+2025-06-30 05:58:33.052832 StorageMgnt ERROR: sascable.c(868): sas_cable_object_init result 0.
+2025-06-30 05:58:33.053222 StorageMgnt ERROR: sascable.c(836): sas_cable_object_init sas_port_cnt[10] by obj [RearBackplaneHddInfo]
+2025-06-30 05:58:33.053601 StorageMgnt ERROR: sascable.c(868): sas_cable_object_init result 0.
+2025-06-30 05:58:33.053819 StorageMgnt ERROR: sascable.c(964): sas_cable_object_init: result 0x0
+2025-06-30 05:58:33.055052 StorageMgnt ERROR: sascable.c(969): extend sas_cable_object_init: result 0xfffff827
+2025-06-30 05:58:33.056143 StorageMgnt ERROR: sascable.c(972): slimline_cable_object_init: result 0xfffff827
+2025-06-30 05:58:33.790448 card_manage ERROR: pcie_card.c(1634): delete item from deleting list, position is 0x101, current length is 0
+2025-06-30 05:58:35.759290 card_manage ERROR: pcie_card_update_info.c(1614): get class info :pcie_index=0 class=0x12 subClass=0x00
+2025-06-30 05:58:35.764374 card_manage ERROR: pcie_card_update_info.c(1614): get class info :pcie_index=1 class=0x12 subClass=0x00
+2025-06-30 05:58:35.774594 card_manage ERROR: pcie_card_update_info.c(1614): get class info :pcie_index=3 class=0x12 subClass=0x00
+2025-06-30 05:58:35.784673 card_manage ERROR: pcie_card_update_info.c(1614): get class info :pcie_index=4 class=0x12 subClass=0x00
+2025-06-30 05:58:35.785489 StorageMgnt ERROR: sascable.c(1102): check_sas_cable_scan_condition:Check successfully, will check sas cable.
+2025-06-30 05:59:37.909030 StorageMgnt ERROR: sl.c(1796): LSI RAID [CtrlId : 0] GetOOBStatus 0: LSI RAID Firmware operational - response queue valid.
+2025-06-30 05:59:56.102225 redfish ERROR: redfish_provider_system_storages_ld.c(1759): get_logical_drive_pds_with_multi_span:dfl_get_object_list fail
+2025-06-30 10:20:26.200599 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 47 times)
+2025-06-30 10:20:26.200889 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-06-30 10:20:26.201095 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-30 10:20:32.805816 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-30 10:20:32.806213 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-30 10:20:32.806452 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-30 10:20:33.807237 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-06-30 10:20:34.830352 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-06-30 10:20:34.830677 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-06-30 10:20:35.998775 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-06-30 10:20:39.188847 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-06-30 11:06:39.605375 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-30 11:40:58.149397 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-06-30 11:40:58.149759 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/06/.
+2025-07-01 10:20:22.859141 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 41 times)
+2025-07-01 10:20:22.859432 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-01 10:20:22.859642 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-01 10:20:27.590553 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-01 10:20:27.590906 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-01 10:20:27.591123 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-01 10:20:28.591910 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-01 10:20:29.699897 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-01 10:20:29.700225 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-01 10:20:30.813873 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-01 10:20:34.190320 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-07-01 11:40:44.861679 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-01 13:01:00.107877 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-07-01 13:01:00.109499 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/06/27 15:00:55.
+2025-07-02 10:20:23.770787 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 39 times)
+2025-07-02 10:20:23.771067 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-02 10:20:23.771274 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-02 10:20:30.015859 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-02 10:20:30.016225 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-02 10:20:30.016460 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-02 10:20:31.017251 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-02 10:20:31.241286 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail -1, errno: 104.
+2025-07-02 10:20:31.241609 kvm_vmm ERROR: video_online_recv.c(227): socket recv data failed
+2025-07-02 10:20:33.292640 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=5, errno=0, ret = -1.
+2025-07-02 10:20:33.293075 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-02 10:20:33.293345 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-02 10:20:34.428101 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-02 10:20:38.035757 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-07-02 10:23:24.998352 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-03 10:20:17.654018 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 47 times)
+2025-07-03 10:20:17.654309 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-03 10:20:17.654509 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-03 10:20:21.622443 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-03 10:20:21.624325 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-03 10:20:21.624552 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-03 10:20:22.625294 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-03 10:20:22.625685 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-03 10:20:22.625934 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-03 10:20:23.639500 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=5, errno=0, ret = -1.
+2025-07-03 10:20:23.640042 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-03 10:20:23.640307 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-03 10:45:49.848519 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-03 23:11:00.383563 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-07-03 23:11:00.384081 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/06/30 01:00:57.
+2025-07-04 10:20:56.263062 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 37 times)
+2025-07-04 10:20:56.263338 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-04 10:20:56.263534 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-04 10:21:06.668730 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-04 10:21:06.669083 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-04 10:21:06.669306 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-04 10:21:07.670086 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-04 10:21:08.617194 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-04 10:21:08.617558 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-04 10:21:10.126609 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-04 10:21:13.364607 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-07-04 11:37:20.896465 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-05 10:21:03.860445 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 39 times)
+2025-07-05 10:21:03.860726 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-05 10:21:03.860930 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-05 10:21:08.513409 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-05 10:21:08.513773 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-05 10:21:08.513997 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-05 10:21:09.514791 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-05 10:21:10.533477 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-05 10:21:10.533799 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-05 10:21:11.572371 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-05 10:21:14.652386 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-07-05 10:25:23.671214 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-06 10:20:49.266678 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 33 times)
+2025-07-06 10:20:49.266959 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-06 10:20:49.267172 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-06 10:20:57.227616 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-06 10:20:57.227976 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-06 10:20:57.228212 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-06 10:20:58.229039 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-06 10:20:59.217300 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-06 10:20:59.217618 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-06 10:21:00.257013 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-06 10:22:16.408904 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-07 10:20:38.015923 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 39 times)
+2025-07-07 10:20:38.016232 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-07 10:20:38.016450 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-07 10:20:43.520838 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-07 10:20:43.521313 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-07 10:20:43.521550 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-07 10:20:44.522359 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-07 10:20:45.429203 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-07 10:20:45.429540 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-07 10:20:46.502862 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-07 10:20:46.559347 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-07 10:20:46.560813 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-07 10:20:46.562285 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-07 10:20:49.572850 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-07-07 10:28:51.623606 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-07 23:01:01.746207 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-07-07 23:01:01.746576 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/07/04 01:01:00.
+2025-07-08 10:20:39.229064 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 50 times)
+2025-07-08 10:20:39.229360 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-08 10:20:39.229564 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-08 10:20:44.027665 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-08 10:20:44.028023 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-08 10:20:44.028258 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-08 10:20:45.029054 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-08 10:20:45.029452 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-08 10:20:45.029685 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-08 11:17:40.497952 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-08 17:01:01.443593 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-07-08 17:01:01.444400 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/07/07 1.
+2025-07-09 10:20:57.677648 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 36 times)
+2025-07-09 10:20:57.677934 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-09 10:20:57.678133 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-09 10:21:08.853536 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-09 10:21:08.853895 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-09 10:21:08.854130 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-09 10:21:09.854951 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-09 10:21:11.196709 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-09 10:21:11.197032 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-09 10:21:12.497474 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-09 10:21:16.184734 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-07-09 10:30:20.358752 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-10 09:36:58.270898 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-10 09:36:58.271641 User ERROR: user_password.c(666): Get user id failed!
+2025-07-10 09:36:58.271863 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-10 09:36:58.273570 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-10 09:36:58.274332 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-10 09:36:58.276117 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-10 09:36:58.277988 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-10 09:36:58.278712 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-10 09:36:58.280057 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 253 times)
+2025-07-10 09:36:58.280463 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:36:58.282596 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:36:59.019394 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-10 09:36:59.019683 User ERROR: user_password.c(666): Get user id failed!
+2025-07-10 09:36:59.019905 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-10 09:36:59.021713 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-10 09:36:59.022016 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-10 09:36:59.022406 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-10 09:36:59.024346 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-10 09:36:59.024626 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-10 09:36:59.026039 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 18 times)
+2025-07-10 09:36:59.026452 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:36:59.065313 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:08.408010 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-10 09:37:08.408312 User ERROR: user_password.c(666): Get user id failed!
+2025-07-10 09:37:08.408546 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-10 09:37:08.410180 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-10 09:37:08.410469 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-10 09:37:08.410863 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-10 09:37:08.412436 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-10 09:37:08.412741 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-10 09:37:08.413871 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 163 times)
+2025-07-10 09:37:08.414278 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:08.577467 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:08.932873 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-10 09:37:08.933157 User ERROR: user_password.c(666): Get user id failed!
+2025-07-10 09:37:08.933358 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-10 09:37:08.934729 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-10 09:37:08.935020 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-10 09:37:08.937130 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-10 09:37:08.938898 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-10 09:37:08.939221 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-10 09:37:08.941182 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 2 times)
+2025-07-10 09:37:08.941581 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:08.962967 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:11.232153 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-10 09:37:11.232440 User ERROR: user_password.c(666): Get user id failed!
+2025-07-10 09:37:11.232644 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-10 09:37:11.234465 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-10 09:37:11.234800 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-10 09:37:11.235227 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-10 09:37:11.237054 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-10 09:37:11.237344 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-10 09:37:11.238661 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 27 times)
+2025-07-10 09:37:11.239117 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:11.244102 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-10 09:37:11.244401 User ERROR: user_password.c(666): Get user id failed!
+2025-07-10 09:37:11.244611 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-10 09:37:11.246906 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-10 09:37:11.247188 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-10 09:37:11.247597 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-10 09:37:11.250236 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-10 09:37:11.250528 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-10 09:37:11.295545 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:11.296872 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:32.606946 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-10 09:37:32.607242 User ERROR: user_password.c(666): Get user id failed!
+2025-07-10 09:37:32.607444 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-10 09:37:32.608907 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-10 09:37:32.609225 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-10 09:37:32.609632 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-10 09:37:32.611326 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-10 09:37:32.611637 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-10 09:37:32.613010 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 96 times)
+2025-07-10 09:37:32.613890 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:32.618265 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:35.016369 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-10 09:37:35.016669 User ERROR: user_password.c(666): Get user id failed!
+2025-07-10 09:37:35.016900 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-10 09:37:35.019420 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-10 09:37:35.019711 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-10 09:37:35.020087 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-10 09:37:35.021913 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-10 09:37:35.022237 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-10 09:37:35.023668 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 33 times)
+2025-07-10 09:37:35.024069 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:35.397461 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:40.517415 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-10 09:37:40.517779 User ERROR: user_password.c(666): Get user id failed!
+2025-07-10 09:37:40.518002 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-10 09:37:40.519825 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-10 09:37:40.520123 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-10 09:37:40.520526 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-10 09:37:40.522030 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-10 09:37:40.522322 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-10 09:37:40.523413 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 56 times)
+2025-07-10 09:37:40.523818 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:40.526683 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:40.660897 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-10 09:37:40.661196 User ERROR: user_password.c(666): Get user id failed!
+2025-07-10 09:37:40.661399 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-10 09:37:40.663207 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-10 09:37:40.663511 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-10 09:37:40.663902 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-10 09:37:40.665333 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-10 09:37:40.665587 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-10 09:37:40.667020 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 2 times)
+2025-07-10 09:37:40.667426 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:40.669571 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:43.978422 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-10 09:37:43.978724 User ERROR: user_password.c(666): Get user id failed!
+2025-07-10 09:37:43.978935 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-10 09:37:43.980507 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-10 09:37:43.980796 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-10 09:37:43.981181 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-10 09:37:43.982958 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-10 09:37:43.983264 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-10 09:37:43.984795 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 25 times)
+2025-07-10 09:37:43.985278 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:43.996862 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:44.154440 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-10 09:37:44.154742 User ERROR: user_password.c(666): Get user id failed!
+2025-07-10 09:37:44.154942 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-10 09:37:44.156467 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-10 09:37:44.156752 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-10 09:37:44.157163 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-10 09:37:44.158672 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-10 09:37:44.159018 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-10 09:37:44.160228 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 4 times)
+2025-07-10 09:37:44.160649 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 09:37:44.164094 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-10 10:21:23.870866 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 41 times)
+2025-07-10 10:21:23.871153 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-10 10:21:23.871373 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-10 10:21:29.872496 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-10 10:21:29.872814 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-10 10:21:29.873016 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-10 10:21:30.873771 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-10 10:21:32.178752 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-10 10:21:32.179078 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-10 10:21:33.275304 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-10 10:21:36.512675 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-07-10 10:24:37.506395 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-10 17:01:01.707174 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-07-10 17:01:01.707528 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/07/04 07:4.
+2025-07-11 10:21:03.146696 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 39 times)
+2025-07-11 10:21:03.146975 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-11 10:21:03.147183 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-11 10:21:10.446029 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-11 10:21:10.446475 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-11 10:21:10.446722 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-11 10:21:11.447504 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-11 10:21:12.409759 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-11 10:21:12.410077 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-11 10:21:14.214028 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-11 11:10:06.258417 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-12 10:21:30.468427 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 30 times)
+2025-07-12 10:21:30.468705 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-12 10:21:30.468901 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-12 10:21:40.470743 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-12 10:21:40.471158 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-12 10:21:40.471395 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-12 10:28:07.522845 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-13 10:21:55.239521 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 40 times)
+2025-07-13 10:21:55.239830 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-13 10:21:55.240118 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-13 10:22:02.914001 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-13 10:22:02.914377 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-13 10:22:02.914630 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-13 10:22:03.915784 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-13 10:22:03.916224 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-13 10:22:03.916573 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-13 10:22:04.930931 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=5, errno=0, ret = -1.
+2025-07-13 10:22:04.931475 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-13 10:22:04.931811 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-13 12:31:18.979553 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-14 01:42:12.635195 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 199 times)
+2025-07-14 01:42:12.635601 portal ERROR: check str effective fail.
+2025-07-14 01:42:16.709603 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-14 01:42:16.709897 portal ERROR: the value of rebuildstate is error.
+2025-07-14 01:42:31.130785 portal ERROR: check str effective fail.
+2025-07-14 01:42:31.131492 portal ERROR: the value of rebuildstate is error.
+2025-07-14 01:46:15.140633 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-14 01:46:48.531995 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-14 01:46:48.533612 portal ERROR: check str effective fail.
+2025-07-14 01:46:50.067519 portal : ERROR: check str effective fail.
+2025-07-14 01:46:50.068852 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-14 01:46:52.042683 portal ERROR: check str effective fail.
+2025-07-14 01:46:52.043525 portal ERROR: the value of rebuildstate is error.
+2025-07-14 01:46:53.248830 portal ERROR: check str effective fail.
+2025-07-14 01:46:53.263774 portal ERROR: the value of rebuildstate is error.
+2025-07-14 01:46:53.975102 portal ERROR: check str effective fail.
+2025-07-14 01:46:53.979324 portal ERROR: the value of rebuildstate is error.
+2025-07-14 01:48:00.686019 portal ERROR: check str effective fail.
+2025-07-14 01:48:00.686667 portal ERROR: the value of rebuildstate is error.
+2025-07-14 01:48:05.659848 portal ERROR: check str effective fail.
+2025-07-14 01:48:05.667456 portal ERROR: the value of rebuildstate is error.
+2025-07-14 01:48:07.821557 portal ERROR: check str effective fail.
+2025-07-14 01:48:07.822141 portal ERROR: the value of rebuildstate is error.
+2025-07-14 01:49:26.010629 portal ERROR: check str effective fail.
+2025-07-14 01:49:26.011221 portal ERROR: the value of rebuildstate is error.
+2025-07-14 02:02:13.737295 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-801.HistorySingleBitEcc),ret = -2009
+2025-07-14 02:02:13.737763 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-801.HistoryMultiBitEcc),ret = -2009
+2025-07-14 02:02:13.739000 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-802.HistorySingleBitEcc),ret = -2009
+2025-07-14 02:02:13.739402 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-802.HistoryMultiBitEcc),ret = -2009
+2025-07-14 02:02:13.740740 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-901.HistorySingleBitEcc),ret = -2009
+2025-07-14 02:02:13.741207 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-901.HistoryMultiBitEcc),ret = -2009
+2025-07-14 02:02:13.742430 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-902.HistorySingleBitEcc),ret = -2009
+2025-07-14 02:02:13.742979 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-902.HistoryMultiBitEcc),ret = -2009
+2025-07-14 02:02:15.655786 PcieSwitch ERROR: pcie_switch.c(221): Dump pcie switch action info failed!
+2025-07-14 02:02:15.657683 PcieSwitch ERROR: pcie_switch.c(227): Dump pcie switch key regs info failed!
+2025-07-14 02:02:15.659362 PcieSwitch ERROR: pcie_switch.c(233): Dump pcie switch eeprom info failed!
+2025-07-14 02:02:15.661220 PcieSwitch ERROR: pcie_switch.c(239): Dump retimer regs info failed!
+2025-07-14 02:02:15.662901 PcieSwitch ERROR: dal_file.c(135): dal_check_real_path:file real path is illegal!
+2025-07-14 02:02:15.663207 PcieSwitch ERROR: pcie_switch.c(112): [dump_switch_obj_info]dal_check_real_path fail, ret = 131087.
+2025-07-14 02:02:16.639813 PowerMgnt ERROR: power_monitor_adapter.c(148): [ps_51_ctrl]:start:0
+2025-07-14 02:02:16.715481 diagnose ERROR: blackbox.c(1748): prt_sol_arg:begin solread,filename is /dev/shm/systemcom.dat.cur is 0,index is 0,len is 2097152
+2025-07-14 02:02:16.942766 ipmi_app ERROR: ipmbeth_chan_check.c(225): ipmi_app_dump_info end.
+2025-07-14 02:02:16.969706 diagnose ERROR: blackbox.c(1748): prt_sol_arg:begin solread,filename is /dev/shm/bmccom.dat.cur is 0,index is 1,len is 4194304
+2025-07-14 02:02:17.498537 card_manage ERROR: card_manage_module.c(602): Dump repeater reg info failed! ,ret is -1
+2025-07-14 02:02:17.500544 card_manage ERROR: card_manage_module.c(609): Dump SAS reg info failed! ,ret is -1
+2025-07-14 02:02:17.514504 card_manage ERROR: card_manage_module.c(697): Dump pass through card info failed
+2025-07-14 02:02:17.517948 card_manage ERROR: asset_locator.c(2748): nfc_chip_dump_info: Get AssetLocateBoard failed. ret=-2009
+2025-07-14 02:02:17.876668 PowerMgnt ERROR: power_monitor_adapter.c(148): [ps_51_ctrl]:start:1
+2025-07-14 02:02:17.878901 PowerMgnt ERROR: power_black_box.c(505): [get_psu_black_box_data]:get ps0 blackbox information end
+2025-07-14 02:02:17.879731 PowerMgnt ERROR: power_monitor_adapter.c(148): [ps_51_ctrl]:start:0
+2025-07-14 02:02:18.748292 BIOS : ERROR: get_clp.c(90): bios_parse_clp_to_json failed  (repeated 538558 times)
+2025-07-14 02:02:18.748582 BIOS ERROR: dal_file.c(135): dal_check_real_path:file real path is illegal!
+2025-07-14 02:02:18.955019 PowerMgnt ERROR: power_monitor_adapter.c(148): [ps_51_ctrl]:start:1
+2025-07-14 02:02:18.955474 PowerMgnt ERROR: power_black_box.c(505): [get_psu_black_box_data]:get ps1 blackbox information end
+2025-07-14 02:02:18.957689 redfish : ERROR: redfish_http.c(3935): handle_action:action fail, ret:400  (repeated 124 times)
+2025-07-14 02:02:18.958072 redfish ERROR: redfish_provider.c(7009): get memory object failed,ret = -2009, device num = 255
+2025-07-14 02:02:18.974262 NetConfig ERROR: net_config_dump.c(997): net_dump_info: net_dump_info start
+2025-07-14 02:02:18.976378 NetConfig ERROR: net_lsw.c(906):  Get LSWConfig fail
+2025-07-14 02:02:19.101981 NetConfig ERROR: net_config_dump.c(586): __dump_get_ip_info START.
+2025-07-14 02:02:19.102985 NetConfig ERROR: net_config_dump.c(457): __print_ipv4_info: __print_ipv4_backup_ipaddr_info fail, ret = -1
+2025-07-14 02:02:19.103586 NetConfig ERROR: net_config_dump.c(620): __dump_get_ip_info END.
+2025-07-14 02:02:19.140463 NetConfig ERROR: net_config_dump.c(709): __dump_ncsi_packets_info: bma not present
+2025-07-14 02:02:19.298236 PowerMgnt ERROR: power_bbu_module.c(2282): dump_power_export_data_query get BBUModule object list error:-2009
+2025-07-14 02:02:19.298657 PowerMgnt ERROR: power_info.c(2352): onepower-5 protery Protocol module :1
+2025-07-14 02:02:19.299906 PowerMgnt ERROR: power_info.c(2352): onepower-6 protery Protocol module :1
+2025-07-14 02:02:20.138586 BMC : ERROR: https_transfer.c(466): handle_rootcert_import: search idle cert id failed, ret:2147418370  (repeated 233 times)
+2025-07-14 02:02:20.138819 BMC ERROR: nand_flash.c(1460): dump_get_nandflash_info START !
+2025-07-14 02:02:20.139763 BMC ERROR: nand_flash.c(1485): dump_get_nandflash_info END, result:0!
+2025-07-14 02:02:23.256611 BMC ERROR: bmc_global_dump.c(101): dump_print_nic_boardid_pcb_version: strcpy_s fail, ret = 50
+2025-07-14 02:03:39.018301 BIOS : ERROR: dal_file.c(135): dal_check_real_path:file real path is illegal!
+2025-07-14 02:03:39.018630 BIOS ERROR: get_clp.c(90): bios_parse_clp_to_json failed
+2025-07-14 02:04:09.225603 MaintDebug ERROR: smm_dump.c(2507): write_cpu_reg_value_to_file : fwrite failed.
+2025-07-14 02:22:03.695323 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-14 02:43:59.270676 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-14 02:43:59.271087 portal ERROR: check str effective fail.
+2025-07-14 02:44:01.428903 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-14 02:44:01.429204 portal ERROR: the value of rebuildstate is error.
+2025-07-14 02:44:03.486087 portal ERROR: check str effective fail.
+2025-07-14 02:44:03.492257 portal ERROR: the value of rebuildstate is error.
+2025-07-14 02:44:05.301847 portal ERROR: check str effective fail.
+2025-07-14 02:44:05.302424 portal ERROR: the value of rebuildstate is error.
+2025-07-14 02:44:07.753594 portal ERROR: check str effective fail.
+2025-07-14 02:44:07.755048 portal ERROR: the value of rebuildstate is error.
+2025-07-14 02:44:17.366580 portal ERROR: check str effective fail.
+2025-07-14 02:44:17.378889 portal ERROR: the value of rebuildstate is error.
+2025-07-14 02:44:39.356558 portal ERROR: check str effective fail.
+2025-07-14 02:44:39.357149 portal ERROR: the value of rebuildstate is error.
+2025-07-14 07:46:16.807175 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-14 07:46:39.265451 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-14 07:46:39.265997 portal ERROR: check str effective fail.
+2025-07-14 07:46:41.537318 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-14 07:46:41.537622 portal ERROR: the value of rebuildstate is error.
+2025-07-14 07:50:22.097540 portal ERROR: check str effective fail.
+2025-07-14 07:50:22.103223 portal ERROR: the value of rebuildstate is error.
+2025-07-14 07:50:26.829285 portal ERROR: check str effective fail.
+2025-07-14 07:50:26.829901 portal ERROR: the value of rebuildstate is error.
+2025-07-14 07:55:39.276975 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-14 07:58:33.704844 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-14 07:58:33.705359 portal ERROR: check str effective fail.
+2025-07-14 07:58:36.498908 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-14 07:58:36.499222 portal ERROR: the value of rebuildstate is error.
+2025-07-14 07:59:15.340620 portal ERROR: check str effective fail.
+2025-07-14 07:59:19.127385 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-14 07:59:19.127702 portal ERROR: the value of rebuildstate is error.
+2025-07-14 08:09:17.427483 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-14 09:47:41.712046 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-14 09:47:41.712755 User ERROR: user_password.c(666): Get user id failed!
+2025-07-14 09:47:41.713049 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-14 10:21:01.572824 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 44 times)
+2025-07-14 10:21:01.573127 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-14 10:21:01.573338 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-14 10:21:07.275519 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-14 10:21:07.275877 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-14 10:21:07.276110 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-14 10:21:08.276962 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-14 10:21:09.207793 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-14 10:21:09.208112 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-14 10:21:10.254238 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-14 10:57:22.889211 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-14 21:41:02.461587 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-07-14 21:41:02.461901 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/07/1.
+2025-07-15 00:57:30.902962 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 5 times)
+2025-07-15 00:57:30.903373 portal ERROR: check str effective fail.
+2025-07-15 00:57:33.480757 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-15 00:57:33.481069 portal ERROR: the value of rebuildstate is error.
+2025-07-15 01:18:20.675804 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-15 09:17:28.156595 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 2 times)
+2025-07-15 09:17:28.157009 portal ERROR: check str effective fail.
+2025-07-15 09:17:30.033337 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-15 09:17:30.033626 portal ERROR: the value of rebuildstate is error.
+2025-07-15 09:17:30.805461 portal ERROR: check str effective fail.
+2025-07-15 09:17:30.813465 portal ERROR: the value of rebuildstate is error.
+2025-07-15 09:17:31.531433 portal ERROR: check str effective fail.
+2025-07-15 09:17:31.533187 portal ERROR: the value of rebuildstate is error.
+2025-07-15 09:17:39.480213 portal ERROR: check str effective fail.
+2025-07-15 09:17:39.480857 portal ERROR: the value of rebuildstate is error.
+2025-07-15 09:17:43.646744 portal ERROR: check str effective fail.
+2025-07-15 09:17:43.653184 portal ERROR: the value of rebuildstate is error.
+2025-07-15 09:45:02.764728 BMC ERROR: https_transfer.c(466): handle_rootcert_import: search idle cert id failed, ret:2147418370
+2025-07-15 10:21:27.218475 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 35 times)
+2025-07-15 10:21:27.218756 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-15 10:21:27.218957 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-15 10:21:34.229429 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-15 10:21:37.659725 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-15 10:21:37.660113 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-15 10:21:37.660513 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-15 10:21:38.661308 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-15 10:21:38.661715 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-15 10:21:38.661953 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-15 10:21:40.586386 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=5, errno=0, ret = -1.
+2025-07-15 10:21:40.586838 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-15 10:21:40.587082 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-15 10:21:41.841071 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-15 10:21:45.386325 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-07-15 10:45:24.092369 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-16 01:36:36.944289 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 01:36:36.944885 portal ERROR: check str effective fail.
+2025-07-16 01:36:39.748722 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 01:36:39.750222 portal ERROR: the value of rebuildstate is error.
+2025-07-16 01:38:50.767867 portal ERROR: check str effective fail.
+2025-07-16 01:38:50.768477 portal ERROR: the value of rebuildstate is error.
+2025-07-16 02:06:49.466925 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 02:07:05.576378 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-16 02:07:05.577001 kvm_vmm ERROR: kvm_serve.c(494): failed to verify connection: 36
+2025-07-16 02:07:06.152966 kvm_vmm ERROR: kvm_receive_proc.c(652): Creat timer.
+2025-07-16 02:08:18.622941 kvm_vmm ERROR: comm.c(245): ssl read failed, sslerr=5, errno=0, ret = 0.
+2025-07-16 02:08:18.623269 kvm_vmm ERROR: kvm_stream_socket.c(82): socket recv websocket header fail.
+2025-07-16 02:08:18.623477 kvm_vmm ERROR: kvm_receive_proc.c(616): Receive data error: -1
+2025-07-16 07:05:18.281581 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 5 times)
+2025-07-16 07:05:18.283395 portal ERROR: check str effective fail.
+2025-07-16 07:05:20.339559 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 07:05:20.339868 portal ERROR: the value of rebuildstate is error.
+2025-07-16 07:05:25.353846 portal ERROR: check str effective fail.
+2025-07-16 07:05:25.360441 portal ERROR: the value of rebuildstate is error.
+2025-07-16 07:18:43.636637 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 07:19:07.819226 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 07:19:07.819639 portal ERROR: check str effective fail.
+2025-07-16 07:19:11.347888 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 07:19:11.348302 portal ERROR: the value of rebuildstate is error.
+2025-07-16 07:19:12.518263 portal ERROR: check str effective fail.
+2025-07-16 07:19:12.529641 portal ERROR: the value of rebuildstate is error.
+2025-07-16 07:19:13.108417 portal ERROR: check str effective fail.
+2025-07-16 07:19:13.108989 portal ERROR: the value of rebuildstate is error.
+2025-07-16 07:22:57.316378 portal ERROR: check str effective fail.
+2025-07-16 07:22:59.755517 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 07:22:59.755830 portal ERROR: the value of rebuildstate is error.
+2025-07-16 07:23:00.680539 portal ERROR: check str effective fail.
+2025-07-16 07:23:00.681135 portal ERROR: the value of rebuildstate is error.
+2025-07-16 07:23:01.957380 portal ERROR: check str effective fail.
+2025-07-16 07:23:01.958042 portal ERROR: the value of rebuildstate is error.
+2025-07-16 07:23:02.552468 portal ERROR: check str effective fail.
+2025-07-16 07:29:53.296768 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 07:29:53.297045 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 07:30:23.457453 portal ERROR: check str effective fail.
+2025-07-16 07:32:05.414302 portal : ERROR: check str effective fail.  (repeated 10 times)
+2025-07-16 07:32:05.414603 portal ERROR: the value of rebuildstate is error.
+2025-07-16 07:32:15.331451 portal ERROR: check str effective fail.
+2025-07-16 07:32:15.339853 portal ERROR: the value of rebuildstate is error.
+2025-07-16 07:42:29.901993 portal ERROR: check str effective fail.
+2025-07-16 07:45:03.339305 portal : ERROR: check str effective fail.  (repeated 5 times)
+2025-07-16 07:45:03.339979 portal ERROR: the value of rebuildstate is error.
+2025-07-16 07:49:33.906179 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 09:19:06.698819 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 09:19:06.699231 portal ERROR: check str effective fail.
+2025-07-16 09:19:08.901928 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 09:19:08.902252 portal ERROR: the value of rebuildstate is error.
+2025-07-16 09:19:45.459622 portal ERROR: check str effective fail.
+2025-07-16 09:27:58.199538 portal : ERROR: check str effective fail.
+2025-07-16 09:27:58.199817 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 09:56:35.127631 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 09:56:35.128042 portal ERROR: check str effective fail.
+2025-07-16 09:56:38.814078 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 09:56:38.814506 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:00:42.556363 portal ERROR: check str effective fail.
+2025-07-16 10:01:11.843668 portal : ERROR: check str effective fail.  (repeated 4 times)
+2025-07-16 10:01:11.843925 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:01:24.539029 portal ERROR: check str effective fail.
+2025-07-16 10:01:31.138868 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:01:31.139171 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:02:01.807157 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 10:02:59.397973 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-16 10:02:59.398561 kvm_vmm ERROR: kvm_serve.c(494): failed to verify connection: 36
+2025-07-16 10:03:00.380497 kvm_vmm ERROR: kvm_receive_proc.c(652): Creat timer.
+2025-07-16 10:03:14.695824 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-16 10:03:14.696120 User ERROR: user_password.c(666): Get user id failed!
+2025-07-16 10:03:14.696533 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-16 10:03:14.698683 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-16 10:03:14.698979 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-16 10:03:14.701757 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-16 10:03:14.703465 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-16 10:03:14.703773 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-16 10:03:14.704984 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 18 times)
+2025-07-16 10:03:14.705403 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 10:03:14.707349 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 10:03:15.119904 User ERROR: user_comm.c(2383): Get user object handle failed!
+2025-07-16 10:03:15.120284 User ERROR: user_password.c(666): Get user id failed!
+2025-07-16 10:03:15.120497 User ERROR: user_password.c(1362): auth_user_func faild!ret = 129.
+2025-07-16 10:03:15.122164 User ERROR: user_kerberos.c(124): krb_user_authenticate: krb is not elabled
+2025-07-16 10:03:15.122454 User ERROR: user_password.c(1235): kerberos_user_authenticate: krb_user_authenticate fail, ret = -1
+2025-07-16 10:03:15.122868 User ERROR: user_password.c(1362): auth_user_func faild!ret = -1.
+2025-07-16 10:03:15.124465 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-16 10:03:15.124751 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-16 10:03:15.126444 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 24 times)
+2025-07-16 10:03:15.126916 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"Authorization failed because the user name or password is incorrect, or your account is locked.\",\"MessageArgs\":[],\"MessageId\":\"iBMC.1.0.AuthorizationFailed\",\"RelatedProperties\":[],\"Resolution\":\"Try again using the correct user name and password, or after your account is unlocked.\",\"Severity\":\"Warning\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 10:03:15.160204 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 10:03:21.690212 kvm_vmm ERROR: comm.c(245): ssl read failed, sslerr=5, errno=0, ret = 0.
+2025-07-16 10:03:21.698871 kvm_vmm ERROR: kvm_stream_socket.c(82): socket recv websocket header fail.
+2025-07-16 10:03:21.699108 kvm_vmm ERROR: kvm_receive_proc.c(616): Receive data error: -1
+2025-07-16 10:03:24.205231 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 21 times)
+2025-07-16 10:03:24.206789 portal ERROR: check str effective fail.
+2025-07-16 10:03:29.282691 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:03:29.283018 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:04:10.270541 portal ERROR: check str effective fail.
+2025-07-16 10:04:13.230116 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:04:13.230411 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:05:45.634406 portal ERROR: check str effective fail.
+2025-07-16 10:05:47.937716 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:05:47.938024 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:07:02.169810 portal ERROR: check str effective fail.
+2025-07-16 10:07:06.651830 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:07:06.652127 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:10:07.537564 portal ERROR: check str effective fail.
+2025-07-16 10:10:10.224428 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:10:10.224780 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:14:33.320821 portal ERROR: check str effective fail.
+2025-07-16 10:14:36.150402 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:14:36.150706 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:18:34.310168 portal ERROR: check str effective fail.
+2025-07-16 10:18:37.222508 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:18:37.222790 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:21:44.846129 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 46 times)
+2025-07-16 10:21:44.846408 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-16 10:21:44.846612 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-16 10:21:54.598824 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-16 10:21:57.003504 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-16 10:21:57.003883 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-16 10:21:57.004114 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-16 10:21:58.004868 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-16 10:21:58.005259 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-16 10:21:58.005508 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-16 10:21:59.935975 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=5, errno=0, ret = -1.
+2025-07-16 10:21:59.936411 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-16 10:21:59.936679 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-16 10:22:01.005711 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-16 10:22:04.124661 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-07-16 10:23:04.173005 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-16 10:26:07.023992 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 2 times)
+2025-07-16 10:26:07.024421 portal ERROR: check str effective fail.
+2025-07-16 10:26:09.182723 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:26:09.183030 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:26:59.045409 portal ERROR: check str effective fail.
+2025-07-16 10:26:59.052785 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:27:01.010828 portal ERROR: check str effective fail.
+2025-07-16 10:27:01.011435 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:28:15.148428 portal ERROR: check str effective fail.
+2025-07-16 10:28:16.932735 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:28:16.933072 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:30:15.402309 portal ERROR: check str effective fail.
+2025-07-16 10:30:17.847091 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:30:17.848441 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:30:26.236333 portal ERROR: check str effective fail.
+2025-07-16 10:30:26.242128 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:30:28.840813 portal ERROR: check str effective fail.
+2025-07-16 10:30:28.841382 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:30:53.898040 portal ERROR: check str effective fail.
+2025-07-16 10:30:53.904027 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:30:55.553742 portal ERROR: check str effective fail.
+2025-07-16 10:30:55.554353 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:32:10.243830 portal ERROR: check str effective fail.
+2025-07-16 10:32:13.002618 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:32:13.002916 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:33:19.977626 portal ERROR: check str effective fail.
+2025-07-16 10:33:21.631239 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:33:21.631539 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:33:33.237249 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-16 10:33:33.237722 kvm_vmm ERROR: kvm_serve.c(494): failed to verify connection: 36
+2025-07-16 10:33:33.908488 kvm_vmm ERROR: kvm_receive_proc.c(652): Creat timer.
+2025-07-16 10:34:53.247110 kvm_vmm ERROR: comm.c(245): ssl read failed, sslerr=5, errno=0, ret = 0.
+2025-07-16 10:34:53.247479 kvm_vmm ERROR: kvm_stream_socket.c(82): socket recv websocket header fail.
+2025-07-16 10:34:53.247692 kvm_vmm ERROR: kvm_receive_proc.c(616): Receive data error: -1
+2025-07-16 10:34:56.748282 portal ERROR: check str effective fail.
+2025-07-16 10:34:58.930520 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:34:58.930925 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:36:41.845101 portal ERROR: check str effective fail.
+2025-07-16 10:36:45.202680 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:36:45.202984 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:39:17.419825 portal ERROR: check str effective fail.
+2025-07-16 10:39:23.146984 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:39:23.147428 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:41:36.967659 portal ERROR: check str effective fail.
+2025-07-16 10:41:40.103616 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:41:40.103915 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:45:47.593912 portal ERROR: check str effective fail.
+2025-07-16 10:45:49.608570 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:45:49.608866 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:47:45.022467 portal ERROR: check str effective fail.
+2025-07-16 10:47:57.993328 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:47:57.993635 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:51:58.090710 portal ERROR: check str effective fail.
+2025-07-16 10:52:00.350216 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:52:00.350508 portal ERROR: the value of rebuildstate is error.
+2025-07-16 10:55:42.640868 portal ERROR: check str effective fail.
+2025-07-16 10:55:44.719804 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 10:55:44.720114 portal ERROR: the value of rebuildstate is error.
+2025-07-16 11:25:04.353418 portal ERROR: check str effective fail.
+2025-07-16 11:25:07.559249 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-16 11:25:07.560638 portal ERROR: the value of rebuildstate is error.
+2025-07-16 11:25:12.877686 portal ERROR: check str effective fail.
+2025-07-16 11:25:12.886692 portal ERROR: the value of rebuildstate is error.
+2025-07-16 11:25:16.924596 portal ERROR: check str effective fail.
+2025-07-16 11:25:16.925289 portal ERROR: the value of rebuildstate is error.
+2025-07-16 11:43:47.736592 StorageMgnt ERROR: sl_ctrl.c(2342): smlib: LSI:GetCtrlPDList failed, CtrlId = 0, return 0x1001
+2025-07-16 12:01:04.031093 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-07-16 12:01:04.031550 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/07/14.
+2025-07-16 14:13:47.850241 StorageMgnt ERROR: sl_ctrl.c(2248): smlib: LSI:GetCtrlLdList failed, CtrlId = 0, return 0x1001
+2025-07-16 14:13:47.854947 StorageMgnt ERROR: sl_ctrl.c(2382): smlib: LSI:GetCtrlArrayList failed, CtrlId = 0, return 0x8037
+2025-07-16 14:13:47.858802 StorageMgnt ERROR: sl_ctrl.c(2342): smlib: LSI:GetCtrlPDList failed, CtrlId = 0, return 0x1001
+2025-07-16 14:13:48.807988 StorageMgnt ERROR: sl_ctrl.c(2248): smlib: LSI:GetCtrlLdList failed, CtrlId = 0, return 0x1001
+2025-07-16 14:13:48.810927 StorageMgnt ERROR: sl_ctrl.c(2382): smlib: LSI:GetCtrlArrayList failed, CtrlId = 0, return 0x8037
+2025-07-16 14:13:48.813687 StorageMgnt ERROR: sl_ctrl.c(2342): smlib: LSI:GetCtrlPDList failed, CtrlId = 0, return 0x1001
+2025-07-16 19:43:47.235057 StorageMgnt ERROR: sl_pd.c(2589): smlib: LSI:GetPDInfo failed, CtrlId = 0, DeviceId = 0, SlotId = 1, return 0x1001
+2025-07-17 01:08:12.395329 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 01:08:27.572367 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 01:08:27.572948 portal ERROR: check str effective fail.
+2025-07-17 01:08:30.378729 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 01:08:30.380083 portal ERROR: the value of rebuildstate is error.
+2025-07-17 01:13:47.640709 StorageMgnt : ERROR: sl_pd.c(2589): smlib: LSI:GetPDInfo failed, CtrlId = 0, DeviceId = 0, SlotId = 1, return 0x1001   (repeated 11 times)
+2025-07-17 01:13:47.640998 StorageMgnt ERROR: sl_ctrl.c(2248): smlib: LSI:GetCtrlLdList failed, CtrlId = 0, return 0x1001
+2025-07-17 01:13:47.643514 StorageMgnt ERROR: sl_ctrl.c(2382): smlib: LSI:GetCtrlArrayList failed, CtrlId = 0, return 0x8037
+2025-07-17 01:13:47.646352 StorageMgnt ERROR: sl_ctrl.c(2342): smlib: LSI:GetCtrlPDList failed, CtrlId = 0, return 0x1001
+2025-07-17 07:00:55.185464 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 07:01:06.879064 portal ERROR: check str effective fail.
+2025-07-17 07:01:10.568951 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 07:01:10.569272 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:01:21.943302 portal ERROR: check str effective fail.
+2025-07-17 07:01:21.951242 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:01:23.123800 portal ERROR: check str effective fail.
+2025-07-17 07:01:23.125599 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:01:25.194146 portal ERROR: check str effective fail.
+2025-07-17 07:01:25.202352 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:01:26.857881 portal ERROR: check str effective fail.
+2025-07-17 07:01:26.858538 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:01:28.218605 portal ERROR: check str effective fail.
+2025-07-17 07:01:28.225128 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:01:29.554795 portal ERROR: check str effective fail.
+2025-07-17 07:01:29.555400 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:01:30.794187 portal ERROR: check str effective fail.
+2025-07-17 07:01:30.794796 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:02:39.718786 portal ERROR: check str effective fail.
+2025-07-17 07:02:46.655734 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 07:02:46.656030 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:02:48.778021 portal ERROR: check str effective fail.
+2025-07-17 07:02:48.778609 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:02:49.617778 portal ERROR: check str effective fail.
+2025-07-17 07:02:49.618824 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:03:03.395282 portal ERROR: check str effective fail.
+2025-07-17 07:04:12.410363 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 07:04:12.410887 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:04:15.500657 portal ERROR: check str effective fail.
+2025-07-17 07:04:27.456843 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 07:04:27.457144 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:04:29.331349 portal ERROR: check str effective fail.
+2025-07-17 07:04:29.337246 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:04:31.530189 portal ERROR: check str effective fail.
+2025-07-17 07:04:31.530886 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:04:34.062891 portal ERROR: check str effective fail.
+2025-07-17 07:04:34.068746 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:04:42.986114 portal ERROR: check str effective fail.
+2025-07-17 07:05:08.296754 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 07:05:08.297052 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:05:16.018174 portal ERROR: check str effective fail.
+2025-07-17 07:05:42.759622 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 07:05:42.761886 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:05:44.352187 portal ERROR: check str effective fail.
+2025-07-17 07:08:08.567412 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 07:08:08.567880 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:08:10.070068 portal ERROR: check str effective fail.
+2025-07-17 07:08:10.070769 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:08:10.875946 portal ERROR: check str effective fail.
+2025-07-17 07:08:10.876534 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:08:18.238310 portal ERROR: check str effective fail.
+2025-07-17 07:08:18.248540 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:08:20.437069 portal ERROR: check str effective fail.
+2025-07-17 07:08:20.437681 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:08:21.107577 portal ERROR: check str effective fail.
+2025-07-17 07:08:21.108176 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:13:31.402533 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 07:14:23.777969 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 07:14:23.778384 portal ERROR: check str effective fail.
+2025-07-17 07:14:52.774863 portal : ERROR: check str effective fail.  (repeated 4 times)
+2025-07-17 07:14:52.775289 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:14:56.866926 portal ERROR: check str effective fail.
+2025-07-17 07:14:56.868746 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:15:01.465268 portal ERROR: check str effective fail.
+2025-07-17 07:16:03.531072 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 07:16:03.531558 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:08.034232 portal ERROR: check str effective fail.
+2025-07-17 07:16:08.041439 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:10.701391 portal ERROR: check str effective fail.
+2025-07-17 07:16:10.702063 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:12.162283 portal ERROR: check str effective fail.
+2025-07-17 07:16:12.171078 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:17.635885 portal ERROR: check str effective fail.
+2025-07-17 07:16:17.636457 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:23.524111 portal ERROR: check str effective fail.
+2025-07-17 07:16:23.524685 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:27.273522 portal ERROR: check str effective fail.
+2025-07-17 07:16:27.279577 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:28.400667 portal ERROR: check str effective fail.
+2025-07-17 07:16:28.401264 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:29.984462 portal ERROR: check str effective fail.
+2025-07-17 07:16:29.990623 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:33.155039 portal ERROR: check str effective fail.
+2025-07-17 07:16:33.155667 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:35.799354 portal ERROR: check str effective fail.
+2025-07-17 07:16:35.805094 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:37.068387 portal ERROR: check str effective fail.
+2025-07-17 07:16:37.069006 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:38.714654 portal ERROR: check str effective fail.
+2025-07-17 07:16:38.721579 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:39.889253 portal ERROR: check str effective fail.
+2025-07-17 07:16:39.889950 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:40.817676 portal ERROR: check str effective fail.
+2025-07-17 07:16:40.824149 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:16:46.583165 portal ERROR: check str effective fail.
+2025-07-17 07:18:34.262353 portal : ERROR: check str effective fail.
+2025-07-17 07:18:34.263818 portal ERROR: invalid cache policy, set to defualt
+2025-07-17 07:18:34.264666 portal ERROR: invalid acceleration method, set to defualt
+2025-07-17 07:18:45.278314 portal ERROR: check str effective fail.
+2025-07-17 07:18:51.427856 card_manage ERROR: pcie_card.c(1634): delete item from deleting list, position is 0x101, current length is 0
+2025-07-17 07:19:03.070211 portal : ERROR: check str effective fail.  (repeated 8 times)
+2025-07-17 07:19:03.070511 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:19:04.872562 portal ERROR: check str effective fail.
+2025-07-17 07:19:04.873404 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:19:08.667138 portal ERROR: check str effective fail.
+2025-07-17 07:19:11.629854 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 07:19:11.630159 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:19:34.756918 portal ERROR: check str effective fail.
+2025-07-17 07:19:34.757495 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:20:31.682964 portal ERROR: check str effective fail.
+2025-07-17 07:20:31.683630 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:20:33.433559 portal ERROR: check str effective fail.
+2025-07-17 07:20:33.434249 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:20:34.343738 portal ERROR: check str effective fail.
+2025-07-17 07:20:34.344326 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:20:36.571974 portal ERROR: check str effective fail.
+2025-07-17 07:20:36.572592 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:20:37.226002 portal ERROR: check str effective fail.
+2025-07-17 07:20:37.226594 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:20:38.980435 portal ERROR: check str effective fail.
+2025-07-17 07:20:38.981839 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:20:39.826564 portal ERROR: check str effective fail.
+2025-07-17 07:20:39.833082 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:20:40.739488 portal ERROR: check str effective fail.
+2025-07-17 07:20:40.740077 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:22:46.531703 portal ERROR: check str effective fail.
+2025-07-17 07:22:46.532584 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:22:47.853960 portal ERROR: check str effective fail.
+2025-07-17 07:22:47.855908 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:28:45.430289 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 07:29:01.110611 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 07:29:01.111040 portal ERROR: check str effective fail.
+2025-07-17 07:29:02.555044 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 07:29:02.555346 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:30:59.934268 portal ERROR: check str effective fail.
+2025-07-17 07:30:59.934873 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:31:04.012164 portal ERROR: check str effective fail.
+2025-07-17 07:31:04.014218 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:31:06.469769 portal ERROR: check str effective fail.
+2025-07-17 07:31:06.471620 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:31:08.563162 portal ERROR: check str effective fail.
+2025-07-17 07:31:08.563794 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:31:12.001570 portal ERROR: check str effective fail.
+2025-07-17 07:31:12.009321 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:38:51.049003 portal ERROR: check str effective fail.
+2025-07-17 07:38:51.049732 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:38:57.039064 portal ERROR: check str effective fail.
+2025-07-17 07:38:57.039748 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:46:14.137979 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 07:46:26.363165 User ERROR: user_password.c(698): passwd is invalid!
+2025-07-17 07:46:26.366529 User ERROR: user_password.c(1362): auth_user_func faild!ret = 130.
+2025-07-17 07:46:37.774445 User ERROR: user_password.c(698): passwd is invalid!
+2025-07-17 07:46:37.776990 User ERROR: user_password.c(1362): auth_user_func faild!ret = 130.
+2025-07-17 07:47:30.867191 User ERROR: user_password.c(698): passwd is invalid!
+2025-07-17 07:47:30.868743 User ERROR: user_password.c(1362): auth_user_func faild!ret = 130.
+2025-07-17 07:47:49.445760 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 07:47:49.446732 portal ERROR: check str effective fail.
+2025-07-17 07:47:51.434973 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 07:47:51.435292 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:47:52.534621 portal ERROR: check str effective fail.
+2025-07-17 07:47:52.535775 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:58:00.769298 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 07:59:26.362371 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 07:59:26.362785 portal ERROR: check str effective fail.
+2025-07-17 07:59:31.559428 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 07:59:31.560806 portal ERROR: the value of rebuildstate is error.
+2025-07-17 07:59:35.339035 portal ERROR: check str effective fail.
+2025-07-17 07:59:35.339893 portal ERROR: the value of rebuildstate is error.
+2025-07-17 08:06:28.818258 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 08:06:43.992190 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 08:06:43.992605 portal ERROR: check str effective fail.
+2025-07-17 08:06:45.227373 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 08:06:45.227683 portal ERROR: the value of rebuildstate is error.
+2025-07-17 08:11:14.987140 portal ERROR: check str effective fail.
+2025-07-17 08:11:14.993678 portal ERROR: the value of rebuildstate is error.
+2025-07-17 08:11:17.623392 portal ERROR: check str effective fail.
+2025-07-17 08:11:17.624049 portal ERROR: the value of rebuildstate is error.
+2025-07-17 08:11:21.116159 portal ERROR: check str effective fail.
+2025-07-17 08:11:21.116980 portal ERROR: the value of rebuildstate is error.
+2025-07-17 08:19:31.388680 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 08:19:42.161984 User ERROR: user_password.c(698): passwd is invalid!
+2025-07-17 08:19:42.165514 User ERROR: user_password.c(1362): auth_user_func faild!ret = 130.
+2025-07-17 08:22:01.049157 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 08:22:01.049573 portal ERROR: check str effective fail.
+2025-07-17 08:22:01.409661 portal : ERROR: check str effective fail.
+2025-07-17 08:22:01.409946 portal ERROR: can't find component info for 1
+2025-07-17 08:22:02.645992 portal ERROR: check str effective fail.
+2025-07-17 08:22:04.589715 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 08:22:04.590120 portal ERROR: the value of rebuildstate is error.
+2025-07-17 08:22:30.682321 portal ERROR: check str effective fail.
+2025-07-17 08:22:30.689923 portal ERROR: the value of rebuildstate is error.
+2025-07-17 08:22:32.274473 portal ERROR: check str effective fail.
+2025-07-17 08:22:32.275069 portal ERROR: the value of rebuildstate is error.
+2025-07-17 08:22:37.731247 portal ERROR: check str effective fail.
+2025-07-17 08:22:37.732100 portal ERROR: the value of rebuildstate is error.
+2025-07-17 08:36:45.923893 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 08:51:53.914340 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 08:51:53.914819 portal ERROR: check str effective fail.
+2025-07-17 08:51:59.607714 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 08:51:59.609360 portal ERROR: the value of rebuildstate is error.
+2025-07-17 08:52:01.647869 portal ERROR: check str effective fail.
+2025-07-17 08:52:01.649504 portal ERROR: the value of rebuildstate is error.
+2025-07-17 08:52:02.323261 portal ERROR: check str effective fail.
+2025-07-17 08:52:02.324893 portal ERROR: the value of rebuildstate is error.
+2025-07-17 08:55:43.830965 portal ERROR: check str effective fail.
+2025-07-17 08:55:43.832745 portal ERROR: the value of rebuildstate is error.
+2025-07-17 08:55:44.923626 portal ERROR: check str effective fail.
+2025-07-17 08:55:44.924638 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:02:09.128973 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 09:02:21.750356 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 09:02:21.751949 portal ERROR: check str effective fail.
+2025-07-17 09:02:24.566088 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 09:02:24.567459 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:05:56.656910 portal ERROR: check str effective fail.
+2025-07-17 09:05:56.657700 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:05:57.738105 portal ERROR: check str effective fail.
+2025-07-17 09:05:57.740049 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:10:34.828076 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 09:10:51.441150 portal ERROR: check str effective fail.
+2025-07-17 09:10:54.911954 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 09:10:54.912302 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:11:01.832617 portal ERROR: check str effective fail.
+2025-07-17 09:11:01.833501 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:11:09.467881 portal ERROR: check str effective fail.
+2025-07-17 09:11:09.468464 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:11:12.032851 portal ERROR: check str effective fail.
+2025-07-17 09:11:12.033396 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:11:14.104854 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 09:14:38.450871 User ERROR: user_password.c(698): passwd is invalid!
+2025-07-17 09:14:38.452076 User ERROR: user_password.c(1362): auth_user_func faild!ret = 130.
+2025-07-17 09:14:51.640003 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 09:14:51.640460 portal ERROR: check str effective fail.
+2025-07-17 09:14:55.763521 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 09:14:55.763840 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:15:00.970742 portal ERROR: check str effective fail.
+2025-07-17 09:15:00.980826 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:15:03.330609 portal ERROR: check str effective fail.
+2025-07-17 09:15:03.332722 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:15:04.454189 portal ERROR: check str effective fail.
+2025-07-17 09:15:04.455975 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:15:06.076972 portal ERROR: check str effective fail.
+2025-07-17 09:15:06.077755 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:15:06.825594 portal ERROR: check str effective fail.
+2025-07-17 09:15:06.826172 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:37:07.170280 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 09:37:23.307890 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 09:37:23.308303 portal ERROR: check str effective fail.
+2025-07-17 09:37:25.630472 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 09:37:25.630919 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:37:32.534056 portal ERROR: check str effective fail.
+2025-07-17 09:37:32.535763 portal ERROR: the value of rebuildstate is error.
+2025-07-17 09:37:36.216083 portal ERROR: check str effective fail.
+2025-07-17 09:37:36.216666 portal ERROR: the value of rebuildstate is error.
+2025-07-17 10:21:27.869367 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 35 times)
+2025-07-17 10:21:27.869642 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-17 10:21:27.869841 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-17 10:21:35.252403 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-17 10:21:38.017143 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-17 10:21:38.017502 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-17 10:21:38.017725 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-17 10:21:39.018506 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-17 10:21:39.963959 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-17 10:21:39.964309 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-17 10:21:41.370841 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-17 10:21:44.773678 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-07-17 10:49:49.100777 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-17 12:33:58.295544 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 2 times)
+2025-07-17 12:33:58.295962 portal ERROR: check str effective fail.
+2025-07-17 12:34:00.568615 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-17 12:34:00.570002 portal ERROR: the value of rebuildstate is error.
+2025-07-17 12:34:14.798399 portal ERROR: check str effective fail.
+2025-07-17 12:34:14.799369 portal ERROR: the value of rebuildstate is error.
+2025-07-17 12:34:15.243232 portal ERROR: check str effective fail.
+2025-07-17 12:34:15.244820 portal ERROR: the value of rebuildstate is error.
+2025-07-17 12:34:21.781783 portal ERROR: check str effective fail.
+2025-07-17 12:34:21.788344 portal ERROR: the value of rebuildstate is error.
+2025-07-17 12:34:28.994775 portal ERROR: check str effective fail.
+2025-07-17 12:34:28.995900 portal ERROR: the value of rebuildstate is error.
+2025-07-17 12:34:31.329284 portal ERROR: check str effective fail.
+2025-07-17 12:34:31.329851 portal ERROR: the value of rebuildstate is error.
+2025-07-18 03:31:03.449875 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-07-18 03:31:03.451769 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/07/.
+2025-07-18 05:17:27.199166 portal ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })
+2025-07-18 07:21:35.809898 clp0 ERROR: clp_main.c(337): handle_cmd_thread: buf is NULL
+2025-07-18 07:25:52.279785 clp0 ERROR: clp_main.c(337): handle_cmd_thread: buf is NULL
+2025-07-18 07:38:12.326702 clp0 ERROR: clp_main.c(337): handle_cmd_thread: buf is NULL
+2025-07-18 07:43:08.299453 clp0 ERROR: clp_main.c(337): handle_cmd_thread: buf is NULL
+2025-07-18 07:43:13.307016 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-801.HistorySingleBitEcc),ret = -2009
+2025-07-18 07:43:13.307364 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-801.HistoryMultiBitEcc),ret = -2009
+2025-07-18 07:43:13.308477 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-802.HistorySingleBitEcc),ret = -2009
+2025-07-18 07:43:13.308820 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-802.HistoryMultiBitEcc),ret = -2009
+2025-07-18 07:43:13.309902 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-901.HistorySingleBitEcc),ret = -2009
+2025-07-18 07:43:13.311328 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-901.HistoryMultiBitEcc),ret = -2009
+2025-07-18 07:43:13.312657 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-902.HistorySingleBitEcc),ret = -2009
+2025-07-18 07:43:13.312977 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-902.HistoryMultiBitEcc),ret = -2009
+2025-07-18 07:43:15.256633 PcieSwitch ERROR: pcie_switch.c(221): Dump pcie switch action info failed!
+2025-07-18 07:43:15.257793 PcieSwitch ERROR: pcie_switch.c(227): Dump pcie switch key regs info failed!
+2025-07-18 07:43:15.258576 PcieSwitch ERROR: pcie_switch.c(233): Dump pcie switch eeprom info failed!
+2025-07-18 07:43:15.259822 PcieSwitch ERROR: pcie_switch.c(239): Dump retimer regs info failed!
+2025-07-18 07:43:15.260886 PcieSwitch ERROR: dal_file.c(135): dal_check_real_path:file real path is illegal!
+2025-07-18 07:43:15.261221 PcieSwitch ERROR: pcie_switch.c(112): [dump_switch_obj_info]dal_check_real_path fail, ret = 131087.
+2025-07-18 07:43:16.201789 diagnose ERROR: blackbox.c(1748): prt_sol_arg:begin solread,filename is /dev/shm/systemcom.dat.cur is 0,index is 0,len is 2097152
+2025-07-18 07:43:16.439895 diagnose ERROR: blackbox.c(1748): prt_sol_arg:begin solread,filename is /dev/shm/bmccom.dat.cur is 0,index is 1,len is 4194304
+2025-07-18 07:43:16.686968 PowerMgnt ERROR: power_monitor_adapter.c(148): [ps_51_ctrl]:start:0
+2025-07-18 07:43:17.122454 card_manage ERROR: card_manage_module.c(602): Dump repeater reg info failed! ,ret is -1
+2025-07-18 07:43:17.124670 card_manage ERROR: card_manage_module.c(609): Dump SAS reg info failed! ,ret is -1
+2025-07-18 07:43:17.138106 card_manage ERROR: card_manage_module.c(697): Dump pass through card info failed
+2025-07-18 07:43:17.141109 card_manage ERROR: asset_locator.c(2748): nfc_chip_dump_info: Get AssetLocateBoard failed. ret=-2009
+2025-07-18 07:43:17.831099 PowerMgnt ERROR: power_monitor_adapter.c(148): [ps_51_ctrl]:start:1
+2025-07-18 07:43:17.832543 PowerMgnt ERROR: power_black_box.c(505): [get_psu_black_box_data]:get ps0 blackbox information end
+2025-07-18 07:43:17.833260 PowerMgnt ERROR: power_monitor_adapter.c(148): [ps_51_ctrl]:start:0
+2025-07-18 07:43:18.564283 BIOS : ERROR: get_clp.c(90): bios_parse_clp_to_json failed  (repeated 754298 times)
+2025-07-18 07:43:18.564607 BIOS ERROR: dal_file.c(135): dal_check_real_path:file real path is illegal!
+2025-07-18 07:43:18.744615 NetConfig ERROR: net_config_dump.c(997): net_dump_info: net_dump_info start
+2025-07-18 07:43:18.745997 NetConfig ERROR: net_lsw.c(906):  Get LSWConfig fail
+2025-07-18 07:43:18.827535 redfish : ERROR: redfish_http.c(3935): handle_action:action fail, ret:400  (repeated 109 times)
+2025-07-18 07:43:18.827921 redfish ERROR: redfish_provider.c(7009): get memory object failed,ret = -2009, device num = 255
+2025-07-18 07:43:18.900251 PowerMgnt ERROR: power_monitor_adapter.c(148): [ps_51_ctrl]:start:1
+2025-07-18 07:43:18.900705 PowerMgnt ERROR: power_black_box.c(505): [get_psu_black_box_data]:get ps1 blackbox information end
+2025-07-18 07:43:18.910113 NetConfig ERROR: net_config_dump.c(586): __dump_get_ip_info START.
+2025-07-18 07:43:18.911171 NetConfig ERROR: net_config_dump.c(457): __print_ipv4_info: __print_ipv4_backup_ipaddr_info fail, ret = -1
+2025-07-18 07:43:18.912120 NetConfig ERROR: net_config_dump.c(620): __dump_get_ip_info END.
+2025-07-18 07:43:18.945178 NetConfig ERROR: net_config_dump.c(709): __dump_ncsi_packets_info: bma not present
+2025-07-18 07:43:19.873762 BMC : ERROR: https_transfer.c(466): handle_rootcert_import: search idle cert id failed, ret:2147418370  (repeated 219 times)
+2025-07-18 07:43:19.874998 BMC ERROR: nand_flash.c(1460): dump_get_nandflash_info START !
+2025-07-18 07:43:19.876741 BMC ERROR: nand_flash.c(1485): dump_get_nandflash_info END, result:0!
+2025-07-18 07:43:19.883760 BMC ERROR: bmc_global_dump.c(101): dump_print_nic_boardid_pcb_version: strcpy_s fail, ret = 50
+2025-07-18 07:43:19.886842 PowerMgnt ERROR: power_info.c(2352): onepower-5 protery Protocol module :1
+2025-07-18 07:43:19.886942 PowerMgnt ERROR: power_bbu_module.c(2282): dump_power_export_data_query get BBUModule object list error:-2009
+2025-07-18 07:43:19.888301 PowerMgnt ERROR: power_info.c(2352): onepower-6 protery Protocol module :1
+2025-07-18 07:44:30.854238 BIOS : ERROR: dal_file.c(135): dal_check_real_path:file real path is illegal!
+2025-07-18 07:44:30.854698 BIOS ERROR: get_clp.c(90): bios_parse_clp_to_json failed
+2025-07-18 07:45:08.645191 MaintDebug ERROR: smm_dump.c(2507): write_cpu_reg_value_to_file : fwrite failed.
+2025-07-18 07:55:50.119100 redfish ERROR: redfish_task.c(373): get_task_rsc_from_id: task 1 invalid
+2025-07-18 07:55:50.119640 redfish ERROR: redfish_provider_task.c(197): get task with id 1 failed
+2025-07-18 10:21:31.605039 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 35 times)
+2025-07-18 10:21:31.605373 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-18 10:21:31.605745 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-18 10:21:42.969271 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-18 10:21:42.969678 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-18 10:21:42.969924 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-18 10:21:43.970708 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-18 10:21:44.891607 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-18 10:21:44.891944 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-18 10:21:46.045167 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-18 10:42:50.733625 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-19 10:21:41.305191 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 39 times)
+2025-07-19 10:21:41.305474 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-19 10:21:41.305677 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-19 10:21:48.402514 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-19 10:21:48.402871 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-19 10:21:48.403112 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-19 10:21:49.403912 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-19 10:21:49.446533 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail -1, errno: 104.
+2025-07-19 10:21:49.446843 kvm_vmm ERROR: video_online_recv.c(227): socket recv data failed
+2025-07-19 10:21:50.460636 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=5, errno=0, ret = -1.
+2025-07-19 10:21:50.461065 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-19 10:21:50.461312 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-19 10:41:36.621982 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-20 09:45:06.254246 redfish ERROR: redfish_http.c(3935): handle_action:action fail, ret:400
+2025-07-20 10:21:46.066586 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 39 times)
+2025-07-20 10:21:46.066899 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-20 10:21:46.067256 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-20 10:21:53.511655 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-20 10:21:53.512003 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-20 10:21:53.512228 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-20 10:21:54.513303 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-20 10:21:54.513702 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-20 10:21:54.514026 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-20 10:25:05.539045 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-20 20:31:03.637053 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-07-20 20:31:03.637364 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/07/.
+2025-07-20 20:51:03.389279 redfish ERROR: redfish_util.c(1276): get_labels_data: num_of_labels is 1, g_strv_length(str_arr) is 1.
+2025-07-20 20:51:03.391589 redfish ERROR: redfish_util.c(1379): read_history_data_from_file: get data fail, line is 2025/.
+2025-07-21 10:22:02.128704 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 27 times)
+2025-07-21 10:22:02.128991 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-21 10:22:02.129196 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-21 10:22:08.806137 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-21 10:22:08.806488 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-21 10:22:08.806723 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-21 10:22:09.807510 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-21 10:22:09.807951 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-21 10:22:09.808187 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-21 10:22:10.821827 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=5, errno=0, ret = -1.
+2025-07-21 10:22:10.822362 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-21 10:22:10.822612 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-21 12:14:28.713673 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-22 09:45:07.576311 BMC ERROR: https_transfer.c(466): handle_rootcert_import: search idle cert id failed, ret:2147418370
+2025-07-22 10:21:54.438256 kvm_vmm : ERROR: comm.c(329): Pre-read ssl failed.  (repeated 42 times)
+2025-07-22 10:21:54.438540 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 9.
+2025-07-22 10:21:54.438757 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-22 10:22:06.201343 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-22 10:22:06.201706 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-22 10:22:06.201938 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-22 10:22:07.202740 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=1, errno=0, ret = -1.
+2025-07-22 10:22:07.203148 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-22 10:22:07.203406 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-22 10:22:09.378921 kvm_vmm ERROR: comm.c(410): SSL_accept failed, sslerr=5, errno=0, ret = -1.
+2025-07-22 10:22:09.379392 kvm_vmm ERROR: kvm_stream_socket.c(97): socket recv data fail 0, errno: 0.
+2025-07-22 10:22:09.379646 kvm_vmm ERROR: video_online_recv.c(230): video connection has been closed.
+2025-07-22 10:22:10.435075 kvm_vmm ERROR: comm.c(504): Get websocket key failed.
+2025-07-22 10:22:13.597558 kvm_vmm ERROR: video_online_server.c(48): video connect time out
+2025-07-22 11:21:00.038356 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-07-22 20:19:16.643624 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-22 20:19:16.644949 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-22 20:25:45.561407 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-22 20:25:45.562126 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-22 20:25:47.618004 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-22 20:25:47.618724 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-22 20:27:06.121365 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-22 20:27:06.122058 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-22 20:28:56.852844 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-22 20:28:56.853626 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-22 20:29:31.959749 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-22 20:29:31.960437 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-22 20:29:54.685536 User ERROR: user_password.c(1044): check_ldap_user_auto_auth: LDAP is not elabled
+2025-07-22 20:29:54.685833 User ERROR: user_password.c(1362): auth_user_func faild!ret = 204.
+2025-07-23 09:00:30.508163 portal : ERROR: unhandled custom rejection, returning 500 response: ResponseError(Response { status: 401, version: HTTP/1.1, headers: {"content-type": "application/json;charset=utf-8"}, body: "{\"error\":{\"@Message.ExtendedInfo\":[{\"@odata.type\":\"#Message.v1_0_0.Message\",\"Message\":\"There is no valid session established with the implementation.\",\"MessageArgs\":[],\"MessageId\":\"Base.1.0.NoValidSession\",\"RelatedProperties\":[],\"Resolution\":\"Establish as session before attempting any operations.\",\"Severity\":\"Critical\"}],\"code\":\"Base.1.0.GeneralError\",\"message\":\"A general error has occurred. See ExtendedInfo for more information.\"}}" })  (repeated 12 times)
+2025-07-23 09:00:30.508665 portal ERROR: check str effective fail.
+2025-07-23 09:00:35.017473 portal : ERROR: check str effective fail.  (repeated 2 times)
+2025-07-23 09:00:35.017772 portal ERROR: the value of rebuildstate is error.
+2025-07-23 09:00:42.475952 portal ERROR: check str effective fail.
+2025-07-23 09:00:42.482911 portal ERROR: the value of rebuildstate is error.
+2025-07-23 09:00:45.589381 portal ERROR: check str effective fail.
+2025-07-23 09:00:45.589968 portal ERROR: the value of rebuildstate is error.
+2025-07-23 09:00:49.659879 portal ERROR: check str effective fail.
+2025-07-23 09:00:49.660464 portal ERROR: the value of rebuildstate is error.
+2025-07-23 09:04:18.361706 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-801.HistorySingleBitEcc),ret = -2009
+2025-07-23 09:04:18.362180 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-801.HistoryMultiBitEcc),ret = -2009
+2025-07-23 09:04:18.363373 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-802.HistorySingleBitEcc),ret = -2009
+2025-07-23 09:04:18.363696 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-802.HistoryMultiBitEcc),ret = -2009
+2025-07-23 09:04:18.364837 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-901.HistorySingleBitEcc),ret = -2009
+2025-07-23 09:04:18.365147 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-901.HistoryMultiBitEcc),ret = -2009
+2025-07-23 09:04:18.366140 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-902.HistorySingleBitEcc),ret = -2009
+2025-07-23 09:04:18.366635 CpuMem ERROR: npu_dump.c(152): get_ecc_info_handle_and_count: dfl_get_referenced_object failed(NPU1-902.HistoryMultiBitEcc),ret = -2009
+2025-07-23 09:04:20.296498 PcieSwitch ERROR: pcie_switch.c(221): Dump pcie switch action info failed!
+2025-07-23 09:04:20.297686 PcieSwitch ERROR: pcie_switch.c(227): Dump pcie switch key regs info failed!
+2025-07-23 09:04:20.298725 PcieSwitch ERROR: pcie_switch.c(233): Dump pcie switch eeprom info failed!
+2025-07-23 09:04:20.300096 PcieSwitch ERROR: pcie_switch.c(239): Dump retimer regs info failed!
+2025-07-23 09:04:20.301574 PcieSwitch ERROR: dal_file.c(135): dal_check_real_path:file real path is illegal!
+2025-07-23 09:04:20.301968 PcieSwitch ERROR: pcie_switch.c(112): [dump_switch_obj_info]dal_check_real_path fail, ret = 131087.
+2025-07-23 09:04:21.327404 diagnose ERROR: blackbox.c(1748): prt_sol_arg:begin solread,filename is /dev/shm/systemcom.dat.cur is 0,index is 0,len is 2097152
+2025-07-23 09:04:21.553011 diagnose ERROR: blackbox.c(1748): prt_sol_arg:begin solread,filename is /dev/shm/bmccom.dat.cur is 0,index is 1,len is 4194304
+2025-07-23 09:04:21.781026 PowerMgnt ERROR: power_monitor_adapter.c(148): [ps_51_ctrl]:start:0
+2025-07-23 09:04:22.167521 card_manage ERROR: card_manage_module.c(602): Dump repeater reg info failed! ,ret is -1
+2025-07-23 09:04:22.169563 card_manage ERROR: card_manage_module.c(609): Dump SAS reg info failed! ,ret is -1
+2025-07-23 09:04:22.180974 card_manage ERROR: card_manage_module.c(697): Dump pass through card info failed
+2025-07-23 09:04:22.183709 card_manage ERROR: asset_locator.c(2748): nfc_chip_dump_info: Get AssetLocateBoard failed. ret=-2009
+2025-07-23 09:04:23.001344 PowerMgnt ERROR: power_monitor_adapter.c(148): [ps_51_ctrl]:start:1
+2025-07-23 09:04:23.003406 PowerMgnt ERROR: power_black_box.c(505): [get_psu_black_box_data]:get ps0 blackbox information end
+2025-07-23 09:04:23.004227 PowerMgnt ERROR: power_monitor_adapter.c(148): [ps_51_ctrl]:start:0
+2025-07-23 09:04:23.601037 BIOS : ERROR: get_clp.c(90): bios_parse_clp_to_json failed  (repeated 5347 times)
+2025-07-23 09:04:23.601333 BIOS ERROR: dal_file.c(135): dal_check_real_path:file real path is illegal!
+2025-07-23 09:04:23.804045 NetConfig ERROR: net_config_dump.c(997): net_dump_info: net_dump_info start
+2025-07-23 09:04:23.805375 NetConfig ERROR: net_lsw.c(906):  Get LSWConfig fail
+2025-07-23 09:04:23.915857 NetConfig ERROR: net_config_dump.c(586): __dump_get_ip_info START.
+2025-07-23 09:04:23.916907 NetConfig ERROR: net_config_dump.c(457): __print_ipv4_info: __print_ipv4_backup_ipaddr_info fail, ret = -1
+2025-07-23 09:04:23.917483 NetConfig ERROR: net_config_dump.c(620): __dump_get_ip_info END.
+2025-07-23 09:04:23.955902 NetConfig ERROR: net_config_dump.c(709): __dump_ncsi_packets_info: bma not present
+2025-07-23 09:04:23.991561 redfish : ERROR: redfish_http.c(3935): handle_action:action fail, ret:400
+2025-07-23 09:04:23.991838 redfish ERROR: redfish_provider.c(7009): get memory object failed,ret = -2009, device num = 255
+2025-07-23 09:04:24.080370 PowerMgnt ERROR: power_monitor_adapter.c(148): [ps_51_ctrl]:start:1
+2025-07-23 09:04:24.080814 PowerMgnt ERROR: power_black_box.c(505): [get_psu_black_box_data]:get ps1 blackbox information end
+2025-07-23 09:04:24.921089 BMC : ERROR: https_transfer.c(466): handle_rootcert_import: search idle cert id failed, ret:2147418370  (repeated 160 times)
+2025-07-23 09:04:24.921451 BMC ERROR: nand_flash.c(1460): dump_get_nandflash_info START !
+2025-07-23 09:04:24.922255 BMC ERROR: nand_flash.c(1485): dump_get_nandflash_info END, result:0!
+2025-07-23 09:04:24.933370 PowerMgnt ERROR: power_bbu_module.c(2282): dump_power_export_data_query get BBUModule object list error:-2009
+2025-07-23 09:04:24.933643 BMC ERROR: bmc_global_dump.c(101): dump_print_nic_boardid_pcb_version: strcpy_s fail, ret = 50
+2025-07-23 09:04:24.934761 PowerMgnt ERROR: power_info.c(2352): onepower-5 protery Protocol module :1
+2025-07-23 09:04:24.936213 PowerMgnt ERROR: power_info.c(2352): onepower-6 protery Protocol module :1

@@ -1,0 +1,3 @@
+slot(col 1), presence(col 2),version(col 3), processor ID(col 4), core count(col 5), thread count(col 6),          memory technology(col 7), L1 cache(col 8), L2 cache(col 9), L3 cache(col 10),          part number(col 11), device name(col 12), location(col 13), SN(col 14)
+Cpu1 , present , HUAWEI Kunpeng 920 5250, 10-D0-1F-48-00-00-00-00, 48 cores, 48 threads, 64-bit Capable| Multi-Core| Execute Protection| Enhanced Virtualization| Power/Performance Control, 6144 K, 24576 K, 49152 K, N/A, CPU1, mainboard, 1AF12EA323008EF2
+Cpu2 , present , HUAWEI Kunpeng 920 5250, 10-D0-1F-48-00-00-00-00, 48 cores, 48 threads, 64-bit Capable| Multi-Core| Execute Protection| Enhanced Virtualization| Power/Performance Control, 6144 K, 24576 K, 49152 K, N/A, CPU2, mainboard, 5C022EA32280D18C

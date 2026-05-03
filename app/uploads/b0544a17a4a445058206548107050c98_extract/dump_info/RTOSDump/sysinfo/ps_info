@@ -1,0 +1,157 @@
+F S UID        PID  PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD
+4 S root         1     0  0  80   0 -  1077 do_sig  2023 ?        00:00:01 init
+1 S root         2     0  0  80   0 -     0 kthrea  2023 ?        00:00:00 [kthreadd]
+1 S root         3     2  0  80   0 -     0 smpboo  2023 ?        04:57:11 [ksoftirqd/0]
+1 S root         5     2  0  60 -20 -     0 worker  2023 ?        00:00:00 [kworker/0:0H]
+1 S root         7     2  0  80   0 -     0 rcu_gp  2023 ?        2-02:51:32 [rcu_preempt]
+1 S root         8     2  0  80   0 -     0 rcu_gp  2023 ?        00:42:35 [rcu_sched]
+1 S root         9     2  0  80   0 -     0 rcu_gp  2023 ?        00:00:00 [rcu_bh]
+1 S root        10     2  0 -40   - -     0 smpboo  2023 ?        00:06:27 [migration/0]
+5 S root        11     2  0 -40   - -     0 smpboo  2023 ?        11:30:33 [watchdog/0]
+5 S root        12     2  0 -40   - -     0 smpboo  2023 ?        10:18:51 [watchdog/1]
+1 S root        13     2  0 -40   - -     0 smpboo  2023 ?        00:05:49 [migration/1]
+1 S root        14     2  0  80   0 -     0 smpboo  2023 ?        01:56:18 [ksoftirqd/1]
+1 S root        15     2  0  80   0 -     0 worker  2023 ?        00:00:00 [kworker/1:0]
+1 S root        16     2  0  60 -20 -     0 worker  2023 ?        00:00:00 [kworker/1:0H]
+5 S root        17     2  0 -40   - -     0 smpboo  2023 ?        10:21:47 [watchdog/2]
+1 S root        18     2  0 -40   - -     0 smpboo  2023 ?        00:05:52 [migration/2]
+1 S root        19     2  0  80   0 -     0 smpboo  2023 ?        01:56:02 [ksoftirqd/2]
+1 S root        20     2  0  80   0 -     0 worker  2023 ?        00:00:00 [kworker/2:0]
+1 S root        21     2  0  60 -20 -     0 worker  2023 ?        00:00:00 [kworker/2:0H]
+5 S root        22     2  0 -40   - -     0 smpboo  2023 ?        10:13:52 [watchdog/3]
+1 S root        23     2  0 -40   - -     0 smpboo  2023 ?        00:05:51 [migration/3]
+1 S root        24     2  0  80   0 -     0 smpboo  2023 ?        01:54:41 [ksoftirqd/3]
+1 S root        25     2  0  80   0 -     0 worker  2023 ?        00:00:00 [kworker/3:0]
+1 S root        26     2  0  60 -20 -     0 worker  2023 ?        00:00:00 [kworker/3:0H]
+5 S root        27     2  0  80   0 -     0 devtmp  2023 ?        00:00:00 [kdevtmpfs]
+1 S root        28     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [netns]
+1 S root        37     2  0  80   0 -     0 softdo  2023 ?        00:02:24 [swtd]
+1 S root       244     2  0  80   0 -     0 watchd  2023 ?        00:02:00 [khungtaskd]
+1 S root       245     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [writeback]
+1 S root       247     2  0  85   5 -     0 ksm_sc  2023 ?        00:00:00 [ksmd]
+1 S root       248     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [crypto]
+1 S root       249     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root       251     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [kblockd]
+1 S root       364     2  0  80   0 -     0 kaudit  2023 ?        00:00:00 [kauditd]
+1 S root       370     2  0  80   0 -     0 kswapd  2023 ?        00:00:00 [kswapd0]
+1 S root       371     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [vmstat]
+1 S root       454     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [kthrotld]
+1 S root       995     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root       996     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root       997     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root       998     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root       999     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1000     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1001     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1002     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1003     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1004     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1005     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1006     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1007     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1008     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1009     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1010     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1044     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1047     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1050     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1053     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1056     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1059     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1062     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1065     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1069     2  0  80   0 -     0 kbox_c  2023 ?        00:00:00 [kboxd]
+1 S root      1077     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [deferwq]
+1 S root      1078     2  0  80   0 -     0 worker  2023 ?        00:01:23 [kworker/1:1]
+1 S root      1105     2  0  80   0 -     0 worker  2023 ?        00:01:33 [kworker/2:1]
+1 S root      1116     2  0  80   0 -     0 worker  2023 ?        00:04:35 [kworker/3:1]
+1 S root      1161     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1162     2  0  80   0 -     0 mmc_qu  2023 ?        23:46:12 [mmcqd/0]
+1 S root      1163     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1164     2  0  80   0 -     0 mmc_qu  2023 ?        00:00:00 [mmcqd/0boot0]
+1 S root      1165     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1166     2  0  80   0 -     0 mmc_qu  2023 ?        00:00:00 [mmcqd/0boot1]
+1 S root      1167     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1168     2  0  80   0 -     0 mmc_qu  2023 ?        00:00:00 [mmcqd/0gp0]
+1 S root      1169     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1170     2  0  80   0 -     0 mmc_qu  2023 ?        05:11:36 [mmcqd/0gp1]
+1 S root      1171     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1172     2  0  80   0 -     0 mmc_qu  2023 ?        00:00:00 [mmcqd/0gp2]
+1 S root      1173     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1174     2  0  80   0 -     0 mmc_qu  2023 ?        00:00:37 [mmcqd/0gp3]
+1 S root      1215     2  0  60 -20 -     0 worker  2023 ?        00:32:36 [kworker/3:1H]
+1 S root      1216     2  0  80   0 -     0 kjourn  2023 ?        00:00:00 [jbd2/mmcblk0gp1]
+1 S root      1217     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [ext4-rsv-conver]
+1 S root      1223     2  0  60 -20 -     0 worker  2023 ?        00:29:19 [kworker/0:1H]
+1 S root      1250     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [ipv6_addrconf]
+1 S root      1313     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [gmac_queue]
+1 S root      1432     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [msg_queue]
+1 S root      1468     2  0  60 -20 -     0 worker  2023 ?        00:32:22 [kworker/1:1H]
+0 S root      1478     1  0  80   0 -   536 hrtime  2023 ?        00:24:00 ./uart_flowoff
+1 S root      1509     2  0  80   0 -     0 kjourn  2023 ?        00:11:57 [jbd2/mmcblk0p1-]
+1 S root      1510     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [ext4-rsv-conver]
+1 S root      1522     2  0  80   0 -     0 kjourn  2023 ?        00:00:00 [jbd2/mmcblk0gp3]
+1 S root      1523     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [ext4-rsv-conver]
+1 S root      1566     1  0  80   0 -  1103 hrtime  2023 ?        00:09:48 crond
+1 S root      1577     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+1 S root      1624     2  0  60 -20 -     0 kthrea  2023 ?        00:00:00 [loop0]
+1 S root      1626     2  0  80   0 -     0 kjourn  2023 ?        00:00:00 [jbd2/loop0-8]
+1 S root      1627     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [ext4-rsv-conver]
+1 S root      1628     2  0  60 -20 -     0 worker  2023 ?        00:32:29 [kworker/2:1H]
+1 S root      1630     2  0  60 -20 -     0 kthrea  2023 ?        00:00:00 [loop1]
+1 S root      1632     2  0  80   0 -     0 kjourn  2023 ?        00:00:00 [jbd2/loop1-8]
+1 S root      1633     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [ext4-rsv-conver]
+1 S root      1654     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [rpciod]
+1 S root      1662     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [nfsiod]
+1 S root      1675     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [cifsiod]
+0 S root      1764     1  0  80   0 -  1077 do_wai  2023 ?        07:50:58 bash /opt/pme/script/task_monitor.sh
+0 S root      1765     1  0  80   0 -  1077 do_wai  2023 ?        06:11:31 bash /opt/pme/script/manual_oom_killer.sh
+0 S root      1862     1  0  80   0 -  1077 wait_w  2023 ttyS0    00:00:00 /sbin/getty -L 115200 ttyS0 vt102
+4 S root      1867     1  8  80   0 - 134296 poll_s 2023 ?        58-20:41:11 ./dfm 29
+4 S root      1871     1  0  80   0 - 109676 SyS_ep 2023 ?        01:51:18 /usr/sbin/syslog-ng -f /etc/syslog-ng/syslog-ng.conf -p /var/run/syslogd.pid -F -R /opt/pme/pram/syslog-ng.persist
+4 S root      1874     1  7  80   0 - 24839 hrtime  2023 ?        52-20:03:37 /opt/pme/apps/fsync
+4 S root      1893     1  0  80   0 - 36471 poll_s  2023 ?        13:40:04 ./bios
+4 S root      1894     1  0  80   0 - 296512 poll_s 2023 ?        4-03:55:27 ./payload
+4 S root      1895     1  0  80   0 - 597708 poll_s 2023 ?        16:08:24 ./frudata
+4 S root      1896     1  0  80   0 - 466795 poll_s 2023 ?        2-07:00:13 ./network_config
+4 S root      1897     1  0  80   0 - 122960 poll_s 2023 ?        6-09:32:00 ./bmc_global
+4 S root      1898     1  0  80   0 - 279755 poll_s 2023 ?        3-21:28:05 ./cooling
+4 S root      1899     1  1  80   0 - 277764 poll_s 2023 ?        7-06:25:27 ./cpu_mem
+4 S discove+  1900     1  0  80   0 - 323765 poll_s 2023 ?        1-01:23:40 ./discovery
+4 S root      1901     1  0  80   0 - 183741 poll_s 2023 ?        08:37:32 ./dft
+4 S root      1902     1  0  80   0 - 435014 poll_s 2023 ?        19:54:41 ./diagnose
+4 S root      1903     1  2  80   0 - 182521 poll_s 2023 ?        20-14:00:59 ./file_manage_app
+4 S ipmi_us+  1904     1  1  80   0 - 517953 poll_s 2023 ?        11-15:14:00 ./ipmi
+4 S root      1906     1  0  80   0 - 327812 poll_s 2023 ?        16:35:32 ./maint_debug_mod
+4 S root      1907     1  1  80   0 - 443603 poll_s 2023 ?        13-12:33:26 ./card_manage
+4 S root      1908     1  1  80   0 - 349663 poll_s 2023 ?        12-04:00:59 ./power_mgnt
+4 S root      1909     1  7  80   0 - 634768 poll_s 2023 ?        49-08:52:05 ./sensor_alarm
+4 S root      1910     1  0  80   0 - 221685 poll_s 2023 ?        1-00:11:04 ./ui_manage
+4 S root      1911     1  0  80   0 - 223054 poll_s 2023 ?        10:24:32 ./upgrade
+4 S root      1912     1  0  80   0 - 298234 poll_s 2023 ?        3-09:07:50 ./user
+4 S redfish+  1914     1  4  80   0 - 66240 poll_s  2023 ?        32-01:10:11 ./redfish
+4 S redfish+  1915     1  0  80   0 - 341342 SyS_ep 2023 ?        1-21:35:24 ./portal
+4 S root      1916     1  0  80   0 - 266133 poll_s 2023 ?        15:16:19 ./net_nat
+4 S root      1917     1  0  80   0 - 165648 poll_s 2023 ?        08:35:52 ./pcie_switch
+4 S comm_us+  1918     1  0  80   0 - 256111 poll_s 2023 ?        17:08:29 ./mctp
+4 S root      1919     1  0  80   0 - 202733 poll_s 2023 ?        08:42:57 ./license_mgnt
+4 S root      1920     1  0  80   0 - 182379 poll_s 2023 ?        1-13:55:59 ./agentless
+4 S comm_us+  1921     1  0  80   0 - 202927 poll_s 2023 ?        10:25:24 ./ddns
+4 S kvm_user  2255  1867  0  80   0 - 438592 poll_s 2024 ?        1-16:33:48 kvm_vmm
+1 S root      2292     2  0  80   0 -     0 worker  2023 ?        08:23:23 [kworker/0:2]
+5 S root      2413     1  0  80   0 - 111065 poll_s 2023 ?        00:00:06 sshd: /usr/sbin/sshd [listener] 0 of 10-100 startups
+1 S root      2783     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [kdmflush]
+1 S root      2784     2  0  60 -20 -     0 rescue  2023 ?        00:00:00 [bioset]
+4 S snmpd_u+  2850     1  0  80   0 - 130029 poll_s 2023 ?        2-05:15:08 /usr/sbin/snmpd -p /var/run/snmpd.pid -c /opt/pme/pram/Snmp_snmpd.conf -g snmpd_user -u snmpd_user -I -icmp -f
+1 S apache    2866     1  0  80   0 -  4798 sigsus  2023 ?        00:00:00 nginx: master process /opt/pme/web/sbin/nginx
+1 S apache    2867  2866  0  80   0 -  4895 poll_s  2023 ?        01:41:35 nginx: worker process
+1 S apache    2868  2866  0  80   0 -  4902 poll_s  2023 ?        01:41:51 nginx: worker process
+4 S root      6903  1867  3  80   0 - 423751 poll_s Jun30 ?       18:48:44 storage_mgnt
+1 S root     13529     2  0  80   0 -     0 worker Jul18 ?        00:00:00 [kworker/0:0]
+1 S root     24270     2  0   9   - -     0 irq_th  2024 ?        00:00:00 [irq/106-dwc3]
+1 S root     27625     2  0  80   0 -     0 worker Jul22 ?        00:00:00 [kworker/u8:1]
+1 S root     27638     2  0  80   0 -     0 worker 08:06 ?        00:00:00 [kworker/u8:0]
+0 S root     30248  1764  0  80   0 -  1077 hrtime 09:04 ?        00:00:00 sleep 60
+0 S root     30310  1765  0  80   0 -  1077 hrtime 09:04 ?        00:00:00 sleep 30
+4 S root     30313  1906  3  80   0 -  1077 do_wai 09:05 ?        00:00:00 /bin/sh /opt/pme/script/dump.sh /dev/shm/dump_info_tmp/dump_info
+0 R root     30345 30313  0  80   0 -   815 -      09:05 ?        00:00:00 ps -elf

@@ -1,0 +1,694 @@
+---------------------------------------------------------------------------------Cpu  info----------------------------------------------------------------------------
+slot(col 1), presence(col 2),version(col 3), processor ID(col 4), core count(col 5), thread count(col 6),          memory technology(col 7), L1 cache(col 8), L2 cache(col 9), L3 cache(col 10),          part number(col 11), device name(col 12), location(col 13), SN(col 14)
+Cpu1 , present , HUAWEI Kunpeng 920 5250, 10-D0-1F-48-00-00-00-00, 48 cores, 48 threads, 64-bit Capable| Multi-Core| Execute Protection| Enhanced Virtualization| Power/Performance Control, 6144 K, 24576 K, 49152 K, N/A, CPU1, mainboard, 1AF12EA323008EF2
+Cpu2 , present , HUAWEI Kunpeng 920 5250, 10-D0-1F-48-00-00-00-00, 48 cores, 48 threads, 64-bit Capable| Multi-Core| Execute Protection| Enhanced Virtualization| Power/Performance Control, 6144 K, 24576 K, 49152 K, N/A, CPU2, mainboard, 5C022EA32280D18C
+
+--------------------------------------------------------------------------------Memory info----------------------------------------------------------------------------
+slot(col 1), dimm location(col 2), dimm name(col 3),manufacturer(col 4),     size(col 5), speed(col 6), current speed(col 7), memory type(col 8), SN(col 9),     minimum voltage(col 10), rank(col 11), bit width(col 12), memory technology(col 13),     bom number(col 14), part number(col 15),remaining service life(col 16),     firmware version(col 17), medium temp(col 18), controller temp(col 19),     volatile capacity(col 20), persistent capacity(col 21), health(col 22)  
+Memory000 , mainboard, DIMM000, HM6,  32768 MB,  3200 MT/s,  2933 MT/s, DDR4, 0910A9D6, 1200 mV, 1 rank, 72 bit, Synchronous| Registered (Buffered), Unknown, JSR413137SXMX-XSCC, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory001 , mainboard, DIMM001, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory010 , mainboard, DIMM010, HM6,  32768 MB,  3200 MT/s,  2933 MT/s, DDR4, 0910A9D7, 1200 mV, 1 rank, 72 bit, Synchronous| Registered (Buffered), Unknown, JSR413137SXMX-XSCC, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory011 , mainboard, DIMM011, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory020 , mainboard, DIMM020, HM6,  32768 MB,  3200 MT/s,  2933 MT/s, DDR4, 0910A9D2, 1200 mV, 1 rank, 72 bit, Synchronous| Registered (Buffered), Unknown, JSR413137SXMX-XSCC, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory021 , mainboard, DIMM021, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory030 , mainboard, DIMM030, HM6,  32768 MB,  3200 MT/s,  2933 MT/s, DDR4, 0910A9D4, 1200 mV, 1 rank, 72 bit, Synchronous| Registered (Buffered), Unknown, JSR413137SXMX-XSCC, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory031 , mainboard, DIMM031, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory040 , mainboard, DIMM040, HM6,  32768 MB,  3200 MT/s,  2933 MT/s, DDR4, 0910B9F5, 1200 mV, 1 rank, 72 bit, Synchronous| Registered (Buffered), Unknown, JSR413137SXMX-XSCC, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory041 , mainboard, DIMM041, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory050 , mainboard, DIMM050, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory051 , mainboard, DIMM051, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory060 , mainboard, DIMM060, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory061 , mainboard, DIMM061, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory070 , mainboard, DIMM070, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory071 , mainboard, DIMM071, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory100 , mainboard, DIMM100, HM6,  32768 MB,  3200 MT/s,  2933 MT/s, DDR4, 0910A9CF, 1200 mV, 1 rank, 72 bit, Synchronous| Registered (Buffered), Unknown, JSR413137SXMX-XSCC, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory101 , mainboard, DIMM101, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory110 , mainboard, DIMM110, HM6,  32768 MB,  3200 MT/s,  2933 MT/s, DDR4, 0910A9D0, 1200 mV, 1 rank, 72 bit, Synchronous| Registered (Buffered), Unknown, JSR413137SXMX-XSCC, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory111 , mainboard, DIMM111, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory120 , mainboard, DIMM120, HM6,  32768 MB,  3200 MT/s,  2933 MT/s, DDR4, 0910A9D8, 1200 mV, 1 rank, 72 bit, Synchronous| Registered (Buffered), Unknown, JSR413137SXMX-XSCC, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory121 , mainboard, DIMM121, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory130 , mainboard, DIMM130, HM6,  32768 MB,  3200 MT/s,  2933 MT/s, DDR4, 0910A306, 1200 mV, 1 rank, 72 bit, Synchronous| Registered (Buffered), Unknown, JSR413137SXMX-XSCC, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory131 , mainboard, DIMM131, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory140 , mainboard, DIMM140, HM6,  32768 MB,  3200 MT/s,  2933 MT/s, DDR4, 0910B9F4, 1200 mV, 1 rank, 72 bit, Synchronous| Registered (Buffered), Unknown, JSR413137SXMX-XSCC, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory141 , mainboard, DIMM141, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory150 , mainboard, DIMM150, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory151 , mainboard, DIMM151, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory160 , mainboard, DIMM160, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory161 , mainboard, DIMM161, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory170 , mainboard, DIMM170, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+Memory171 , mainboard, DIMM171, Unknown, Unknown,  Unknown,  Unknown, Unknown, NO DIMM, Unknown, Unknown, Unknown, Unknown| Synchronous, Unknown, NO DIMM, Unknown, N/A, Unknown, Unknown, Unknown, Unknown, OK
+
+---------------------------------------------------------------------------------Card info----------------------------------------------------------------------------
+Pcie Card Info
+Slot | Vender Id  | Device Id  | Sub Vender Id   | Sub Device Id   | Bus Number   | Device Number  | Function Number  | Card Desc                                | Board Id   | PCB Version    | CPLD Version   | Sub Card Bom Id  | PartNum 
+1    | 0x19e5     | 0xd500     | 0x0200          | 0x0100          | 0x01         | 0x00           | 0x00             | Atlas 300V Pro Video Analysis Card PCI-E 1*16x (HHHL) | 0x00af     | .B             | N/A            | N/A              | 0302018194
+2    | 0x19e5     | 0xd500     | 0x0200          | 0x0100          | 0x02         | 0x00           | 0x00             | Atlas 300V Pro Video Analysis Card PCI-E 1*16x (HHHL) | 0x00af     | .B             | N/A            | N/A              | 0302018194
+4    | 0x19e5     | 0xd500     | 0x0200          | 0x0100          | 0x81         | 0x00           | 0x00             | Atlas 300V Pro Video Analysis Card PCI-E 1*16x (HHHL) | 0x00af     | .B             | N/A            | N/A              | 0302018194
+5    | 0x19e5     | 0xd500     | 0x0200          | 0x0100          | 0x82         | 0x00           | 0x00             | Atlas 300V Pro Video Analysis Card PCI-E 1*16x (HHHL) | 0x00af     | .B             | N/A            | N/A              | 0302018194
+
+
+HDD Backplane Info
+Slot | BoardId    | Name       | Manufacturer                     | PCB Ver    | Logic Ver  | Type                                     | Part Num
+1    | 0x73       | BC11THBQB  | Huawei                           | .D         | 1.15       | 12*3.5 SAS/SATA, Expander                | 03024MSG 
+
+
+RAID Card Info
+Slot | BoardId    | Location         | ProductName      | Manufacturer                     | PCB Ver    | Logic Ver  | Type                      | Mode                 | Part Num   | Serial Num           | Connected To
+1    | 0x2a       | mainboard        | SR450C-M 2G      | Huawei                           | .B         | 0.33       | LSI SAS3508               | RAID(0/1/10/5/50/6/60) | 03024JMY   | 033EFTBBL7032377     | CPU1
+
+
+Riser Card Info
+Slot | BoardId    | Name       | Manufacturer                     | Type                              | PartNum 
+1    | 0x94       | BC82PRUA   | Huawei                           | Riser(X8*3)                      | 03025VYK
+2    | 0x94       | BC82PRUA   | Huawei                           | Riser(X8*3)                      | 03025VYK
+3    | 0x36       | BC82PRUF   | Huawei                           | Riser(X8*2)                      | 03026CMN
+
+
+Main board Info
+BoardId    | Name       | PCB Ver    | Bom Id     | Location        | Device Name     | Part Number     
+0xa9       | Mainboard  | .A         | 0          | chassis         | Mainboard       | 06411164        
+
+
+FPGA Card Info
+Slot | BoardId    | Name       | Manufacturer                     | PCB Ver    | Logic Ver
+1    | 0xaf       | Atlas 300V Pro Video Analysis Card | Huawei                           | .B         | 
+2    | 0xaf       | Atlas 300V Pro Video Analysis Card | Huawei                           | .B         | 
+4    | 0xaf       | Atlas 300V Pro Video Analysis Card | Huawei                           | .B         | 
+5    | 0xaf       | Atlas 300V Pro Video Analysis Card | Huawei                           | .B         | 
+
+
+
+---------------------------------------------------------------------------------Fan  info----------------------------------------------------------------------------
+Fan                      | Presence          | PWM      | Speed(RPM)         | Maximum rpm range  | Model             |  PartNum           |  DeviceName        |  Location        
+Fan Module1           | present           | 80%      | 11475              | 15000              | 02311VSF 8038+    |  02311VSF          |  Fan1              |  chassis          
+Fan Module2           | present           | 80%      | 11625              | 15000              | 02311VSF 8038+    |  02311VSF          |  Fan2              |  chassis          
+Fan Module3           | present           | 80%      | 11475              | 15000              | 02311VSF 8038+    |  02311VSF          |  Fan3              |  chassis          
+Fan Module4           | present           | 80%      | 11475              | 15000              | 02311VSF 8038+    |  02311VSF          |  Fan4              |  chassis          
+
+---------------------------------------------------------------------------------PSU  info----------------------------------------------------------------------------
+Slot   |  presence  |  Manufacturer     |  Type                              |  SN                                |  Version                    |  Rated Power   |  InputMode  |  PartNum           |  DeviceName        |  Vin     
+1      |  present   |  HUAWEI           |  PAC2000S12-BG                     |  2102312HGYW0N7001616              |  DC:119 PFC:119             |  2000          |  AC        |  02312HGY          |  PSU1              |  217.00  
+2      |  present   |  HUAWEI           |  PAC2000S12-BG                     |  2102312HGYW0N7001127              |  DC:119 PFC:119             |  2000          |  AC        |  02312HGY          |  PSU2              |  217.00  
+
+--------------------------------------------------------------------------------Storage info----------------------------------------------------------------------------
+Current SmBiosStatus = 3
+==============================
+Current BiosBootStage = 1
+==============================
+RAID Controller #0 Information
+==============================
+Controller Name                               : SAS3508
+Controller Type                               : SAS3508
+Component Name                                : RAID Card1
+Support Out-of-Band Management                : Yes
+Controller Mode                               : RAID
+Controller Health                             : Normal
+Firmware Version                              : 5.140.00-3515
+NVDATA Version                                : 5.1400.00-0007
+Hardware Revision                             : N/A
+Memory Size                                   : 2048 MB
+Device Interface                              : SAS_12G
+SAS Address                                   : 5d47c44d4d4c5000
+Minimum Strip Size Supported                  : 64 KB
+Maximum Strip Size Supported                  : 1 MB
+Spare Activation Mode                         : N/A
+Host bus link Width                           : N/A
+No-Battery Write Cache                        : N/A
+Read Cache Percentage                         : N/A
+Configured Drives Write Cache Policy          : N/A
+Unonfigured Drives Write Cache Policy         : N/A
+HBA Drives Write Cache Policy                 : N/A
+Controller Cache Is Pinned                    : No
+Maintain PD Fail History across Reboot        : Yes
+Copyback Enabled                              : Yes
+Copyback Enabled on SMART error               : Yes
+JBOD Enabled                                  : No
+DDR ECC Count                                 : 0
+Primary Boot Device                           : Logical Drive 0
+Secondary Boot Device                         : None
+
+BBU Status                                    : Present
+BBU Type                                      : CVPM05
+BBU Health                                    : Normal
+
+PHY Status                                    : 
+	PHY #0 :
+		Invalid Dword Count           : 0
+		Loss Dword Sync Count         : 0
+		PHY Reset Problem Count       : 0
+		Running Disparity Error Count : 0
+
+	PHY #1 :
+		Invalid Dword Count           : 0
+		Loss Dword Sync Count         : 0
+		PHY Reset Problem Count       : 0
+		Running Disparity Error Count : 0
+
+	PHY #2 :
+		Invalid Dword Count           : 0
+		Loss Dword Sync Count         : 0
+		PHY Reset Problem Count       : 0
+		Running Disparity Error Count : 0
+
+	PHY #3 :
+		Invalid Dword Count           : 0
+		Loss Dword Sync Count         : 0
+		PHY Reset Problem Count       : 0
+		Running Disparity Error Count : 0
+
+	PHY #4 :
+		Invalid Dword Count           : 0
+		Loss Dword Sync Count         : 0
+		PHY Reset Problem Count       : 0
+		Running Disparity Error Count : 0
+
+	PHY #5 :
+		Invalid Dword Count           : 0
+		Loss Dword Sync Count         : 0
+		PHY Reset Problem Count       : 0
+		Running Disparity Error Count : 0
+
+	PHY #6 :
+		Invalid Dword Count           : 0
+		Loss Dword Sync Count         : 0
+		PHY Reset Problem Count       : 0
+		Running Disparity Error Count : 0
+
+	PHY #7 :
+		Invalid Dword Count           : 0
+		Loss Dword Sync Count         : 0
+		PHY Reset Problem Count       : 0
+		Running Disparity Error Count : 0
+Logical Drive Information
+---------------------------
+----------------------------------------------------------------------
+Target ID                                : 0
+Name                                     : sda
+Type                                     : RAID1
+State                                    : Optimal
+Default Read Policy                      : No Read Ahead
+Default Write Policy                     : Write Through
+Default Cache Policy                     : Direct IO
+Current Read Policy                      : No Read Ahead
+Current Write Policy                     : Write Through
+Current Cache Policy                     : Direct IO
+Access Policy                            : Read Write
+Span depth                               : 1
+Number of drives per span                : 2
+Strip Size                               : 256 KB
+Total Size                               : 446.103 GB
+Disk Cache Policy                        : Disk's Default
+Init State                               : No Init
+BGI Enabled                              : Yes
+Current in FGI                           : No
+FGI progress                             : 0
+Consistency Checking                     : No
+Bootable                                 : Yes
+BootPriority                             : Primary
+Used for Secondary Cache                 : No
+SSCD Caching Enable                      : N/A
+PD participating in LD (ID#)             : 0,1
+Dedicated Hot Spare PD (ID#)             : N/A
+Acceleration Method                      : Unknown
+Rebuild in Progress                      : N/A
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Target ID                                : 1
+Name                                     : sdb
+Type                                     : RAID10
+State                                    : Optimal
+Default Read Policy                      : No Read Ahead
+Default Write Policy                     : Write Back
+Default Cache Policy                     : Direct IO
+Current Read Policy                      : No Read Ahead
+Current Write Policy                     : Write Back
+Current Cache Policy                     : Direct IO
+Access Policy                            : Read Write
+Span depth                               : 2
+Number of drives per span                : 2
+Strip Size                               : 256 KB
+Total Size                               : 14.554 TB
+Disk Cache Policy                        : Disk's Default
+Init State                               : No Init
+BGI Enabled                              : Yes
+Current in FGI                           : No
+FGI progress                             : 0
+Consistency Checking                     : No
+Bootable                                 : No
+BootPriority                             : None
+Used for Secondary Cache                 : No
+SSCD Caching Enable                      : No
+PD participating in LD (ID#)             : 
+                    Span0 - 4,5
+                    Span1 - 6,7
+Dedicated Hot Spare PD (ID#)             : N/A
+Acceleration Method                      : Unknown
+Rebuild in Progress                      : N/A
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Target ID                                : 2
+Name                                     : sdc
+Type                                     : RAID1
+State                                    : Optimal
+Default Read Policy                      : No Read Ahead
+Default Write Policy                     : Write Through
+Default Cache Policy                     : Direct IO
+Current Read Policy                      : No Read Ahead
+Current Write Policy                     : Write Through
+Current Cache Policy                     : Direct IO
+Access Policy                            : Read Write
+Span depth                               : 1
+Number of drives per span                : 2
+Strip Size                               : 256 KB
+Total Size                               : 893.138 GB
+Disk Cache Policy                        : Disk's Default
+Init State                               : No Init
+BGI Enabled                              : Yes
+Current in FGI                           : No
+FGI progress                             : 0
+Consistency Checking                     : No
+Bootable                                 : No
+BootPriority                             : None
+Used for Secondary Cache                 : No
+SSCD Caching Enable                      : N/A
+PD participating in LD (ID#)             : 2,3
+Dedicated Hot Spare PD (ID#)             : N/A
+Acceleration Method                      : Unknown
+Rebuild in Progress                      : N/A
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Target ID                                : 3
+Name                                     : sdd
+Type                                     : RAID5
+State                                    : Optimal
+Default Read Policy                      : No Read Ahead
+Default Write Policy                     : Write Through
+Default Cache Policy                     : Direct IO
+Current Read Policy                      : No Read Ahead
+Current Write Policy                     : Write Through
+Current Cache Policy                     : Direct IO
+Access Policy                            : Read Write
+Span depth                               : 1
+Number of drives per span                : 3
+Strip Size                               : 256 KB
+Total Size                               : 3.491 TB
+Disk Cache Policy                        : Disk's Default
+Init State                               : No Init
+BGI Enabled                              : Yes
+Current in FGI                           : No
+FGI progress                             : 0
+Consistency Checking                     : No
+Bootable                                 : No
+BootPriority                             : None
+Used for Secondary Cache                 : No
+SSCD Caching Enable                      : N/A
+PD participating in LD (ID#)             : 8,9,10
+Dedicated Hot Spare PD (ID#)             : N/A
+Acceleration Method                      : Unknown
+Rebuild in Progress                      : N/A
+----------------------------------------------------------------------
+
+
+
+Disk Array Information
+-------------------------
+----------------------------------------------------------------------
+Array ID                                 : 0
+Used Space                               : 446.103 GB
+Free Space                               : 0 MB
+Logcial Drive(s) ID                      : 0
+Physical Drive(s) ID                     : 0,1
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Array ID                                 : 1
+Used Space                               : 7.277 TB
+Free Space                               : 0 MB
+Logcial Drive(s) ID                      : 1
+Physical Drive(s) ID                     : 4,5
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Array ID                                 : 2
+Used Space                               : 7.277 TB
+Free Space                               : 0 MB
+Logcial Drive(s) ID                      : 1
+Physical Drive(s) ID                     : 6,7
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Array ID                                 : 3
+Used Space                               : 893.138 GB
+Free Space                               : 0 MB
+Logcial Drive(s) ID                      : 2
+Physical Drive(s) ID                     : 2,3
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Array ID                                 : 4
+Used Space                               : 3.491 TB
+Free Space                               : 0 MB
+Logcial Drive(s) ID                      : 3
+Physical Drive(s) ID                     : 8,9,10
+----------------------------------------------------------------------
+
+Physical Drives Information
+---------------------------
+----------------------------------------------------------------------
+ID                                       : 0
+Device Name                              : Disk0
+Manufacturer                             : HUAWEI
+Serial Number                            : 034BBTN0P8016439
+Model                                    : HWE62ST3480L003N
+Firmware Version                         : 10B6
+Health Status                            : Normal
+Firmware State                           : ONLINE
+Power State                              : Spun Up
+Media Type                               : SSD
+Interface Type                           : SATA
+Capable Speed                            : 6.0 Gbps
+Negotiated Speed                         : 12.0 Gbps
+Drive Temperature                        : 28
+Capacity                                 : 446.103 GB
+Hot Spare                                : None
+Rebuild in Progress                      : No
+Patrol Read in Progress                  : No
+Remnant Media Wearout                    : 100%
+Power-On Hours                           : 170
+SAS Address(0)                           : 58c2a8ee3584f000
+SAS Address(1)                           : 0000000000000000
+Location State                           : Off
+
+Media Error Count                        : 0
+Prefail Error Count                      : 0
+Other Error Count                        : 0
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+ID                                       : 1
+Device Name                              : Disk1
+Manufacturer                             : HUAWEI
+Serial Number                            : 034BBTN0P8016958
+Model                                    : HWE62ST3480L003N
+Firmware Version                         : 10B6
+Health Status                            : Normal
+Firmware State                           : ONLINE
+Power State                              : Spun Up
+Media Type                               : SSD
+Interface Type                           : SATA
+Capable Speed                            : 6.0 Gbps
+Negotiated Speed                         : 12.0 Gbps
+Drive Temperature                        : 28
+Capacity                                 : 446.103 GB
+Hot Spare                                : None
+Rebuild in Progress                      : No
+Patrol Read in Progress                  : No
+Remnant Media Wearout                    : 100%
+Power-On Hours                           : 152
+SAS Address(0)                           : 58c2a8ee3584f001
+SAS Address(1)                           : 0000000000000000
+Location State                           : Off
+
+Media Error Count                        : 0
+Prefail Error Count                      : 0
+Other Error Count                        : 0
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+ID                                       : 2
+Device Name                              : Disk2
+Manufacturer                             : HUAWEI
+Serial Number                            : 034BBR10NC108631
+Model                                    : HWE62ST3960L003N
+Firmware Version                         : 1086
+Health Status                            : Normal
+Firmware State                           : ONLINE
+Power State                              : Spun Up
+Media Type                               : SSD
+Interface Type                           : SATA
+Capable Speed                            : 6.0 Gbps
+Negotiated Speed                         : 12.0 Gbps
+Drive Temperature                        : 29
+Capacity                                 : 893.138 GB
+Hot Spare                                : None
+Rebuild in Progress                      : No
+Patrol Read in Progress                  : No
+Remnant Media Wearout                    : 96%
+Power-On Hours                           : 19934
+SAS Address(0)                           : 58c2a8ee3584f002
+SAS Address(1)                           : 0000000000000000
+Location State                           : Off
+
+Media Error Count                        : 0
+Prefail Error Count                      : 0
+Other Error Count                        : 0
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+ID                                       : 3
+Device Name                              : Disk3
+Manufacturer                             : HUAWEI
+Serial Number                            : 034BBR10NC108635
+Model                                    : HWE62ST3960L003N
+Firmware Version                         : 1086
+Health Status                            : Normal
+Firmware State                           : ONLINE
+Power State                              : Spun Up
+Media Type                               : SSD
+Interface Type                           : SATA
+Capable Speed                            : 6.0 Gbps
+Negotiated Speed                         : 12.0 Gbps
+Drive Temperature                        : 29
+Capacity                                 : 893.138 GB
+Hot Spare                                : None
+Rebuild in Progress                      : No
+Patrol Read in Progress                  : No
+Remnant Media Wearout                    : 97%
+Power-On Hours                           : 19992
+SAS Address(0)                           : 58c2a8ee3584f003
+SAS Address(1)                           : 0000000000000000
+Location State                           : Off
+
+Media Error Count                        : 0
+Prefail Error Count                      : 0
+Other Error Count                        : 0
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+ID                                       : 4
+Device Name                              : Disk4
+Manufacturer                             : SEAGATE
+Serial Number                            : WSD0Z61K
+Model                                    : ST8000NM000A-2KE101
+Firmware Version                         : SN03
+Health Status                            : Normal
+Firmware State                           : ONLINE
+Power State                              : Spun Up
+Media Type                               : HDD
+Interface Type                           : SATA
+Capable Speed                            : 6.0 Gbps
+Negotiated Speed                         : 12.0 Gbps
+Drive Temperature                        : 23
+Capacity                                 : 7.277 TB
+Hot Spare                                : None
+Rebuild in Progress                      : No
+Patrol Read in Progress                  : No
+Remnant Media Wearout                    : N/A
+Power-On Hours                           : 16662
+SAS Address(0)                           : 58c2a8ee3584f004
+SAS Address(1)                           : 0000000000000000
+Location State                           : Off
+
+Media Error Count                        : 0
+Prefail Error Count                      : 0
+Other Error Count                        : 0
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+ID                                       : 5
+Device Name                              : Disk5
+Manufacturer                             : SEAGATE
+Serial Number                            : WSD1EZB8
+Model                                    : ST8000NM000A-2KE101
+Firmware Version                         : SN03
+Health Status                            : Normal
+Firmware State                           : ONLINE
+Power State                              : Spun Up
+Media Type                               : HDD
+Interface Type                           : SATA
+Capable Speed                            : 6.0 Gbps
+Negotiated Speed                         : 12.0 Gbps
+Drive Temperature                        : 24
+Capacity                                 : 7.277 TB
+Hot Spare                                : None
+Rebuild in Progress                      : No
+Patrol Read in Progress                  : No
+Remnant Media Wearout                    : N/A
+Power-On Hours                           : 16661
+SAS Address(0)                           : 58c2a8ee3584f005
+SAS Address(1)                           : 0000000000000000
+Location State                           : Off
+
+Media Error Count                        : 0
+Prefail Error Count                      : 0
+Other Error Count                        : 0
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+ID                                       : 6
+Device Name                              : Disk6
+Manufacturer                             : SEAGATE
+Serial Number                            : WSD1HMFS
+Model                                    : ST8000NM000A-2KE101
+Firmware Version                         : SN03
+Health Status                            : Normal
+Firmware State                           : ONLINE
+Power State                              : Spun Up
+Media Type                               : HDD
+Interface Type                           : SATA
+Capable Speed                            : 6.0 Gbps
+Negotiated Speed                         : 12.0 Gbps
+Drive Temperature                        : 23
+Capacity                                 : 7.277 TB
+Hot Spare                                : None
+Rebuild in Progress                      : No
+Patrol Read in Progress                  : No
+Remnant Media Wearout                    : N/A
+Power-On Hours                           : 16662
+SAS Address(0)                           : 58c2a8ee3584f006
+SAS Address(1)                           : 0000000000000000
+Location State                           : Off
+
+Media Error Count                        : 0
+Prefail Error Count                      : 0
+Other Error Count                        : 0
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+ID                                       : 7
+Device Name                              : Disk7
+Manufacturer                             : SEAGATE
+Serial Number                            : WSD1H7FP
+Model                                    : ST8000NM000A-2KE101
+Firmware Version                         : SN03
+Health Status                            : Normal
+	Errors detected from RAID controller : :
+		Other Errors
+Firmware State                           : ONLINE
+Power State                              : Spun Up
+Media Type                               : HDD
+Interface Type                           : SATA
+Capable Speed                            : 6.0 Gbps
+Negotiated Speed                         : 12.0 Gbps
+Drive Temperature                        : N/A
+Capacity                                 : 7.277 TB
+Hot Spare                                : None
+Rebuild in Progress                      : No
+Patrol Read in Progress                  : No
+Remnant Media Wearout                    : N/A
+Power-On Hours                           : 16662
+SAS Address(0)                           : 58c2a8ee3584f007
+SAS Address(1)                           : 0000000000000000
+Location State                           : Off
+
+Media Error Count                        : 0
+Prefail Error Count                      : 0
+Other Error Count                        : 23
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+ID                                       : 8
+Device Name                              : Disk8
+Manufacturer                             : HUAWEI
+Serial Number                            : 034BBPN0NC010579
+Model                                    : HWE62ST31T9L003N
+Firmware Version                         : 1086
+Health Status                            : Normal
+Firmware State                           : ONLINE
+Power State                              : Spun Up
+Media Type                               : SSD
+Interface Type                           : SATA
+Capable Speed                            : 6.0 Gbps
+Negotiated Speed                         : 12.0 Gbps
+Drive Temperature                        : 29
+Capacity                                 : 1.745 TB
+Hot Spare                                : None
+Rebuild in Progress                      : No
+Patrol Read in Progress                  : No
+Remnant Media Wearout                    : 100%
+Power-On Hours                           : 12391
+SAS Address(0)                           : 58c2a8ee3584f008
+SAS Address(1)                           : 0000000000000000
+Location State                           : Off
+
+Media Error Count                        : 0
+Prefail Error Count                      : 0
+Other Error Count                        : 0
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+ID                                       : 9
+Device Name                              : Disk9
+Manufacturer                             : HUAWEI
+Serial Number                            : 034BBPN0NC010902
+Model                                    : HWE62ST31T9L003N
+Firmware Version                         : 1086
+Health Status                            : Normal
+Firmware State                           : ONLINE
+Power State                              : Spun Up
+Media Type                               : SSD
+Interface Type                           : SATA
+Capable Speed                            : 6.0 Gbps
+Negotiated Speed                         : 12.0 Gbps
+Drive Temperature                        : 28
+Capacity                                 : 1.745 TB
+Hot Spare                                : None
+Rebuild in Progress                      : No
+Patrol Read in Progress                  : No
+Remnant Media Wearout                    : 99%
+Power-On Hours                           : 12330
+SAS Address(0)                           : 58c2a8ee3584f009
+SAS Address(1)                           : 0000000000000000
+Location State                           : Off
+
+Media Error Count                        : 0
+Prefail Error Count                      : 0
+Other Error Count                        : 0
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+ID                                       : 10
+Device Name                              : Disk10
+Manufacturer                             : HUAWEI
+Serial Number                            : 034BBPN0NC010809
+Model                                    : HWE62ST31T9L003N
+Firmware Version                         : 1086
+Health Status                            : Normal
+Firmware State                           : ONLINE
+Power State                              : Spun Up
+Media Type                               : SSD
+Interface Type                           : SATA
+Capable Speed                            : 6.0 Gbps
+Negotiated Speed                         : 12.0 Gbps
+Drive Temperature                        : 29
+Capacity                                 : 1.745 TB
+Hot Spare                                : None
+Rebuild in Progress                      : No
+Patrol Read in Progress                  : No
+Remnant Media Wearout                    : 98%
+Power-On Hours                           : 12418
+SAS Address(0)                           : 58c2a8ee3584f00a
+SAS Address(1)                           : 0000000000000000
+Location State                           : Off
+
+Media Error Count                        : 0
+Prefail Error Count                      : 0
+Other Error Count                        : 0
+----------------------------------------------------------------------
+
+Pass Through Drives Information
+===============================
+None of physical drives is in position.

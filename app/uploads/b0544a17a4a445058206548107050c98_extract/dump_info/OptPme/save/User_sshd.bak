@@ -1,0 +1,11 @@
+#%PAM-1.0
+auth	   required    pam_pme.so
+auth       include      system-auth
+auth        requisite       pam_tally2.so  silent file=/dev/shm/tallylog deny=5 onerr=fail unlock_time=300 even_deny_root_account root_unlock_time=300
+account    required     pam_tally2.so file=/dev/shm/tallylog  onerr=fail
+account    required     pam_nologin.so
+account    include      system-auth
+password   include      system-auth
+session    optional     pam_keyinit.so force revoke
+session    include      system-auth
+session    required     pam_loginuid.so

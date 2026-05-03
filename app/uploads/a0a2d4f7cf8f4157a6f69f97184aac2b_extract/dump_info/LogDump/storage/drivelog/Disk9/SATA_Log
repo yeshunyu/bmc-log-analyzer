@@ -1,0 +1,27 @@
+Device Name                             : Disk9
+Enclosure Id                            : 65
+Slot Number                             : 9
+Manufacturer                            : HUAWEI
+Serial Number                           : 034BBPN0NC010902
+Model                                   : HWE62ST31T9L003N
+Interface Type                          : SATA
+Media Type                              : SSD
+Timestamp                               : 2025-07-23 07:49:27
+
+Error Log:
+Data is empty.
+
+Extent Error Log:
+Data is empty.
+
+Extended Self Test Log:
+SMART Extended Self-test Log Version: 1 
+No self-tests have been logged.
+
+
+PHY Event Log:
+ID      Size     Value  Description
+0x0001  4            0  Command failed due to ICRC error
+0x0005  2            0  R_ERR response for non-data FIS
+0x000a  4            3  Device-to-host register FISes sent due to a COMRESET
+

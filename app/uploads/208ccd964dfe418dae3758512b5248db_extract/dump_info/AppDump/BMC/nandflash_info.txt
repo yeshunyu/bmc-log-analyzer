@@ -1,0 +1,7 @@
+Vender Name                        :    Toshiba
+Vender Id                                    :    17
+Remaining Lifetime                           :    90%+
+Remaining Lifetime Threshold                 :    10%
+Total Written Amount                         :    54.346GB
+Total data written in 15 days                :    1.240GB
+Data written per day in 15 days              :    0.083GB 0.074GB 0.075GB 0.080GB 0.084GB 0.086GB 0.085GB 0.092GB 0.105GB 0.087GB 0.083GB 0.081GB 0.076GB 0.076GB 0.074GB 

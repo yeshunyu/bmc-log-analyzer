@@ -1,0 +1,38 @@
+Pcie Card Info
+Slot | Vender Id  | Device Id  | Sub Vender Id   | Sub Device Id   | Bus Number   | Device Number  | Function Number  | Card Desc                                | Board Id   | PCB Version    | CPLD Version   | Sub Card Bom Id  | PartNum 
+1    | 0x19e5     | 0xd500     | 0x0200          | 0x0100          | 0x01         | 0x00           | 0x00             | Atlas 300V Pro Video Analysis Card PCI-E 1*16x (HHHL) | 0x00af     | .B             | N/A            | N/A              | 0302018194
+2    | 0x19e5     | 0xd500     | 0x0200          | 0x0100          | 0x02         | 0x00           | 0x00             | Atlas 300V Pro Video Analysis Card PCI-E 1*16x (HHHL) | 0x00af     | .B             | N/A            | N/A              | 0302018194
+4    | 0x19e5     | 0xd500     | 0x0200          | 0x0100          | 0x81         | 0x00           | 0x00             | Atlas 300V Pro Video Analysis Card PCI-E 1*16x (HHHL) | 0x00af     | .B             | N/A            | N/A              | 0302018194
+5    | 0x19e5     | 0xd500     | 0x0200          | 0x0100          | 0x82         | 0x00           | 0x00             | Atlas 300V Pro Video Analysis Card PCI-E 1*16x (HHHL) | 0x00af     | .B             | N/A            | N/A              | 0302018194
+
+
+HDD Backplane Info
+Slot | BoardId    | Name       | Manufacturer                     | PCB Ver    | Logic Ver  | Type                                     | Part Num
+1    | 0x73       | BC11THBQB  | Huawei                           | .D         | 1.15       | 12*3.5 SAS/SATA, Expander                | 03024MSG 
+
+
+RAID Card Info
+Slot | BoardId    | Location         | ProductName      | Manufacturer                     | PCB Ver    | Logic Ver  | Type                      | Mode                 | Part Num   | Serial Num           | Connected To
+1    | 0x2a       | mainboard        | SR450C-M 2G      | Huawei                           | .B         | 0.33       | LSI SAS3508               | RAID(0/1/10/5/50/6/60) | 03024JMY   | 033EFTBBL7032377     | CPU1
+
+
+Riser Card Info
+Slot | BoardId    | Name       | Manufacturer                     | Type                              | PartNum 
+1    | 0x94       | BC82PRUA   | Huawei                           | Riser(X8*3)                      | 03025VYK
+2    | 0x94       | BC82PRUA   | Huawei                           | Riser(X8*3)                      | 03025VYK
+3    | 0x36       | BC82PRUF   | Huawei                           | Riser(X8*2)                      | 03026CMN
+
+
+Main board Info
+BoardId    | Name       | PCB Ver    | Bom Id     | Location        | Device Name     | Part Number     
+0xa9       | Mainboard  | .A         | 0          | chassis         | Mainboard       | 06411164        
+
+
+FPGA Card Info
+Slot | BoardId    | Name       | Manufacturer                     | PCB Ver    | Logic Ver
+1    | 0xaf       | Atlas 300V Pro Video Analysis Card | Huawei                           | .B         | 
+2    | 0xaf       | Atlas 300V Pro Video Analysis Card | Huawei                           | .B         | 
+4    | 0xaf       | Atlas 300V Pro Video Analysis Card | Huawei                           | .B         | 
+5    | 0xaf       | Atlas 300V Pro Video Analysis Card | Huawei                           | .B         | 
+
+

@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  bmc-analyzer:
+    build: .
+    container_name: bmc-log-analyzer
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist uploads across restarts
+      - ./uploads:/app/app/uploads
+    restart: unless-stopped

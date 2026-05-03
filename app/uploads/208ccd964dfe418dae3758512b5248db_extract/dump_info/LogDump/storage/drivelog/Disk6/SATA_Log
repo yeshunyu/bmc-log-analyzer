@@ -1,0 +1,52 @@
+Device Name                             : Disk6
+Enclosure Id                            : 65
+Slot Number                             : 6
+Manufacturer                            : SEAGATE
+Serial Number                           : WSD1HMFS
+Model                                   : ST8000NM000A-2KE101
+Interface Type                          : SATA
+Media Type                              : HDD
+Timestamp                               : 2025-07-23 07:49:24
+
+Error Log:
+--------------------------------------------------------------------------------------------------
+SMART Error Log Version: 1
+No Errors Logged
+
+
+Extent Error Log:
+--------------------------------------------------------------------------------------------------
+SMART Extended Comprehensive Error Log Version: 1 (5 sectors)
+No Errors Logged
+
+
+Extended Self Test Log:
+SMART Extended Self-test Log Version: 1 
+No self-tests have been logged.
+
+
+PHY Event Log:
+ID      Size     Value  Description
+0x000a  2           58  Device-to-host register FISes sent due to a COMRESET
+0x0001  2            0  Command failed due to ICRC error
+0x0003  2            0  R_ERR response for device-to-host data FIS
+0x0004  2            0  R_ERR response for host-to-device data FIS
+0x0006  2            0  R_ERR response for device-to-host non-data FIS
+0x0007  2            0  R_ERR response for host-to-device non-data FIS
+
+
+GList (SEAGATE):
+Grown Defect List is empty...
+
+PList (SEAGATE):
+Pending Sector Table is empty...
+
+Critical Event Log (SEAGATE):
+  TYPE - Critical Event Type (Hex)       POT - Power On Time (Hours)
+  TS - Time Stamp (Ticks) (Hex)          EC - Error Code (Hex)
+  RT - Raw Temperature (Hex)             LBA - Block (Hex)
+  RTZ - Location (Radius-Theta-Z) (Hex)   CMD - ATA Command(Hex)
+
+Critical Event Log entries:
+TYPE Description                           POT   TS           LBA      CHS              EC       RT CMD Index
+---- ------------------------------        ----- ------------ -------- ---------------- -------- -- --- ---- 

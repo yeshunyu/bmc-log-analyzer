@@ -1,0 +1,82 @@
+FRU Device Description : Builtin FRU Device (ID 0, Mainboard)
+ Chassis Type          : Unspecified
+ Board Mfg. Date       : 2022/12/23 Fri 06:18:00
+ Board Manufacturer    : Huawei
+ Board Product Name    : 5104-00517
+ Board Serial Number   : 2106411164FSNC000870
+ Board Part Number     : 06411164
+ Board FRU File ID     : 3.03.00.43
+ Extend label          : Description=Function Module,Atlas 800 (Model 3000),K22R-02-B12AC-A,12*3.5 inch HDD EXP Chassis
+                         IssueNumber=00
+                         CLEICode=Null
+                         BOM=Null
+ Product Manufacturer  : Huawei
+ Product Name          : Atlas 800 (Model 3000)
+ Product Part Number   : 02313NNL
+ Product Serial Number : 2102313NNLP0NC100035
+ Product FRU File ID   : 3.03.00.43
+
+FRU Device Description : Builtin FRU Device (ID 1, SR450C-M 2G)
+ Board Mfg. Date       : 2020/08/06 Thu 03:26:00
+ Board Manufacturer    : Huawei
+ Board Product Name    : BC11RLCB
+ Board Serial Number   : 033EFTBBL7032377
+ Board FRU File ID     : 3.08
+ Product Manufacturer  : Huawei
+ Product Name          : SR450C-M 2G
+ Product FRU File ID   : 3.08
+
+FRU Device Description : Builtin FRU Device (ID 3, NIC 1 (TM280))
+ Board Mfg. Date       : 2021/10/16 Sat 02:10:00
+ Board Manufacturer    : Huawei
+ Board Product Name    : NetworkCard
+ Board Serial Number   : 2106310214FSMA001902
+ Board FRU File ID     : 6.20
+ Product Manufacturer  : Huawei
+ Product FRU File ID   : 6.20
+
+FRU Device Description : Builtin FRU Device (ID 4, NIC 2 (TM280))
+ Board Mfg. Date       : 2021/10/16 Sat 02:10:00
+ Board Manufacturer    : Huawei
+ Board Product Name    : NetworkCard
+ Board Serial Number   : 2106310214FSMA001907
+ Board FRU File ID     : 3.52
+ Product Manufacturer  : Huawei
+ Product FRU File ID   : 3.52
+
+FRU Device Description : Builtin FRU Device (ID 18, A300V Pro)
+ Board Mfg. Date       : 2022/11/16 Wed 15:14:00
+ Board Manufacturer    : Huawei
+ Board Product Name    : IT21PDDC02
+ Board Serial Number   : 2106030636ZENB001729
+ Board FRU File ID     : 5.81
+ Product Manufacturer  : Huawei
+ Product FRU File ID   : 5.81
+
+FRU Device Description : Builtin FRU Device (ID 20, A300V Pro)
+ Board Mfg. Date       : 2022/11/16 Wed 15:23:00
+ Board Manufacturer    : Huawei
+ Board Product Name    : IT21PDDC02
+ Board Serial Number   : 2106030636ZENB001624
+ Board FRU File ID     : 5.81
+ Product Manufacturer  : Huawei
+ Product FRU File ID   : 5.81
+
+FRU Device Description : Builtin FRU Device (ID 24, A300V Pro)
+ Board Mfg. Date       : 2022/11/16 Wed 15:14:00
+ Board Manufacturer    : Huawei
+ Board Product Name    : IT21PDDC02
+ Board Serial Number   : 2106030636ZENB001730
+ Board FRU File ID     : 5.81
+ Product Manufacturer  : Huawei
+ Product FRU File ID   : 5.81
+
+FRU Device Description : Builtin FRU Device (ID 26, A300V Pro)
+ Board Mfg. Date       : 2022/11/16 Wed 15:24:00
+ Board Manufacturer    : Huawei
+ Board Product Name    : IT21PDDC02
+ Board Serial Number   : 2106030636ZENB001666
+ Board FRU File ID     : 5.81
+ Product Manufacturer  : Huawei
+ Product FRU File ID   : 5.81
+

@@ -1,0 +1,66 @@
+2022-12-24 06:23:14 UTC: BMC detected system power off.
+ 
+2022-12-24 20:44:58 UTC: FDM process was initialized successfully.
+2022-12-24 20:45:14 UTC: System Restart [Always restore][LOCAL].
+2022-12-24 20:45:15 UTC: BMC detected system power on.
+2023-04-10 06:35:53 UTC: FDM process was initialized successfully.
+2023-04-10 06:36:09 UTC: System Restart [Always restore][LOCAL].
+2023-04-10 06:36:10 UTC: BMC detected system power on.
+2023-04-17 03:26:54 UTC: System Restart [Unknown][IPMB].
+2023-04-17 03:55:47 UTC: System Restart [Unknown][IPMB].
+2023-04-18 01:39:10 UTC: System Restart [Unknown][IPMB].
+2023-08-28 06:19:35 UTC: BMC detected system power off.
+ 
+2023-08-29 05:16:47 UTC: FDM process was initialized successfully.
+2023-08-29 05:17:04 UTC: System Restart [Always restore][LOCAL].
+2023-08-29 05:17:05 UTC: BMC detected system power on.
+2023-09-04 11:30:29 UTC: System Restart [Unknown][IPMB].
+2023-09-08 08:12:53 UTC: System Restart [Unknown][IPMB].
+2023-09-08 08:58:10 UTC: System Restart [Unknown][IPMB].
+2023-10-25 10:36:42 UTC: System Restart [Unknown][IPMB].
+2023-10-25 12:21:51 UTC: System Restart [Unknown][IPMB].
+2023-10-25 12:36:06 UTC: System Restart [Unknown][IPMB].
+2023-10-25 13:12:03 UTC: System Restart [Unknown][IPMB].
+2023-10-25 13:31:57 UTC: System Restart [Unknown][IPMB].
+2023-10-25 13:57:54 UTC: System Restart [Unknown][IPMB].
+2023-10-25 14:19:43 UTC: System Restart [Unknown][IPMB].
+2023-10-25 14:43:30 UTC: System Restart [Unknown][IPMB].
+2023-10-25 15:03:18 UTC: System Restart [Unknown][IPMB].
+2023-10-25 15:23:04 UTC: System Restart [Unknown][IPMB].
+2023-10-25 15:43:24 UTC: System Restart [Unknown][IPMB].
+2023-10-25 16:03:12 UTC: System Restart [Unknown][IPMB].
+2023-10-25 16:23:34 UTC: System Restart [Unknown][IPMB].
+2023-10-25 16:43:20 UTC: System Restart [Unknown][IPMB].
+2023-10-25 17:01:12 UTC: System Restart [Unknown][IPMB].
+2023-10-25 17:19:04 UTC: System Restart [Unknown][IPMB].
+2023-10-25 17:36:49 UTC: System Restart [Unknown][IPMB].
+2023-10-25 17:59:11 UTC: System Restart [Unknown][IPMB].
+2023-10-25 18:10:50 UTC: System Restart [Unknown][IPMB].
+2023-10-25 18:22:28 UTC: System Restart [Unknown][IPMB].
+2024-01-24 12:11:34 UTC: System Restart [Unknown][IPMB].
+2024-01-25 01:49:26 UTC: System Restart [Unknown][IPMB].
+2024-02-02 09:50:55 UTC: System Restart [Unknown][IPMB].
+2024-02-06 00:49:59 UTC: System Restart [Unknown][IPMB].
+2024-02-08 06:03:09 UTC: System Restart [Unknown][IPMB].
+2024-02-08 06:37:41 UTC: System Restart [Unknown][IPMB].
+2024-02-11 03:17:24 UTC: System Restart [Unknown][IPMB].
+2024-02-11 11:02:42 UTC: System Restart [Unknown][IPMB].
+2024-02-16 01:37:23 UTC: System Restart [Unknown][IPMB].
+2024-02-17 17:57:10 UTC: System Restart [Unknown][IPMB].
+2024-02-20 00:32:49 UTC: System Restart [Unknown][IPMB].
+2024-02-22 05:13:57 UTC: System Restart [Unknown][IPMB].
+2024-02-29 23:52:06 UTC: System Restart [Unknown][IPMB].
+2024-03-01 04:06:31 UTC: System Restart [Unknown][IPMB].
+2024-03-05 09:11:48 UTC: System Restart [Unknown][IPMB].
+2024-03-05 23:39:15 UTC: System Restart [Unknown][IPMB].
+2024-03-06 07:40:56 UTC: System Restart [Unknown][IPMB].
+2024-03-07 13:03:21 UTC: System Restart [Unknown][IPMB].
+2024-03-07 16:05:09 UTC: System Restart [Unknown][IPMB].
+2024-03-07 20:31:40 UTC: System Restart [Unknown][IPMB].
+2024-03-07 21:24:29 UTC: System Restart [Unknown][IPMB].
+2024-03-07 23:19:13 UTC: System Restart [Unknown][IPMB].
+2024-03-08 01:10:04 UTC: System Restart [Unknown][IPMB].
+2024-03-08 02:16:58 UTC: System Restart [Unknown][IPMB].
+2024-07-19 13:39:41 UTC: System Restart [Unknown][IPMB].
+2024-07-19 14:17:54 UTC: System Restart [Unknown][IPMB].
+2024-07-19 15:12:17 UTC: System Restart [Unknown][IPMB].

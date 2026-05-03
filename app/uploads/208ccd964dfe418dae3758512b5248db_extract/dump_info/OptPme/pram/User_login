@@ -1,0 +1,17 @@
+# Begin /etc/pam.d/login
+
+#auth        requisite      pam_securetty.so
+auth        requisite      pam_nologin.so
+auth        required       pam_env.so
+auth        required      pam_pme.so
+auth        required       pam_unix.so
+auth        requisite       pam_tally2.so  silent file=/dev/shm/tallylog deny=5 onerr=fail unlock_time=300 even_deny_root_account root_unlock_time=300
+account     required       pam_access.so
+account     required       pam_unix.so
+session     required       pam_motd.so
+session     required       pam_limits.so
+session     optional       pam_lastlog.so
+# to be executed in the user context 
+session     required       pam_unix.so
+
+# End /etc/pam.d/login

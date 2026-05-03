@@ -1,0 +1,250 @@
+2022-11-16 16:9:49 NORMAL:[reset_task:1498] mcu will be reset!
+2048-00-00 0:0:0 MINOR:[log_test_record:829] maintance Number(0).
+2048-00-00 0:0:0 NORMAL:[ResetInfoRecord:94] get reset info error.
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] HVCC_1V2 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] VSYS_3V8 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] AI_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] CORE_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] HVCC_1V2 Volt current value is 119(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 76(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] VSYS_3V8 Volt current value is 186(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] AI_0V75 Volt current value is 90(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] CORE_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:0:0 MINOR:[log_test_record:829] maintance Number(0).
+2048-00-00 0:0:0 NORMAL:[ResetInfoRecord:94] get reset info error.
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] HVCC_1V2 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] VSYS_3V8 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] AI_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] CORE_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] HVCC_1V2 Volt current value is 119(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 76(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] VSYS_3V8 Volt current value is 186(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] AI_0V75 Volt current value is 90(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] CORE_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:0:0 MINOR:[log_test_record:829] maintance Number(0).
+2048-00-00 0:0:0 NORMAL:[ResetInfoRecord:94] get reset info error.
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] HVCC_1V2 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] VSYS_3V8 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] AI_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] CORE_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor:579] HVCC_1V2 Volt current value is 119(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 76(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor:579] VSYS_3V8 Volt current value is 186(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor:579] AI_0V75 Volt current value is 90(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor:579] CORE_0V75 Volt current value is 74(0.01V).
+2022-12-23 9:48:49 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2048-00-00 0:0:0 MINOR:[log_test_record:829] maintance Number(0).
+2048-00-00 0:0:0 NORMAL:[ResetInfoRecord:94] get reset info error.
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] HVCC_1V2 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] VSYS_3V8 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] AI_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] CORE_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] HVCC_1V2 Volt current value is 119(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 76(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] VSYS_3V8 Volt current value is 186(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] AI_0V75 Volt current value is 90(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] CORE_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:0:0 MINOR:[log_test_record:829] maintance Number(0).
+2048-00-00 0:0:0 NORMAL:[ResetInfoRecord:94] get reset info error.
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] HVCC_1V2 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] VSYS_3V8 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] AI_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] CORE_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:1:34 NORMAL:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:34 NORMAL:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:34 NORMAL:[voltage_monitor:579] HVCC_1V2 Volt current value is 119(0.01V).
+2048-00-00 0:1:34 NORMAL:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 76(0.01V).
+2048-00-00 0:1:34 NORMAL:[voltage_monitor:579] VSYS_3V8 Volt current value is 186(0.01V).
+2048-00-00 0:1:34 NORMAL:[voltage_monitor:579] AI_0V75 Volt current value is 90(0.01V).
+2048-00-00 0:1:34 NORMAL:[voltage_monitor:579] CORE_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:0:0 MINOR:[log_test_record:829] maintance Number(0).
+2048-00-00 0:0:0 NORMAL:[ResetInfoRecord:94] get reset info error.
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] HVCC_1V2 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] VSYS_3V8 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] AI_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] CORE_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] HVCC_1V2 Volt current value is 119(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 76(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] VSYS_3V8 Volt current value is 186(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] AI_0V75 Volt current value is 90(0.01V).
+2048-00-00 0:1:36 NORMAL:[voltage_monitor:579] CORE_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:0:0 MINOR:[log_test_record:829] maintance Number(0).
+2048-00-00 0:0:0 NORMAL:[ResetInfoRecord:94] get reset info error.
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] HVCC_1V2 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] VSYS_3V8 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] AI_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] CORE_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor:579] HVCC_1V2 Volt current value is 119(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 76(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor:579] VSYS_3V8 Volt current value is 186(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor:579] AI_0V75 Volt current value is 90(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor:579] CORE_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:0:0 MINOR:[log_test_record:829] maintance Number(0).
+2048-00-00 0:0:0 NORMAL:[ResetInfoRecord:94] get reset info error.
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] HVCC_1V2 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] VSYS_3V8 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] AI_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] CORE_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor:579] HVCC_1V2 Volt current value is 119(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 76(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor:579] VSYS_3V8 Volt current value is 186(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor:579] AI_0V75 Volt current value is 90(0.01V).
+2048-00-00 0:1:35 NORMAL:[voltage_monitor:579] CORE_0V75 Volt current value is 75(0.01V).
+2048-00-00 0:0:0 MINOR:[log_test_record:829] maintance Number(0).
+2048-00-00 0:0:0 NORMAL:[ResetInfoRecord:94] get reset info error.
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] HVCC_1V2 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] VSYS_3V8 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] AI_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] CORE_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor:579] HVCC_1V2 Volt current value is 119(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 76(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor:579] VSYS_3V8 Volt current value is 186(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor:579] AI_0V75 Volt current value is 90(0.01V).
+2048-00-00 0:1:33 NORMAL:[voltage_monitor:579] CORE_0V75 Volt current value is 75(0.01V).
+2048-00-00 0:0:0 MINOR:[log_test_record:829] maintance Number(0).
+2048-00-00 0:0:0 NORMAL:[ResetInfoRecord:94] get reset info error.
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] HVCC_1V2 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] VSYS_3V8 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] AI_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] CORE_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor:579] HVCC_1V2 Volt current value is 119(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 76(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor:579] VSYS_3V8 Volt current value is 186(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor:579] AI_0V75 Volt current value is 90(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor:579] CORE_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:0:0 MINOR:[log_test_record:829] maintance Number(0).
+2048-00-00 0:0:0 NORMAL:[ResetInfoRecord:94] get reset info error.
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] HVCC_1V2 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] VSYS_3V8 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] AI_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] CORE_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor:579] HVCC_1V2 Volt current value is 119(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 76(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor:579] VSYS_3V8 Volt current value is 186(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor:579] AI_0V75 Volt current value is 90(0.01V).
+2048-00-00 0:1:39 NORMAL:[voltage_monitor:579] CORE_0V75 Volt current value is 75(0.01V).
+2023-04-10 9:40:1 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-04-11 6:32:9 NORMAL:[SetFirstPowerOnTime:1039] write first power on date success. time = 0x64335180
+2023-04-17 3:30:28 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-04-17 3:59:18 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-04-18 1:42:39 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2048-00-00 0:0:0 MINOR:[log_test_record:829] maintance Number(0).
+2048-00-00 0:0:0 NORMAL:[ResetInfoRecord:94] get reset info error.
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] HVCC_1V2 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] VSYS_3V8 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] AI_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:0:0 MAJOR:[voltage_monitor:579] CORE_0V75 Volt current value is 0(0.01V).
+2048-00-00 0:1:38 NORMAL:[voltage_monitor_CPU0V75:69] CPU02_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:38 NORMAL:[voltage_monitor_CPU0V75:69] CPU13_0V75 Volt current value is 74(0.01V).
+2048-00-00 0:1:38 NORMAL:[voltage_monitor:579] HVCC_1V2 Volt current value is 119(0.01V).
+2048-00-00 0:1:38 NORMAL:[voltage_monitor:579] DDRPHY_0V75 Volt current value is 76(0.01V).
+2048-00-00 0:1:38 NORMAL:[voltage_monitor:579] VSYS_3V8 Volt current value is 186(0.01V).
+2048-00-00 0:1:38 NORMAL:[voltage_monitor:579] AI_0V75 Volt current value is 90(0.01V).
+2048-00-00 0:1:38 NORMAL:[voltage_monitor:579] CORE_0V75 Volt current value is 74(0.01V).
+2023-08-29 8:20:56 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-09-04 11:34:3 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-09-08 8:16:26 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-09-08 9:1:44 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 10:40:18 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 12:25:23 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 12:39:41 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 13:15:39 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 13:35:28 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 14:1:28 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 14:23:15 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 14:47:6 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 15:6:52 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 15:26:38 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 15:46:59 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 16:6:44 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 16:27:5 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 16:46:53 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 17:4:46 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 17:22:37 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 17:40:24 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 18:2:45 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 18:14:24 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2023-10-25 18:26:0 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-01-24 12:15:7 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-01-25 1:52:59 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-02-02 9:54:29 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-02-06 0:53:32 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-02-08 6:6:42 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-02-08 6:41:17 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-02-11 3:20:59 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-02-11 11:6:15 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-02-16 1:40:57 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-02-17 18:0:45 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-02-20 0:36:21 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-02-22 5:17:31 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-02-29 23:55:40 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-03-01 4:10:6 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-03-05 9:15:23 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-03-05 23:42:47 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-03-06 7:44:30 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-03-07 13:6:54 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-03-07 16:8:44 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-03-07 20:35:12 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-03-07 21:28:2 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-03-07 23:22:46 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-03-08 1:13:39 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-03-08 2:20:31 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-07-19 13:43:16 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-07-19 14:21:28 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.
+2024-07-19 15:15:52 NORMAL:[write_vrd_version_to_log:158] MPS_AI version: 2.MPS_CPU version: 2.

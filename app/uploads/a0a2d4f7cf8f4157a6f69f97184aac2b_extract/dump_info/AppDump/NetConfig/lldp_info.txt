@@ -1,0 +1,4 @@
+LLDPEnable         :  false
+TxHold             :  4
+TxIntervalSeconds  :  30
+TxDelaySeconds     :  2

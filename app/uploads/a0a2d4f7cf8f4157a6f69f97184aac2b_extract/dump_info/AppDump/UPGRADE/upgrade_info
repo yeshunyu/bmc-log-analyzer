@@ -1,0 +1,21 @@
+------Current upgrade compent control block------
+UpPercentage:0,UpStatus:0,UpMode:0,UpErrcode:0
+AutoPerform:0,ActionFinish:0,UpVer:
+BeginTask:0,ActionTask:0,SemId:281472829364336,FileHandle:(nil)
+RollAllState:0,RollSingleStatus:0,RallOkId:0,RollFailId:0,RollRate:0
+outer_obj_handle0:150,inter_obj_handle:65
+------Current upgrade compent info------
+CompengId:0,FRUId:0,OffsetInImage:0,LenInImage:0
+ImageFilePath:
+------Current upgrade boot info------
+boot_flag:0,boot_order:0,never_boot:0,resource_flag:0
+last_boot_order:213,image0_ver:,image1_ver:
+------Current VRD chip version------
+cpu1_vrd0_chip_fw_mgnt:0xA101
+cpu1_vrd1_chip_fw_mgnt:0xA101
+cpu1_vrd2_chip_fw_mgnt:0xA101
+cpu1_vrd3_chip_fw_mgnt:0xA101
+cpu2_vrd0_chip_fw_mgnt:0xA101
+cpu2_vrd1_chip_fw_mgnt:0xA101
+cpu2_vrd2_chip_fw_mgnt:0xA101
+cpu2_vrd3_chip_fw_mgnt:0xA101

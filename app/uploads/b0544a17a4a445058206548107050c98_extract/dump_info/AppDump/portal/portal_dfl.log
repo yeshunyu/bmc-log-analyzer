@@ -1,0 +1,3148 @@
+==========================object===========================
+----------------- lom1_port2_link_mon-4         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- ComMemory020                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- UserRole:C                    -----------
+ref count      : 1
+----------------- Memory130                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- ComSASExpander0-2             -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- TrapItemCfg:C                 -----------
+ref count      : 1
+----------------- RAIDCPLD-1                    -----------
+ref count      : 1
+----------------- PSeventConnector              -----------
+ref count      : 1
+----------------- PCIeFPGACard:C                -----------
+ref count      : 1
+----------------- RaidCardConnect               -----------
+ref count      : 1
+----------------- BaseboardConnector            -----------
+ref count      : 1
+----------------- Cpu1                          -----------
+ref count      : 1
+.Error2         : listened by port : 491534, 
+.Version        : listened by port : 688148, 
+.IErr           : listened by port : 131075, 491534, 
+.FDMFault       : listened by port : 294920, 
+.McErr          : listened by port : 131075, 491534, 
+.MirrorFailChMask : listened by port : 491534, 
+----------------- Memory131                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- hddbp_48_PcieAddr_Connector   -----------
+ref count      : 1
+----------------- Cpu2VrdTempThermal            -----------
+ref count      : 1
+----------------- PcieCardAnchor-801            -----------
+ref count      : 1
+----------------- ComMemory021                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- FruNameConnector-901          -----------
+ref count      : 1
+----------------- PcieCardAnchor-802            -----------
+ref count      : 1
+----------------- Memory:C                      -----------
+ref count      : 1
+----------------- ComMemory100                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Hdd3-2                        -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- Cpu2                          -----------
+ref count      : 1
+.Error2         : listened by port : 491534, 
+.Version        : listened by port : 688148, 
+.IErr           : listened by port : 131075, 491534, 
+.FDMFault       : listened by port : 294920, 
+.McErr          : listened by port : 131075, 491534, 
+.MirrorFailChMask : listened by port : 491534, 
+----------------- Fan3Fspeed                    -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Cpu1VddqTempThermal           -----------
+ref count      : 1
+----------------- PSInletTemp-5                 -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- FruNameConnector-902          -----------
+ref count      : 1
+----------------- CardNameVariantExp-901        -----------
+ref count      : 1
+----------------- HddBackplaneFru-2             -----------
+ref count      : 1
+----------------- ComMemory101                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- LomCard1Connect               -----------
+ref count      : 1
+----------------- UpgradeCpldConnector          -----------
+ref count      : 1
+----------------- SSLCert4                      -----------
+ref count      : 1
+.SSLMasterKeyId : listened by port : 851993, 
+.CertStatus     : listened by port : 589841, 
+----------------- HighPerformModeInletPlc       -----------
+ref count      : 1
+----------------- 1711Policy                    -----------
+ref count      : 1
+----------------- LDAPGroup3_0                  -----------
+ref count      : 1
+----------------- PSInletTemp-6                 -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- SSLCert5                      -----------
+ref count      : 1
+.SSLMasterKeyId : listened by port : 851993, 
+.CertStatus     : listened by port : 589841, 
+----------------- CardNameVariantExp-902        -----------
+ref count      : 1
+----------------- ComHdd5-2                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- RiserCard1Connect             -----------
+ref count      : 1
+----------------- LDAPGroup3_1                  -----------
+ref count      : 1
+----------------- ComCpu1                       -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- CardDescVariantExp-801        -----------
+ref count      : 1
+----------------- ComPowerSupply-5              -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- ComRiserCard-e                -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- SSLCert6                      -----------
+ref count      : 1
+.SSLMasterKeyId : listened by port : 851993, 
+.CertStatus     : listened by port : 589841, 
+----------------- LogicalDrive2-101             -----------
+ref count      : 1
+----------------- WEBHTTP                       -----------
+ref count      : 1
+.State          : listened by port : 950300, 917531, 851993, 589841, 
+.Port           : listened by port : 950300, 917531, 851993, 589841, 
+----------------- Dump:C                        -----------
+ref count      : 1
+----------------- ComCpu2                       -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- CardDescVariantExp-802        -----------
+ref count      : 1
+----------------- ComPowerSupply-6              -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- LomCard-3                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.Eid            : listened by port : 917531, 
+.Health         : listened by port : 294920, 
+.HotplugCtrlStatus : listened by port : 458765, 
+.PrePlug        : listened by port : 917531, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- PcieSlotExp1-8                -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- lom1_port0_link_mon-3         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- User:C                        -----------
+ref count      : 1
+----------------- MeInfo                        -----------
+ref count      : 1
+.CpuTjmax       : listened by port : 688148, 
+----------------- SYScom                        -----------
+ref count      : 1
+----------------- Fan3FStatusThermal            -----------
+ref count      : 1
+----------------- ComMemory050                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- SSLCert7                      -----------
+ref count      : 1
+.SSLMasterKeyId : listened by port : 851993, 
+.CertStatus     : listened by port : 589841, 
+----------------- Memory160                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- AirCoolingConfigConnector     -----------
+ref count      : 1
+----------------- PcieSlotExp1-9                -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- Kvm:C                         -----------
+ref count      : 1
+----------------- ComMemory                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Cooling:C                     -----------
+ref count      : 1
+----------------- lom1_port0_link_mon-4         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- LomCard-4                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.Eid            : listened by port : 917531, 
+.Health         : listened by port : 294920, 
+.HotplugCtrlStatus : listened by port : 458765, 
+.PrePlug        : listened by port : 917531, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- ComMemory051                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- LowNoisyInletPolicy           -----------
+ref count      : 1
+----------------- Memory161                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- LDAPGroup3_2                  -----------
+ref count      : 1
+----------------- SSLCert8                      -----------
+ref count      : 1
+.SSLMasterKeyId : listened by port : 851993, 
+.CertStatus     : listened by port : 589841, 
+----------------- SSLCert9                      -----------
+ref count      : 1
+.SSLMasterKeyId : listened by port : 851993, 
+.CertStatus     : listened by port : 589841, 
+----------------- LowNosisyPolicyOutletTemp     -----------
+ref count      : 1
+----------------- LDAPGroup3_3                  -----------
+ref count      : 1
+----------------- ComMemory130                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PowerDoubleExpr-801           -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- LDAPGroup3_4                  -----------
+ref count      : 1
+----------------- PrivilegeAgent                -----------
+ref count      : 1
+----------------- ComFan1                       -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- port1_link_status_exp-3       -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- ComMemory131                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PowerDoubleExpr-802           -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- BMC                           -----------
+ref count      : 1
+.HostName       : listened by port : 294920, 917531, 163844, 589841, 
+.CustomManufacturer : listened by port : 655379, 
+----------------- ComButton                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- DiskArray4-102                -----------
+ref count      : 1
+----------------- ComFan2                       -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- port1_link_status_exp-4       -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- KvmLink0                      -----------
+ref count      : 1
+----------------- HddInner1-2                   -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- ComHdd1-2                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PcieCard-901                  -----------
+ref count      : 1
+.FatalError     : listened by port : 294920, 
+.FDMFault       : listened by port : 294920, 
+.Health         : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- LDAPCommon                    -----------
+ref count      : 1
+----------------- ProxyKvm:C                    -----------
+ref count      : 1
+----------------- Cpu1MemTemp                   -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Raid-1                        -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- ComFan3                       -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PCIeAddrInfoVirtual           -----------
+ref count      : 1
+----------------- RaidFru-1                     -----------
+ref count      : 1
+----------------- KvmLink1                      -----------
+ref count      : 1
+----------------- DefaultInletPolicy            -----------
+ref count      : 1
+----------------- PcieCard-902                  -----------
+ref count      : 1
+.FatalError     : listened by port : 294920, 
+.FDMFault       : listened by port : 294920, 
+.Health         : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- OutletTEPolicy-901            -----------
+ref count      : 1
+----------------- Cpu1HighPerCoreTempThermal    -----------
+ref count      : 1
+----------------- AICOREEnergyPolicy-902        -----------
+ref count      : 1
+----------------- ComFan4                       -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- OutletTEPolicy-902            -----------
+ref count      : 1
+----------------- AICOREEnergyPolicy-901        -----------
+ref count      : 1
+----------------- PasswdSetting                 -----------
+ref count      : 1
+----------------- ComRaidCard                   -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PolicySSDTemp                 -----------
+ref count      : 1
+----------------- VNC                           -----------
+ref count      : 1
+.PwdMasterKeyId : listened by port : 851993, 
+----------------- Fru:C                         -----------
+ref count      : 1
+----------------- CoolingVirtual                -----------
+ref count      : 1
+----------------- BOARD                         -----------
+ref count      : 1
+.SlotId         : listened by port : 917531, 753686, 
+----------------- ComHddInner3-2                -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- SysSFPMaxTmp                  -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Eth:C                         -----------
+ref count      : 1
+----------------- TrapConfig:C                  -----------
+ref count      : 1
+----------------- SysTotalPower                 -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- ComMemory160                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- LicenseGeneralInfo            -----------
+ref count      : 1
+----------------- HPREFeatureKey                -----------
+ref count      : 1
+----------------- EnergySavePolicyOutletTemp    -----------
+ref count      : 1
+----------------- lom2_port3_link_mon-3         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- ComMemory161                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- SensorConnect                 -----------
+ref count      : 1
+----------------- lom2_port3_link_mon-4         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- powercapping                  -----------
+ref count      : 1
+.Failed         : listened by port : 294920, 
+----------------- UpgradeCpldVirtual            -----------
+ref count      : 1
+----------------- HDDBackplane:C                -----------
+ref count      : 1
+----------------- veth                          -----------
+ref count      : 1
+.VlanID         : listened by port : 589841, 
+----------------- Port2-3                       -----------
+ref count      : 1
+.LinkStatusBMA  : listened by port : 294920, 
+.ActualMac      : listened by port : 917531, 
+----------------- NICTemp-3                     -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- ComPort2-3                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- BOARD:C                       -----------
+ref count      : 1
+----------------- ComBMA                        -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Port2-4                       -----------
+ref count      : 1
+.LinkStatusBMA  : listened by port : 294920, 
+.ActualMac      : listened by port : 917531, 
+----------------- UserRoleOper                  -----------
+ref count      : 1
+.VMMMgnt        : listened by port : 851993, 
+.KVMMgnt        : listened by port : 851993, 
+----------------- ComPort2-4                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- NICTemp-4                     -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- lom_entity-3                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Fan2PresenceThermal           -----------
+ref count      : 1
+----------------- Snmp                          -----------
+ref count      : 1
+.PortID         : listened by port : 917531, 
+.PrivProtocol   : listened by port : 917531, 
+.AuthProtocol   : listened by port : 917531, 
+.OldEngineID    : listened by port : 851993, 
+.SnmpCommMasterKeyId : listened by port : 851993, 
+----------------- Memory000                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- RaidCardAnchor-1              -----------
+ref count      : 1
+----------------- lom_entity-4                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PsCoolingPolicy4-5            -----------
+ref count      : 1
+----------------- LDAP                          -----------
+ref count      : 1
+.BindDNPswMasterKeyId : listened by port : 851993, 
+----------------- Warning                       -----------
+ref count      : 1
+.HealthStatus   : listened by port : 294920, 
+----------------- M2TrnsCardSlot1Connect-8      -----------
+ref count      : 1
+----------------- Memory001                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- ComBMC                        -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Fan4Fspeed                    -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- ADCConnector                  -----------
+ref count      : 1
+----------------- RaidController:C              -----------
+ref count      : 1
+----------------- PsCoolingPolicy4-6            -----------
+ref count      : 1
+----------------- PsPOut-5                      -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- LicenseGeneralInfo:C          -----------
+ref count      : 1
+----------------- DiskArrayConnector-1          -----------
+ref count      : 1
+----------------- Session                       -----------
+ref count      : 1
+----------------- M2TrnsCardSlot1Connect-9      -----------
+ref count      : 1
+----------------- RaidCardBBUTemp-1             -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- PsPOut-6                      -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Cpu2CoreRem                   -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Hdd6-2                        -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- MutualAuthenticationCliCert:C -----------
+ref count      : 1
+----------------- NPU1-901                      -----------
+ref count      : 1
+.IErr           : listened by port : 491534, 
+.IMUState       : listened by port : 491534, 
+----------------- MotherBoard                   -----------
+ref count      : 1
+----------------- LDAPGroup6_0                  -----------
+ref count      : 1
+----------------- Policy1Class:C                -----------
+ref count      : 1
+----------------- HddVirtualAnchor-2            -----------
+ref count      : 1
+----------------- LogicalDrive1-101             -----------
+ref count      : 1
+----------------- USBMassStorage0               -----------
+ref count      : 1
+----------------- MutualAuthenticationRootCert:C-----------
+ref count      : 1
+----------------- DFTModeInletPolicy            -----------
+ref count      : 1
+----------------- iBMAUSBMassStorage            -----------
+ref count      : 1
+----------------- SecurityModuleConnect         -----------
+ref count      : 1
+----------------- ComHdd8-2                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- NPU1-902                      -----------
+ref count      : 1
+.IErr           : listened by port : 491534, 
+.IMUState       : listened by port : 491534, 
+----------------- LDAPGroup6_1                  -----------
+ref count      : 1
+----------------- DiskArray3-102                -----------
+ref count      : 1
+----------------- GPUElabel-801                 -----------
+ref count      : 1
+.MfgDateTime    : listened by port : 753686, 
+.ProductAssetTag : listened by port : 294920, 
+.BoardSerialNumber : listened by port : 294920, 65537, 
+.ChassisSerialNumber : listened by port : 294920, 
+----------------- NPU:C                         -----------
+ref count      : 1
+----------------- LicenseFeatureEnableExpr      -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- VNC:C                         -----------
+ref count      : 1
+----------------- OnePower:C                    -----------
+ref count      : 1
+----------------- LDAPGroup6_2                  -----------
+ref count      : 1
+----------------- Cpu1VddqTemp                  -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- GPUElabel-802                 -----------
+ref count      : 1
+.MfgDateTime    : listened by port : 753686, 
+.ProductAssetTag : listened by port : 294920, 
+.BoardSerialNumber : listened by port : 294920, 65537, 
+.ChassisSerialNumber : listened by port : 294920, 
+----------------- HighPowCardEnvThermal         -----------
+ref count      : 1
+----------------- CARD1com                      -----------
+ref count      : 1
+----------------- GPUOutletTemp-901             -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- LDAPGroup6_3                  -----------
+ref count      : 1
+----------------- FANClass:C                    -----------
+ref count      : 1
+----------------- VRDConnector                  -----------
+ref count      : 1
+----------------- Memory030                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- SSL:C                         -----------
+ref count      : 1
+----------------- GPUOutletTemp-902             -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- InnerBackplaneConnect         -----------
+ref count      : 1
+----------------- PsVin-5                       -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- RiserCard3Connect             -----------
+ref count      : 1
+----------------- LDAPGroup6_4                  -----------
+ref count      : 1
+----------------- Memory031                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- ComCPU2Memory                 -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Mem1NosisyThermalPolicy       -----------
+ref count      : 1
+----------------- Bios                          -----------
+ref count      : 1
+.PcieCardBDF    : listened by port : 458765, 
+.MenuChangeFlag : listened by port : 458765, 
+.StartOption    : listened by port : 131075, 
+.PcieDiskBDF    : listened by port : 458765, 
+.OCPCardBDF     : listened by port : 458765, 
+.SystemStartupState : listened by port : 917531, 491534, 
+.BiosBootStage  : listened by port : 458765, 
+.BiosPwdMasterKeyId : listened by port : 851993, 
+----------------- FruNameConnector-801          -----------
+ref count      : 1
+----------------- PsVin-6                       -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- ComMemory000                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- ComPS                         -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- MutualAuthentication          -----------
+ref count      : 1
+.MutualAuthenticationOCSP : listened by port : 851993, 589841, 
+.MutualAuthenticationState : listened by port : 851993, 589841, 
+.MutualAuthenticationCRL : listened by port : 589841, 
+----------------- Hdd2-2                        -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- Cpu1VrdTempThermal            -----------
+ref count      : 1
+----------------- Memory110                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- FANConnector                  -----------
+ref count      : 1
+----------------- Com:C                         -----------
+ref count      : 1
+----------------- FruNameConnector-802          -----------
+ref count      : 1
+----------------- ProductConnector              -----------
+ref count      : 1
+----------------- CardNameVariantExp-801        -----------
+ref count      : 1
+----------------- ComMemory001                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- VirHddBackCardConnect         -----------
+ref count      : 1
+----------------- VirRearBpConnect              -----------
+ref count      : 1
+----------------- Memory111                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- LDAPGroup2_0                  -----------
+ref count      : 1
+----------------- Video:C                       -----------
+ref count      : 1
+----------------- MutualAuthenticationCliCert1  -----------
+ref count      : 1
+----------------- CardNameVariantExp-802        -----------
+ref count      : 1
+----------------- ComHdd4-2                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Vmm0                          -----------
+ref count      : 1
+----------------- dump_0                        -----------
+ref count      : 1
+----------------- Mem1HighPerThermalPolicy      -----------
+ref count      : 1
+----------------- NTP:C                         -----------
+ref count      : 1
+----------------- CustomizeSensorAnchor         -----------
+ref count      : 1
+----------------- LDAPGroup2_1                  -----------
+ref count      : 1
+----------------- MutualAuthenticationCliCert2  -----------
+ref count      : 1
+----------------- LDAPGroup2_2                  -----------
+ref count      : 1
+----------------- BBUCoolingPolicy-1            -----------
+ref count      : 1
+----------------- risercard-e                   -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- FdmConfig                     -----------
+ref count      : 1
+----------------- ComSystem                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- MutualAuthenticationCliCert3  -----------
+ref count      : 1
+----------------- PcieSlot1Connect-8            -----------
+ref count      : 1
+----------------- Cpu:C                         -----------
+ref count      : 1
+----------------- LDAPGroup2_3                  -----------
+ref count      : 1
+----------------- Memory060                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- ComputerSystem0               -----------
+ref count      : 1
+.iBMAEvent      : listened by port : 294920, 
+----------------- EthGroup0                     -----------
+ref count      : 1
+.IpMode         : listened by port : 753686, 851993, 
+.VlanState      : listened by port : 917531, 
+.SLAACIpv6Addr  : listened by port : 917531, 589841, 
+.Ipv6Addr       : listened by port : 917531, 851993, 589841, 
+.SubnetMask     : listened by port : 851993, 
+.Ipv6Mode       : listened by port : 753686, 851993, 
+.Type           : listened by port : 917531, 589841, 
+.ActivePort     : listened by port : 917531, 589841, 
+.IpVersion      : listened by port : 851993, 589841, 
+.NetMode        : listened by port : 917531, 
+.Ipv6LocalLink  : listened by port : 917531, 589841, 
+.VlanID         : listened by port : 917531, 
+.Ipv6DefaultGateway : listened by port : 851993, 
+.Ipv6Prefix     : listened by port : 851993, 
+.DefaultGateway : listened by port : 851993, 
+.IpAddr         : listened by port : 917531, 851993, 819224, 589841, 
+----------------- SMS:C                         -----------
+ref count      : 1
+----------------- LLDPConfig:C                  -----------
+ref count      : 1
+----------------- MutualAuthenticationCliCert4  -----------
+ref count      : 1
+----------------- Fan2FStatusThermal            -----------
+ref count      : 1
+----------------- PcieSlot1Connect-9            -----------
+ref count      : 1
+----------------- lom2_port1_link_mon-3         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- LDAPGroup2_4                  -----------
+ref count      : 1
+----------------- Memory061                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- PolicyFrontDiskTemp           -----------
+ref count      : 1
+----------------- PasswdSetting:C               -----------
+ref count      : 1
+----------------- MutualAuthenticationCliCert5  -----------
+ref count      : 1
+----------------- RiserCardFru-e                -----------
+ref count      : 1
+----------------- LicenseManage                 -----------
+ref count      : 1
+----------------- UserRoleAdmin                 -----------
+ref count      : 1
+.VMMMgnt        : listened by port : 851993, 
+.KVMMgnt        : listened by port : 851993, 
+----------------- ComMemory030                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Memory140                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- Anchor:C                      -----------
+ref count      : 1
+----------------- PSUCustomizeSensorAnchor-5    -----------
+ref count      : 1
+----------------- MutualAuthenticationCliCert6  -----------
+ref count      : 1
+----------------- EthGroup2                     -----------
+ref count      : 1
+.IpMode         : listened by port : 753686, 851993, 
+.VlanState      : listened by port : 917531, 
+.SLAACIpv6Addr  : listened by port : 917531, 589841, 
+.Ipv6Addr       : listened by port : 917531, 851993, 589841, 
+.SubnetMask     : listened by port : 851993, 
+.Ipv6Mode       : listened by port : 753686, 851993, 
+.Type           : listened by port : 917531, 589841, 
+.ActivePort     : listened by port : 917531, 589841, 
+.IpVersion      : listened by port : 851993, 589841, 
+.NetMode        : listened by port : 917531, 
+.Ipv6LocalLink  : listened by port : 917531, 589841, 
+.VlanID         : listened by port : 917531, 
+.Ipv6DefaultGateway : listened by port : 851993, 
+.Ipv6Prefix     : listened by port : 851993, 
+.DefaultGateway : listened by port : 851993, 
+.IpAddr         : listened by port : 917531, 851993, 819224, 589841, 
+----------------- lom2_port1_link_mon-4         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- ComMemory031                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Memory141                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- PSUCustomizeSensorAnchor-6    -----------
+ref count      : 1
+----------------- Hdd11-2                       -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- MutualAuthenticationCliCert7  -----------
+ref count      : 1
+----------------- HDDBackplane-2                -----------
+ref count      : 1
+.ReplaceFlag    : listened by port : 294920, 
+----------------- FruNameVirtual-901            -----------
+ref count      : 1
+----------------- BbuModuleConnect              -----------
+ref count      : 1
+----------------- ComMemory110                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- ComPcieRiser1                 -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- ComHdd0-2                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- ComHdd11-2                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- M2TrnsCardSlot2Connect-8      -----------
+ref count      : 1
+----------------- PcieCard-801                  -----------
+ref count      : 1
+.FatalError     : listened by port : 294920, 
+.FDMFault       : listened by port : 294920, 
+.Health         : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- port2_link_status_exp-3       -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- HddInner0-2                   -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- OutletTEPolicy-801            -----------
+ref count      : 1
+----------------- FruNameVirtual-902            -----------
+ref count      : 1
+----------------- Connector:C                   -----------
+ref count      : 1
+----------------- ComMemory111                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- ComPcieRiser2                 -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PcieCard-802                  -----------
+ref count      : 1
+.FatalError     : listened by port : 294920, 
+.FDMFault       : listened by port : 294920, 
+.Health         : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- FdmWebConfig:C                -----------
+ref count      : 1
+----------------- M2TrnsCardSlot2Connect-9      -----------
+ref count      : 1
+----------------- MutualAuthenticationCliCert8  -----------
+ref count      : 1
+----------------- RaidControllerConnector       -----------
+ref count      : 1
+----------------- MutualAuthenticationCliCert9  -----------
+ref count      : 1
+----------------- log_0                         -----------
+ref count      : 1
+----------------- OutletTEPolicy-802            -----------
+ref count      : 1
+----------------- port2_link_status_exp-4       -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- iBMAUSBMassStorage:C          -----------
+ref count      : 1
+----------------- ComPcieRiser3                 -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- RaidController-1              -----------
+ref count      : 1
+----------------- PsIOut-5                      -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- GPUPower-901                  -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- LicenseAlarmInfo              -----------
+ref count      : 1
+----------------- LogicalDrive0-101             -----------
+ref count      : 1
+----------------- AICOREEnergyPolicy-802        -----------
+ref count      : 1
+----------------- HighPerPolicyOutletTemp       -----------
+ref count      : 1
+----------------- ComPS1                        -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Elabel:C                      -----------
+ref count      : 1
+----------------- ComHddInner2-2                -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- InnerHddCard2-2               -----------
+ref count      : 1
+----------------- Cpu2DefaultCoreTempThermal    -----------
+ref count      : 1
+----------------- PsIOut-6                      -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- GPUPower-902                  -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- TS1280CoolingPolicy18-1       -----------
+ref count      : 1
+----------------- Hdd9-2                        -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- ComPcieCard-901               -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- ComPS2                        -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- ComMemory060                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Fru0Elabel-3                  -----------
+ref count      : 1
+.MfgDateTime    : listened by port : 753686, 
+.ProductAssetTag : listened by port : 294920, 
+.BoardSerialNumber : listened by port : 294920, 65537, 
+.ChassisSerialNumber : listened by port : 294920, 
+----------------- Memory170                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- DiskArray2-102                -----------
+ref count      : 1
+----------------- Diagnose:C                    -----------
+ref count      : 1
+----------------- Component:C                   -----------
+ref count      : 1
+----------------- ComPcieCard-902               -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- HddBackCardAnchor-2           -----------
+ref count      : 1
+----------------- NetCard:C                     -----------
+ref count      : 1
+----------------- ComMemory061                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Fru0Elabel-4                  -----------
+ref count      : 1
+.MfgDateTime    : listened by port : 753686, 
+.ProductAssetTag : listened by port : 294920, 
+.BoardSerialNumber : listened by port : 294920, 65537, 
+.ChassisSerialNumber : listened by port : 294920, 
+----------------- Memory171                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- Fan4PresenceThermal           -----------
+ref count      : 1
+----------------- Fan1Fspeed                    -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- CARD2com                      -----------
+ref count      : 1
+----------------- Session:C                     -----------
+ref count      : 1
+----------------- RiserCardAnchor-e             -----------
+ref count      : 1
+----------------- AICOREEnergyPolicy-801        -----------
+ref count      : 1
+----------------- rmcp                          -----------
+ref count      : 1
+.Port2          : listened by port : 950300, 
+.Port1          : listened by port : 950300, 
+----------------- ComMemory140                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Mem2HighPerThermalPolicy      -----------
+ref count      : 1
+----------------- LDAPServer3                   -----------
+ref count      : 1
+.BindDNPswMasterKeyId : listened by port : 851993, 
+----------------- RearBackplaneConnect          -----------
+ref count      : 1
+----------------- UserRoleUser                  -----------
+ref count      : 1
+.VMMMgnt        : listened by port : 851993, 
+.KVMMgnt        : listened by port : 851993, 
+----------------- FdmWebConfig                  -----------
+ref count      : 1
+----------------- Port1-3                       -----------
+ref count      : 1
+.LinkStatusBMA  : listened by port : 294920, 
+.ActualMac      : listened by port : 917531, 
+----------------- lom1_port3_link_mon-3         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- ComPort1-3                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- LDAPServer5                   -----------
+ref count      : 1
+.BindDNPswMasterKeyId : listened by port : 851993, 
+----------------- ComMemory141                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- LDAPServer2                   -----------
+ref count      : 1
+.BindDNPswMasterKeyId : listened by port : 851993, 
+----------------- LDAPServer4                   -----------
+ref count      : 1
+.BindDNPswMasterKeyId : listened by port : 851993, 
+----------------- LomCardFru-3                  -----------
+ref count      : 1
+----------------- LDAPGroup1                    -----------
+ref count      : 1
+----------------- Port1-4                       -----------
+ref count      : 1
+.LinkStatusBMA  : listened by port : 294920, 
+.ActualMac      : listened by port : 917531, 
+----------------- lom1_port3_link_mon-4         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- ComPort1-4                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PortConfig:C                  -----------
+ref count      : 1
+----------------- LDAPServer6                   -----------
+ref count      : 1
+.BindDNPswMasterKeyId : listened by port : 851993, 
+----------------- ComCable                      -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- DiskArrayDynamicConnector     -----------
+ref count      : 1
+----------------- MainBoard                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- LomCardFru-4                  -----------
+ref count      : 1
+----------------- LDAPGroup2                    -----------
+ref count      : 1
+----------------- SysDisksMaxTmp                -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- PsCoolingPolicy3-5            -----------
+ref count      : 1
+----------------- Fan1PresenceThermal           -----------
+ref count      : 1
+----------------- RDEFeatureKey                 -----------
+ref count      : 1
+----------------- LDAPGroup3                    -----------
+ref count      : 1
+----------------- KRBCommon                     -----------
+ref count      : 1
+----------------- Vmm:C                         -----------
+ref count      : 1
+----------------- LDAPGroup4                    -----------
+ref count      : 1
+----------------- PsCoolingPolicy3-6            -----------
+ref count      : 1
+----------------- Cpu1DefaultCoreTempThermal    -----------
+ref count      : 1
+----------------- Hdd5-2                        -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- VirtualConnector1-2           -----------
+ref count      : 1
+----------------- NPU1-801                      -----------
+ref count      : 1
+.IErr           : listened by port : 491534, 
+.IMUState       : listened by port : 491534, 
+----------------- Cpu2VrdTemp                   -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- TS2280CoolingPolicy18-1       -----------
+ref count      : 1
+----------------- ProductComponent:C            -----------
+ref count      : 1
+----------------- PcieSlot2Connect-8            -----------
+ref count      : 1
+----------------- ComNICCard-3                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PCIeFPGACard-901              -----------
+ref count      : 1
+----------------- LDAPGroup5_0                  -----------
+ref count      : 1
+----------------- LogicalDrive:C                -----------
+ref count      : 1
+----------------- ComHdd7-2                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- NPU1-802                      -----------
+ref count      : 1
+.IErr           : listened by port : 491534, 
+.IMUState       : listened by port : 491534, 
+----------------- BusinessPort:C                -----------
+ref count      : 1
+----------------- ProxyKvm0                     -----------
+ref count      : 1
+.LocalKVMState  : listened by port : 131075, 
+.Port           : listened by port : 131075, 
+.KvmTimeout     : listened by port : 131075, 
+.State          : listened by port : 131075, 
+.ScreenSwitch   : listened by port : 131075, 
+----------------- PcieSlot2Connect-9            -----------
+ref count      : 1
+----------------- ComNICCard-4                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- ComMemory170                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PowerSupply2Connect           -----------
+ref count      : 1
+----------------- PCIeFPGACard-902              -----------
+ref count      : 1
+----------------- Mem2NosisyThermalPolicy       -----------
+ref count      : 1
+----------------- LDAPGroup5_1                  -----------
+ref count      : 1
+----------------- LDAPGroup5_2                  -----------
+ref count      : 1
+----------------- ComMemory171                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- NTP                           -----------
+ref count      : 1
+.NtpPwdMasterKeyId : listened by port : 851993, 
+.SysTimeJumpVal : listened by port : 753686, 
+----------------- Chassis                       -----------
+ref count      : 1
+.ChassisNum     : listened by port : 917531, 
+.Location       : listened by port : 294920, 
+.ChassisName    : listened by port : 294920, 
+----------------- lom1_port1_link_mon-3         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- PcieSlotExp3-8                -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- ComChassis                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- GPUOutletTemp-801             -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Sel                           -----------
+ref count      : 1
+.SELCleared     : listened by port : 294920, 
+----------------- LDAPGroup5_3                  -----------
+ref count      : 1
+----------------- ProxyVmm:C                    -----------
+ref count      : 1
+----------------- lom1_port1_link_mon-4         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- Power-5                       -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- LDAPGroup0                    -----------
+ref count      : 1
+----------------- CPDefault8038+                -----------
+ref count      : 1
+----------------- GPUOutletTemp-802             -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- GPUInletTemp-901              -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- SysSSDMaxTmp                  -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- LDAPGroup5_4                  -----------
+ref count      : 1
+----------------- GPUAICoreTemp-901             -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Cpu1CoreRem                   -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Power-6                       -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- FanType8038+                  -----------
+ref count      : 1
+----------------- M2TrnsCardSlot3Connect-8      -----------
+ref count      : 1
+----------------- port3_link_status_exp-3       -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- GPUInletTemp-902              -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- sms0                          -----------
+ref count      : 1
+.MinPort        : listened by port : 294920, 
+.BoBChannelType : listened by port : 950300, 917531, 819224, 589841, 
+.MaxPort        : listened by port : 294920, 
+.IPAddr         : listened by port : 294920, 655379, 
+.UpdateStatus   : listened by port : 524303, 
+.CdevChannelEnabled : listened by port : 950300, 
+.RegisterState  : listened by port : 655379, 
+.Port           : listened by port : 950300, 655379, 
+----------------- M2SataSSDSlotConnect          -----------
+ref count      : 1
+----------------- GPUAICoreTemp-902             -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- LicenseFeatureKey             -----------
+ref count      : 1
+----------------- Hdd1-2                        -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- Memory010                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- M2TrnsCardSlot3Connect-9      -----------
+ref count      : 1
+----------------- PSUSensorConnect-5            -----------
+ref count      : 1
+----------------- ComRiserCard-8                -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- port3_link_status_exp-4       -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- ZIPFeatureKey                 -----------
+ref count      : 1
+----------------- DNSSetting:C                  -----------
+ref count      : 1
+----------------- Memory011                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- PSUSensorConnect-6            -----------
+ref count      : 1
+----------------- USBMassStorage:C              -----------
+ref count      : 1
+----------------- GPUFru-901                    -----------
+ref count      : 1
+----------------- ComRiserCard-9                -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PRODUCT                       -----------
+ref count      : 1
+.SessionTokenLength : listened by port : 327689, 
+----------------- CLASSFANTYPE:C                -----------
+ref count      : 1
+----------------- HddInner3-2                   -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- User1                         -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- ComHdd3-2                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- RaidElabel-1                  -----------
+ref count      : 1
+.MfgDateTime    : listened by port : 753686, 
+.ProductAssetTag : listened by port : 294920, 
+.BoardSerialNumber : listened by port : 294920, 65537, 
+.ChassisSerialNumber : listened by port : 294920, 
+----------------- PsCoreTemp-5                  -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- LDAP:C                        -----------
+ref count      : 1
+----------------- VLANConnector                 -----------
+ref count      : 1
+----------------- GPUFru-902                    -----------
+ref count      : 1
+----------------- ExternConnector               -----------
+ref count      : 1
+----------------- User2                         -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- KvmLink:C                     -----------
+ref count      : 1
+----------------- Riser1VirtualConnector        -----------
+ref count      : 1
+----------------- PsCoreTemp-6                  -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- OSEthConnector                -----------
+ref count      : 1
+----------------- Diagnose                      -----------
+ref count      : 1
+----------------- PolicyHDDTemp                 -----------
+ref count      : 1
+----------------- User3                         -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- ComRaidCard-1                 -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- InletTEPolicy-901             -----------
+ref count      : 1
+----------------- FCPortConnector               -----------
+ref count      : 1
+----------------- RiserCard2Connect             -----------
+ref count      : 1
+----------------- ProductVirtual                -----------
+ref count      : 1
+----------------- User4                         -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- DiskArray1-102                -----------
+ref count      : 1
+----------------- MeInfo:C                      -----------
+ref count      : 1
+----------------- InletTEPolicy-902             -----------
+ref count      : 1
+----------------- CustomizedInletPolicy         -----------
+ref count      : 1
+----------------- LicenseSaleInfo               -----------
+ref count      : 1
+----------------- 1_2V_VDDQ1                    -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- User5                         -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- Fan1FStatusThermal            -----------
+ref count      : 1
+----------------- Memory040                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- TrapConfig                    -----------
+ref count      : 1
+.CommunityMasterKeyId : listened by port : 851993, 
+----------------- PermitRule0                   -----------
+ref count      : 1
+----------------- LicenseAlarmInfo:C            -----------
+ref count      : 1
+----------------- FdmConfig:C                   -----------
+ref count      : 1
+----------------- 1_2V_VDDQ2                    -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- ComDiskBackplane              -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- HddBackCardConnect            -----------
+ref count      : 1
+----------------- User6                         -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- Memory041                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- UserRoleCust1                 -----------
+ref count      : 1
+.VMMMgnt        : listened by port : 851993, 
+.KVMMgnt        : listened by port : 851993, 
+----------------- LicenseSaleItem               -----------
+ref count      : 1
+----------------- PolicyNICTemp-3               -----------
+ref count      : 1
+----------------- Hdd10-2                       -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- ComHdd10-2                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- FruNameVirtual-801            -----------
+ref count      : 1
+----------------- ComMemory010                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PsIin-5                       -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Memory120                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- 1_2V_VDDQ3                    -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- PRODUCT:C                     -----------
+ref count      : 1
+----------------- BBUStatus-1                   -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- ComPort4-3                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- User7                         -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- 1_2V_VDDQ4                    -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- FruNameVirtual-802            -----------
+ref count      : 1
+----------------- OutletTemp                    -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- ComMemory011                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PsIin-6                       -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Memory121                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- Riser3VirtualConnector        -----------
+ref count      : 1
+----------------- User10                        -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- ThresholdSensor:C             -----------
+ref count      : 1
+----------------- ComPort4-4                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- User8                         -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- User9                         -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- UserRoleCust3                 -----------
+ref count      : 1
+.VMMMgnt        : listened by port : 851993, 
+.KVMMgnt        : listened by port : 851993, 
+----------------- LDAPGroup:C                   -----------
+ref count      : 1
+----------------- Cpu2VddqTempThermal           -----------
+ref count      : 1
+----------------- VDDFIX_VOLT_CPU1              -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- UserRoleCust2                 -----------
+ref count      : 1
+.VMMMgnt        : listened by port : 851993, 
+.KVMMgnt        : listened by port : 851993, 
+----------------- PcieSlot3Connect-8            -----------
+ref count      : 1
+----------------- User11                        -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- Eth0                          -----------
+ref count      : 1
+.VlanID         : listened by port : 589841, 
+----------------- GPUPower-801                  -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Eth1                          -----------
+ref count      : 1
+.VlanID         : listened by port : 589841, 
+----------------- UserRoleCust4                 -----------
+ref count      : 1
+.VMMMgnt        : listened by port : 851993, 
+.KVMMgnt        : listened by port : 851993, 
+----------------- Riser2VirtualConnector        -----------
+ref count      : 1
+----------------- VDDFIX_VOLT_CPU2              -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Chassis:C                     -----------
+ref count      : 1
+----------------- User12                        -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- InnerHddCard1-2               -----------
+ref count      : 1
+----------------- Mem2DefaultThermalPolicy      -----------
+ref count      : 1
+----------------- GPUPower-802                  -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Eth2                          -----------
+ref count      : 1
+.VlanID         : listened by port : 589841, 
+----------------- PolicySfpTemp                 -----------
+ref count      : 1
+----------------- PcieSlot3Connect-9            -----------
+ref count      : 1
+----------------- ComPcieCard-801               -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Hdd8-2                        -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- ComHddInner1-2                -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- User13                        -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- 12_0V_VCC_2                   -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Memory070                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- syspower                      -----------
+ref count      : 1
+----------------- PowerCapping:C                -----------
+ref count      : 1
+----------------- Upgrade:C                     -----------
+ref count      : 1
+----------------- ComPcieCard-802               -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- ChassisPayload                -----------
+ref count      : 1
+.RestartValue   : listened by port : 294920, 425996, 
+.AcpiValue      : listened by port : 294920, 
+.BoardStableStatus : listened by port : 819224, 
+.AcpiStatus     : listened by port : 720917, 
+.PwrButtonFlag  : listened by port : 294920, 
+.PwrOkSigDrop   : listened by port : 294920, 
+.ChassisPowerState : listened by port : 131075, 524303, 327689, 294920, 720917, 786455, 458765, 557072, 425996, 262151, 491534, 
+.PowerGd        : listened by port : 688148, 
+.ResetFlag      : listened by port : 294920, 524303, 327689, 786455, 458765, 557072, 425996, 491534, 
+.SysResetFlag   : listened by port : 131075, 524303, 327689, 294920, 786455, 458765, 557072, 425996, 262151, 491534, 32768, 
+----------------- M2TrnsCardSlot1Connect-e      -----------
+ref count      : 1
+----------------- UIDLed                        -----------
+ref count      : 1
+----------------- Memory071                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- 12_0V_VCC_3                   -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- LomCard2Connect               -----------
+ref count      : 1
+----------------- KRBGroup2                     -----------
+ref count      : 1
+----------------- fan1                          -----------
+ref count      : 1
+----------------- User14                        -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- KRBGroup1                     -----------
+ref count      : 1
+----------------- ComMemory040                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- User15                        -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- 12_0V_VCC_4                   -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Memory150                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- BMC:C                         -----------
+ref count      : 1
+----------------- LicenseSaleInfo:C             -----------
+ref count      : 1
+----------------- onepower-5                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+.VinStatus      : listened by port : 294920, 
+.PsType         : listened by port : 786455, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- ComLcd                        -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- ComFan                        -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- fan2                          -----------
+ref count      : 1
+----------------- Port0-3                       -----------
+ref count      : 1
+.LinkStatusBMA  : listened by port : 294920, 
+.ActualMac      : listened by port : 917531, 
+----------------- ComMemory041                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- User16                        -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- Memory151                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- onepower-6                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+.VinStatus      : listened by port : 294920, 
+.PsType         : listened by port : 786455, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- fan3                          -----------
+ref count      : 1
+----------------- 12_0V_VCC_5                   -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- RmcpConfig:C                  -----------
+ref count      : 1
+----------------- VSA_VOLT_CPU1                 -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Port0-4                       -----------
+ref count      : 1
+.LinkStatusBMA  : listened by port : 294920, 
+.ActualMac      : listened by port : 917531, 
+----------------- KRBGroup3                     -----------
+ref count      : 1
+----------------- Fan2Fspeed                    -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- ComMemory120                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- User17                        -----------
+ref count      : 1
+.Privilege      : listened by port : 851993, 
+.IsUserEnable   : listened by port : 851993, 
+.SnmpPrivProtocol : listened by port : 589841, 
+.PassWord       : listened by port : 851993, 
+----------------- 12_0V_VCC_6                   -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- fan4                          -----------
+ref count      : 1
+----------------- PermitRule2                   -----------
+ref count      : 1
+----------------- RAIDcom                       -----------
+ref count      : 1
+----------------- BMCcom                        -----------
+ref count      : 1
+----------------- VSA_VOLT_CPU2                 -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- SmtpConfig:C                  -----------
+ref count      : 1
+----------------- KRBGroup4                     -----------
+ref count      : 1
+----------------- PcieCardAnchor-901            -----------
+ref count      : 1
+----------------- DiskArray:C                   -----------
+ref count      : 1
+----------------- ComMemory121                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PolicyInnerDiskTemp           -----------
+ref count      : 1
+----------------- KRBGroup0                     -----------
+ref count      : 1
+----------------- SSH                           -----------
+ref count      : 1
+.State          : listened by port : 950300, 917531, 851993, 589841, 
+.Port           : listened by port : 950300, 917531, 851993, 589841, 
+----------------- MutualAuthenticationRootCert2 -----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- MutualAuthenticationRootCert4 -----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- PolicyNICTemp-4               -----------
+ref count      : 1
+----------------- PcieCardAnchor-902            -----------
+ref count      : 1
+----------------- PermitRule1                   -----------
+ref count      : 1
+----------------- MutualAuthenticationRootCert3 -----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- Hdd4-2                        -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- LicenseConnector              -----------
+ref count      : 1
+----------------- Fru0Elabel                    -----------
+ref count      : 1
+.MfgDateTime    : listened by port : 753686, 
+.ProductAssetTag : listened by port : 294920, 
+.BoardSerialNumber : listened by port : 294920, 65537, 
+.ChassisSerialNumber : listened by port : 294920, 
+----------------- VirInnerBpConnect             -----------
+ref count      : 1
+----------------- MutualAuthenticationRootCert5 -----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- MutualAuthenticationRootCert1 -----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- PowerOffTmMinExpr             -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- LDAPGroup4_0                  -----------
+ref count      : 1
+----------------- DNSSetting                    -----------
+ref count      : 1
+.DomainName     : listened by port : 589841, 
+----------------- PCIeFPGACard-801              -----------
+ref count      : 1
+----------------- Upgrade                       -----------
+ref count      : 1
+.UpgradeFileMasterKeyId : listened by port : 851993, 
+.Degrade        : listened by port : 557072, 
+.UpgradedFlag   : listened by port : 753686, 131075, 851993, 294920, 425996, 655379, 589841, 
+.PreRollbackFlag : listened by port : 753686, 131075, 851993, 294920, 425996, 655379, 589841, 
+----------------- MutualAuthenticationRootCert6 -----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- ProductComponent              -----------
+ref count      : 1
+----------------- ComHdd6-2                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PermitRule:C                  -----------
+ref count      : 1
+----------------- LDAPGroup4_1                  -----------
+ref count      : 1
+----------------- ComMemory070                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- CardDescVariantExp-901        -----------
+ref count      : 1
+----------------- RearBpVirtualConnector        -----------
+ref count      : 1
+----------------- Cpu2MemTemp                   -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Fan4FStatusThermal            -----------
+ref count      : 1
+----------------- PCIeFPGACard-802              -----------
+ref count      : 1
+----------------- MngtPortCap                   -----------
+ref count      : 1
+----------------- MutualAuthenticationRootCert7 -----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- SSL                           -----------
+ref count      : 1
+.SSLMasterKeyId : listened by port : 851993, 
+.CertStatus     : listened by port : 589841, 
+----------------- LDAPGroup4_2                  -----------
+ref count      : 1
+----------------- ComMemory071                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- DiskArray0-102                -----------
+ref count      : 1
+----------------- CardDescVariantExp-902        -----------
+ref count      : 1
+----------------- EthGroup:C                    -----------
+ref count      : 1
+----------------- PcieSlotExp2-8                -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- SSLCert10                     -----------
+ref count      : 1
+.SSLMasterKeyId : listened by port : 851993, 
+.CertStatus     : listened by port : 589841, 
+----------------- MutualAuthenticationRootCert8 -----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- Mem1DefaultThermalPolicy      -----------
+ref count      : 1
+----------------- ComMotherBoard                -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- ComMemory150                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- LicenseFeatureKey:C           -----------
+ref count      : 1
+----------------- LDAPGroup4_3                  -----------
+ref count      : 1
+----------------- PcieSlotExp2-9                -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- SSLCert11                     -----------
+ref count      : 1
+.SSLMasterKeyId : listened by port : 851993, 
+.CertStatus     : listened by port : 589841, 
+----------------- MutualAuthenticationRootCert9 -----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- lom2_port2_link_mon-3         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- LDAPGroup4_4                  -----------
+ref count      : 1
+----------------- GPUInletTemp-801              -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- ComMemory151                  -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Video0                        -----------
+ref count      : 1
+----------------- GPUAICoreTemp-801             -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- Bios:C                        -----------
+ref count      : 1
+----------------- SSLCert12                     -----------
+ref count      : 1
+.SSLMasterKeyId : listened by port : 851993, 
+.CertStatus     : listened by port : 589841, 
+----------------- PcieSlot1Connect-e            -----------
+ref count      : 1
+----------------- lom2_port2_link_mon-4         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- MutualAuthenticationCliCert10 -----------
+ref count      : 1
+----------------- GPUInletTemp-802              -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- PowerDoubleExpr-901           -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- Fan3PresenceThermal           -----------
+ref count      : 1
+----------------- GPUAICoreTemp-802             -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- SecurityEnhance:C             -----------
+ref count      : 1
+----------------- Hdd0-2                        -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- Cpu1VrdTemp                   -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- PowerSupplyAnchor-5           -----------
+ref count      : 1
+----------------- MutualAuthenticationCliCert11 -----------
+ref count      : 1
+----------------- SysPower:C                    -----------
+ref count      : 1
+----------------- Redfish                       -----------
+ref count      : 1
+.RedfishMasterKeyId : listened by port : 851993, 
+----------------- port4_link_status_exp-3       -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- PowerDoubleExpr-902           -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- SmtpConfig                    -----------
+ref count      : 1
+.LoginPasswdMasterKeyId : listened by port : 851993, 
+----------------- Contact                       -----------
+ref count      : 1
+----------------- LogicalDriveDynamicConnector  -----------
+ref count      : 1
+----------------- BaseboardId                   -----------
+ref count      : 1
+----------------- MutualAuthenticationRootCert11-----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- PowerSupplyAnchor-6           -----------
+ref count      : 1
+----------------- GPUFru-801                    -----------
+ref count      : 1
+----------------- PowerSupply1Connect           -----------
+ref count      : 1
+----------------- M2Disk1                       -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- port4_link_status_exp-4       -----------
+ref count      : 1
+.Value          : listened by port : 294920, 
+----------------- HddInner2-2                   -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- ComHdd2-2                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- MutualAuthenticationCliCert12 -----------
+ref count      : 1
+----------------- SSLCert13                     -----------
+ref count      : 1
+.SSLMasterKeyId : listened by port : 851993, 
+.CertStatus     : listened by port : 589841, 
+----------------- MutualAuthenticationRootCert12-----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- risercard-8                   -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- M2Disk2                       -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- GPUFru-802                    -----------
+ref count      : 1
+----------------- RedfishEventService           -----------
+ref count      : 1
+----------------- Hdd:C                         -----------
+ref count      : 1
+----------------- RaidCardTemp-1                -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- MidPowCardEnvThermal          -----------
+ref count      : 1
+----------------- LLDPConfig                    -----------
+ref count      : 1
+----------------- MutualAuthenticationCliCert13 -----------
+ref count      : 1
+----------------- ProxyVmm0                     -----------
+ref count      : 1
+.Port           : listened by port : 131075, 
+.EncryptState   : listened by port : 131075, 
+.State          : listened by port : 131075, 
+----------------- MutualAuthenticationRootCert13-----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- risercard-9                   -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- LogicalDrive3-101             -----------
+ref count      : 1
+----------------- MutualAuthenticationCliCert14 -----------
+ref count      : 1
+----------------- PolicyCpu2Corem               -----------
+ref count      : 1
+----------------- FCCardConnector               -----------
+ref count      : 1
+----------------- PMEServiceConfig              -----------
+ref count      : 1
+.BoardInfoCollectEnable : listened by port : 753686, 
+----------------- RiserCardFru-8                -----------
+ref count      : 1
+----------------- KRBServer                     -----------
+ref count      : 1
+.BindDNPswMasterKeyId : listened by port : 851993, 
+----------------- PsElabel-5                    -----------
+ref count      : 1
+.MfgDateTime    : listened by port : 753686, 
+.ProductAssetTag : listened by port : 294920, 
+.BoardSerialNumber : listened by port : 294920, 65537, 
+.ChassisSerialNumber : listened by port : 294920, 
+----------------- MutualAuthenticationRootCert10-----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- ClockConnector                -----------
+ref count      : 1
+----------------- Cpu2VddqTemp                  -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- MutualAuthenticationCliCert15 -----------
+ref count      : 1
+----------------- ExcludeHddConnector           -----------
+ref count      : 1
+----------------- Cooling                       -----------
+ref count      : 1
+----------------- M2TrnsCardSlot2Connect-e      -----------
+ref count      : 1
+----------------- SmtpItemCfg_1                 -----------
+ref count      : 1
+----------------- RiserCardFru-9                -----------
+ref count      : 1
+----------------- PolicyCpu1Corem               -----------
+ref count      : 1
+----------------- PsElabel-6                    -----------
+ref count      : 1
+.MfgDateTime    : listened by port : 753686, 
+.ProductAssetTag : listened by port : 294920, 
+.BoardSerialNumber : listened by port : 294920, 65537, 
+.ChassisSerialNumber : listened by port : 294920, 
+----------------- lom2_port0_link_mon-3         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- InletTEPolicy-801             -----------
+ref count      : 1
+----------------- MutualAuthenticationCliCert16 -----------
+ref count      : 1
+----------------- InletTEPolicy-802             -----------
+ref count      : 1
+----------------- Payload:C                     -----------
+ref count      : 1
+----------------- Sel:C                         -----------
+ref count      : 1
+----------------- SmtpItemCfg_2                 -----------
+ref count      : 1
+----------------- MutualAuthenticationRootCert14-----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- WEBHTTPS                      -----------
+ref count      : 1
+.State          : listened by port : 950300, 917531, 851993, 589841, 
+.Port           : listened by port : 950300, 917531, 851993, 589841, 
+----------------- lom2_port0_link_mon-4         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+----------------- PCIeNCSIVirConnector          -----------
+ref count      : 1
+----------------- LomCardAnchor-3               -----------
+ref count      : 1
+----------------- MutualAuthenticationCliCert17 -----------
+ref count      : 1
+----------------- LogicalDriveConnector-1       -----------
+ref count      : 1
+----------------- SECFeatureKey                 -----------
+ref count      : 1
+----------------- V_RaidCardConnect             -----------
+ref count      : 1
+----------------- SmtpItemCfg_3                 -----------
+ref count      : 1
+----------------- MutualAuthenticationRootCert15-----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- SyslogItemCfg_0               -----------
+ref count      : 1
+----------------- LomCardAnchor-4               -----------
+ref count      : 1
+----------------- MutualAuthenticationRootCert16-----------
+ref count      : 1
+.CRLFilePath    : listened by port : 589841, 
+.hashId         : listened by port : 589841, 
+.hashValue      : listened by port : 589841, 
+----------------- SyslogConfig_0                -----------
+ref count      : 1
+----------------- SmtpItemCfg_0                 -----------
+ref count      : 1
+----------------- SyslogItemCfg_1               -----------
+ref count      : 1
+----------------- Memory020                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- Port3-3                       -----------
+ref count      : 1
+.LinkStatusBMA  : listened by port : 294920, 
+.ActualMac      : listened by port : 917531, 
+----------------- SmtpItemCfg:C                 -----------
+ref count      : 1
+----------------- PMEServiceConfig:C            -----------
+ref count      : 1
+----------------- ComPort3-3                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- PcieCard:C                    -----------
+ref count      : 1
+----------------- SyslogItemCfg_2               -----------
+ref count      : 1
+----------------- Memory021                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- Port3-4                       -----------
+ref count      : 1
+.LinkStatusBMA  : listened by port : 294920, 
+.ActualMac      : listened by port : 917531, 
+----------------- ComPort3-4                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Raid:C                        -----------
+ref count      : 1
+----------------- SyslogItemCfg_3               -----------
+ref count      : 1
+----------------- Cpu2NosisyCoreTempThermal     -----------
+ref count      : 1
+----------------- Memory100                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- Cpu2HighPerCoreTempThermal    -----------
+ref count      : 1
+----------------- InletTemp                     -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- RaidBBU-1                     -----------
+ref count      : 1
+.Present        : listened by port : 294920, 
+----------------- Snmp:C                        -----------
+ref count      : 1
+----------------- Ps-5                          -----------
+ref count      : 1
+----------------- ComM2Disk1                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- ComHddInner0-2                -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- IssuerSSL                     -----------
+ref count      : 1
+.SSLMasterKeyId : listened by port : 851993, 
+.CertStatus     : listened by port : 589841, 
+----------------- Memory101                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- SyslogItemCfg:C               -----------
+ref count      : 1
+----------------- TrapItemCfg_0                 -----------
+ref count      : 1
+.BmaVethIpPort  : listened by port : 950300, 
+----------------- Hdd7-2                        -----------
+ref count      : 1
+.RebuildState   : listened by port : 294920, 
+.Presence       : listened by port : 294920, 
+.Id             : listened by port : 229382, 491534, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- Ps-6                          -----------
+ref count      : 1
+----------------- RiserCardAnchor-8             -----------
+ref count      : 1
+----------------- ComM2Disk2                    -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- 1711CoreTemp                  -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- ComHDDBackplane-2             -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- MngtPortCap:C                 -----------
+ref count      : 1
+----------------- Kvm0                          -----------
+ref count      : 1
+----------------- UserRoleNoAccess              -----------
+ref count      : 1
+.VMMMgnt        : listened by port : 851993, 
+.KVMMgnt        : listened by port : 851993, 
+----------------- SyslogConfig:C                -----------
+ref count      : 1
+----------------- RiserCardAnchor-9             -----------
+ref count      : 1
+----------------- SysHDDMaxTmp                  -----------
+ref count      : 1
+.Health         : listened by port : 688148, 294920, 
+----------------- DrivePartitionConnector       -----------
+ref count      : 1
+----------------- TrapItemCfg_1                 -----------
+ref count      : 1
+.BmaVethIpPort  : listened by port : 950300, 
+----------------- ComHdd9-2                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- TrapItemCfg_2                 -----------
+ref count      : 1
+.BmaVethIpPort  : listened by port : 950300, 
+----------------- Cpu1NosisyCoreTempThermal     -----------
+ref count      : 1
+----------------- GPUElabel-901                 -----------
+ref count      : 1
+.MfgDateTime    : listened by port : 753686, 
+.ProductAssetTag : listened by port : 294920, 
+.BoardSerialNumber : listened by port : 294920, 65537, 
+.ChassisSerialNumber : listened by port : 294920, 
+----------------- RiserPcieCard:C               -----------
+ref count      : 1
+----------------- Memory050                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- LicenseSaleItem:C             -----------
+ref count      : 1
+----------------- LicenseManage:C               -----------
+ref count      : 1
+----------------- TrapItemCfg_3                 -----------
+ref count      : 1
+.BmaVethIpPort  : listened by port : 950300, 
+----------------- PcieSlot2Connect-e            -----------
+ref count      : 1
+----------------- ComSASPHY                     -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- GPUElabel-902                 -----------
+ref count      : 1
+.MfgDateTime    : listened by port : 753686, 
+.ProductAssetTag : listened by port : 294920, 
+.BoardSerialNumber : listened by port : 294920, 65537, 
+.ChassisSerialNumber : listened by port : 294920, 
+----------------- SecurityEnhance               -----------
+ref count      : 1
+.IpmiMasterKeyId : listened by port : 851993, 
+.SystemLockDownStatus : listened by port : 819224, 655379, 
+.CertOverdueWarnTime : listened by port : 753686, 
+.MKUpdateInterval : listened by port : 851993, 
+.BannerState    : listened by port : 851993, 
+.RMCPCipherSuites : listened by port : 819224, 
+.TLSVersion     : listened by port : 131075, 589841, 
+.AntiDNSRebindStatus : listened by port : 589841, 
+.SnmpPrivacyPwdMasterKeyId : listened by port : 851993, 
+.SSLCipherSuites : listened by port : 589841, 
+----------------- ComCPU1Memory                 -----------
+ref count      : 1
+.Health         : listened by port : 294920, 
+----------------- Memory051                     -----------
+ref count      : 1
+.FDMFault       : listened by port : 294920, 
+.ReplaceFlag    : listened by port : 294920, 
+----------------- OwnerSSL                      -----------
+ref count      : 1
+.SSLMasterKeyId : listened by port : 851993, 
+.CertStatus     : listened by port : 589841, 
+----------------- lom1_port2_link_mon-3         -----------
+ref count      : 1
+.MonSenValue    : listened by port : 294920, 
+=====================method info=============================
+key=Redfish.ProcessHttpRequest
+input para list:
+s i output para list:
+
+key=Bios.GetBIOSJsonFile
+input para list:
+s output para list:
+
+key=Session.GetToken
+input para list:
+s output para list:
+
+key=Session.AddSession
+input para list:
+y y s s y y s output para list:
+
+key=Kvm.SetCodeKey
+input para list:
+i i s s i s output para list:
+
+key=SyslogConfig.GetCertInfo
+input para list:
+y output para list:
+
+key=User.AuthUser
+input para list:
+s s y s output para list:
+
+key=PrivilegeAgent.ModifyFileMode
+input para list:
+s u output para list:
+
+key=Upgrade.GetComponentsInfo
+input para list:
+output para list:
+
+key=PrivilegeAgent.CopyFile
+input para list:
+s s u u u output para list:
+
+key=SMS.GetBMAConnectState
+input para list:
+output para list:
+
+key=RaidController.ImportForeignConfig
+input para list:
+output para list:
+
+key=Bios.GetBiosSettingEffectiveStatus
+input para list:
+output para list:
+
+key=Session.GetSessionList
+input para list:
+s output para list:
+
+key=Session.AddSSOSessionID
+input para list:
+s s output para list:
+
+key=SecurityEnhance.GetRSAPublicKey
+input para list:
+output para list:
+
+key=Log.OperateLogProxy
+input para list:
+s s output para list:
+
+key=Session.SessionHeartBeat
+input para list:
+s i output para list:
+
+key=PrivilegeAgent.ModifyFileOwn
+input para list:
+s u u output para list:
+
+key=Kvm.GetLinkKey
+input para list:
+output para list:
+
+key=Session.GetSessionLogoutType
+input para list:
+s output para list:
+
+key=Dump.DumpInfoAsync
+input para list:
+y output para list:
+
+key=RaidController.DeleteLD
+input para list:
+q output para list:
+
+key=Dump.GetDumpPhase
+input para list:
+output para list:
+
+key=SecurityEnhance.DecryptWebPwdUser
+input para list:
+* output para list:
+
+key=NTP.GetNTPGroupKeyStatus
+input para list:
+output para list:
+
+key=Sel.QuerySelLog
+input para list:
+i i s s i s i i output para list:
+
+key=Warning.GetEventItem
+input para list:
+q output para list:
+
+key=iBMAUSBMassStorage.CheckFileState
+input para list:
+y output para list:
+
+key=Hdd.SetFirmwareState
+input para list:
+y output para list:
+
+key=Session.GetSessionInfo
+input para list:
+s output para list:
+
+key=Session.GetOnlineUser
+input para list:
+s output para list:
+
+key=RaidController.CreateCommonLD
+input para list:
+ay y y s u y y y y y y y y y output para list:
+
+key=Session.GetSSOSessionID
+input para list:
+y s s y y s output para list:
+
+key=portal.connect_to_cli
+input para list:
+s s output para list:
+
+key=portal.save_dlog_cfg
+input para list:
+output para list:
+
+key=portal.deconnect_to_cli
+input para list:
+s output para list:
+
+key=portal.dlog_outype
+input para list:
+s output para list:
+
+key=portal.set_trace_cfg
+input para list:
+s output para list:
+
+key=portal.dlog_outlvl
+input para list:
+s output para list:
+
+=====================listen info=============================
+=====================route info=============================
+.key=VariantExpression, rpc_port=50023, msg_que_id=753686
+.key=CafeDev, rpc_port=50007, msg_que_id=229382
+.key=IPMIMessageFilter, rpc_port=50025, msg_que_id=819224
+.key=PRODUCT, rpc_port=50023, msg_que_id=753686
+.key=BOARD, rpc_port=50023, msg_que_id=753686
+.key=GPUBoard, rpc_port=50014, msg_que_id=458765
+.key=VirOpticalModule, rpc_port=50028, msg_que_id=917531
+.key=IpmbAddr, rpc_port=50025, msg_que_id=819224
+.key=CoolingCondition, rpc_port=50021, msg_que_id=688148
+.key=SysPower, rpc_port=50024, msg_que_id=786455
+.key=CpuBoard, rpc_port=50014, msg_que_id=458765
+.key=PcieHddRemoveMonitor, rpc_port=50016, msg_que_id=524303
+.key=VRDAction, rpc_port=50008, msg_que_id=262151
+.key=EnergySaving, rpc_port=50017, msg_que_id=557072
+.key=PIPE, rpc_port=50015, msg_que_id=491534
+.key=PasswdSetting, rpc_port=50026, msg_que_id=851993
+.key=FdmWebConfig, rpc_port=50015, msg_que_id=491534
+.key=SpecialPcieCard, rpc_port=50028, msg_que_id=917531
+.key=RedfishEventService, rpc_port=50020, msg_que_id=655379
+.key=LicenseManage, rpc_port=50002, msg_que_id=65537
+.key=AccelerateCard, rpc_port=50014, msg_que_id=458765
+.key=PCIeSDICard, rpc_port=50014, msg_que_id=458765
+.key=PcieRetimer, rpc_port=50001, msg_que_id=32768
+.key=PTASPolicy, rpc_port=50021, msg_que_id=688148
+.key=EventMonitor, rpc_port=50009, msg_que_id=294920
+.key=VirtualWire, rpc_port=50023, msg_que_id=753686
+.key=SmtpConfig, rpc_port=50009, msg_que_id=294920
+.key=PowerMgnt, rpc_port=50024, msg_que_id=786455
+.key=HwMBAddrAllocMgmt, rpc_port=50014, msg_que_id=458765
+.key=MeInfo, rpc_port=50017, msg_que_id=557072
+.key=MutualAuthenticationCliCert, rpc_port=50023, msg_que_id=753686
+.key=FANBoard, rpc_port=50014, msg_que_id=458765
+.key=SystemManagerInfo, rpc_port=50023, msg_que_id=753686
+.key=SensorShortTermSpecMonitor, rpc_port=50009, msg_que_id=294920
+.key=SASCable, rpc_port=50016, msg_que_id=524303
+.key=DevTest, rpc_port=50009, msg_que_id=294920
+.key=NandInfo, rpc_port=50023, msg_que_id=753686
+.key=EventDescpCfgToHmm, rpc_port=50009, msg_que_id=294920
+.key=UserRole, rpc_port=50026, msg_que_id=851993
+.key=SilkTemplate, rpc_port=50017, msg_que_id=557072
+.key=Retimer, rpc_port=50014, msg_que_id=458765
+.key=SyslogConfig, rpc_port=50009, msg_que_id=294920
+.key=ProxyVideo, rpc_port=50018, msg_que_id=589841
+.key=SmmFanFirmware, rpc_port=50008, msg_que_id=262151
+.key=SSDPCtrlPtConfig, rpc_port=50019, msg_que_id=622610
+.key=ResidentNetConfig, rpc_port=50028, msg_que_id=917531
+.key=KvmLink, rpc_port=50004, msg_que_id=131075
+.key=MasterSMM, rpc_port=50023, msg_que_id=753686
+.key=ComputerSystem, rpc_port=50010, msg_que_id=327689
+.key=LocalPcieCard, rpc_port=50014, msg_que_id=458765
+.key=VPD, rpc_port=50016, msg_que_id=524303
+.key=ComponentInfo, rpc_port=50017, msg_que_id=557072
+.key=LSWConfig, rpc_port=50028, msg_que_id=917531
+.key=AlertFilter, rpc_port=50009, msg_que_id=294920
+.key=ModbusAddrAllocMgmt, rpc_port=50014, msg_que_id=458765
+.key=Cooling, rpc_port=50021, msg_que_id=688148
+.key=FANClass, rpc_port=50021, msg_que_id=688148
+.key=HDDBackplane, rpc_port=50014, msg_que_id=458765
+.key=ChipFirmwareMgnt, rpc_port=50008, msg_que_id=262151
+.key=DftItem, rpc_port=50011, msg_que_id=360458
+.key=Stateless, rpc_port=50028, msg_que_id=917531
+.key=PcieAddrInfo, rpc_port=50015, msg_que_id=491534
+.key=DftAction, rpc_port=50011, msg_que_id=360458
+.key=ConditionTask, rpc_port=50009, msg_que_id=294920
+.key=ExpBoard, rpc_port=50014, msg_que_id=458765
+.key=OpaMezzInfo, rpc_port=50014, msg_que_id=458765
+.key=SyslogItemCfg, rpc_port=50009, msg_que_id=294920
+.key=ThresholdAssert, rpc_port=50009, msg_que_id=294920
+.key=SolLink, rpc_port=50025, msg_que_id=819224
+.key=MainBoard, rpc_port=50014, msg_que_id=458765
+.key=IOBoard, rpc_port=50014, msg_que_id=458765
+.key=_Snmp, rpc_port=50018, msg_que_id=589841
+.key=SecurityModule, rpc_port=50014, msg_que_id=458765
+.key=LLDPConfig, rpc_port=50028, msg_que_id=917531
+.key=BBUModule, rpc_port=50024, msg_que_id=786455
+.key=LeakageDetectionCard, rpc_port=50014, msg_que_id=458765
+.key=SmtpItemCfg, rpc_port=50009, msg_que_id=294920
+.key=DataAcquisitionMetric, rpc_port=50015, msg_que_id=491534
+.key=RaidController, rpc_port=50016, msg_que_id=524303
+.key=PMEServiceConfig, rpc_port=50023, msg_que_id=753686
+.key=Memory, rpc_port=50017, msg_que_id=557072
+.key=LicenseFeatureKey, rpc_port=50002, msg_que_id=65537
+.key=VoltMonitor, rpc_port=50009, msg_que_id=294920
+.key=PSUGroup, rpc_port=50024, msg_que_id=786455
+.key=OemSdr, rpc_port=50009, msg_que_id=294920
+.key=NPU, rpc_port=50017, msg_que_id=557072
+.key=DiskSubArray, rpc_port=50016, msg_que_id=524303
+.key=CollectPropertyDefinition, rpc_port=50023, msg_que_id=753686
+.key=_card_manage, rpc_port=50014, msg_que_id=458765
+.key=Action, rpc_port=50008, msg_que_id=262151
+.key=OnePower, rpc_port=50024, msg_que_id=786455
+.key=Kvm, rpc_port=50004, msg_que_id=131075
+.key=DiscreteSensor, rpc_port=50009, msg_que_id=294920
+.key=ThresholdSensorMonitor, rpc_port=50009, msg_que_id=294920
+.key=CertMonitor, rpc_port=50023, msg_que_id=753686
+.key=Pex8796, rpc_port=50001, msg_que_id=32768
+.key=LicenseSaleInfo, rpc_port=50002, msg_que_id=65537
+.key=PortMapping, rpc_port=50028, msg_que_id=917531
+.key=RawEepromFruDev, rpc_port=50007, msg_que_id=229382
+.key=_kvm_vmm, rpc_port=50004, msg_que_id=131075
+.key=EnergySavingCfgItem, rpc_port=50017, msg_que_id=557072
+.key=CpuStatistic, rpc_port=50017, msg_que_id=557072
+.key=CompositionSetting, rpc_port=50001, msg_que_id=32768
+.key=PsSleep, rpc_port=50024, msg_que_id=786455
+.key=SysBattery, rpc_port=50024, msg_que_id=786455
+.key=Pex9765, rpc_port=50001, msg_que_id=32768
+.key=PermitRule, rpc_port=50026, msg_que_id=851993
+.key=BMC, rpc_port=50023, msg_que_id=753686
+.key=Snmp, rpc_port=50018, msg_que_id=589841
+.key=VoltTest, rpc_port=50009, msg_que_id=294920
+.key=LedPanel, rpc_port=50009, msg_que_id=294920
+.key=EthFunction, rpc_port=50028, msg_que_id=917531
+.key=_PowerMgnt, rpc_port=50024, msg_que_id=786455
+.key=PowerCapping, rpc_port=50024, msg_que_id=786455
+.key=RegAction, rpc_port=50014, msg_que_id=458765
+.key=_ddns, rpc_port=50005, msg_que_id=163844
+.key=M2TransformCard, rpc_port=50014, msg_que_id=458765
+.key=SmBios, rpc_port=50013, msg_que_id=425996
+.key=SensorOemConfig, rpc_port=50009, msg_que_id=294920
+.key=Bios, rpc_port=50013, msg_que_id=425996
+.key=McdlSdr, rpc_port=50009, msg_que_id=294920
+.key=PMBusTempMonitor, rpc_port=50009, msg_que_id=294920
+.key=DiskSlotInfo, rpc_port=50014, msg_que_id=458765
+.key=LDAP, rpc_port=50023, msg_que_id=753686
+.key=PassThroughCard, rpc_port=50014, msg_que_id=458765
+.key=ReserveChanTest, rpc_port=50011, msg_que_id=360458
+.key=RedfishEvtSubscription, rpc_port=50020, msg_que_id=655379
+.key=Watchdog2, rpc_port=50022, msg_que_id=720917
+.key=LedDispElmt_S, rpc_port=50009, msg_que_id=294920
+.key=TransferFileInfo, rpc_port=50023, msg_que_id=753686
+.key=PsuSlot, rpc_port=50024, msg_que_id=786455
+.key=FruPayload, rpc_port=50022, msg_que_id=720917
+.key=VMDCondition, rpc_port=50023, msg_que_id=753686
+.key=_User, rpc_port=50026, msg_que_id=851993
+.key=BoardInfoCollectCfg, rpc_port=50023, msg_que_id=753686
+.key=Policy1Class, rpc_port=50021, msg_que_id=688148
+.key=NetCard, rpc_port=50014, msg_que_id=458765
+.key=Sel, rpc_port=50009, msg_que_id=294920
+.key=ProductComponent, rpc_port=50023, msg_que_id=753686
+.key=SLIMCableConfig, rpc_port=50016, msg_que_id=524303
+.key=CfgMgnt, rpc_port=50003, msg_que_id=98306
+.key=RiserPcieCard, rpc_port=50014, msg_que_id=458765
+.key=OpticalModule, rpc_port=50028, msg_que_id=917531
+.key=NPUHistoryECCInfo, rpc_port=50017, msg_que_id=557072
+.key=RepeaterMgnt, rpc_port=50014, msg_que_id=458765
+.key=ChipValueChecker, rpc_port=50009, msg_que_id=294920
+.key=_net_nat, rpc_port=50029, msg_que_id=950300
+.key=IPMIChannel, rpc_port=50025, msg_que_id=819224
+.key=OscaPcieCard, rpc_port=50014, msg_que_id=458765
+.key=LedDispElmt_RP, rpc_port=50009, msg_que_id=294920
+.key=EventPolicy, rpc_port=50009, msg_que_id=294920
+.key=iBMAUSBMassStorage, rpc_port=50004, msg_que_id=131075
+.key=NvGPUAction, rpc_port=50014, msg_que_id=458765
+.key=DiskArray, rpc_port=50016, msg_que_id=524303
+.key=OscaPort, rpc_port=50013, msg_que_id=425996
+.key=RmcpConfig, rpc_port=50025, msg_que_id=819224
+.key=SASPHYStatus, rpc_port=50016, msg_que_id=524303
+.key=SMMPCIeInfo, rpc_port=50014, msg_que_id=458765
+.key=OCPCard, rpc_port=50014, msg_que_id=458765
+.key=VirtualHDDBackplane, rpc_port=50014, msg_que_id=458765
+.key=ProxyVmm, rpc_port=50018, msg_que_id=589841
+.key=VmseChannel, rpc_port=50017, msg_que_id=557072
+.key=HinicFirmware, rpc_port=50008, msg_que_id=262151
+.key=MatchRegValue, rpc_port=50001, msg_que_id=32768
+.key=Warning, rpc_port=50009, msg_que_id=294920
+.key=Contact, rpc_port=50023, msg_que_id=753686
+.key=Session, rpc_port=50026, msg_que_id=851993
+.key=ExtendPcieCard, rpc_port=50014, msg_que_id=458765
+.key=MaxValueMonitor, rpc_port=50009, msg_que_id=294920
+.key=BusinessPort, rpc_port=50028, msg_que_id=917531
+.key=CLASSFANTYPE, rpc_port=50021, msg_que_id=688148
+.key=ButtonTest, rpc_port=50011, msg_que_id=360458
+.key=SdrDev, rpc_port=50009, msg_que_id=294920
+.key=SSDPConfig, rpc_port=50019, msg_que_id=622610
+.key=BoardPower, rpc_port=50024, msg_que_id=786455
+.key=PCIeSSDCard, rpc_port=50014, msg_que_id=458765
+.key=USBMassStorage, rpc_port=50004, msg_que_id=131075
+.key=MassStorage, rpc_port=50016, msg_que_id=524303
+.key=TrapConfig, rpc_port=50009, msg_que_id=294920
+.key=BIOSEvent, rpc_port=50009, msg_que_id=294920
+.key=Led, rpc_port=50009, msg_que_id=294920
+.key=PortConfig, rpc_port=50028, msg_que_id=917531
+.key=PCIeDisk, rpc_port=50016, msg_que_id=524303
+.key=PTAS, rpc_port=50021, msg_que_id=688148
+.key=CompositionZone, rpc_port=50001, msg_que_id=32768
+.key=MctpCtrl, rpc_port=50012, msg_que_id=393227
+.key=SignalMonitor, rpc_port=50009, msg_que_id=294920
+.key=MutualAuthentication, rpc_port=50023, msg_que_id=753686
+.key=Card, rpc_port=50014, msg_que_id=458765
+.key=RaidChip, rpc_port=50016, msg_que_id=524303
+.key=Eth, rpc_port=50028, msg_que_id=917531
+.key=LogicalDriveAlertInfo, rpc_port=50016, msg_que_id=524303
+.key=Video, rpc_port=50004, msg_que_id=131075
+.key=LedDispControl, rpc_port=50009, msg_que_id=294920
+.key=Dump, rpc_port=50027, msg_que_id=884762
+.key=FruStatics, rpc_port=50007, msg_que_id=229382
+.key=_BIOS, rpc_port=50013, msg_que_id=425996
+.key=ScriptEngine, rpc_port=50027, msg_que_id=884762
+.key=PcieRootPortMap, rpc_port=50007, msg_que_id=229382
+.key=FruDev, rpc_port=50007, msg_que_id=229382
+.key=FPGAMemory, rpc_port=50017, msg_que_id=557072
+.key=EventSeverityChange, rpc_port=50009, msg_que_id=294920
+.key=_dfm, rpc_port=50000, msg_que_id=0
+.key=TrapItemCfg, rpc_port=50009, msg_que_id=294920
+.key=LedTest, rpc_port=50009, msg_que_id=294920
+.key=DataCondition, rpc_port=50017, msg_que_id=557072
+.key=StorageDiagnose, rpc_port=50016, msg_que_id=524303
+.key=PcieCard, rpc_port=50014, msg_que_id=458765
+.key=PowerAlert, rpc_port=50024, msg_que_id=786455
+.key=PowerSignalMonitor, rpc_port=50009, msg_que_id=294920
+.key=ComponentFirmware, rpc_port=50008, msg_que_id=262151
+.key=NpuAbility, rpc_port=50017, msg_que_id=557072
+.key=_Dft, rpc_port=50011, msg_que_id=360458
+.key=MgmtChipEnvConfig, rpc_port=50023, msg_que_id=753686
+.key=BMCCoreManagement, rpc_port=50023, msg_que_id=753686
+.key=SeriaManagement, rpc_port=50025, msg_que_id=819224
+.key=OcpCardControl, rpc_port=50014, msg_que_id=458765
+.key=FirmwareLimit, rpc_port=50011, msg_que_id=360458
+.key=User, rpc_port=50026, msg_que_id=851993
+.key=Upgrade, rpc_port=50008, msg_que_id=262151
+.key=_sensor_alarm, rpc_port=50009, msg_que_id=294920
+.key=PrivilegeAgent, rpc_port=50018, msg_que_id=589841
+.key=Eeprom, rpc_port=50008, msg_que_id=262151
+.key=Condition, rpc_port=50021, msg_que_id=688148
+.key=TempMonitor, rpc_port=50009, msg_que_id=294920
+.key=_CpuMem, rpc_port=50017, msg_que_id=557072
+.key=SMM, rpc_port=50023, msg_que_id=753686
+.key=LDAPCommon, rpc_port=50023, msg_que_id=753686
+.key=SensorCategory, rpc_port=50009, msg_que_id=294920
+.key=NandFlash, rpc_port=50023, msg_que_id=753686
+.key=Raid, rpc_port=50014, msg_que_id=458765
+.key=TransferFile, rpc_port=50023, msg_que_id=753686
+.key=DftCtrl, rpc_port=50011, msg_que_id=360458
+.key=Entity, rpc_port=50009, msg_que_id=294920
+.key=UidButton, rpc_port=50009, msg_que_id=294920
+.key=Hdd, rpc_port=50016, msg_que_id=524303
+.key=InterfaceTest, rpc_port=50011, msg_que_id=360458
+.key=CardAction, rpc_port=50014, msg_que_id=458765
+.key=EncryptKey, rpc_port=50026, msg_que_id=851993
+.key=_diagnose, rpc_port=50015, msg_que_id=491534
+.key=Language, rpc_port=50009, msg_que_id=294920
+.key=Hotswap, rpc_port=50022, msg_que_id=720917
+.key=ManualControlLed, rpc_port=50009, msg_que_id=294920
+.key=_agentless, rpc_port=50010, msg_que_id=327689
+.key=AlertString, rpc_port=50009, msg_que_id=294920
+.key=LocalHostAgentPort, rpc_port=50029, msg_que_id=950300
+.key=DftLSWConfig, rpc_port=50028, msg_que_id=917531
+.key=DataAcquisitionTagDefinition, rpc_port=50015, msg_que_id=491534
+.key=MezzCard, rpc_port=50014, msg_que_id=458765
+.key=MemoryChannel, rpc_port=50017, msg_que_id=557072
+.key=_Payload, rpc_port=50022, msg_que_id=720917
+.key=AssetLocateBoard, rpc_port=50014, msg_que_id=458765
+.key=RegMonitor, rpc_port=50009, msg_que_id=294920
+.key=_MaintDebug, rpc_port=50027, msg_que_id=884762
+.key=SysFWProgressStatus, rpc_port=50017, msg_que_id=557072
+.key=_StorageMgnt, rpc_port=50016, msg_que_id=524303
+.key=ConditionGroup, rpc_port=50021, msg_que_id=688148
+.key=OSDrivePartition, rpc_port=50010, msg_que_id=327689
+.key=_BMC, rpc_port=50023, msg_que_id=753686
+.key=Log, rpc_port=50027, msg_que_id=884762
+.key=_portal, rpc_port=50006, msg_que_id=196613
+.key=Payload, rpc_port=50022, msg_que_id=720917
+.key=_FileManage, rpc_port=50003, msg_que_id=98306
+.key=PCIeFPGACard, rpc_port=50014, msg_que_id=458765
+.key=LicenseKeyInfo, rpc_port=50002, msg_que_id=65537
+.key=EthRename, rpc_port=50028, msg_que_id=917531
+.key=StorageCfgCustomize, rpc_port=50016, msg_que_id=524303
+.key=PcieSwitch, rpc_port=50001, msg_que_id=32768
+.key=FdmConfig, rpc_port=50015, msg_que_id=491534
+.key=MSPP, rpc_port=50024, msg_que_id=786455
+.key=Firmware, rpc_port=50008, msg_que_id=262151
+.key=DataAcquisitionService, rpc_port=50015, msg_que_id=491534
+.key=VNC, rpc_port=50004, msg_que_id=131075
+.key=ExtendSASCable, rpc_port=50016, msg_que_id=524303
+.key=I2CTest, rpc_port=50011, msg_que_id=360458
+.key=DiscreteEvent, rpc_port=50009, msg_que_id=294920
+.key=FanGroup, rpc_port=50021, msg_que_id=688148
+.key=LicenseSaleItem, rpc_port=50002, msg_que_id=65537
+.key=DeaSdr, rpc_port=50009, msg_que_id=294920
+.key=Vmm, rpc_port=50004, msg_que_id=131075
+.key=SSLEncryptKey, rpc_port=50026, msg_que_id=851993
+.key=ChipConfigMgnt, rpc_port=50008, msg_que_id=262151
+.key=Ipmb, rpc_port=50025, msg_que_id=819224
+.key=TreeNode, rpc_port=50015, msg_que_id=491534
+.key=ProcessorFamily, rpc_port=50015, msg_que_id=491534
+.key=SMS, rpc_port=50010, msg_que_id=327689
+.key=PcieSwitchAction, rpc_port=50001, msg_que_id=32768
+.key=EventInformation, rpc_port=50009, msg_que_id=294920
+.key=FibreChannel, rpc_port=50028, msg_que_id=917531
+.key=LDAPGroup, rpc_port=50023, msg_que_id=753686
+.key=AgeTest, rpc_port=50011, msg_que_id=360458
+.key=ThresholdSensor, rpc_port=50009, msg_que_id=294920
+.key=EthGroup, rpc_port=50028, msg_que_id=917531
+.key=BladeCpuThermal, rpc_port=50021, msg_que_id=688148
+.key=PCIeTransformCard, rpc_port=50014, msg_que_id=458765
+.key=CompositionEndpoint, rpc_port=50001, msg_que_id=32768
+.key=PswCpld, rpc_port=50001, msg_que_id=32768
+.key=ConditionAction, rpc_port=50009, msg_que_id=294920
+.key=EnvRecord, rpc_port=50009, msg_que_id=294920
+.key=_PcieSwitch, rpc_port=50001, msg_que_id=32768
+.key=BoardRTC, rpc_port=50023, msg_que_id=753686
+.key=BladeCoolingPolicy, rpc_port=50021, msg_que_id=688148
+.key=LedDispElmt, rpc_port=50009, msg_que_id=294920
+.key=_cooling_app, rpc_port=50021, msg_que_id=688148
+.key=GPUCard, rpc_port=50014, msg_que_id=458765
+.key=StringFormator, rpc_port=50009, msg_que_id=294920
+.key=EventConfiguration, rpc_port=50009, msg_que_id=294920
+.key=Chassis, rpc_port=50023, msg_que_id=753686
+.key=ComponentPowerCtrl, rpc_port=50014, msg_que_id=458765
+.key=_MCTP, rpc_port=50012, msg_que_id=393227
+.key=Redfish, rpc_port=50020, msg_que_id=655379
+.key=EndpointIdentifier, rpc_port=50001, msg_que_id=32768
+.key=Pex8725, rpc_port=50001, msg_que_id=32768
+.key=_LicenseMgnt, rpc_port=50002, msg_que_id=65537
+.key=BoardTypeDefinition, rpc_port=50023, msg_que_id=753686
+.key=KRBCommon, rpc_port=50023, msg_que_id=753686
+.key=_UPGRADE, rpc_port=50008, msg_que_id=262151
+.key=SOLManagement, rpc_port=50025, msg_que_id=819224
+.key=ChipVrdParameterConfig, rpc_port=50008, msg_que_id=262151
+.key=LSWChipMgnt, rpc_port=50028, msg_que_id=917531
+.key=ExPortConfig, rpc_port=50028, msg_que_id=917531
+.key=BBU, rpc_port=50016, msg_que_id=524303
+.key=VncLink, rpc_port=50004, msg_que_id=131075
+.key=HDDLocationStatus, rpc_port=50016, msg_que_id=524303
+.key=EthFunctionDefine, rpc_port=50028, msg_que_id=917531
+.key=DNSSetting, rpc_port=50005, msg_que_id=163844
+.key=SSL, rpc_port=50023, msg_que_id=753686
+.key=RemoteHttpsServerRootCert, rpc_port=50023, msg_que_id=753686
+.key=DftVersion, rpc_port=50011, msg_que_id=360458
+.key=PeripheralDeviceSensor, rpc_port=50014, msg_que_id=458765
+.key=SASExpander, rpc_port=50016, msg_que_id=524303
+.key=MemoryBoard, rpc_port=50014, msg_que_id=458765
+.key=Cpu, rpc_port=50017, msg_que_id=557072
+.key=RegConfig, rpc_port=50014, msg_que_id=458765
+.key=_FruData, rpc_port=50007, msg_que_id=229382
+.key=Gpio, rpc_port=50009, msg_que_id=294920
+.key=LicenseAlarmInfo, rpc_port=50002, msg_que_id=65537
+.key=LDAPCert, rpc_port=50023, msg_que_id=753686
+.key=ChipValueReader, rpc_port=50009, msg_que_id=294920
+.key=VRDUpgradeMgnt, rpc_port=50008, msg_que_id=262151
+.key=LedCtrl, rpc_port=50009, msg_que_id=294920
+.key=PefFilter, rpc_port=50009, msg_que_id=294920
+.key=_redfish, rpc_port=50020, msg_que_id=655379
+.key=AdditionalFan, rpc_port=50021, msg_que_id=688148
+.key=SelFilter, rpc_port=50009, msg_que_id=294920
+.key=CPLDSelftest, rpc_port=50011, msg_que_id=360458
+.key=SMMportswitch, rpc_port=50028, msg_que_id=917531
+.key=PcieRetimerAction, rpc_port=50001, msg_que_id=32768
+.key=OAM, rpc_port=50028, msg_que_id=917531
+.key=ModbusSlave, rpc_port=50014, msg_que_id=458765
+.key=PowerOnCriteria, rpc_port=50022, msg_que_id=720917
+.key=CpuPowTempMap, rpc_port=50021, msg_que_id=688148
+.key=Diagnose, rpc_port=50015, msg_que_id=491534
+.key=Fru, rpc_port=50007, msg_que_id=229382
+.key=MMPortOtmInfo, rpc_port=50028, msg_que_id=917531
+.key=LogicalDrive, rpc_port=50016, msg_que_id=524303
+.key=I2cLed, rpc_port=50009, msg_que_id=294920
+.key=_discovery, rpc_port=50019, msg_que_id=622610
+.key=EventDescp, rpc_port=50009, msg_que_id=294920
+.key=_ipmi_app, rpc_port=50025, msg_que_id=819224
+.key=Composition, rpc_port=50001, msg_que_id=32768
+.key=Component, rpc_port=50007, msg_que_id=229382
+.key=BusinessPortVLAN, rpc_port=50028, msg_que_id=917531
+.key=MutualAuthenticationRootCert, rpc_port=50023, msg_que_id=753686
+.key=Elabel, rpc_port=50007, msg_que_id=229382
+.key=SecurityEnhance, rpc_port=50026, msg_que_id=851993
+.key=VRDUpgradeMgntAssist, rpc_port=50008, msg_que_id=262151
+.key=InsertStatusLedCtrl, rpc_port=50009, msg_que_id=294920
+.key=ResidentStorageMgnt, rpc_port=50016, msg_que_id=524303
+.key=_NetConfig, rpc_port=50028, msg_que_id=917531
+.key=LicenseGeneralInfo, rpc_port=50002, msg_que_id=65537
+.key=DftStatus, rpc_port=50011, msg_que_id=360458
+.key=NTP, rpc_port=50023, msg_que_id=753686
+.key=Com, rpc_port=50025, msg_que_id=819224
+.key=NoDevTest, rpc_port=50009, msg_que_id=294920
+.key=MngtPortCap, rpc_port=50028, msg_que_id=917531
+.key=USBPortSwitch, rpc_port=50023, msg_que_id=753686
+.key=IpmbEth, rpc_port=50025, msg_que_id=819224
+.key=SLIMCable, rpc_port=50016, msg_que_id=524303
+.key=Modbus, rpc_port=50014, msg_que_id=458765
+.key=IsMemBoard, rpc_port=50014, msg_que_id=458765
+.key=ExternalRefInfo, rpc_port=50015, msg_que_id=491534
+.key=AccessorUpdateAction, rpc_port=50008, msg_que_id=262151
+.key=ProxyKvm, rpc_port=50018, msg_que_id=589841
+.key=ChipUpgradeByI2C, rpc_port=50008, msg_que_id=262151
+=====================other info=============================
+ipmi app rpc port=50025
+dft app rpc port=50011
+my rpc port=50006
+my ipc id=196613
+sync sem4 id=32768
+module id=7
+=============================client end==========================
+=====================class info============================
+--------------------- EthGroup            -----------------
+listened       : IpVersion: 589841, 851993, 
+               : IpAddr: 589841, 819224, 851993, 917531, 
+               : Ipv6Addr: 589841, 851993, 917531, 
+               : SLAACIpv6Addr: 589841, 917531, 
+               : Ipv6LocalLink: 589841, 917531, 
+               : ActivePort: 589841, 917531, 
+               : Type: 589841, 917531, 
+               : IpMode: 851993, 753686, 
+               : SubnetMask: 851993, 
+               : DefaultGateway: 851993, 
+               : Ipv6Mode: 851993, 753686, 
+               : Ipv6DefaultGateway: 851993, 
+               : Ipv6Prefix: 851993, 
+               : VlanID: 917531, 
+               : VlanState: 917531, 
+               : NetMode: 917531, 
+--------------------- Firmware            -----------------
+--------------------- ProxyKvm            -----------------
+listened       : Port: 131075, 
+               : State: 131075, 
+               : ScreenSwitch: 131075, 
+               : KvmTimeout: 131075, 
+               : LocalKVMState: 131075, 
+--------------------- KvmLink             -----------------
+--------------------- Com                 -----------------
+--------------------- MeInfo              -----------------
+listened       : CpuTjmax: 688148, 
+--------------------- Memory              -----------------
+listened       : ReplaceFlag: 294920, 
+               : FDMFault: 294920, 
+--------------------- Dump                -----------------
+--------------------- Cooling             -----------------
+--------------------- BBU                 -----------------
+listened       : Present: 294920, 
+--------------------- BusinessPort        -----------------
+listened       : ActualMac: 917531, 
+               : LinkStatusBMA: 294920, 
+--------------------- OnePower            -----------------
+listened       : PsType: 786455, 
+               : Health: 294920, 
+               : VinStatus: 294920, 
+               : ReplaceFlag: 294920, 
+--------------------- iBMAUSBMassStorage  -----------------
+--------------------- CLASSFANTYPE        -----------------
+--------------------- VariantExpression   -----------------
+--------------------- Expression          -----------------
+listened       : Value: 294920, 
+--------------------- Elabel              -----------------
+listened       : BoardSerialNumber: 65537, 294920, 
+               : MfgDateTime: 753686, 
+               : ProductAssetTag: 294920, 
+               : ChassisSerialNumber: 294920, 
+--------------------- KRBCommon           -----------------
+--------------------- SyslogItemCfg       -----------------
+--------------------- Payload             -----------------
+listened       : SysResetFlag: 32768, 491534, 262151, 425996, 557072, 458765, 786455, 294920, 327689, 524303, 131075, 
+               : ChassisPowerState: 491534, 262151, 425996, 557072, 458765, 786455, 720917, 294920, 327689, 524303, 131075, 
+               : ResetFlag: 491534, 425996, 557072, 458765, 786455, 327689, 524303, 294920, 
+               : RestartValue: 425996, 294920, 
+               : AcpiStatus: 720917, 
+               : BoardStableStatus: 819224, 
+               : AcpiValue: 294920, 
+               : PwrOkSigDrop: 294920, 
+               : PwrButtonFlag: 294920, 
+               : PowerGd: 688148, 
+--------------------- PRODUCT             -----------------
+listened       : SessionTokenLength: 327689, 
+--------------------- ComputerSystem      -----------------
+listened       : iBMAEvent: 294920, 
+--------------------- PcieCard            -----------------
+listened       : Health: 294920, 
+               : FatalError: 294920, 
+               : FDMFault: 294920, 
+               : ReplaceFlag: 294920, 
+--------------------- LogicalDrive        -----------------
+--------------------- SmtpItemCfg         -----------------
+--------------------- TrapConfig          -----------------
+listened       : CommunityMasterKeyId: 851993, 
+--------------------- LicenseFeatureKey   -----------------
+--------------------- LicenseGeneralInfo  -----------------
+--------------------- Fru                 -----------------
+--------------------- FdmConfig           -----------------
+--------------------- DiskArray           -----------------
+--------------------- LLDPConfig          -----------------
+--------------------- PMEServiceConfig    -----------------
+listened       : BoardInfoCollectEnable: 753686, 
+--------------------- SSL                 -----------------
+listened       : CertStatus: 589841, 
+               : SSLMasterKeyId: 851993, 
+--------------------- Raid                -----------------
+listened       : Health: 294920, 
+               : ReplaceFlag: 294920, 
+--------------------- VNC                 -----------------
+listened       : PwdMasterKeyId: 851993, 
+--------------------- RedfishEventService -----------------
+--------------------- RaidController      -----------------
+--------------------- Video               -----------------
+--------------------- RiserPcieCard       -----------------
+listened       : Health: 294920, 
+               : ReplaceFlag: 294920, 
+--------------------- SyslogConfig        -----------------
+--------------------- UserRole            -----------------
+listened       : KVMMgnt: 851993, 
+               : VMMMgnt: 851993, 
+--------------------- PasswdSetting       -----------------
+--------------------- Component           -----------------
+listened       : Health: 294920, 
+--------------------- FANClass            -----------------
+--------------------- Log                 -----------------
+--------------------- Hdd                 -----------------
+listened       : Id: 491534, 229382, 
+               : ReplaceFlag: 294920, 
+               : Presence: 294920, 
+               : RebuildState: 294920, 
+--------------------- Diagnose            -----------------
+--------------------- TrapItemCfg         -----------------
+listened       : BmaVethIpPort: 950300, 
+--------------------- Vmm                 -----------------
+--------------------- DiscreteSensor      -----------------
+listened       : Health: 294920, 688148, 
+--------------------- RegMonitor          -----------------
+listened       : MonSenValue: 294920, 
+--------------------- NetCard             -----------------
+listened       : HotplugCtrlStatus: 458765, 
+               : Health: 294920, 
+               : Eid: 917531, 
+               : PrePlug: 917531, 
+               : FDMFault: 294920, 
+               : ReplaceFlag: 294920, 
+--------------------- SysPower            -----------------
+--------------------- LicenseManage       -----------------
+--------------------- USBMassStorage      -----------------
+--------------------- ProductComponent    -----------------
+--------------------- MutualAuthenticationCliCert-----------------
+--------------------- ThresholdSensor     -----------------
+listened       : Health: 294920, 688148, 
+--------------------- Sel                 -----------------
+listened       : SELCleared: 294920, 
+--------------------- Eth                 -----------------
+listened       : VlanID: 589841, 
+               : Health: 294920, 
+--------------------- LDAPGroup           -----------------
+--------------------- PowerCapping        -----------------
+listened       : Failed: 294920, 
+--------------------- MngtPortCap         -----------------
+--------------------- Led                 -----------------
+--------------------- Cpu                 -----------------
+listened       : IErr: 491534, 131075, 
+               : McErr: 491534, 131075, 
+               : Error2: 491534, 
+               : MirrorFailChMask: 491534, 
+               : Version: 688148, 
+               : FDMFault: 294920, 
+--------------------- HDDBackplane        -----------------
+listened       : ReplaceFlag: 294920, 
+--------------------- Snmp                -----------------
+listened       : SnmpCommMasterKeyId: 851993, 
+               : OldEngineID: 851993, 
+               : AuthProtocol: 917531, 
+               : PrivProtocol: 917531, 
+               : PortID: 917531, 
+--------------------- FdmWebConfig        -----------------
+--------------------- Kvm                 -----------------
+--------------------- PermitRule          -----------------
+--------------------- LDAPCommon          -----------------
+--------------------- Connector           -----------------
+--------------------- DNSSetting          -----------------
+listened       : DomainName: 589841, 
+--------------------- BOARD               -----------------
+listened       : SlotId: 753686, 917531, 
+--------------------- Warning             -----------------
+listened       : HealthStatus: 294920, 
+--------------------- Upgrade             -----------------
+listened       : UpgradedFlag: 589841, 655379, 425996, 294920, 851993, 131075, 753686, 
+               : PreRollbackFlag: 589841, 655379, 425996, 294920, 851993, 131075, 753686, 
+               : Degrade: 557072, 
+               : UpgradeFileMasterKeyId: 851993, 
+--------------------- MutualAuthenticationRootCert-----------------
+listened       : hashId: 589841, 
+               : hashValue: 589841, 
+               : CRLFilePath: 589841, 
+--------------------- PrivilegeAgent      -----------------
+--------------------- LicenseSaleItem     -----------------
+--------------------- SMS                 -----------------
+listened       : BoBChannelType: 589841, 819224, 917531, 950300, 
+               : IPAddr: 655379, 294920, 
+               : Port: 655379, 950300, 
+               : RegisterState: 655379, 
+               : MinPort: 294920, 
+               : MaxPort: 294920, 
+               : UpdateStatus: 524303, 
+               : CdevChannelEnabled: 950300, 
+--------------------- PCIeFPGACard        -----------------
+--------------------- Anchor              -----------------
+--------------------- SmtpConfig          -----------------
+listened       : LoginPasswdMasterKeyId: 851993, 
+--------------------- Policy1Class        -----------------
+--------------------- LicenseSaleInfo     -----------------
+--------------------- Contact             -----------------
+--------------------- User                -----------------
+listened       : SnmpPrivProtocol: 589841, 
+               : Privilege: 851993, 
+               : IsUserEnable: 851993, 
+               : PassWord: 851993, 
+--------------------- Chassis             -----------------
+listened       : ChassisNum: 917531, 
+               : ChassisName: 294920, 
+               : Location: 294920, 
+--------------------- SecurityEnhance     -----------------
+listened       : TLSVersion: 589841, 131075, 
+               : AntiDNSRebindStatus: 589841, 
+               : SSLCipherSuites: 589841, 
+               : SystemLockDownStatus: 655379, 819224, 
+               : RMCPCipherSuites: 819224, 
+               : BannerState: 851993, 
+               : MKUpdateInterval: 851993, 
+               : IpmiMasterKeyId: 851993, 
+               : SnmpPrivacyPwdMasterKeyId: 851993, 
+               : CertOverdueWarnTime: 753686, 
+--------------------- Bios                -----------------
+listened       : SystemStartupState: 491534, 917531, 
+               : PcieCardBDF: 458765, 
+               : PcieDiskBDF: 458765, 
+               : OCPCardBDF: 458765, 
+               : MenuChangeFlag: 458765, 
+               : BiosBootStage: 458765, 
+               : BiosPwdMasterKeyId: 851993, 
+               : StartOption: 131075, 
+--------------------- ProxyVmm            -----------------
+listened       : Port: 131075, 
+               : State: 131075, 
+               : EncryptState: 131075, 
+--------------------- BMC                 -----------------
+listened       : HostName: 589841, 163844, 917531, 294920, 
+               : CustomManufacturer: 655379, 
+--------------------- NPU                 -----------------
+listened       : IErr: 491534, 
+               : IMUState: 491534, 
+--------------------- NTP                 -----------------
+listened       : NtpPwdMasterKeyId: 851993, 
+               : SysTimeJumpVal: 753686, 
+--------------------- Session             -----------------
+--------------------- MainBoard           -----------------
+listened       : Health: 294920, 
+--------------------- LicenseAlarmInfo    -----------------
+--------------------- MutualAuthentication-----------------
+listened       : MutualAuthenticationState: 589841, 851993, 
+               : MutualAuthenticationOCSP: 589841, 851993, 
+               : MutualAuthenticationCRL: 589841, 
+--------------------- LDAP                -----------------
+listened       : BindDNPswMasterKeyId: 851993, 
+--------------------- Redfish             -----------------
+listened       : RedfishMasterKeyId: 851993, 
+--------------------- PortConfig          -----------------
+listened       : State: 589841, 851993, 917531, 950300, 
+               : Port: 589841, 851993, 917531, 950300, 
+--------------------- Entity              -----------------
+listened       : Health: 294920, 
+--------------------- RmcpConfig          -----------------
+listened       : Port1: 950300, 
+               : Port2: 950300, 
+=====================fwrite info============================
+fm sync fwrite cnt: 0
+log fwrite cnt: 0
+fm setcontent fwrite cnt: 0

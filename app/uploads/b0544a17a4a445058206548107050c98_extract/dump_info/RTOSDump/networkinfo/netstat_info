@@ -1,0 +1,307 @@
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+tcp        0      0 32.68.253.48:443        0.0.0.0:*               LISTEN      
+tcp        0      0 32.68.253.48:443        0.0.0.0:*               LISTEN      
+tcp        0      0 127.0.0.1:30080         0.0.0.0:*               LISTEN      
+tcp        0      0 32.68.253.48:80         0.0.0.0:*               LISTEN      
+tcp        0      0 32.68.253.48:80         0.0.0.0:*               LISTEN      
+tcp        0      0 127.0.0.1:8210          0.0.0.0:*               LISTEN      
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52116         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52126         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52114         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52084         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52120         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52054         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52068         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52050         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52072         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52058         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52070         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52060         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52096         TIME_WAIT   
+tcp        0      0 127.0.0.1:52128         127.0.0.1:30080         TIME_WAIT   
+tcp        0      0 127.0.0.1:52044         127.0.0.1:30080         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52048         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52086         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52056         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52066         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52052         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52112         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52104         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52062         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52108         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52122         TIME_WAIT   
+tcp        0      0 127.0.0.1:52046         127.0.0.1:30080         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52040         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52080         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52088         TIME_WAIT   
+tcp        0      0 127.0.0.1:52092         127.0.0.1:30080         TIME_WAIT   
+tcp        0      0 32.68.253.48:443        32.69.100.10:61897      ESTABLISHED 
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52064         TIME_WAIT   
+tcp        0      0 32.68.253.48:443        32.69.100.10:61911      ESTABLISHED 
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52124         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52106         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52078         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52094         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52130         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52090         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52100         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52110         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52102         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52074         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52092         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52038         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52082         TIME_WAIT   
+tcp        0      0 127.0.0.1:52042         127.0.0.1:30080         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52098         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52118         TIME_WAIT   
+tcp        0      0 127.0.0.1:30080         127.0.0.1:52076         TIME_WAIT   
+tcp        0      0 fe80::9e7d:a3ff:fe28:6ffa:40443 :::*                    LISTEN      
+tcp        0      0 fe80::8e2a:8eff:fe8b:9e3e:443 :::*                    LISTEN      
+tcp        0      0 fe80::9e7d:a3ff:fe28:6ffa:443 :::*                    LISTEN      
+tcp        0      0 fe80::9e7d:a3ff:fe28:6ffa:40443 :::*                    LISTEN      
+tcp        0      0 fe80::8e2a:8eff:fe8b:9e3e:443 :::*                    LISTEN      
+tcp        0      0 fe80::9e7d:a3ff:fe28:6ffa:443 :::*                    LISTEN      
+tcp        0      0 :::8208                 :::*                    LISTEN      
+tcp        0      0 fe80::9e7d:a3ff:fe28:6ffa:80 :::*                    LISTEN      
+tcp        0      0 fe80::8e2a:8eff:fe8b:9e3e:80 :::*                    LISTEN      
+tcp        0      0 fe80::9e7d:a3ff:fe28:6ffa:80 :::*                    LISTEN      
+tcp        0      0 fe80::8e2a:8eff:fe8b:9e3e:80 :::*                    LISTEN      
+tcp        0      0 :::2198                 :::*                    LISTEN      
+tcp        0      0 :::22                   :::*                    LISTEN      
+tcp        0      0 :::2199                 :::*                    LISTEN      
+udp        0      0 32.68.253.48:161        0.0.0.0:*                           
+udp   219648      0 0.0.0.0:1900            0.0.0.0:*                           
+udp        0      0 ::1:53669               ::1:623                 ESTABLISHED 
+udp        0      0 ::1:49148               ::1:664                 ESTABLISHED 
+udp        0      0 :::623                  :::*                                
+udp        0      0 :::664                  :::*                                
+udp        0      0 fe80::8e2a:8eff:fe8b:9e3e:161 :::*                                
+udp        0      0 fe80::9e7d:a3ff:fe28:6ffa:161 :::*                                
+udp        0      0 :::1900                 :::*                                
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node Path
+unix  2      [ ACC ]     STREAM     LISTENING       5396 /opt/pme/pram/pme_rpc/50000
+unix  2      [ ACC ]     STREAM     LISTENING       7786 /opt/pme/pram/pme_rpc/50026
+unix  2      [ ACC ]     STREAM     LISTENING       7791 /opt/pme/pram/pme_rpc/50006
+unix  2      [ ACC ]     STREAM     LISTENING       5990 /opt/pme/pram/pme_rpc/50011
+unix  2      [ ACC ]     STREAM     LISTENING       6103 /opt/pme/pram/pme_rpc/50022
+unix  2      [ ACC ]     STREAM     LISTENING       8486 /opt/pme/pram/pme_rpc/50012
+unix  2      [ ACC ]     STREAM     LISTENING       9342 /opt/pme/pram/pme_rpc/50010
+unix  2      [ ACC ]     STREAM     LISTENING       7912 /opt/pme/pram/pme_rpc/50001
+unix  2      [ ACC ]     STREAM     LISTENING     2102560032 /opt/pme/pram/pme_rpc/50004
+unix  2      [ ACC ]     STREAM     LISTENING       9394 /opt/pme/pram/pme_rpc/50003
+unix  2      [ ACC ]     STREAM     LISTENING       8500 /opt/pme/pram/pme_rpc/50029
+unix  2      [ ACC ]     STREAM     LISTENING       7939 /opt/pme/pram/pme_rpc/50005
+unix  2      [ ACC ]     STREAM     LISTENING       8141 /opt/pme/pram/pme_rpc/50021
+unix  2      [ ACC ]     STREAM     LISTENING       9742 /opt/pme/pram/pme_rpc/50027
+unix  2      [ ACC ]     STREAM     LISTENING       9809 /opt/pme/pram/pme_rpc/50014
+unix  2      [ ACC ]     STREAM     LISTENING       9839 /opt/pme/pram/pme_rpc/50002
+unix  2      [ ACC ]     STREAM     LISTENING       8538 /opt/pme/pram/pme_rpc/50007
+unix  2      [ ACC ]     STREAM     LISTENING       9850 /opt/pme/pram/pme_rpc/50019
+unix  2      [ ACC ]     STREAM     LISTENING       9979 /opt/pme/pram/pme_rpc/50008
+unix  2      [ ACC ]     STREAM     LISTENING      10028 /opt/pme/pram/pme_rpc/50013
+unix  2      [ ACC ]     STREAM     LISTENING       6993 /opt/pme/pram/pme_rpc/50018
+unix  2      [ ACC ]     STREAM     LISTENING       8775 /opt/pme/pram/pme_rpc/50025
+unix  2      [ ACC ]     STREAM     LISTENING       8988 /opt/pme/pram/pme_rpc/50017
+unix  2      [ ACC ]     STREAM     LISTENING       7002 /opt/pme/pram/pme_rpc/50015
+unix  2      [ ACC ]     STREAM     LISTENING     2986679635 /opt/pme/pram/pme_rpc/50016
+unix  2      [ ACC ]     STREAM     LISTENING      11268 /opt/pme/pram/pme_rpc/50023
+unix  2      [ ACC ]     STREAM     LISTENING      11355 /opt/pme/pram/pme_rpc/50009
+unix  2      [ ACC ]     STREAM     LISTENING       9182 /opt/pme/pram/pme_rpc/50020
+unix  2      [ ACC ]     STREAM     LISTENING       7011 /opt/pme/pram/pme_rpc/50024
+unix  2      [ ACC ]     STREAM     LISTENING       7025 /opt/pme/pram/pme_rpc/50028
+unix  2      [ ACC ]     STREAM     LISTENING      11444 /opt/pme/pram/maint_debug/33333.md
+unix  2      [ ACC ]     STREAM     LISTENING       4798 /var/run/syslog-ng/syslog-ng.ctl
+unix  2      [ ACC ]     STREAM     LISTENING       4797 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       8986 
+unix  3      [ ]         STREAM     CONNECTED       8535 
+unix  3      [ ]         STREAM     CONNECTED       5385 
+unix  3      [ ]         STREAM     CONNECTED       8987 
+unix  3      [ ]         STREAM     CONNECTED       7788 
+unix  3      [ ]         STREAM     CONNECTED       4808 /dev/log
+unix  3      [ ]         STREAM     CONNECTED      10025 
+unix  3      [ ]         STREAM     CONNECTED       2867 
+unix  3      [ ]         STREAM     CONNECTED       9740 
+unix  3      [ ]         STREAM     CONNECTED       6152 
+unix  3      [ ]         STREAM     CONNECTED       9393 
+unix  3      [ ]         STREAM     CONNECTED       4864 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       9180 
+unix  3      [ ]         STREAM     CONNECTED       7935 
+unix  3      [ ]         STREAM     CONNECTED       5381 
+unix  3      [ ]         STREAM     CONNECTED       6999 
+unix  3      [ ]         STREAM     CONNECTED       2790 
+unix  3      [ ]         STREAM     CONNECTED       8484 
+unix  3      [ ]         STREAM     CONNECTED       7784 
+unix  3      [ ]         STREAM     CONNECTED       4875 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       4803 /dev/log
+unix  3      [ ]         STREAM     CONNECTED      11352 
+unix  3      [ ]         STREAM     CONNECTED       6165 
+unix  3      [ ]         STREAM     CONNECTED       7937 
+unix  3      [ ]         STREAM     CONNECTED       9340 
+unix  3      [ ]         STREAM     CONNECTED       5393 
+unix  3      [ ]         STREAM     CONNECTED       4835 
+unix  3      [ ]         STREAM     CONNECTED       7908 
+unix  3      [ ]         STREAM     CONNECTED       9835 
+unix  3      [ ]         STREAM     CONNECTED       6991 
+unix  3      [ ]         STREAM     CONNECTED       6100 
+unix  3      [ ]         STREAM     CONNECTED       4800 
+unix  3      [ ]         STREAM     CONNECTED       5379 
+unix  3      [ ]         STREAM     CONNECTED       7009 
+unix  3      [ ]         STREAM     CONNECTED       8497 
+unix  3      [ ]         STREAM     CONNECTED       2865 
+unix  3      [ ]         STREAM     CONNECTED       9838 
+unix  3      [ ]         STREAM     CONNECTED       4851 
+unix  3      [ ]         STREAM     CONNECTED     2102560030 
+unix  3      [ ]         STREAM     CONNECTED      11353 
+unix  3      [ ]         STREAM     CONNECTED       4813 
+unix  3      [ ]         STREAM     CONNECTED       8483 
+unix  3      [ ]         STREAM     CONNECTED       4870 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       4842 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       2863 
+unix  3      [ ]         STREAM     CONNECTED     2986677887 /dev/log
+unix  3      [ ]         STREAM     CONNECTED     2102559958 /dev/log
+unix  3      [ ]         STREAM     CONNECTED      19630 
+unix  3      [ ]         STREAM     CONNECTED       7010 
+unix  3      [ ]         STREAM     CONNECTED      10026 
+unix  3      [ ]         STREAM     CONNECTED       4860 /dev/log
+unix  3      [ ]         STREAM     CONNECTED      19629 
+unix  3      [ ]         STREAM     CONNECTED       5987 
+unix  3      [ ]         STREAM     CONNECTED       7783 
+unix  3      [ ]         STREAM     CONNECTED       6163 
+unix  3      [ ]         STREAM     CONNECTED     2102560031 
+unix  3      [ ]         STREAM     CONNECTED       8138 
+unix  3      [ ]         STREAM     CONNECTED       7021 
+unix  3      [ ]         STREAM     CONNECTED      11354 
+unix  3      [ ]         STREAM     CONNECTED       2873 
+unix  3      [ ]         STREAM     CONNECTED       8773 
+unix  3      [ ]         STREAM     CONNECTED     2986679497 
+unix  3      [ ]         STREAM     CONNECTED       9849 
+unix  3      [ ]         STREAM     CONNECTED       7007 
+unix  3      [ ]         STREAM     CONNECTED       9391 
+unix  3      [ ]         STREAM     CONNECTED       8537 
+unix  3      [ ]         STREAM     CONNECTED       4848 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       6998 
+unix  3      [ ]         STREAM     CONNECTED       7785 
+unix  3      [ ]         STREAM     CONNECTED       8771 
+unix  3      [ ]         STREAM     CONNECTED       4063 
+unix  3      [ ]         STREAM     CONNECTED       9978 
+unix  3      [ ]         STREAM     CONNECTED       9807 
+unix  3      [ ]         STREAM     CONNECTED       4858 /dev/log
+unix  3      [ ]         STREAM     CONNECTED     2102560029 
+unix  3      [ ]         STREAM     CONNECTED       6992 
+unix  3      [ ]         STREAM     CONNECTED       5387 
+unix  3      [ ]         STREAM     CONNECTED       9846 
+unix  3      [ ]         STREAM     CONNECTED       9339 
+unix  3      [ ]         STREAM     CONNECTED       9808 
+unix  3      [ ]         STREAM     CONNECTED       8772 
+unix  3      [ ]         STREAM     CONNECTED       4856 /dev/log
+unix  3      [ ]         STREAM     CONNECTED      20278 /dev/log
+unix  3      [ ]         STREAM     CONNECTED      10024 
+unix  3      [ ]         STREAM     CONNECTED       7938 
+unix  3      [ ]         STREAM     CONNECTED       4846 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       8774 
+unix  3      [ ]         STREAM     CONNECTED      11265 
+unix  3      [ ]         STREAM     CONNECTED       6989 
+unix  3      [ ]         STREAM     CONNECTED       5986 
+unix  3      [ ]         STREAM     CONNECTED       4827 
+unix  3      [ ]         STREAM     CONNECTED       7910 
+unix  3      [ ]         STREAM     CONNECTED     2102558930 
+unix  3      [ ]         STREAM     CONNECTED       7008 
+unix  3      [ ]         STREAM     CONNECTED       9848 
+unix  3      [ ]         STREAM     CONNECTED       7909 
+unix  3      [ ]         STREAM     CONNECTED       8984 
+unix  3      [ ]         STREAM     CONNECTED       4029 
+unix  3      [ ]         STREAM     CONNECTED       4816 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       7782 
+unix  3      [ ]         STREAM     CONNECTED       9837 
+unix  3      [ ]         STREAM     CONNECTED       4814 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       7024 
+unix  3      [ ]         STREAM     CONNECTED       9341 
+unix  3      [ ]         STREAM     CONNECTED       5392 
+unix  3      [ ]         STREAM     CONNECTED      11267 
+unix  3      [ ]         STREAM     CONNECTED       9847 
+unix  3      [ ]         STREAM     CONNECTED       6168 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       4810 /dev/log
+unix  3      [ ]         STREAM     CONNECTED      18365 
+unix  3      [ ]         STREAM     CONNECTED       9739 
+unix  3      [ ]         STREAM     CONNECTED       8496 
+unix  3      [ ]         STREAM     CONNECTED       4823 
+unix  3      [ ]         STREAM     CONNECTED       5391 
+unix  3      [ ]         STREAM     CONNECTED       9392 
+unix  3      [ ]         STREAM     CONNECTED       4836 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       7790 
+unix  3      [ ]         STREAM     CONNECTED     2102560028 
+unix  3      [ ]         STREAM     CONNECTED       5383 
+unix  3      [ ]         STREAM     CONNECTED       9976 
+unix  3      [ ]         STREAM     CONNECTED       6102 
+unix  3      [ ]         STREAM     CONNECTED       4828 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       4862 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       8534 
+unix  3      [ ]         STREAM     CONNECTED     2986679633 
+unix  3      [ ]         STREAM     CONNECTED       6166 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       9805 
+unix  3      [ ]         STREAM     CONNECTED      10027 
+unix  3      [ ]         STREAM     CONNECTED       8139 
+unix  3      [ ]         STREAM     CONNECTED      19631 
+unix  3      [ ]         STREAM     CONNECTED       6099 
+unix  3      [ ]         STREAM     CONNECTED       4820 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       7911 
+unix  3      [ ]         STREAM     CONNECTED     2986679634 
+unix  3      [ ]         STREAM     CONNECTED       4038 
+unix  3      [ ]         STREAM     CONNECTED       9741 
+unix  3      [ ]         STREAM     CONNECTED       4838 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       7000 
+unix  3      [ ]         STREAM     CONNECTED       9738 
+unix  3      [ ]         STREAM     CONNECTED       9390 
+unix  3      [ ]         STREAM     CONNECTED       7936 
+unix  3      [ ]         STREAM     CONNECTED       8482 
+unix  3      [ ]         STREAM     CONNECTED       4830 /dev/log
+unix  3      [ ]         STREAM     CONNECTED     2986679632 
+unix  3      [ ]         STREAM     CONNECTED       9179 
+unix  3      [ ]         STREAM     CONNECTED       8485 
+unix  3      [ ]         STREAM     CONNECTED       4866 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       9338 
+unix  3      [ ]         STREAM     CONNECTED       4852 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       7023 
+unix  3      [ ]         STREAM     CONNECTED       9806 
+unix  3      [ ]         STREAM     CONNECTED       6990 
+unix  3      [ ]         STREAM     CONNECTED       8985 
+unix  3      [ ]         STREAM     CONNECTED       8140 
+unix  3      [ ]         STREAM     CONNECTED       8498 
+unix  3      [ ]         STREAM     CONNECTED      10240 
+unix  3      [ ]         STREAM     CONNECTED       2869 
+unix  3      [ ]         STREAM     CONNECTED       4824 /dev/log
+unix  3      [ ]         STREAM     CONNECTED     495372673 
+unix  3      [ ]         STREAM     CONNECTED       6101 
+unix  3      [ ]         STREAM     CONNECTED       4854 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       7787 
+unix  3      [ ]         STREAM     CONNECTED       4845 
+unix  3      [ ]         STREAM     CONNECTED       9975 
+unix  3      [ ]         STREAM     CONNECTED       4841 
+unix  3      [ ]         STREAM     CONNECTED     495370668 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       8499 
+unix  3      [ ]         STREAM     CONNECTED       5988 
+unix  3      [ ]         STREAM     CONNECTED       2871 
+unix  3      [ ]         STREAM     CONNECTED       5394 
+unix  3      [ ]         STREAM     CONNECTED       7789 
+unix  3      [ ]         STREAM     CONNECTED       4801 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       9181 
+unix  3      [ ]         STREAM     CONNECTED       4832 /dev/log
+unix  3      [ ]         STREAM     CONNECTED      11266 
+unix  3      [ ]         STREAM     CONNECTED       8536 
+unix  3      [ ]         STREAM     CONNECTED      19632 
+unix  3      [ ]         STREAM     CONNECTED       5367 
+unix  3      [ ]         STREAM     CONNECTED       9178 
+unix  3      [ ]         STREAM     CONNECTED     2986679631 
+unix  3      [ ]         STREAM     CONNECTED      11351 
+unix  3      [ ]         STREAM     CONNECTED       4880 /dev/log
+unix  3      [ ]         STREAM     CONNECTED       7001 
+unix  3      [ ]         STREAM     CONNECTED       2885 
+unix  3      [ ]         STREAM     CONNECTED       9977 
+unix  3      [ ]         STREAM     CONNECTED       9836 
+unix  3      [ ]         STREAM     CONNECTED       7022 
+unix  3      [ ]         STREAM     CONNECTED       8137 
+unix  3      [ ]         STREAM     CONNECTED       5395 
+unix  3      [ ]         STREAM     CONNECTED       5989 

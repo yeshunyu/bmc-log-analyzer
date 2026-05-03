@@ -1,0 +1,1 @@
+console=ttyS0,115200n8N earlycon=uart8250,mmio32,0x08710000 initrd=${initrd_load_addr},${initrd_size} rdinit=/sbin/init rw ekbox=0x20000$0x84be0000 kbox_mem=0x2e0000@0x84900000 swift_irqsoff_enable

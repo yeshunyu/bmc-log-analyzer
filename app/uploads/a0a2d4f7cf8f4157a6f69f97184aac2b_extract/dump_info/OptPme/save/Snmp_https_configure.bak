@@ -1,0 +1,8 @@
+server {
+listen 32.68.253.48:443 ssl reuseport;
+listen [fe80::9e7d:a3ff:fe28:6ffa%veth]:443 ssl reuseport;
+listen [fe80::8e2a:8eff:fe8b:9e3e%eth2]:443 ssl reuseport;
+listen [fe80::9e7d:a3ff:fe28:6ffa%veth]:40443 ssl reuseport;
+server_name _;
+include nginx_https_server_ext.conf;
+}

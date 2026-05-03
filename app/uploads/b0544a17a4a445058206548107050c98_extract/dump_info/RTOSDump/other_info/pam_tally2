@@ -1,0 +1,2 @@
+#%PAM-1.0
+auth        requisite       pam_tally2.so  silent file=/dev/shm/tallylog deny=5 onerr=fail unlock_time=300 even_deny_root_account root_unlock_time=300

@@ -1,0 +1,3 @@
+2025-06-23 11:03:20.644848 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.
+2025-06-23 12:00:00.000000 host_mgr INFO: host is registered.
+2025-06-23 14:00:00.000000 edma ERROR: host is lost.

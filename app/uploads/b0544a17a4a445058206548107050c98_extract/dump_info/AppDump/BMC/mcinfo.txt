@@ -1,0 +1,5 @@
+Aux Firmware Rev Info     :
+ board_id_l:   0xa9
+ board_id_h:   0x0
+ bmc_reversion:   0x20
+ support_eco_ft:   0x0

@@ -1,0 +1,45 @@
+eth0      Link encap:Ethernet  HWaddr 8C:2A:8E:8B:9E:3E  
+          inet6 addr: fe80::8e2a:8eff:fe8b:9e3e/64 Scope:Link
+          UP BROADCAST RUNNING  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:8 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:696 (696.0 B)
+          Base address:0xa000 Memory:cd00000-0 
+
+eth1      Link encap:Ethernet  HWaddr 8C:2A:8E:8B:9E:3E  
+          inet6 addr: fe80::8e2a:8eff:fe8b:9e3e/64 Scope:Link
+          UP BROADCAST RUNNING  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:7 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:618 (618.0 B)
+          Base address:0x4000 Memory:cd01000-0 
+
+eth2      Link encap:Ethernet  HWaddr 8C:2A:8E:8B:9E:3E  
+          inet addr:32.68.253.48  Bcast:32.68.253.255  Mask:255.255.255.0
+          inet6 addr: fe80::8e2a:8eff:fe8b:9e3e/64 Scope:Link
+          UP BROADCAST RUNNING  MTU:1500  Metric:1
+          RX packets:111029160969 errors:0 dropped:4215559 overruns:0 frame:0
+          TX packets:24198888 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:25677275079930 (23.3 TiB)  TX bytes:9566542869 (8.9 GiB)
+          Base address:0xe000 Memory:cd02000-0 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:20306358 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:20306358 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:4829375095 (4.4 GiB)  TX bytes:4829375095 (4.4 GiB)
+
+veth      Link encap:Ethernet  HWaddr 9C:7D:A3:28:6F:FA  
+          inet6 addr: fe80::9e7d:a3ff:fe28:6ffa/64 Scope:Link
+          UP BROADCAST RUNNING  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:34 overruns:0 carrier:0
+          collisions:0 txqueuelen:128 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
