@@ -33,9 +33,38 @@ STATIC_DIR = Path(__file__).parent / "static"
 STATIC_DIR.mkdir(exist_ok=True)
 UPLOAD_DIR = Path(__file__).parent / "uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
+MANIFEST_PATH = UPLOAD_DIR / "manifest.json"
 
 # Files older than this many seconds are candidates for deletion
 TTL_SECONDS = 24 * 3600  # 24 hours
+
+
+def _load_manifest() -> list[dict]:
+    """Returns list of {name, created_at, size}."""
+    if not MANIFEST_PATH.exists():
+        return []
+    try:
+        import json
+        with MANIFEST_PATH.open() as f:
+            return json.load(f)
+    except Exception:
+        return []
+
+
+def _save_manifest(manifest: list[dict]) -> None:
+    import json
+    with MANIFEST_PATH.open("w") as f:
+        json.dump(manifest, f, ensure_ascii=False)
+
+
+def _sync_manifest() -> None:
+    """Remove entries whose files no longer exist."""
+    manifest = _load_manifest()
+    current_files = {p.name for p in UPLOAD_DIR.iterdir()} if UPLOAD_DIR.exists() else set()
+    # strip the uuid_ prefix to match manifest names
+    kept = [e for e in manifest if f"{e['uuid']}_{e['name']}" in current_files]
+    if len(kept) != len(manifest):
+        _save_manifest(kept)
 
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 templates = Jinja2Templates(directory=str(STATIC_DIR))
@@ -55,6 +84,8 @@ def _cleanup_old_files() -> int:
                 deleted += 1
         except OSError:
             pass
+    if deleted:
+        _sync_manifest()
     return deleted
 
 
@@ -71,9 +102,10 @@ def _cleanup_loop():
 _cleanup_thread = threading.Thread(target=_cleanup_loop, daemon=True)
 _cleanup_thread.start()
 # Also clean any stale files left from previous runs on startup
-n = _cleanup_old_files()
-if n:
-    print(f"[cleanup] Removed {n} stale upload(s) on startup")
+_n = _cleanup_old_files()
+if _n:
+    print(f"[cleanup] Removed {_n} stale upload(s) on startup")
+_sync_manifest()
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -95,6 +127,15 @@ async def upload_log(file: UploadFile) -> AnalysisResult:
     save_path = UPLOAD_DIR / f"{job_id}_{file.filename}"
     with save_path.open("wb") as f:
         shutil.copyfileobj(file.file, f)
+
+    file_size = save_path.stat().st_size
+
+    # Record in manifest
+    import json
+    manifest = _load_manifest()
+    manifest.insert(0, {"uuid": job_id, "name": file.filename, "created_at": time.time(), "size": file_size})
+    # Keep last 20
+    _save_manifest(manifest[:20])
 
     # Decompress .tar.gz if needed
     decompressed_path, all_files = _decompress_if_needed(save_path, job_id)
@@ -148,6 +189,73 @@ async def upload_log(file: UploadFile) -> AnalysisResult:
     )
     # NOTE: uploaded files are NOT deleted here — the background cleanup
     # thread handles 24-hour TTL deletion instead.
+
+
+@app.get("/api/history")
+async def get_history():
+    """Return last 20 uploaded file names (without uuid prefix)."""
+    _sync_manifest()
+    manifest = _load_manifest()
+    return [{"uuid": e["uuid"], "name": e["name"], "created_at": e["created_at"], "size": e["size"]} for e in manifest]
+
+
+@app.delete("/api/reanalyze/{uuid}")
+async def delete_reanalyze(uuid: str):
+    """Delete a previously uploaded file from disk and manifest."""
+    import shutil
+    deleted = False
+    for p in UPLOAD_DIR.iterdir():
+        if p.name.startswith(f"{uuid}_"):
+            if p.is_dir():
+                shutil.rmtree(p)
+            else:
+                p.unlink()
+            deleted = True
+            break
+    if not deleted:
+        raise HTTPException(status_code=404, detail="File not found")
+    manifest = _load_manifest()
+    manifest = [e for e in manifest if e["uuid"] != uuid]
+    _save_manifest(manifest)
+    return {"ok": True}
+
+@app.post("/api/reanalyze/{uuid}")
+async def reanalyze(uuid: str):
+    """Re-run analysis on a previously uploaded file stored on disk."""
+    for p in UPLOAD_DIR.iterdir():
+        if p.name.startswith(f"{uuid}_"):
+            file_path = p
+            original_name = p.name[len(uuid) + 1:]
+            break
+    else:
+        raise HTTPException(status_code=404, detail="File not found (may have expired)")
+
+    decompressed_path, all_files = _decompress_if_needed(file_path, uuid)
+    parse_path = decompressed_path
+    if decompressed_path != file_path and decompressed_path.is_dir():
+        best = _find_best_log_file(decompressed_path, original_name)
+        parse_path = best or all_files[0]
+
+    format_type, entries, parse_errors = _route_parse(original_name, parse_path)
+    rule_anomalies = detect_rule_anomalies(entries)
+    stat_anomalies = detect_statistical_anomalies(entries)
+    level_counts: dict[str, int] = {}
+    module_counts: dict[str, int] = {}
+    for e in entries:
+        level_counts[e.level] = level_counts.get(e.level, 0) + 1
+        if e.module:
+            module_counts[e.module] = module_counts.get(e.module, 0) + 1
+
+    parsed_log = {"format_type": format_type, "total_lines": len(entries), "entries": entries, "parse_errors": parse_errors}
+    summary = {
+        "total_entries": len(entries),
+        "error_count": level_counts.get("ERROR", 0),
+        "warning_count": level_counts.get("WARNING", 0),
+        "top_modules": sorted(module_counts.items(), key=lambda x: -x[1])[:5],
+        "rule_anomaly_count": len(rule_anomalies),
+        "stat_anomaly_count": len(stat_anomalies),
+    }
+    return AnalysisResult(parsed_log=parsed_log, rule_anomalies=rule_anomalies, statistical_anomalies=stat_anomalies, summary=summary)
 
 
 def _decompress_if_needed(path: Path, job_id: str) -> tuple[Path, list[Path]]:

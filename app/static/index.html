@@ -17,12 +17,27 @@
     .btn-primary:hover { opacity: 0.85; }
     .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
 
-    .upload-zone { border: 2px dashed #374151; border-radius: 12px; padding: 3rem 2rem; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 1.5rem; }
+    .upload-zone { border: 2px dashed #374151; border-radius: 12px; padding: 3rem 2rem; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 1rem; }
     .upload-zone:hover, .upload-zone.dragover { border-color: #3b82f6; background: rgba(59,130,246,0.05); }
     .upload-zone input { display: none; }
     .upload-zone .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
     .upload-zone p { color: #9ca3af; font-size: 0.9rem; }
     .upload-zone .hint { font-size: 0.8rem; color: #6b7280; margin-top: 0.5rem; }
+
+    .history-zone { margin-bottom: 1.5rem; }
+    .history-zone h3 { font-size: 0.8rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .history-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .history-item {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.35rem 0.7rem; background: #1a1d27; border: 1px solid #2d2f3d;
+      border-radius: 6px; font-size: 0.8rem; color: #9ca3af; cursor: pointer;
+      transition: all 0.15s; max-width: 220px;
+    }
+    .history-item:hover { border-color: #3b82f6; color: #e0e0e0; background: rgba(59,130,246,0.08); }
+    .history-item .hist-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+    .history-item .hist-del { background: none; border: none; color: #6b7280; cursor: pointer; padding: 0 0 0 0.3rem; font-size: 0.7rem; line-height: 1; }
+    .history-item .hist-del:hover { color: #ef4444; }
+    .history-empty { font-size: 0.8rem; color: #6b7280; padding: 0.25rem 0; }
 
     .loading { display: none; text-align: center; padding: 2rem; color: #9ca3af; }
     .loading.show { display: block; }
@@ -196,6 +211,11 @@
     <div class="icon">📂</div>
     <p>点击或拖拽上传 BMC 日志文件</p>
     <div class="hint">支持 .log .txt .gz .tar.gz</div>
+  </div>
+
+  <div class="history-zone" id="historyZone">
+    <h3>📋 最近历史</h3>
+    <div class="history-list" id="historyList"></div>
   </div>
 
   <div class="loading" id="loading">
@@ -859,6 +879,62 @@ document.getElementById('saveSettings').addEventListener('click', async () => {
     alert('保存失败: ' + err.message);
   }
 });
+// ---- History ----
+async function loadHistory() {
+  const el = document.getElementById('historyList');
+  try {
+    const resp = await fetch('/api/history');
+    if (!resp.ok) { el.innerHTML = ''; return; }
+    const items = await resp.json();
+    if (!items.length) {
+      el.innerHTML = '<span class="history-empty">暂无历史记录</span>';
+      return;
+    }
+    el.innerHTML = items.map(item => {
+      const date = new Date(item.created_at * 1000).toLocaleDateString('zh-CN');
+      const size = item.size > 1024 * 1024 ? (item.size / 1024 / 1024).toFixed(1) + 'MB' : (item.size / 1024).toFixed(0) + 'KB';
+      return `<div class="history-item" onclick="reanalyzeFromHistory('${item.uuid}')" title="${item.name} (${size})">
+        <span class="hist-name">${item.name}</span>
+        <span style="font-size:0.7rem;color:#6b7280;white-space:nowrap">${date}</span>
+        <button class="hist-del" onclick="event.stopPropagation();deleteHistoryItem('${item.uuid}')" title="删除">✕</button>
+      </div>`;
+    }).join('');
+  } catch { el.innerHTML = ''; }
+}
+
+async function reanalyzeFromHistory(uuid) {
+  document.getElementById('results').classList.remove('show');
+  document.getElementById('loading').classList.add('show');
+  try {
+    const resp = await fetch(`/api/reanalyze/${uuid}`, { method: 'POST' });
+    if (!resp.ok) throw new Error(await resp.text());
+    const data = await resp.json();
+    state.page = 1;
+    document.getElementById('results').classList.add('show');
+    document.getElementById('regexMode').checked = false;
+    document.getElementById('lv-err').checked = true;
+    document.getElementById('lv-warn').checked = true;
+    document.getElementById('lv-info').checked = true;
+    renderResults(data);
+  } catch (err) {
+    alert('重新分析失败: ' + err.message);
+  } finally {
+    document.getElementById('loading').classList.remove('show');
+  }
+}
+
+async function deleteHistoryItem(uuid) {
+  try {
+    const resp = await fetch(`/api/reanalyze/${uuid}`, { method: 'DELETE' });
+    if (!resp.ok) throw new Error(await resp.text());
+    loadHistory();
+  } catch (err) {
+    alert('删除失败: ' + err.message);
+  }
+}
+
+// Load history on startup
+loadHistory();
 </script>
 </body>
 </html>
