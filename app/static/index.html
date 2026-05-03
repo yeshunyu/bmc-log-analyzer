@@ -56,9 +56,45 @@
 
     .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
     .chart { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1rem; }
-    .chart-title { font-size: 0.85rem; color: #9ca3af; margin-bottom: 0.75rem; }
+    .chart-title { font-size: 0.85rem; color: #9ca3af; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; }
+    .chart-title .chip { font-size: 0.7rem; padding: 0.1rem 0.5rem; border-radius: 10px; background: rgba(59,130,246,0.15); color: #3b82f6; cursor: pointer; }
+    .chart-title .chip:hover { background: rgba(59,130,246,0.3); }
+    .chart-title .chip.active { background: rgba(59,130,246,0.35); }
     #timelineChart { width: 100%; height: 320px; }
     #pieChart { width: 100%; height: 280px; }
+
+    /* Module detail panel */
+    .module-panel { display: none; margin-top: 0.75rem; background: #141620; border: 1px solid #2d2f3d; border-radius: 8px; padding: 0.75rem 1rem; }
+    .module-panel.show { display: block; }
+    .module-panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+    .module-panel-title { font-size: 0.85rem; color: #e0e0e0; font-weight: 600; }
+    .module-panel-close { background: none; border: none; color: #6b7280; cursor: pointer; font-size: 1rem; }
+    .module-panel-close:hover { color: #e0e0e0; }
+    .module-panel-entries { max-height: 200px; overflow-y: auto; }
+    .module-panel-entries .entry-item { font-size: 0.78rem; }
+
+    /* Hardware highlight section */
+    .hw-section { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem; }
+    .hw-section h3 { font-size: 0.85rem; color: #9ca3af; margin-bottom: 0.75rem; }
+    .hw-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .hw-chip { display: flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.8rem; cursor: default; }
+    .hw-chip.cpu { background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.25); }
+    .hw-chip.mem { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.25); }
+    .hw-chip.disk { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
+    .hw-chip.raid { background: rgba(249,115,22,0.12); color: #fb923c; border: 1px solid rgba(249,115,22,0.25); }
+    .hw-chip { display: flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.8rem; cursor: pointer; transition: filter 0.2s; }
+    .hw-chip:hover { filter: brightness(1.2); }
+    .hw-chip .hw-count { background: rgba(255,255,255,0.1); padding: 0 0.4rem; border-radius: 10px; font-size: 0.72rem; }
+    .hw-empty { font-size: 0.8rem; color: #4b5563; }
+    .hw-detail-panel { display: none; }
+    .hw-detail-panel.open { display: block; }
+    .hw-detail-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+    .hw-detail-header span { font-size: 0.85rem; color: #9ca3af; }
+    .hw-detail-close { background: none; border: none; color: #6b7280; cursor: pointer; font-size: 0.9rem; padding: 0 0.25rem; }
+    .hw-detail-close:hover { color: #9ca3af; }
+    .hw-entry { font-size: 0.75rem; padding: 0.3rem 0; border-bottom: 1px solid #2d2f3d; color: #d1d5db; }
+    .hw-entry:last-child { border-bottom: none; }
+    .hw-entry .ts { color: #6b7280; margin-right: 0.5rem; }
 
     .tabs { display: flex; gap: 0.25rem; margin-bottom: 0.75rem; border-bottom: 1px solid #2d2f3d; }
     .tab { padding: 0.5rem 1rem; font-size: 0.85rem; color: #6b7280; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.2s; }
@@ -141,14 +177,25 @@
     }
     .btn-llm-single:hover { opacity: 0.8; }
     .btn-llm-single:disabled { opacity: 0.4; cursor: not-allowed; }
-    .llm-card-result { margin-top: 0.6rem; font-size: 0.82rem; line-height: 1.65; color: #d1d5db; white-space: pre-wrap; background: #0f1117; border: 1px solid #2d2f3d; border-radius: 6px; padding: 0.75rem; display: none; }
-    .llm-card-result.show { display: block; }
+    .llm-card-result { font-size: 0.82rem; line-height: 1.65; color: #d1d5db; white-space: pre-wrap; background: #0f1117; border: 1px solid #2d2f3d; border-radius: 6px; padding: 0.75rem; box-sizing: border-box; }
     .llm-spinner { display: inline-block; width: 12px; height: 12px; border: 2px solid rgba(124,58,237,0.3); border-top-color: #7c3aed; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 4px; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .llm-section { margin-top: 1.5rem; }
     .llm-btn { background: #7c3aed; }
     .llm-btn:hover { opacity: 0.85; }
+    #reportBtn { background: #059669; margin-left: 0.5rem; }
+    #reportBtn:hover { opacity: 0.85; }
+    #reportBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .llm-progress-wrap { display: none; margin-top: 0.6rem; background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 8px; padding: 0.75rem 1rem; }
+    .llm-progress-wrap.show { display: block; }
+    .llm-progress-label { font-size: 0.78rem; color: #9ca3af; margin-bottom: 0.4rem; white-space: pre-wrap; }
+    .llm-progress-bar-bg { background: #2d2f3d; border-radius: 4px; height: 8px; overflow: hidden; }
+    .llm-progress-bar { height: 100%; background: linear-gradient(90deg, #7c3aed, #a855f7); border-radius: 4px; width: 0%; transition: width 0.5s ease; }
+    .llm-progress-time { font-size: 0.72rem; color: #6b7280; margin-top: 0.3rem; display: flex; justify-content: space-between; }
+    .llm-progress-time span { min-width: 80px; }
+    .llm-progress-time .elapsed { text-align: left; }
+    .llm-progress-time .remaining { text-align: right; }
     .llm-result { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1.25rem; margin-top: 1rem; font-size: 0.875rem; line-height: 1.7; color: #d1d5db; white-space: pre-wrap; }
 
     /* Settings gear icon */
@@ -235,18 +282,53 @@
     <!-- LLM Analysis (global) -->
     <div class="llm-section" id="globalLlM">
       <button class="btn btn-primary llm-btn" id="llmBtn" disabled>🤖 全量 LLM 根因分析</button>
+      <button class="btn btn-primary llm-btn" id="reportBtn" disabled onclick="downloadReport()">📄 下载分析报告</button>
+      <div id="llmProgress" class="llm-progress-wrap">
+        <div class="llm-progress-label" id="llmProgressLabel">正在分析日志模式与硬件关联性...</div>
+        <div class="llm-progress-bar-bg"><div class="llm-progress-bar" id="llmProgressBar"></div></div>
+        <div class="llm-progress-time">
+          <span class="elapsed" id="llmElapsed">已耗时: 0s</span>
+          <span class="remaining" id="llmRemaining">预计剩余: 计算中...</span>
+        </div>
+      </div>
       <div id="llmResult" class="llm-result" style="display:none"></div>
     </div>
 
     <!-- Charts -->
     <div class="chart-grid">
       <div class="chart">
-        <div class="chart-title">异常时间线</div>
+        <div class="chart-title">
+          <span>异常时间线</span>
+          <div>
+            <span class="chip active" id="tl-all" onclick="setTimelineMode('all')">全部</span>
+            <span class="chip" id="tl-hw" onclick="setTimelineMode('hw')">硬件相关</span>
+          </div>
+        </div>
         <div id="timelineChart"></div>
       </div>
       <div class="chart">
-        <div class="chart-title">模块分布</div>
+        <div class="chart-title">模块分布 <span style="font-size:0.7rem;color:#4b5563">(点击扇区查看详情)</span></div>
         <div id="pieChart"></div>
+        <div class="module-panel" id="modulePanel">
+          <div class="module-panel-header">
+            <span class="module-panel-title" id="modulePanelTitle">-</span>
+            <button class="module-panel-close" onclick="closeModulePanel()">✕</button>
+          </div>
+          <div class="module-panel-entries" id="modulePanelEntries"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hardware Summary -->
+    <div class="hw-section" id="hwSection">
+      <h3>💡 硬件相关事件 <span style="font-size:0.7rem;color:#6b7280;font-weight:normal">（CPU / 内存 / 硬盘 / RAID / 网卡）</span></h3>
+      <div class="hw-chips" id="hwChips"></div>
+      <div class="hw-detail-panel" id="hwDetailPanel">
+        <div class="hw-detail-header">
+          <span id="hwDetailTitle">-</span>
+          <button class="hw-detail-close" onclick="closeHwDetail()">✕</button>
+        </div>
+        <div id="hwDetailEntries"></div>
       </div>
     </div>
 
@@ -336,6 +418,9 @@
 <script>
 let analysisData = null;
 let allEntries = []; // raw list
+let timelineMode = 'all'; // 'all' | 'hw'
+let pieChart = null;
+let timelineChart = null;
 
 // ---------------------------------------------------------------------------
 // Filter + Pagination state
@@ -604,6 +689,7 @@ function renderResults(data) {
   document.getElementById('ruleCount').textContent = s.rule_anomaly_count;
   document.getElementById('statCount').textContent = s.stat_anomaly_count;
 
+  renderHardware(data);
   renderTimeline(data);
   renderPie(data);
   renderRuleAnomalies(data.rule_anomalies);
@@ -612,46 +698,315 @@ function renderResults(data) {
   renderPagination();
 
   document.getElementById('llmBtn').disabled = false;
+  document.getElementById('reportBtn').disabled = false;
+}
+
+// ---------------------------------------------------------------------------
+// Hardware highlight
+// ---------------------------------------------------------------------------
+const HW_KEYWORDS = {
+  cpu:   ['cpu', 'core', 'processor', 'core_temp', 'package_temp', 'cpu_temp', 'tempera'],
+  mem:   ['mem', 'memory', 'dram', 'ecc', 'ram', 'memtemp'],
+  disk:  ['disk', 'nvme', 'ssd', 'hdd', 'sata', 'pcie', 'storage', 'block', 'read error', 'write error', 'media'],
+  raid:  ['raid', 'lsi', 'megaraid', 'Perc', 'hba', 'raid卡', '阵列'],
+  net:   ['eth', 'nic', 'network', 'ethernet', 'port', 'link', 'mac', 'tcp', 'udp', 'packet', 'rx', 'tx'],
+};
+
+function isHardware(msg) {
+  if (!msg) return null;
+  const lower = msg.toLowerCase();
+  for (const [hw, kws] of Object.entries(HW_KEYWORDS)) {
+    for (const kw of kws) {
+      if (lower.includes(kw)) return hw;
+    }
+  }
+  return null;
+}
+
+function renderHardware(data) {
+  const hwCounts = {};
+  const hwEntries = {};
+  for (const e of data.parsed_log.entries) {
+    const msg = (e.message || '') + ' ' + (e.module || '');
+    const hw = isHardware(msg);
+    if (hw) {
+      hwCounts[hw] = (hwCounts[hw] || 0) + 1;
+      if (!hwEntries[hw]) hwEntries[hw] = [];
+      if (hwEntries[hw].length < 3) hwEntries[hw].push(e);
+    }
+  }
+
+  const chipsEl = document.getElementById('hwChips');
+  const labels = { cpu: 'CPU', mem: '内存', disk: '硬盘', raid: 'RAID卡', net: '网卡' };
+  const total = Object.values(hwCounts).reduce((a, b) => a + b, 0);
+
+  if (total === 0) {
+    chipsEl.innerHTML = '<span class="hw-empty">未检测到明显的硬件相关日志</span>';
+    return;
+  }
+
+  chipsEl.innerHTML = Object.entries(hwCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([hw, count]) => `
+      <div class="hw-chip ${hw}" onclick="showHwDetail('${hw}')">
+        <span>${labels[hw]}</span>
+        <span class="hw-count">${count}</span>
+      </div>
+    `).join('');
+}
+
+function showHwDetail(hw) {
+  const allEntries = analysisData.parsed_log.entries.filter(e => {
+    const msg = (e.message || '') + ' ' + (e.module || '');
+    return isHardware(msg) === hw;
+  });
+  const labels = { cpu: 'CPU', mem: '内存', disk: '硬盘', raid: 'RAID卡', net: '网卡' };
+  document.getElementById('hwDetailTitle').textContent = labels[hw] + ' 详情';
+  const entryHtml = allEntries.slice(0, 20).map(e => {
+    const ts = e.timestamp ? new Date(e.timestamp).toLocaleString('zh-CN', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).replace(/\//g,'-') : 'N/A';
+    return `<div class="hw-entry"><span class="ts">[${ts}]</span>[${e.module || '-'}] ${(e.message || '').substring(0, 120)}</div>`;
+  }).join('');
+  document.getElementById('hwDetailEntries').innerHTML = entryHtml || '<div class="hw-entry">无详细日志</div>';
+  document.getElementById('hwDetailPanel').classList.add('open');
+
+  // Inject analyze button if not present
+  let analyzeBtn = document.getElementById('hwAnalyzeBtn');
+  if (!analyzeBtn) {
+    const btn = document.createElement('button');
+    btn.id = 'hwAnalyzeBtn';
+    btn.className = 'btn-llm-single';
+    btn.style.cssText = 'margin-top:0.5rem;font-size:0.8rem;';
+    btn.onclick = function() { analyzeHw(hw, allEntries, labels[hw]); };
+    document.getElementById('hwDetailPanel').appendChild(btn);
+    analyzeBtn = btn;
+  }
+  analyzeBtn.dataset.hw = hw;
+  analyzeBtn.innerHTML = '🤖 分析此异常';
+  analyzeBtn.disabled = false;
+}
+
+async function analyzeHw(hw, entries, label) {
+  const btn = document.getElementById('hwAnalyzeBtn');
+  // Result element lives outside the panel so it's not affected by display:none
+  let resultEl = document.getElementById('hwLlmResult');
+  if (!resultEl) {
+    resultEl = document.createElement('div');
+    resultEl.id = 'hwLlmResult';
+    resultEl.className = 'llm-card-result';
+    resultEl.style.cssText = 'display:none;margin-top:0.5rem';
+    document.getElementById('hwDetailPanel').parentNode.insertBefore(resultEl, document.getElementById('hwDetailPanel').nextSibling);
+  }
+
+  const isLoading = btn.innerHTML.includes('llm-spinner');
+  // Toggle: click again while loading/done collapses the result
+  if (isLoading || resultEl.classList.contains('show')) {
+    resultEl.classList.remove('show');
+    resultEl.style.display = 'none';
+    btn.innerHTML = '🤖 分析此异常';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="llm-spinner"></span>分析中...';
+  resultEl.classList.remove('show');
+  resultEl.style.display = 'none';
+  resultEl.textContent = '';
+
+  try {
+    const payload = {
+      anomaly_type: 'hw',
+      rule_id: hw,
+      rule_description: label + '硬件异常',
+      severity: 'ERROR',
+      count: entries.length,
+      entries: entries.slice(0, 20).map(e => ({ timestamp: e.timestamp, module: e.module, level: e.level, message: e.message })),
+    };
+    const resp = await fetch('/api/analyze/llm-single', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!resp.ok) throw new Error(await resp.text());
+    const data = await resp.json();
+    resultEl.textContent = data.summary;
+    resultEl.style.display = 'block';
+    resultEl.classList.add('show');
+    btn.innerHTML = '🤖 收起分析';
+  } catch (err) {
+    resultEl.textContent = '分析失败: ' + err.message;
+    resultEl.style.display = 'block';
+    resultEl.classList.add('show');
+    btn.innerHTML = '🤖 分析此异常';
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function closeHwDetail() {
+  document.getElementById('hwDetailPanel').classList.remove('open');
+  const btn = document.getElementById('hwAnalyzeBtn');
+  if (btn) btn.remove();
+  const result = document.getElementById('hwLlmResult');
+  if (result) { result.style.display = 'none'; result.classList.remove('show'); }
+}
+
+// ---------------------------------------------------------------------------
+// Timeline
+// ---------------------------------------------------------------------------
+function setTimelineMode(mode) {
+  timelineMode = mode;
+  document.getElementById('tl-all').classList.toggle('active', mode === 'all');
+  document.getElementById('tl-hw').classList.toggle('active', mode === 'hw');
+  renderTimeline(analysisData);
 }
 
 function renderTimeline(data) {
-  const chart = echarts.init(document.getElementById('timelineChart'));
-  const entries = data.parsed_log.entries.filter(e => e.timestamp && e.level === 'ERROR');
+  if (timelineChart) { timelineChart.dispose(); timelineChart = null; }
+  timelineChart = echarts.init(document.getElementById('timelineChart'));
+
+  let entries = data.parsed_log.entries.filter(e => e.timestamp && e.level === 'ERROR');
+  if (timelineMode === 'hw') {
+    entries = entries.filter(e => isHardware((e.message || '') + ' ' + (e.module || '')));
+  }
+
+  if (!entries.length) {
+    timelineChart.setOption({
+      title: { text: '无数据', textStyle: { color: '#6b7280', fontSize: 14 }, left: 'center', top: 'center' },
+      xAxis: { show: false }, yAxis: { show: false }, series: [],
+    });
+    return;
+  }
+
+  // Determine best granularity: day if span > 3 days, else hour
+  const timestamps = entries.map(e => new Date(e.timestamp).getTime());
+  const spanMs = Math.max(...timestamps) - Math.min(...timestamps);
+  const useDay = spanMs > 3 * 86400000;
+
   const buckets = {};
   entries.forEach(e => {
-    if (!e.timestamp) return;
     const d = new Date(e.timestamp);
-    const h = (d.getMonth()+1).toString().padStart(2,'0') + '-' +
-               d.getDate().toString().padStart(2,'0') + ' ' +
-               d.getHours().toString().padStart(2,'0') + ':00';
-    buckets[h] = (buckets[h] || 0) + 1;
+    const key = useDay
+      ? `${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')}`
+      : `${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}:00`;
+    buckets[key] = (buckets[key] || 0) + 1;
   });
-  const sorted = Object.entries(buckets).sort((a, b) => a[0].localeCompare(b[0]));
 
-  chart.setOption({
-    tooltip: { trigger: 'axis' },
-    xAxis: { type: 'category', data: sorted.map(x => x[0]), axisLabel: { color: '#6b7280', fontSize: 10, rotate: 30, interval: 0 }, splitLine: { show: false } },
-    yAxis: { type: 'value', axisLabel: { color: '#6b7280' }, splitLine: { lineStyle: { color: '#2d2f3d' } } },
-    series: [{ data: sorted.map(x => x[1]), type: 'line', smooth: true, lineStyle: { color: '#ef4444' }, itemStyle: { color: '#ef4444' }, areaStyle: { color: 'rgba(239,68,68,0.1)' } }],
+  const sorted = Object.entries(buckets).sort((a, b) => a[0].localeCompare(b[0]));
+  const labelStep = Math.max(1, Math.floor(sorted.length / 12));
+  const allLabels = sorted.map(x => x[0]);
+
+  timelineChart.setOption({
+    tooltip: { trigger: 'axis', formatter: params => {
+      const p = params[0];
+      return `<b>${p.name}</b><br/>ERROR 次数：${p.value}`;
+    }},
+    xAxis: {
+      type: 'category',
+      data: allLabels,
+      axisLabel: {
+        color: '#6b7280', fontSize: 10, rotate: useDay ? 0 : 30,
+        interval: i => i % labelStep === 0,
+      },
+      splitLine: { show: false },
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: { color: '#6b7280', fontSize: 10 },
+      splitLine: { lineStyle: { color: '#2d2f3d' } },
+    },
+    series: [{
+      data: sorted.map(x => x[1]),
+      type: 'line', smooth: true,
+      lineStyle: { color: '#ef4444', width: 2 },
+      itemStyle: { color: '#ef4444' },
+      areaStyle: { color: 'rgba(239,68,68,0.15)' },
+      symbol: 'circle', symbolSize: 6,
+    }],
     grid: { top: 10, right: 10, bottom: 50, left: 40 },
   });
 }
 
-function renderPie(data) {
-  const chart = echarts.init(document.getElementById('pieChart'));
-  const counts = {};
-  data.parsed_log.entries.forEach(e => { if (e.module) counts[e.module] = (counts[e.module] || 0) + 1; });
-  const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 8);
+// ---------------------------------------------------------------------------
+// Pie with click-to-detail
+// ---------------------------------------------------------------------------
+function openModulePanel(moduleName, entries) {
+  document.getElementById('modulePanelTitle').textContent = '模块: ' + moduleName + ' (' + entries.length + '条)';
+  const el = document.getElementById('modulePanelEntries');
+  el.innerHTML = entries.slice(0, 20).map(e => `
+    <div class="entry-item">
+      <span class="entry-ts">${e.timestamp ? new Date(e.timestamp).toLocaleString('zh-CN') : ''}</span>
+      <span class="entry-msg">[${e.module || ''}] ${e.message || ''}</span>
+    </div>`).join('');
+  if (entries.length > 20) {
+    el.innerHTML += `<div class="entry-item" style="color:#6b7280">还有 ${entries.length - 20} 条...</div>`;
+  }
+  document.getElementById('modulePanel').classList.add('show');
+}
 
-  chart.setOption({
-    tooltip: { trigger: 'item' },
+function closeModulePanel() {
+  document.getElementById('modulePanel').classList.remove('show');
+}
+
+function renderPie(data) {
+  if (pieChart) { pieChart.dispose(); pieChart = null; }
+  pieChart = echarts.init(document.getElementById('pieChart'));
+
+  const counts = {};
+  const byModule = {};
+  data.parsed_log.entries.forEach(e => {
+    const m = e.module || '(unknown)';
+    counts[m] = (counts[m] || 0) + 1;
+    if (!byModule[m]) byModule[m] = [];
+    byModule[m].push(e);
+  });
+
+  const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10);
+  const total = data.parsed_log.entries.length;
+
+  pieChart.setOption({
+    tooltip: {
+      trigger: 'item',
+      formatter: params => `<b>${params.name}</b><br/>${params.value} 条 (${params.percent.toFixed(1)}%)`,
+    },
+    legend: { show: false },
     series: [{
-      type: 'pie', radius: ['30%', '75%'],
+      type: 'pie', radius: ['28%', '72%'],
       data: sorted.map(([name, val]) => ({ name, value: val })),
-      label: { color: '#9ca3af', fontSize: 11 },
-      itemStyle: { borderRadius: 4, borderColor: '#0f1117', borderWidth: 2 },
+      label: { show: false },
+      itemStyle: { borderRadius: 4, borderColor: '#1a1d27', borderWidth: 2 },
+      emphasis: {
+        itemStyle: { shadowBlur: 10, shadowColor: 'rgba(0,0,0,0.4)' },
+        label: { show: true, fontSize: 12, fontWeight: 'bold', color: '#fff',
+          formatter: '{b}\n{d}%' },
+      },
     }],
-    grid: { top: 10, right: 10, bottom: 30, left: 10 },
+  });
+
+  // Click to open panel
+  pieChart.off('click');
+  pieChart.on('click', params => {
+    if (params.name && byModule[params.name]) {
+      openModulePanel(params.name, byModule[params.name]);
+    }
+  });
+
+  // Also show name list below chart
+  const listEl = document.createElement('div');
+  listEl.style.cssText = 'margin-top:0.5rem;display:flex;flex-wrap:wrap;gap:0.3rem;';
+  sorted.slice(0, 8).forEach(([name, val]) => {
+    const pct = ((val / total) * 100).toFixed(1);
+    listEl.innerHTML += `<span style="font-size:0.72rem;padding:0.15rem 0.5rem;background:#141620;border:1px solid #2d2f3d;border-radius:4px;color:#9ca3af;cursor:pointer" title="${val}条" onclick="openModulePanel('${name.replace(/'/g,"\\'")}', byModule['${name.replace(/'/g,"\\'")}'])">${name} <span style="color:#6b7280">${pct}%</span></span>`;
+  });
+  const chartEl = document.getElementById('pieChart').parentElement;
+  // Remove old list if any
+  const old = chartEl.querySelector('.pie-name-list');
+  if (old) old.remove();
+  const wrapper = chartEl.appendChild(document.createElement('div'));
+  wrapper.className = 'pie-name-list';
+  wrapper.style.cssText = 'margin-top:0.5rem;display:flex;flex-wrap:wrap;gap:0.3rem;';
+  sorted.slice(0, 8).forEach(([name, val]) => {
+    const pct = ((val / total) * 100).toFixed(1);
+    wrapper.innerHTML += `<span style="font-size:0.72rem;padding:0.15rem 0.5rem;background:#141620;border:1px solid #2d2f3d;border-radius:4px;color:#9ca3af;cursor:pointer" title="${val}条" onclick="openModulePanel('${name.replace(/'/g,"\\'")}', byModule['${name.replace(/'/g,"\\'")}'])">${name} <span style="color:#6b7280">${pct}%</span></span>`;
   });
 }
 
@@ -770,37 +1125,208 @@ async function analyzeCard(btn, type) {
 }
 
 // ---------------------------------------------------------------------------
-// LLM Analysis
+// LLM Analysis with progress
 // ---------------------------------------------------------------------------
-document.getElementById('llmBtn').addEventListener('click', async () => {
-  const btn = document.getElementById('llmBtn');
-  const result = document.getElementById('llmResult');
-  btn.disabled = true;
-  btn.textContent = '🌀 LLM 分析中...';
-  result.style.display = 'none';
+const AVG_ANALYSIS_TIME = 25; // seconds, rolling average
+
+async function callLLMWithProgress(payload, label) {
+  const progressEl = document.getElementById('llmProgress');
+  const barEl = document.getElementById('llmProgressBar');
+  const labelEl = document.getElementById('llmProgressLabel');
+  const elapsedEl = document.getElementById('llmElapsed');
+  const remainingEl = document.getElementById('llmRemaining');
+
+  // Reset
+  barEl.style.width = '0%';
+  elapsedEl.textContent = '已耗时: 0s';
+  remainingEl.textContent = '预计剩余: 计算中...';
+  labelEl.textContent = label;
+  progressEl.classList.add('show');
+
+  const startTime = Date.now();
+  const stages = [
+    { t: 0,    w: '5%',  msg: '正在解析日志结构与模块分布...' },
+    { t: 3000, w: '20%', msg: '正在识别异常模式与时序特征...' },
+    { t: 8000, w: '45%', msg: '正在关联硬件事件与根因链...' },
+    { t: 14000,w: '70%', msg: '正在进行 LLM 深度推理...' },
+    { t: 20000,w: '88%', msg: '正在生成分析结论与建议...' },
+  ];
+  let stageIdx = 0;
+
+  const tick = () => {
+    const elapsed = (Date.now() - startTime) / 1000;
+    elapsedEl.textContent = `已耗时: ${Math.round(elapsed)}s`;
+    // Advance stage
+    while (stageIdx < stages.length - 1 && elapsed * 1000 >= stages[stageIdx].t) {
+      stageIdx++;
+    }
+    labelEl.textContent = stages[stageIdx].msg;
+    barEl.style.width = stages[stageIdx].w;
+    // Predict remaining
+    if (elapsed > 3) {
+      const pct = parseFloat(stages[stageIdx].w) / 100;
+      const totalEst = elapsed / pct;
+      const remaining = Math.max(1, Math.round(totalEst - elapsed));
+      remainingEl.textContent = `预计剩余: ${remaining}s`;
+    }
+  };
+
+  const intervalId = setInterval(tick, 500);
+  tick();
 
   try {
     const resp = await fetch('/api/analyze/llm', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        anomalies: analysisData.rule_anomalies,
-        statistical_anomalies: analysisData.statistical_anomalies,
-        top_entries: analysisData.parsed_log.entries.filter(e => e.level === 'ERROR').slice(0, 30),
-      }),
+      body: JSON.stringify(payload),
     });
+    clearInterval(intervalId);
     if (!resp.ok) throw new Error(await resp.text());
     const data = await resp.json();
+    // Finish bar
+    barEl.style.width = '100%';
+    remainingEl.textContent = '已完成';
+    return data;
+  } catch (err) {
+    clearInterval(intervalId);
+    throw err;
+  }
+}
+
+document.getElementById('llmBtn').addEventListener('click', async () => {
+  const btn = document.getElementById('llmBtn');
+  const result = document.getElementById('llmResult');
+  btn.disabled = true;
+  result.style.display = 'none';
+  result.classList.remove('show');
+
+  try {
+    const data = await callLLMWithProgress({
+      anomalies: analysisData.rule_anomalies,
+      statistical_anomalies: analysisData.statistical_anomalies,
+      top_entries: analysisData.parsed_log.entries.filter(e => e.level === 'ERROR').slice(0, 30),
+    }, '正在分析日志模式与硬件关联性...');
     result.textContent = data.summary;
+    result.classList.add('show');
     result.style.display = 'block';
   } catch (err) {
     result.textContent = 'LLM 分析失败: ' + err.message;
     result.style.display = 'block';
+    result.classList.add('show');
   } finally {
     btn.disabled = false;
-    btn.textContent = '🤖 LLM 根因分析';
+    document.getElementById('llmProgress').classList.remove('show');
   }
 });
+
+async function downloadReport() {
+  const btn = document.getElementById('reportBtn');
+  btn.disabled = true;
+  document.getElementById('llmProgress').classList.remove('show');
+
+  try {
+    const { summary } = await callLLMWithProgress({
+      anomalies: analysisData.rule_anomalies,
+      statistical_anomalies: analysisData.statistical_anomalies,
+      top_entries: analysisData.parsed_log.entries.filter(e => e.level === 'ERROR').slice(0, 50),
+    }, '正在生成深度分析报告，请稍候...');
+
+    // Build full MD report (same as before)
+    const s = analysisData.summary;
+    const hwKeywords = {
+      cpu: ['cpu', 'core', 'processor', 'core_temp', 'package_temp', 'cpu_temp', 'tempera'],
+      mem: ['mem', 'memory', 'dram', 'ecc', 'ram', 'memtemp'],
+      disk: ['disk', 'nvme', 'ssd', 'hdd', 'sata', 'pcie', 'storage', 'block', 'read error', 'write error', 'media'],
+      raid: ['raid', 'lsi', 'megaraid', 'perc', 'hba', 'raid卡', '阵列'],
+      net: ['eth', 'nic', 'network', 'ethernet', 'port', 'link', 'mac', 'tcp', 'udp', 'packet', 'rx', 'tx'],
+    };
+    function isHW(msg) {
+      if (!msg) return null;
+      const lower = msg.toLowerCase();
+      for (const [hw, kws] of Object.entries(hwKeywords)) {
+        for (const kw of kws) { if (lower.includes(kw)) return hw; }
+      }
+      return null;
+    }
+    const hwCounts = { cpu: 0, mem: 0, disk: 0, raid: 0, net: 0 };
+    const hwLabels = { cpu: 'CPU', mem: '内存', disk: '硬盘/存储', raid: 'RAID卡', net: '网卡/网络' };
+    for (const e of (analysisData.parsed_log.entries || [])) {
+      const ht = isHW((e.message || '') + ' ' + (e.module || ''));
+      if (ht) hwCounts[ht]++;
+    }
+    const hwTotal = Object.values(hwCounts).reduce((a, b) => a + b, 0);
+
+    const now = new Date().toLocaleString('zh-CN');
+    const logName = analysisData.manifest?.name || 'unknown';
+
+    let md = '';
+    md += `# BMC 日志深度分析报告\n\n`;
+    md += `> 生成时间：${now}  \n`;
+    md += `> 日志文件：${logName}\n\n`;
+    md += `## 📊 日志概览\n\n`;
+    md += `| 指标 | 数值 |\n|------|------|\n`;
+    md += `| 总事件数 | ${s.total_entries.toLocaleString()} |\n`;
+    md += `| ERROR | ${s.error_count.toLocaleString()} |\n`;
+    md += `| WARNING | ${s.warning_count.toLocaleString()} |\n`;
+    md += `| 规则异常 | ${s.rule_anomaly_count} |\n`;
+    md += `| 统计异常 | ${s.stat_anomaly_count} |\n`;
+    md += `| 时间范围 | ${analysisData.parsed_log.time_range?.[0] || 'N/A'} ~ ${analysisData.parsed_log.time_range?.[1] || 'N/A'} |\n\n`;
+    md += `## 💡 硬件相关事件统计\n\n`;
+    if (hwTotal > 0) {
+      md += `共检测到 **${hwTotal} 条**硬件相关事件：\n\n`;
+      for (const [hw, cnt] of Object.entries(hwCounts)) {
+        if (cnt > 0) md += `- **${hwLabels[hw]}**：${cnt} 条\n`;
+      }
+      md += `\n`;
+    } else {
+      md += `未检测到明显的硬件相关关键词。\n\n`;
+    }
+    md += `## 🚨 规则异常（按严重程度排序）\n\n`;
+    for (const a of (analysisData.rule_anomalies || [])) {
+      md += `### [${a.severity}] ${a.rule_description}\n`;
+      md += `- 出现次数：${a.count}  \n`;
+      md += `- 首次发生：${a.first_seen || 'N/A'}  \n`;
+      md += `- 最后发生：${a.last_seen || 'N/A'}\n\n`;
+      md += `**采样日志：**\n`;
+      for (const e of (a.entries || []).slice(0, 5)) {
+        const ts = e.timestamp ? new Date(e.timestamp).toLocaleString('zh-CN', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).replace(/\//g,'-') : 'N/A';
+        md += `- \`[${ts}]\` [\`${e.module}\`] ${e.message}\n`;
+      }
+      md += `\n`;
+    }
+    if ((analysisData.statistical_anomalies || []).length > 0) {
+      md += `## 📈 统计异常\n\n`;
+      for (const a of analysisData.statistical_anomalies) {
+        md += `### ${a.metric} - ${a.description}\n`;
+        md += `- 时间窗口：${a.window_start} ~ ${a.window_end}  \n`;
+        md += `- 异常阈值：${a.threshold}  \n`;
+        md += `- 峰值：${a.peak_value}\n\n`;
+      }
+    }
+    md += `## 🔍 LLM 深度根因分析\n\n`;
+    md += `> 以下内容由 LLM（MiniMax）基于上述日志数据生成，融合了模式识别、时序分析和硬件知识。\n\n`;
+    md += summary + `\n\n`;
+    md += `---\n\n`;
+    md += `*本报告由 BMC 日志分析工具自动生成*\n`;
+
+    // Download
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const ts = new Date().toISOString().slice(0, 10);
+    a.download = `bmc-report-${ts}.md`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    alert('报告生成失败: ' + err.message);
+  } finally {
+    btn.disabled = false;
+    document.getElementById('llmProgress').classList.remove('show');
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Settings Modal
@@ -904,17 +1430,28 @@ async function loadHistory() {
 
 async function reanalyzeFromHistory(uuid) {
   document.getElementById('results').classList.remove('show');
+  document.getElementById('llmResult').style.display = 'none';
   document.getElementById('loading').classList.add('show');
   try {
     const resp = await fetch(`/api/reanalyze/${uuid}`, { method: 'POST' });
     if (!resp.ok) throw new Error(await resp.text());
     const data = await resp.json();
+    analysisData = data;
+    allEntries = data.parsed_log.entries;
     state.page = 1;
+    state.search = '';
+    state.regex = false;
+    state.timeFrom = null;
+    state.timeTo = null;
+    state.levels = { ERROR: true, WARNING: true, INFO: true };
     document.getElementById('results').classList.add('show');
     document.getElementById('regexMode').checked = false;
     document.getElementById('lv-err').checked = true;
     document.getElementById('lv-warn').checked = true;
     document.getElementById('lv-info').checked = true;
+    document.getElementById('logSearch').value = '';
+    document.getElementById('timeFrom').value = '';
+    document.getElementById('timeTo').value = '';
     renderResults(data);
   } catch (err) {
     alert('重新分析失败: ' + err.message);

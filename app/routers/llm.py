@@ -78,6 +78,48 @@ async def post_settings(req: LLMSettingsRequest):
 def build_prompt(req: LLMAnalysisRequest) -> str:
     lines = ["# BMC 日志异常分析报告", ""]
 
+    # Hardware summary
+    HW_KW = {
+        'cpu': ['cpu', 'core', 'processor', 'core_temp', 'package_temp'],
+        'mem': ['mem', 'memory', 'dram', 'ecc', 'ram'],
+        'disk': ['disk', 'nvme', 'ssd', 'hdd', 'sata', 'pcie', 'block'],
+        'raid': ['raid', 'lsi', 'megaraid', 'perc', 'hba', '阵列'],
+        'net': ['eth', 'nic', 'network', 'ethernet', 'port', 'link', 'tcp', 'udp'],
+    }
+
+    def hw_type(msg):
+        if not msg:
+            return None
+        lower = msg.lower()
+        for hw, kws in HW_KW.items():
+            for kw in kws:
+                if kw in lower:
+                    return hw
+        return None
+
+    # Count hardware-related entries
+    hw_counts = {k: 0 for k in HW_KW}
+    hw_entries = {k: [] for k in HW_KW}
+    for e in (req.top_entries or []):
+        msg = (e.message or '') + ' ' + (e.module or '')
+        ht = hw_type(msg)
+        if ht:
+            hw_counts[ht] = hw_counts.get(ht, 0) + 1
+            if len(hw_entries[ht]) < 3:
+                hw_entries[ht].append(e)
+
+    hw_total = sum(hw_counts.values())
+    if hw_total > 0:
+        hw_labels = {'cpu': 'CPU', 'mem': '内存', 'disk': '硬盘/存储', 'raid': 'RAID卡', 'net': '网卡/网络'}
+        lines.append("## 硬件相关事件概览")
+        for hw, cnt in sorted(hw_counts.items(), key=lambda x: -x[1]):
+            if cnt > 0:
+                lines.append(f"- **{hw_labels[hw]}**：{cnt} 条")
+                for e in hw_entries[hw][:2]:
+                    ts = _fmt_ts(e.timestamp)
+                    lines.append(f"  - [{ts}] [{e.module}] {e.message[:80]}")
+        lines.append("")
+
     if req.anomalies:
         lines.append("## 检测到的异常模式")
         for a in req.anomalies[:10]:
@@ -109,9 +151,9 @@ def build_prompt(req: LLMAnalysisRequest) -> str:
 
     lines.append("""请分析以上日志，回答：
 1. 这些异常最可能的根本原因是什么？
-2. 哪些异常需要优先处理？
+2. 哪些异常需要优先处理？（特别是硬件相关）
 3. 建议的解决步骤或进一步的调查方向？
-请用中文回答，简洁专业，突出重点。""")
+请用中文回答，简洁专业，突出重点。重点关注 CPU、内存、硬盘/RAID、网络等硬件问题。""")
 
     return "\n".join(lines)
 
@@ -133,7 +175,7 @@ def build_single_prompt(anomaly_type: str, rule_id: str, rule_description: str,
         lines.append(f"- [{ts}] [{_get_entry(e, 'module')}] {_get_entry(e, 'message')}")
     lines.append("")
     lines.append("""请分析这条异常，回答：
-1. 最可能的根本原因是什么？
+1. 最可能的根本原因是什么？（是否涉及 CPU/内存/硬盘/RAID/网卡等硬件？）
 2. 建议的解决步骤或进一步调查方向？
 请用中文回答，简洁专业，突出重点（3-5句话为宜）。""")
     return "\n".join(lines)
