@@ -2,7 +2,7 @@
 
 Intelligent BMC (Baseboard Management Controller) log parsing and analysis tool for Huawei iBMC servers. Supports automatic format detection, anomaly detection, and LLM-powered root cause analysis.
 
-Chinese version: [README_zh.md](README_zh.md)
+Chinese version: [README.md](README.md)
 
 ## Features
 
@@ -12,12 +12,13 @@ Chinese version: [README_zh.md](README_zh.md)
 - Huawei iBMC Dump packages: automatically extracts nested archives and intelligently selects the most relevant log files
 
 ### Anomaly Detection
-- **Rule-based detection**: Expert rules covering SSL handshake failures, EDMA link loss, memory allocation issues, host registration anomalies, and more
+- **Rule-based detection**: Expert rules covering SSL handshake failures, EDMA link loss, memory allocation issues, host registration anomalies, RAID array failures, physical disk failures, CPU errors, and more
 - **Statistical detection**: Entry-level distribution analysis to automatically surface anomalous modules/levels
+- **Hardware event classification**: CPU / Memory / Disk / RAID / Network hardware events grouped independently
 
 ### LLM Root Cause Analysis
-- **Full analysis**: Batch analysis of all rule-based + statistical anomalies
-- **Per-card analysis**: Click the "🤖 Analyze" button on any anomaly card to analyze that specific anomaly
+- **Full analysis**: Batch analysis of all rule-based + statistical anomalies with 5-stage progress bar
+- **Per-card analysis**: Click the "🤖 Analyze" button on any anomaly card or hardware category to analyze that specific anomaly
 - Configurable LLM provider (Minimax GLM, etc.) with API key support
 
 ### All Events
@@ -29,8 +30,13 @@ Chinese version: [README_zh.md](README_zh.md)
 
 ### Stats Overview
 - Error / warning count cards
-- Top 5 modules by frequency
-- Rule anomaly / statistical anomaly counts
+- Module distribution donut chart (click sector for details)
+- Anomaly timeline distribution chart
+- Rule anomaly / statistical anomaly / hardware event counts
+
+### Analysis Report
+- One-click download of Markdown format analysis report
+- Includes stats summary, hardware events, rule anomaly samples, and statistical anomaly details
 
 ## Tech Stack
 
@@ -41,6 +47,7 @@ Chinese version: [README_zh.md](README_zh.md)
 | Log Parsing | Python regex + structured parsers (multi-format) |
 | Anomaly Detection | Expert rule engine + statistical models |
 | LLM Integration | Minimax GLM API (mmx CLI) |
+| Charts | ECharts |
 | Deployment | Docker / Docker Compose |
 | Testing | pytest |
 
@@ -74,7 +81,8 @@ http://localhost:8088
 2. The system auto-detects the format and parses the log
 3. View the stats overview and anomaly detection results
 4. Click "🤖 Full LLM Analysis" for batch analysis
-5. Or click the "🤖 Analyze" button on any anomaly card for single-entry analysis
+5. Or click the "🤖 Analyze" button on any anomaly card or hardware category for single-entry analysis
+6. Click "📄 Download Report" to export the Markdown report
 
 ## Project Structure
 
@@ -122,8 +130,8 @@ app/
 | Method | Path | Description |
 |--------|------|-------------|
 | POST | `/api/upload` | Upload log file, returns parsed result + detections |
-| POST | `/api/llm` | Full LLM root cause analysis |
-| POST | `/api/llm-single` | Single anomaly LLM analysis |
+| POST | `/api/analyze/llm` | Full LLM root cause analysis |
+| POST | `/api/analyze/llm-single` | Single anomaly LLM analysis |
 | GET | `/` | Frontend page |
 
 ## Docker Deployment

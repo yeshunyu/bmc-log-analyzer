@@ -2,7 +2,7 @@
 
 华为 iBMC 服务器 BMC 日志解析与智能分析工具。支持日志格式自动识别、异常检测与 LLM 根因分析。
 
-English version: [README.md](README_en.md)
+English version: [README_en.md](README_en.md)
 
 ## 功能特性
 
@@ -12,12 +12,13 @@ English version: [README.md](README_en.md)
 - 华为一键收集包（iBMC Dump）自动解析内部嵌套归档，智能选择最关键的日志文件
 
 ### 异常检测
-- **规则异常检测**：基于专家规则（SSL握手失败、EDMA链路丢失、内存分配慢、主机注册异常等）
+- **规则异常检测**：基于专家规则（SSL握手失败、EDMA链路丢失、内存分配慢、主机注册异常、RAID阵列故障、物理磁盘故障、CPU错误等）
 - **统计异常检测**：基于条目级别分布的统计模型，自动发现异常模块/级别
+- **硬件事件分类**：CPU / 内存 / 硬盘 / RAID卡 / 网卡 硬件事件独立分组展示
 
 ### LLM 根因分析
-- **全量分析**：对所有规则+统计异常进行批量分析
-- **单条分析**：点击任意异常卡片右侧的「🤖 分析」按钮，单独分析该条异常
+- **全量分析**：对所有规则+统计异常进行批量分析，带5阶段进度条
+- **单条分析**：点击任意异常卡片或硬件分类的「🤖 分析此异常」按钮，单独分析该条异常
 - 支持配置 LLM Provider（Minimax GLM 等）和 API Key
 
 ### 全部事件
@@ -29,8 +30,13 @@ English version: [README.md](README_en.md)
 
 ### 统计概览
 - 错误/警告计数卡片
-- 模块分布 Top5
-- 规则异常数 / 统计异常数
+- 模块分布环形图（点击扇区查看详情）
+- 异常时间线分布图
+- 规则异常数 / 统计异常数 / 硬件事件数
+
+### 分析报告
+- 一键下载 Markdown 格式分析报告
+- 包含统计摘要、硬件事件汇总、规则异常采样、统计异常详情的完整报告
 
 ## 技术栈
 
@@ -41,6 +47,7 @@ English version: [README.md](README_en.md)
 | 日志解析 | Python 正则 + 结构化解析器（多格式） |
 | 异常检测 | 专家规则引擎 + 统计模型 |
 | LLM 集成 | Minimax GLM API（mmx CLI） |
+| 图表 | ECharts |
 | 部署 | Docker / Docker Compose |
 | 测试 | pytest |
 
@@ -74,7 +81,8 @@ http://localhost:8088
 2. 系统自动识别格式并解析
 3. 查看统计概览、异常检测结果
 4. 点击「🤖 全量 LLM 根因分析」进行批量分析
-5. 或点击任意异常卡片右侧的「🤖 分析」按钮进行单条分析
+5. 或点击任意异常卡片 / 硬件分类的「🤖 分析此异常」按钮进行单条分析
+6. 点击「📄 下载分析报告」导出 Markdown 报告
 
 ## 目录结构
 
@@ -110,7 +118,7 @@ app/
 | app_debug_log | app_debug_log_all, ipmi_mass_operate_log |
 | agentless | agentless_dfl |
 | FDM | dfl 文件 |
-| RAID/L SI MegaRAID | raid, lsi |
+| RAID/LSI MegaRAID | raid, lsi |
 | IPMI/SEL | ipmi, sel |
 | syslog | linux_kernel_log, dmesg |
 | maintenance | maintenance_log, md_so_maintenance_log |
@@ -122,8 +130,8 @@ app/
 | 方法 | 路径 | 说明 |
 |------|------|------|
 | POST | `/api/upload` | 上传日志文件，返回解析+检测结果 |
-| POST | `/api/llm` | 全量 LLM 根因分析 |
-| POST | `/api/llm-single` | 单条异常 LLM 分析 |
+| POST | `/api/analyze/llm` | 全量 LLM 根因分析 |
+| POST | `/api/analyze/llm-single` | 单条异常 LLM 分析 |
 | GET | `/` | 前端页面 |
 
 ## Docker 部署
