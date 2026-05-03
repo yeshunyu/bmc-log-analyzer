@@ -10,6 +10,7 @@ English version: [README_en.md](README_en.md)
 - 支持多种格式自动识别：app_debug_log、agentless、FDM、RAID、SEL/IPMI、syslog、maintenance、nginx_access 等
 - 自动识别并解压 `.log`、`.txt`、`.gz`、`.tar.gz` 文件
 - 华为一键收集包（iBMC Dump）自动解析内部嵌套归档，智能选择最关键的日志文件
+- 大文件保护：自动采样（每格式最多 200 行），避免 OOM
 
 ### 异常检测
 - **规则异常检测**：基于专家规则（SSL握手失败、EDMA链路丢失、内存分配慢、主机注册异常、RAID阵列故障、物理磁盘故障、CPU错误、NPU昇腾设备故障、CANN运行时错误等，共50+条规则）
