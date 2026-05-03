@@ -17,7 +17,7 @@ REMOTE_RE = re.compile(
 )
 
 IPMI_FORMAT = "ipmi"
-IPMI_PATTERNS = ["ipmi", "sel"]
+IPMI_PATTERNS = ["ipmi"]
 
 FORMAT_NAME = IPMI_FORMAT
 FILE_PATTERNS = IPMI_PATTERNS

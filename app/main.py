@@ -137,7 +137,7 @@ async def upload_log(file: UploadFile) -> AnalysisResult:
         raise HTTPException(status_code=400, detail="No filename provided")
 
     suffix = Path(file.filename).suffix.lower()
-    if suffix not in (".log", ".txt", ".gz", ".tar.gz", "") and not suffix.startswith("."):
+    if suffix not in (".log", ".txt", ".gz", ".tar.gz", ""):
         raise HTTPException(status_code=400, detail="Unsupported file type")
 
     # Save uploaded file
