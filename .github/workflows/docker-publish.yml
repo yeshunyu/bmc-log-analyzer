@@ -21,11 +21,12 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build and push (multi-arch)
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
+          platforms: linux/amd64,linux/386
           tags: |
             ${{ secrets.DOCKER_HUB_USERNAME }}/bmc-log-analyzer:latest
             ${{ secrets.DOCKER_HUB_USERNAME }}/bmc-log-analyzer:${{ github.sha }}
