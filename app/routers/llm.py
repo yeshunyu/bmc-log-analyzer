@@ -6,6 +6,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from app.schemas import LLMAnalysisRequest
 from app.config import get_llm_config, update_llm_config, LLMProvider
+from app.operation_log import log_operation
 
 router = APIRouter(prefix="/api/analyze", tags=["analysis"])
 
@@ -197,9 +198,19 @@ def _call_minimax(prompt: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Generic OpenAI-compatible custom API driver
+# Generic OpenAI-compatible custom API driver (auto-detects Anthropic vs OpenAI by URL)
 # ---------------------------------------------------------------------------
 def _call_custom(prompt: str, api_key: str, api_base: str, model: str) -> str:
+    import urllib.request
+    import urllib.error
+
+    # Auto-detect: Anthropic-compatible endpoint uses /anthropic in path
+    if "/anthropic" in api_base:
+        return _call_anthropic_compatible(prompt, api_key, api_base, model)
+    return _call_openai_compatible(prompt, api_key, api_base, model)
+
+
+def _call_openai_compatible(prompt: str, api_key: str, api_base: str, model: str) -> str:
     import urllib.request
     import urllib.error
 
@@ -230,6 +241,44 @@ def _call_custom(prompt: str, api_key: str, api_base: str, model: str) -> str:
         raise RuntimeError(f"响应格式错误: {e}")
 
 
+def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: str) -> str:
+    """Anthropic Messages API compatible driver (e.g. DeepSeek Anthropic endpoint)."""
+    import urllib.request
+    import urllib.error
+
+    # Anthropic model names start with claude-*
+    anthropic_model = model if model.startswith("claude-") else f"claude-{model}"
+
+    payload = {
+        "model": anthropic_model,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": 1024,
+        "temperature": 0.3,
+    }
+    body = json.dumps(payload).encode("utf-8")
+
+    # Anthropic-compatible base already contains /anthropic, just append /messages
+    req = urllib.request.Request(
+        f"{api_base.rstrip('/')}/messages",
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            "x-api-key": api_key,
+            "anthropic-version": "2023-06-01",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            return data["content"][0]["text"].strip()
+    except urllib.error.HTTPError as e:
+        body = e.read().decode("utf-8")
+        raise RuntimeError(f"API 错误 {e.code}: {body[:500]}")
+    except (KeyError, IndexError) as e:
+        raise RuntimeError(f"响应格式错误: {e}")
+
+
 # ---------------------------------------------------------------------------
 # Main analysis endpoint
 # ---------------------------------------------------------------------------
@@ -249,10 +298,17 @@ async def llm_analyze(req: LLMAnalysisRequest):
                 )
             result_text = _call_custom(prompt, cfg.api_key, cfg.api_base, cfg.model)
 
+        log_operation(
+            operation="llm_analysis",
+            detail=f"LLM 全文分析，provider={cfg.provider}，model={cfg.model}",
+            result="ok",
+            extra={"provider": cfg.provider, "model": cfg.model, "prompt_chars": len(prompt)},
+        )
         return {"summary": result_text}
     except subprocess.TimeoutExpired:
         raise HTTPException(status_code=504, detail="LLM 分析超时（2分钟）")
     except Exception as e:
+        log_operation(operation="llm_analysis", detail=f"LLM 分析失败: {e}", result="error", error=str(e))
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -279,8 +335,15 @@ async def llm_analyze_single(req: LLMSingleRequest):
                 )
             result_text = _call_custom(prompt, cfg.api_key, cfg.api_base, cfg.model)
 
+        log_operation(
+            operation="llm_analysis_single",
+            detail=f"LLM 单规则分析，provider={cfg.provider}，model={cfg.model}，rule={req.rule_id}",
+            result="ok",
+            extra={"provider": cfg.provider, "model": cfg.model, "rule_id": req.rule_id, "severity": req.severity},
+        )
         return {"summary": result_text}
     except subprocess.TimeoutExpired:
         raise HTTPException(status_code=504, detail="LLM 分析超时（2分钟）")
     except Exception as e:
+        log_operation(operation="llm_analysis_single", detail=f"LLM 单规则分析失败: {e}", result="error", error=str(e))
         raise HTTPException(status_code=500, detail=str(e))

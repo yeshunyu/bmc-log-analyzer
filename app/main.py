@@ -28,6 +28,7 @@ from app.parsers import get_parser
 from app.detectors.rule_based import detect_rule_anomalies
 from app.detectors.statistical import detect_statistical_anomalies
 from app.routers.llm import router as llm_router
+from app.operation_log import log_operation
 
 app = FastAPI(title="BMC Log Analyzer")
 app.include_router(llm_router)
@@ -39,7 +40,7 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 MANIFEST_PATH = UPLOAD_DIR / "manifest.json"
 
 # Files older than this many seconds are candidates for deletion
-TTL_SECONDS = 2 * 24 * 3600  # 2 days
+TTL_SECONDS = 24 * 3600  # 24 hours
 
 
 def _load_manifest() -> list[dict]:
@@ -201,6 +202,14 @@ async def upload_log(file: UploadFile) -> AnalysisResult:
         "parsers_used": {format_type: len(entries)},
     }
 
+    log_operation(
+        operation="upload",
+        detail=f"上传文件 {file.filename}，解析格式 {format_type}，{len(entries)} 条日志",
+        file_name=file.filename,
+        result="ok",
+        extra={"format": format_type, "entries": len(entries), "errors": parse_errors, "rule_anomalies": len(rule_anomalies), "stat_anomalies": len(stat_anomalies)},
+    )
+
     return AnalysisResult(
         parsed_log=parsed_log,
         rule_anomalies=rule_anomalies,
@@ -219,13 +228,45 @@ async def get_history():
     return [{"uuid": e["uuid"], "name": e["name"], "created_at": e["created_at"], "size": e["size"]} for e in manifest]
 
 
+@app.delete("/api/history")
+async def clear_history():
+    """Delete all history entries and their files from disk."""
+    deleted = 0
+    for p in UPLOAD_DIR.iterdir():
+        try:
+            if p.name.startswith("manifest"):
+                continue
+            if p.is_dir():
+                shutil.rmtree(p)
+            else:
+                p.unlink()
+            deleted += 1
+        except Exception:
+            pass
+    if MANIFEST_PATH.exists():
+        MANIFEST_PATH.unlink()
+    log_operation(operation="clear_history", detail=f"清空全部历史，删除 {deleted} 个文件", result="ok")
+    return {"deleted": deleted}
+
+
+@app.get("/api/operation-logs")
+async def get_operation_logs(days: int = 7):
+    """Return operation logs for the last N days (default 7)."""
+    from app.operation_log import read_logs
+    if days < 1 or days > 30:
+        days = 7
+    return read_logs(days=days)
+
+
 @app.delete("/api/reanalyze/{uuid}")
 async def delete_reanalyze(uuid: str):
     """Delete a previously uploaded file from disk and manifest."""
     import shutil
     deleted = False
+    original_name = ""
     for p in UPLOAD_DIR.iterdir():
         if p.name.startswith(f"{uuid}_"):
+            original_name = p.name[len(uuid) + 1:]
             if p.is_dir():
                 shutil.rmtree(p)
             else:
@@ -237,6 +278,7 @@ async def delete_reanalyze(uuid: str):
     manifest = _load_manifest()
     manifest = [e for e in manifest if e["uuid"] != uuid]
     _save_manifest(manifest)
+    log_operation(operation="delete_reanalyze", detail=f"删除历史文件 {uuid}", file_name=original_name, result="ok")
     return {"ok": True}
 
 @app.post("/api/reanalyze/{uuid}")
@@ -286,6 +328,13 @@ async def reanalyze(uuid: str):
         "stat_anomaly_count": len(stat_anomalies),
         "parsers_used": {format_type: len(entries)},
     }
+    log_operation(
+        operation="reanalyze",
+        detail=f"重新分析 {original_name}，{len(entries)} 条日志",
+        file_name=original_name,
+        result="ok",
+        extra={"format": format_type, "entries": len(entries), "rule_anomalies": len(rule_anomalies), "stat_anomalies": len(stat_anomalies)},
+    )
     return AnalysisResult(parsed_log=parsed_log, rule_anomalies=rule_anomalies, statistical_anomalies=stat_anomalies, summary=summary)
 
 
