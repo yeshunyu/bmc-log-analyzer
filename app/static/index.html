@@ -563,12 +563,12 @@ async function uploadFile(file) {
     state.timeTo = null;
     state.levels = { ERROR: true, WARNING: true, INFO: true };
     state.page = 1;
+    document.getElementById('results').classList.add('show');
     document.getElementById('regexMode').checked = false;
     document.getElementById('lv-err').checked = true;
     document.getElementById('lv-warn').checked = true;
     document.getElementById('lv-info').checked = true;
     renderResults(analysisData);
-    document.getElementById('results').classList.add('show');
   } catch (err) {
     alert('分析失败: ' + err.message);
   } finally {
