@@ -3,10 +3,17 @@ FROM python:3.11-slim AS builder
 
 WORKDIR /app
 
+# Install build dependencies for compiled Python packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    gcc \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy requirements first for caching
 COPY requirements.txt ./
 
-# Install into venv
+# Install into venv (no compiled deps needed for plain uvicorn)
 RUN python -m venv /app/.venv && \
     /app/.venv/bin/pip install --no-cache -r requirements.txt
 
