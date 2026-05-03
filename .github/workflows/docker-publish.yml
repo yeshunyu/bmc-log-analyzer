@@ -3,7 +3,14 @@ name: Build and Push Docker Image
 on:
   push:
     branches: [main]
+    tags:
+      - 'v*'
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag (e.g. v0.23)'
+        required: false
+        default: ''
 
 jobs:
   docker:
@@ -21,15 +28,32 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
+      - name: Determine image tags
+        id: tags
+        run: |
+          VERSION=""
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          elif [ -n "${{ github.ref_name }}" ] && [[ "${{ github.ref_name }}" == v* ]]; then
+            VERSION="${{ github.ref_name }}"
+          fi
+
+          TAGS="${{ secrets.DOCKER_HUB_USERNAME }}/bmc-log-analyzer:latest"
+          TAGS="$TAGS\n${{ secrets.DOCKER_HUB_USERNAME }}/bmc-log-analyzer:${{ github.sha }}"
+          if [ -n "$VERSION" ]; then
+            TAGS="$TAGS\n${{ secrets.DOCKER_HUB_USERNAME }}/bmc-log-analyzer:$VERSION"
+          fi
+          echo "tags<<EOF" >> $GITHUB_OUTPUT
+          echo "$TAGS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Build and push (multi-arch)
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          platforms: linux/amd64,linux/386
-          tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/bmc-log-analyzer:latest
-            ${{ secrets.DOCKER_HUB_USERNAME }}/bmc-log-analyzer:${{ github.sha }}
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ steps.tags.outputs.tags }}
           labels: |
             org.opencontainers.image.title=bmc-log-analyzer
             org.opencontainers.image.description=BMC日志解析+异常检测+LLM根因分析工具
