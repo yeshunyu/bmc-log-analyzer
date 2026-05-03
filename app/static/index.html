@@ -42,7 +42,8 @@
     .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
     .chart { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1rem; }
     .chart-title { font-size: 0.85rem; color: #9ca3af; margin-bottom: 0.75rem; }
-    #timelineChart, #pieChart { width: 100%; height: 220px; }
+    #timelineChart { width: 100%; height: 320px; }
+    #pieChart { width: 100%; height: 280px; }
 
     .tabs { display: flex; gap: 0.25rem; margin-bottom: 0.75rem; border-bottom: 1px solid #2d2f3d; }
     .tab { padding: 0.5rem 1rem; font-size: 0.85rem; color: #6b7280; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.2s; }
@@ -609,10 +610,10 @@ function renderTimeline(data) {
 
   chart.setOption({
     tooltip: { trigger: 'axis' },
-    xAxis: { type: 'category', data: sorted.map(x => x[0]), axisLabel: { color: '#6b7280', fontSize: 10 }, splitLine: { show: false } },
+    xAxis: { type: 'category', data: sorted.map(x => x[0]), axisLabel: { color: '#6b7280', fontSize: 10, rotate: 30, interval: 0 }, splitLine: { show: false } },
     yAxis: { type: 'value', axisLabel: { color: '#6b7280' }, splitLine: { lineStyle: { color: '#2d2f3d' } } },
     series: [{ data: sorted.map(x => x[1]), type: 'line', smooth: true, lineStyle: { color: '#ef4444' }, itemStyle: { color: '#ef4444' }, areaStyle: { color: 'rgba(239,68,68,0.1)' } }],
-    grid: { top: 10, right: 10, bottom: 30, left: 40 },
+    grid: { top: 10, right: 10, bottom: 50, left: 40 },
   });
 }
 
@@ -625,7 +626,7 @@ function renderPie(data) {
   chart.setOption({
     tooltip: { trigger: 'item' },
     series: [{
-      type: 'pie', radius: ['40%', '70%'],
+      type: 'pie', radius: ['30%', '75%'],
       data: sorted.map(([name, val]) => ({ name, value: val })),
       label: { color: '#9ca3af', fontSize: 11 },
       itemStyle: { borderRadius: 4, borderColor: '#0f1117', borderWidth: 2 },

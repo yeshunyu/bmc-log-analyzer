@@ -10,6 +10,13 @@ from app.config import get_llm_config, update_llm_config, LLMProvider
 router = APIRouter(prefix="/api/analyze", tags=["analysis"])
 
 
+def _get_entry(e: Any, field: str, default: Any = None) -> Any:
+    """Get field from a LogEntry dict or Pydantic model."""
+    if isinstance(e, dict):
+        return e.get(field, default)
+    return getattr(e, field, default)
+
+
 def _fmt_ts(ts: Any) -> str:
     """Safely format a timestamp (datetime object or ISO string) to Y-m-d H:M:S."""
     if ts is None:
@@ -18,7 +25,6 @@ def _fmt_ts(ts: Any) -> str:
         return ts.strftime("%Y-%m-%d %H:%M:%S")
     if isinstance(ts, str) and ts:
         try:
-            # Parse ISO format datetime string
             dt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
             return dt.strftime("%Y-%m-%d %H:%M:%S")
         except ValueError:
@@ -123,8 +129,8 @@ def build_single_prompt(anomaly_type: str, rule_id: str, rule_description: str,
         "## 关联日志（采样最多5条）：",
     ]
     for e in entries[:5]:
-        ts = _fmt_ts(e.timestamp)
-        lines.append(f"- [{ts}] [{e.module}] {e.message}")
+        ts = _fmt_ts(_get_entry(e, 'timestamp'))
+        lines.append(f"- [{ts}] [{_get_entry(e, 'module')}] {_get_entry(e, 'message')}")
     lines.append("")
     lines.append("""请分析这条异常，回答：
 1. 最可能的根本原因是什么？
