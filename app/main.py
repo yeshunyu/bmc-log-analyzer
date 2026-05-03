@@ -194,9 +194,11 @@ async def upload_log(file: UploadFile) -> AnalysisResult:
         "total_entries": len(entries),
         "error_count": level_counts.get("ERROR", 0),
         "warning_count": level_counts.get("WARNING", 0),
+        "level_counts": level_counts,
         "top_modules": sorted(module_counts.items(), key=lambda x: -x[1])[:5],
         "rule_anomaly_count": len(rule_anomalies),
         "stat_anomaly_count": len(stat_anomalies),
+        "parsers_used": {format_type: len(entries)},
     }
 
     return AnalysisResult(
@@ -278,9 +280,11 @@ async def reanalyze(uuid: str):
         "total_entries": len(entries),
         "error_count": level_counts.get("ERROR", 0),
         "warning_count": level_counts.get("WARNING", 0),
+        "level_counts": level_counts,
         "top_modules": sorted(module_counts.items(), key=lambda x: -x[1])[:5],
         "rule_anomaly_count": len(rule_anomalies),
         "stat_anomaly_count": len(stat_anomalies),
+        "parsers_used": {format_type: len(entries)},
     }
     return AnalysisResult(parsed_log=parsed_log, rule_anomalies=rule_anomalies, statistical_anomalies=stat_anomalies, summary=summary)
 
