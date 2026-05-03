@@ -144,9 +144,48 @@ app/
 
 ## Docker 部署
 
-```bash
-docker build -t bmc-log-analyzer .
+### 快速启动（使用内置 MiniMax 模型）
+
+```powershell
+# 默认端口映射 8088:8000，内置 MiniMax API
 docker run -d -p 8088:8000 yuyeshun2/bmc-log-analyzer
 ```
 
-或使用 `docker-compose.yml`（如已配置）。
+然后浏览器打开 **http://localhost:8088**。
+
+### 自定义端口
+
+```powershell
+# 改为你想要的端口
+docker run -d -p 9000:8000 yuyeshun2/bmc-log-analyzer
+```
+应用监听容器内 8000 端口，`-p 9000:8000` 把容器 8000 映射到本机 9000，访问 http://localhost:9000。
+
+### 自定义 LLM API（生产环境推荐）
+
+通过环境变量在启动时指定，重启后配置持久化：
+
+```powershell
+docker run -d -p 8088:8000 \
+  -e LLM_PROVIDER=custom \
+  -e LLM_API_KEY=your-api-key \
+  -e LLM_API_BASE=https://your-endpoint/v1 \
+  -e LLM_MODEL=your-model-name \
+  yuyeshun2/bmc-log-analyzer
+```
+
+| 环境变量 | 说明 | 示例 |
+|---------|------|------|
+| `LLM_PROVIDER` | `minimax`（默认）或 `custom` | `custom` |
+| `LLM_API_KEY` | 你的 API Key | `sk-xxxxxxxx` |
+| `LLM_API_BASE` | API 地址（末尾不要加 `/`） | `https://api.deepseek.com/v1` |
+| `LLM_MODEL` | 模型名称 | `deepseek-chat` |
+
+支持任意 OpenAI-compatible 或 Anthropic-compatible API。`/anthropic` 路径的 endpoint 自动使用 Claude 接口。
+
+### 本地构建
+
+```bash
+docker build -t bmc-log-analyzer .
+docker run -d -p 8088:8000 bmc-log-analyzer
+```

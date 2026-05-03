@@ -1,10 +1,22 @@
-"""In-memory LLM configuration, updated by the user via settings UI."""
+"""In-memory LLM configuration, updated by the user via settings UI.
 
+Can be overridden at startup via environment variables:
+  LLM_PROVIDER  -- "minimax" or "custom"  (default: minimax)
+  LLM_API_KEY   -- API key for custom provider
+  LLM_API_BASE  -- API base URL for custom provider
+  LLM_MODEL     -- Model name (default: MiniMax-Text-01)
+"""
+
+import os
 from typing import Literal
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 # Provider types
 LLMProvider = Literal["minimax", "custom"]
+
+
+def _env(key: str, default: str) -> str:
+    return os.environ.get(key, default)
 
 
 @dataclass
@@ -23,8 +35,18 @@ class LLMConfig:
         }
 
 
-# Global singleton
-_llm_config = LLMConfig()
+def _make_config() -> LLMConfig:
+    """Build initial config from environment variables (Docker / production use)."""
+    return LLMConfig(
+        provider=_env("LLM_PROVIDER", "minimax"),
+        api_key=_env("LLM_API_KEY", ""),
+        api_base=_env("LLM_API_BASE", "https://api.minimax.chat/v1"),
+        model=_env("LLM_MODEL", "MiniMax-Text-01"),
+    )
+
+
+# Global singleton — initialised from env vars at startup
+_llm_config = _make_config()
 
 
 def get_llm_config() -> LLMConfig:
