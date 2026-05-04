@@ -16,12 +16,15 @@ RUN apk add --no-cache \
 RUN python -m venv /app/venv
 ENV PATH="/app/venv/bin:$PATH"
 
-# Upgrade pip/wheel/setuptools in venv
+# Upgrade pip/wheel/setuptools in venv (must come after ENV PATH)
 RUN pip install --upgrade pip wheel setuptools
 
-# Copy source and install dependencies
+# Copy deps and source, then install
 COPY requirements.txt /tmp/
 RUN pip install -r /tmp/requirements.txt
+COPY app /app/app
+COPY scripts /app/scripts
+COPY pytest.ini /app/
 
 # ===== Stage 2: Runtime (fully offline, no network) =====
 FROM python:3.11-alpine
