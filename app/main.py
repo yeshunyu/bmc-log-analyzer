@@ -188,11 +188,23 @@ async def upload_log(file: UploadFile) -> AnalysisResult:
     else:
         format_type, entries, parse_errors = _route_parse(file.filename, decompressed_path)
 
+    # Compute time range from entries
+    ts_list = [e.timestamp for e in entries if e.timestamp]
+    time_range = []
+    if ts_list:
+        ts_list.sort()
+        time_range = [
+            ts_list[0].strftime("%Y-%m-%d %H:%M:%S") if hasattr(ts_list[0], 'strftime') else str(ts_list[0]),
+            ts_list[-1].strftime("%Y-%m-%d %H:%M:%S") if hasattr(ts_list[-1], 'strftime') else str(ts_list[-1]),
+        ]
+
     parsed_log = {
         "format_type": format_type,
         "total_lines": len(entries),
         "entries": entries,
         "parse_errors": parse_errors,
+        "file_name": file.filename,
+        "time_range": time_range,
     }
 
     # Run anomaly detection
@@ -333,7 +345,24 @@ async def reanalyze(uuid: str):
         if e.module:
             module_counts[e.module] = module_counts.get(e.module, 0) + 1
 
-    parsed_log = {"format_type": format_type, "total_lines": len(entries), "entries": entries, "parse_errors": parse_errors}
+    # Compute time range from entries
+    ts_list = [e.timestamp for e in entries if e.timestamp]
+    time_range = []
+    if ts_list:
+        ts_list.sort()
+        time_range = [
+            ts_list[0].strftime("%Y-%m-%d %H:%M:%S") if hasattr(ts_list[0], 'strftime') else str(ts_list[0]),
+            ts_list[-1].strftime("%Y-%m-%d %H:%M:%S") if hasattr(ts_list[-1], 'strftime') else str(ts_list[-1]),
+        ]
+
+    parsed_log = {
+        "format_type": format_type,
+        "total_lines": len(entries),
+        "entries": entries,
+        "parse_errors": parse_errors,
+        "file_name": original_name,
+        "time_range": time_range,
+    }
     summary = {
         "total_entries": len(entries),
         "error_count": level_counts.get("ERROR", 0),

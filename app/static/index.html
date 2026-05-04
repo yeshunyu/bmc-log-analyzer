@@ -1267,11 +1267,12 @@ async function downloadReport(fmt) {
     }
     const hwTotal = Object.values(hwCounts).reduce((a, b) => a + b, 0);
     const now = new Date().toLocaleString('zh-CN');
-    const logName = analysisData.manifest?.name || 'unknown';
+    const logName = analysisData.parsed_log?.file_name || 'unknown';
     const ts = new Date().toISOString().slice(0, 10);
+    const timeRange = analysisData.parsed_log?.time_range || [];
 
     // Build report content
-    const content = buildReportContent(s, hwCounts, hwLabels, hwTotal, now, logName, summary);
+    const content = buildReportContent(s, hwCounts, hwLabels, hwTotal, now, logName, summary, timeRange);
 
     if (fmt === 'md') {
       downloadMarkdown(content, ts);
@@ -1287,8 +1288,11 @@ async function downloadReport(fmt) {
   }
 }
 
-function buildReportContent(s, hwCounts, hwLabels, hwTotal, now, logName, summary) {
+function buildReportContent(s, hwCounts, hwLabels, hwTotal, now, logName, summary, timeRange) {
   // Returns an object with md, html content blocks for reuse
+  const tr = timeRange && timeRange.length === 2
+    ? `${timeRange[0] || 'N/A'} ~ ${timeRange[1] || 'N/A'}`
+    : 'N/A';
   const errors = (analysisData.rule_anomalies || []).map(a => {
     const samples = (a.entries || []).slice(0, 5).map(e => {
       const ets = e.timestamp ? new Date(e.timestamp).toLocaleString('zh-CN', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).replace(/\//g,'-') : 'N/A';
@@ -1303,8 +1307,7 @@ function buildReportContent(s, hwCounts, hwLabels, hwTotal, now, logName, summar
     threshold: a.threshold, peak_value: a.peak_value
   }));
 
-  return { s, hwCounts, hwLabels, hwTotal, now, logName, summary, errors, stats,
-    time_range: analysisData.parsed_log.time_range || ['N/A', 'N/A'] };
+  return { s, hwCounts, hwLabels, hwTotal, now, logName, summary, errors, stats, time_range: tr };
 }
 
 function downloadMarkdown(c) {
@@ -1317,7 +1320,7 @@ function downloadMarkdown(c) {
   md += `| WARNING | ${c.s.warning_count.toLocaleString()} |\n`;
   md += `| 规则异常 | ${c.s.rule_anomaly_count} |\n`;
   md += `| 统计异常 | ${c.s.stat_anomaly_count} |\n`;
-  md += `| 时间范围 | ${c.time_range[0]} ~ ${c.time_range[1]} |\n\n`;
+  md += `| 时间范围 | ${c.time_range} |\n\n`;
   md += `## 💡 硬件相关事件统计\n\n`;
   if (c.hwTotal > 0) {
     md += `共检测到 **${c.hwTotal} 条**硬件相关事件：\n\n`;
@@ -1422,7 +1425,7 @@ function downloadHtml(c, ts, now, logName) {
 <div class="meta">
   <p><strong>生成时间：</strong>${now}</p>
   <p><strong>日志文件：</strong>${logName}</p>
-  <p><strong>时间范围：</strong>${c.time_range[0]} ~ ${c.time_range[1]}</p>
+  <p><strong>时间范围：</strong>${c.time_range}</p>
 </div>
 
 <h2>📊 日志概览</h2>
@@ -1526,7 +1529,7 @@ function printHtml(c, ts, now, logName) {
 <div class="meta">
   <p><strong>生成时间：</strong>${now}</p>
   <p><strong>日志文件：</strong>${logName}</p>
-  <p><strong>时间范围：</strong>${c.time_range[0]} ~ ${c.time_range[1]}</p>
+  <p><strong>时间范围：</strong>${c.time_range}</p>
 </div>
 <h2>📊 日志概览</h2>
 <div class="stats-grid">

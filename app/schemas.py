@@ -19,6 +19,8 @@ class ParsedLog(BaseModel):
     total_lines: int
     entries: list[LogEntry]
     parse_errors: int = 0
+    file_name: Optional[str] = None
+    time_range: list[Optional[str]] = Field(default_factory=lambda: [None, None])
 
 
 class AnomalyRule(BaseModel):
