@@ -720,6 +720,8 @@ const HW_KEYWORDS = {
   disk: ['disk', 'nvme', 'ssd', 'hdd', 'sata', 'pcie', 'storage', 'block', 'read error', 'write error', 'media', 'disk_v', 'smart', ' ata', 'scsi', 'lun'],
   raid: ['raid', 'lsi', 'megaraid', 'perc', 'hba', 'raid卡', '阵列', 'logical drive', 'physical drive', 'bbu', 'cache', 'vd '],
   net:  ['eth', 'nic', 'network', 'ethernet', 'port', 'link', 'mac', 'tcp', 'udp', 'packet', 'rx', 'tx', 'bandwidth', 'phy', 'sfp', '光模块', '光纤'],
+  npu:  ['npu', 'ascend', 'hiai', 'dvpp', 'aicore', 'aicpu', 'devicecore', 'npu_ex', 'npuinfo', 'npusched', 'ai_core', 'ai_cpu', 'cann', '出品', 'gpu', 'cuda', 'xpu', 'nvlink', 'dcgm', 'hbm', 'npu_sched'],
+  gpu:  ['gpu', 'nvidia', 'geforce', 'cuda', 'nvsm', 'nvlink', 'nvbus', 'vgpu', 'dcgm'],
 };
 
 function isHardware(msg) {
@@ -747,7 +749,7 @@ function renderHardware(data) {
   }
 
   const chipsEl = document.getElementById('hwChips');
-  const labels = { mb: '主板', cpu: 'CPU', mem: '内存', disk: '硬盘', raid: 'RAID卡', net: '网卡', npu: 'NPU' };
+  const labels = { mb: '主板', cpu: 'CPU', mem: '内存', disk: '硬盘', raid: 'RAID卡', net: '网卡', npu: 'NPU', gpu: 'GPU' };
   const total = Object.values(hwCounts).reduce((a, b) => a + b, 0);
 
   if (total === 0) {
@@ -770,7 +772,7 @@ function showHwDetail(hw) {
     const msg = (e.message || '') + ' ' + (e.module || '');
     return isHardware(msg) === hw;
   });
-  const labels = { cpu: 'CPU', mem: '内存', disk: '硬盘', raid: 'RAID卡', net: '网卡', npu: 'NPU' };
+  const labels = { cpu: 'CPU', mem: '内存', disk: '硬盘', raid: 'RAID卡', net: '网卡', npu: 'NPU', gpu: 'GPU' };
   document.getElementById('hwDetailTitle').textContent = labels[hw] + ' 详情';
   const entryHtml = allEntries.slice(0, 20).map(e => {
     const ts = e.timestamp ? new Date(e.timestamp).toLocaleString('zh-CN', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).replace(/\//g,'-') : 'N/A';
