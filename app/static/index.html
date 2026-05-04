@@ -227,19 +227,14 @@
       transition: border-color 0.2s;
     }
     .modal input:focus { border-color: #3b82f6; }
-    .modal .provider-toggle { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
-    .modal .provider-btn {
-      flex: 1; padding: 0.5rem; border: 1px solid #374151; border-radius: 6px;
-      background: #0f1117; color: #9ca3af; font-size: 0.85rem; cursor: pointer; text-align: center;
-      transition: all 0.2s;
-    }
-    .modal .provider-btn.active { border-color: #3b82f6; color: #3b82f6; background: rgba(59,130,246,0.1); }
-    .modal .provider-btn:hover:not(.active) { border-color: #6b7280; }
-    .modal .custom-fields { display: none; }
-    .modal .custom-fields.show { display: block; }
+    .modal .custom-fields { display: block; }
+    .modal .field-hint { font-size: 0.7rem; color: #6b7280; margin-top: 0.25rem; }
+    .modal .field-hint code { background: #1f2937; padding: 0.1rem 0.3rem; border-radius: 3px; color: #9ca3af; }
     .modal .row { display: flex; gap: 0.5rem; }
     .modal .row .field { flex: 1; }
     .modal .actions { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1.25rem; }
+    .modal .btn-reset { background: #374151; color: #9ca3af; margin-right: auto; }
+    .modal .btn-reset:hover { opacity: 0.8; }
     .modal .btn-cancel { background: #374151; color: #9ca3af; }
     .modal .btn-cancel:hover { opacity: 0.8; }
     .modal .btn-save { background: #3b82f6; color: #fff; }
@@ -330,7 +325,7 @@
 
     <!-- Hardware Summary -->
     <div class="hw-section" id="hwSection">
-      <h3>💡 硬件相关事件 <span style="font-size:0.7rem;color:#6b7280;font-weight:normal">（CPU / 内存 / 硬盘 / RAID / 网卡）</span></h3>
+      <h3>💡 硬件相关事件 <span style="font-size:0.7rem;color:#6b7280;font-weight:normal">（CPU / 内存 / 硬盘 / RAID / 网卡 / NPU）</span></h3>
       <div class="hw-chips" id="hwChips"></div>
       <div class="hw-detail-panel" id="hwDetailPanel">
         <div class="hw-detail-header">
@@ -395,17 +390,13 @@
 <div class="modal-overlay" id="settingsModal">
   <div class="modal">
     <h2>LLM 分析设置</h2>
-    <div class="current-provider" id="currentProvider">当前：MiniMax（内置）</div>
-
-    <div class="provider-toggle">
-      <div class="provider-btn active" data-provider="minimax">MiniMax（内置）</div>
-      <div class="provider-btn" data-provider="custom">自定义 API</div>
-    </div>
+    <div class="current-provider" id="currentProvider">当前：未配置</div>
 
     <div class="custom-fields" id="customFields">
       <div class="field">
         <label>API Base URL</label>
-        <input type="text" id="apiBase" placeholder="https://api.openai.com/v1" />
+        <input type="text" id="apiBase" placeholder="https://api.deepseek.com" />
+        <div class="field-hint">DeepSeek OpenAI: <code>https://api.deepseek.com</code> &nbsp;|&nbsp; DeepSeek Anthropic: <code>https://api.deepseek.com/anthropic</code></div>
       </div>
       <div class="field">
         <label>API Key</label>
@@ -413,11 +404,12 @@
       </div>
       <div class="field">
         <label>模型名称</label>
-        <input type="text" id="modelName" placeholder="gpt-4o / glm-4 / ..." />
+        <input type="text" id="modelName" placeholder="gpt-4o / claude-3-5-sonnet-20241022 / glm-4-flash / ..." />
       </div>
     </div>
 
     <div class="actions">
+      <button class="btn btn-reset" id="resetSettings">重置</button>
       <button class="btn btn-cancel" id="cancelSettings">取消</button>
       <button class="btn btn-save" id="saveSettings">保存</button>
     </div>
@@ -430,6 +422,10 @@ let allEntries = []; // raw list
 let timelineMode = 'all'; // 'all' | 'hw'
 let pieChart = null;
 let timelineChart = null;
+let appVersion = '1.0.0';
+
+// Fetch version from backend
+fetch('/api/version').then(r => r.json()).then(d => { appVersion = d.version; }).catch(() => {});
 
 // ---------------------------------------------------------------------------
 // Filter + Pagination state
@@ -1354,7 +1350,7 @@ function downloadMarkdown(c) {
   md += `> 以下内容由 LLM 基于上述日志数据生成，融合了模式识别、时序分析和硬件知识。\n\n`;
   md += (c.summary || '（暂无LLM分析结果）') + `\n\n`;
   md += `---\n\n`;
-  md += `*本报告由 BMC 日志分析工具自动生成*\n`;
+  md += `*本报告由 BMC 日志分析工具 v${appVersion} 自动生成 · AI 生成 · 仅供参考，注意识别，如有疑问请联系设备厂家*\n`;
 
   const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
   const url = URL.createObjectURL(blob);
@@ -1462,7 +1458,7 @@ ${c.stats.length > 0 ? `<h2>📈 统计异常</h2>
 </div>
 
 <div class="footer">
-  <p>本报告由 BMC 日志分析工具自动生成</p>
+  <p>本报告由 BMC 日志分析工具 v${appVersion} 自动生成 · AI 生成 · 仅供参考，注意识别，如有疑问请联系设备厂家</p>
 </div>
 </body>
 </html>`;
@@ -1557,7 +1553,7 @@ ${c.stats.length > 0 ? `<h2>📈 统计异常</h2>
 </table>` : ''}
 <h2>🔍 LLM 深度根因分析</h2>
 <div class="summary-box"><pre>${c.summary || '（暂无LLM分析结果）'}</pre></div>
-<div class="footer"><p>本报告由 BMC 日志分析工具自动生成</p></div>
+<div class="footer"><p>本报告由 BMC 日志分析工具 v${appVersion} 自动生成 · AI 生成 · 仅供参考，注意识别，如有疑问请联系设备厂家</p></div>
 </body>
 </html>`;
 
@@ -1572,30 +1568,24 @@ ${c.stats.length > 0 ? `<h2>📈 统计异常</h2>
   setTimeout(() => { w.print(); w.close(); }, 500);
 }
 
-// ---------------------------------------------------------------------------
+// --------------------------------------------------------------------------
 // Settings Modal
-// ---------------------------------------------------------------------------
+// --------------------------------------------------------------------------
 const modal = document.getElementById('settingsModal');
-const providerBtns = document.querySelectorAll('.provider-btn');
-const customFields = document.getElementById('customFields');
 
 function openSettings() {
-  // Load current settings
   fetch('/api/analyze/llm-settings')
     .then(r => r.json())
     .then(cfg => {
-      providerBtns.forEach(b => {
-        b.classList.toggle('active', b.dataset.provider === cfg.provider);
-      });
-      customFields.classList.toggle('show', cfg.provider === 'custom');
+      const isUnconfigured = !cfg.api_base || !cfg.model;
       document.getElementById('currentProvider').textContent =
-        '当前：' + (cfg.provider === 'minimax' ? 'MiniMax（内置）' : cfg.model + ' @ ' + cfg.api_base);
+        isUnconfigured ? '当前：未配置' : '当前：' + cfg.model + ' @ ' + cfg.api_base;
 
-      // Load from localStorage for custom fields
+      // Load saved custom fields from localStorage
       const saved = JSON.parse(localStorage.getItem('llm_custom') || '{}');
-      if (saved.apiBase) document.getElementById('apiBase').value = saved.apiBase;
-      if (saved.apiKey) document.getElementById('apiKey').value = saved.apiKey;
-      if (saved.model) document.getElementById('modelName').value = saved.model;
+      document.getElementById('apiBase').value = saved.apiBase || cfg.api_base || '';
+      document.getElementById('apiKey').value  = saved.apiKey  || '';
+      document.getElementById('modelName').value = saved.model || cfg.model || '';
     });
   modal.classList.add('show');
 }
@@ -1604,26 +1594,36 @@ function closeSettings() {
   modal.classList.remove('show');
 }
 
-providerBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    providerBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    customFields.classList.toggle('show', btn.dataset.provider === 'custom');
-  });
-});
-
 document.getElementById('settingsBtn').addEventListener('click', openSettings);
 document.getElementById('cancelSettings').addEventListener('click', closeSettings);
 modal.addEventListener('click', e => { if (e.target === modal) closeSettings(); });
 
+document.getElementById('resetSettings').addEventListener('click', async () => {
+  if (!confirm('确定要重置 LLM 配置吗？')) return;
+  try {
+    const resp = await fetch('/api/analyze/llm-settings/reset', { method: 'POST' });
+    if (!resp.ok) throw new Error(await resp.text());
+    localStorage.removeItem('llm_custom');
+    document.getElementById('apiBase').value = '';
+    document.getElementById('apiKey').value  = '';
+    document.getElementById('modelName').value = '';
+    document.getElementById('currentProvider').textContent = '当前：未配置';
+    closeSettings();
+  } catch (err) {
+    alert('重置失败: ' + err.message);
+  }
+});
+
 document.getElementById('saveSettings').addEventListener('click', async () => {
-  const isCustom = document.querySelector('.provider-btn.active').dataset.provider === 'custom';
-  const payload = {
-    provider: isCustom ? 'custom' : 'minimax',
-    api_key: isCustom ? document.getElementById('apiKey').value : '',
-    api_base: isCustom ? document.getElementById('apiBase').value : 'https://api.minimax.chat/v1',
-    model: isCustom ? document.getElementById('modelName').value : 'MiniMax-Text-01',
-  };
+  const api_base = document.getElementById('apiBase').value.trim();
+  const api_key  = document.getElementById('apiKey').value.trim();
+  const model    = document.getElementById('modelName').value.trim();
+
+  if (!api_key) { alert('请填写 API Key'); return; }
+  if (!api_base) { alert('请填写 API Base URL'); return; }
+  if (!model) { alert('请填写模型名称'); return; }
+
+  const payload = { provider: 'custom', api_key, api_base, model };
 
   try {
     const resp = await fetch('/api/analyze/llm-settings', {
@@ -1633,17 +1633,7 @@ document.getElementById('saveSettings').addEventListener('click', async () => {
     });
     if (!resp.ok) throw new Error(await resp.text());
 
-    // Persist custom fields locally
-    if (isCustom) {
-      localStorage.setItem('llm_custom', JSON.stringify({
-        apiBase: payload.api_base,
-        apiKey: payload.api_key,
-        model: payload.model,
-      }));
-    } else {
-      localStorage.removeItem('llm_custom');
-    }
-
+    localStorage.setItem('llm_custom', JSON.stringify({ apiBase: api_base, apiKey: api_key, model }));
     closeSettings();
   } catch (err) {
     alert('保存失败: ' + err.message);

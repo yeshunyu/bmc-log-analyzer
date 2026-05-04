@@ -12,6 +12,12 @@ class LogEntry(BaseModel):
     message: str
     raw: str
     repeat_count: int = 1
+    # Huawei ALM alarm code fields (populated by huawei_alm.enrich_entry_with_alm)
+    alm_code: Optional[str] = None
+    alm_subsystem: Optional[str] = None
+    alm_severity: Optional[str] = None   # CRITICAL/MAJOR/MINOR/INFO
+    alm_severity_zh: Optional[str] = None
+    alm_description: Optional[str] = None
 
 
 class ParsedLog(BaseModel):
@@ -55,6 +61,7 @@ class StatisticalAnomaly(BaseModel):
 class AnalysisResult(BaseModel):
     parsed_log: ParsedLog
     rule_anomalies: list[AnomalyDetection]
+    alm_anomalies: list[AnomalyDetection] = Field(default_factory=list)  # Huawei ALM alarm codes
     statistical_anomalies: list[StatisticalAnomaly]
     summary: dict
 

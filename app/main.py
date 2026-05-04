@@ -8,13 +8,25 @@ import time
 from datetime import datetime as dt, timezone
 from pathlib import Path
 from typing import Optional
-from fastapi import FastAPI, UploadFile, HTTPException
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, UploadFile, HTTPException, Request
+from fastapi.responses import HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.middleware.cors import CORSMiddleware
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 import threading
 
+import json
+from pathlib import Path
+
 MAX_FILE_SIZE = 500 * 1024 * 1024  # 500 MB upload limit
+
+# Load version from build-injected file (set by Dockerfile ARG)
+_version_file = Path(__file__).parent.parent / "app_version.json"
+VERSION = json.loads(_version_file.read_text())["version"] if _version_file.exists() else "dev"
 
 
 def _streaming_copy(src: UploadFile, dst_path: Path, max_size: int) -> int:
@@ -43,14 +55,56 @@ from app.parsers.ipmi import parse_ipmi_log
 from app.parsers.maintenance import parse_maintenance_log
 from app.parsers.m7_imu import parse_m7_log
 from app.parsers.nginx_access import parse_nginx_access_log, parse_nginx_error_log
+from app.parsers.huawei_alm import enrich_entry_with_alm
 from app.parsers import get_parser
-from app.detectors.rule_based import detect_rule_anomalies
+from app.detectors.rule_based import detect_rule_anomalies, detect_alm_anomalies
 from app.detectors.statistical import detect_statistical_anomalies
 from app.routers.llm import router as llm_router
 from app.operation_log import log_operation
 
 app = FastAPI(title="BMC Log Analyzer")
 app.include_router(llm_router)
+
+# Rate limiter — 20 upload requests per minute per IP
+limiter = Limiter(key_func=get_remote_address, default_limits=["20/minute"])
+
+
+class SecurityHeadersMiddleware(BaseHTTPMiddleware):
+    """Add security headers to every response."""
+
+    async def dispatch(self, request: Request, call_next):
+        response = await call_next(request)
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "DENY"
+        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        response.headers["Content-Security-Policy"] = (
+            "default-src 'self'; "
+            "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
+            "style-src 'self' 'unsafe-inline'; "
+            "img-src 'self' data: https:; "
+            "connect-src 'self' https://cdn.jsdelivr.net; "
+            "font-src 'self' data:;"
+        )
+        return response
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Single-page tool, no credential-sensitive CORS needs
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
+app.add_middleware(SecurityHeadersMiddleware)
+app.state.limiter = limiter
+
+
+@app.exception_handler(RateLimitExceeded)
+async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
+    from fastapi.responses import JSONResponse
+    return JSONResponse(
+        status_code=429,
+        content={"detail": "请求过于频繁，请稍后再试（20次/分钟）"},
+    )
 
 STATIC_DIR = Path(__file__).parent / "static"
 STATIC_DIR.mkdir(exist_ok=True)
@@ -150,8 +204,14 @@ async def index():
     return templates.get_template("index.html").render()
 
 
+@app.get("/api/version")
+async def get_version():
+    return {"version": VERSION}
+
+
 @app.post("/api/upload")
-async def upload_log(file: UploadFile) -> AnalysisResult:
+@limiter.limit("20/minute")
+async def upload_log(request: Request, file: UploadFile) -> AnalysisResult:
     if not file.filename:
         raise HTTPException(status_code=400, detail="No filename provided")
 
@@ -187,6 +247,10 @@ async def upload_log(file: UploadFile) -> AnalysisResult:
             format_type, entries, parse_errors = _route_parse(file.filename, all_files[0])
     else:
         format_type, entries, parse_errors = _route_parse(file.filename, decompressed_path)
+
+    # Post-process: enrich with Huawei ALM alarm code metadata
+    for e in entries:
+        enrich_entry_with_alm(e)
 
     # Compute time range from entries
     ts_list = [e.timestamp for e in entries if e.timestamp]
@@ -226,6 +290,7 @@ async def upload_log(file: UploadFile) -> AnalysisResult:
         "level_counts": level_counts,
         "top_modules": sorted(module_counts.items(), key=lambda x: -x[1])[:5],
         "rule_anomaly_count": len(rule_anomalies),
+        "alm_anomaly_count": sum(1 for a in detect_alm_anomalies(entries) if a.severity == "ERROR"),
         "stat_anomaly_count": len(stat_anomalies),
         "parsers_used": {format_type: len(entries)},
     }
@@ -235,12 +300,13 @@ async def upload_log(file: UploadFile) -> AnalysisResult:
         detail=f"上传文件 {file.filename}，解析格式 {format_type}，{len(entries)} 条日志",
         file_name=file.filename,
         result="ok",
-        extra={"format": format_type, "entries": len(entries), "errors": parse_errors, "rule_anomalies": len(rule_anomalies), "stat_anomalies": len(stat_anomalies)},
+        extra={"format": format_type, "entries": len(entries), "errors": parse_errors, "rule_anomalies": len(rule_anomalies), "alm_anomalies": sum(1 for a in detect_alm_anomalies(entries) if a.severity == "ERROR"), "stat_anomalies": len(stat_anomalies)},
     )
 
     return AnalysisResult(
         parsed_log=parsed_log,
         rule_anomalies=rule_anomalies,
+        alm_anomalies=detect_alm_anomalies(entries),
         statistical_anomalies=stat_anomalies,
         summary=summary,
     )
@@ -336,6 +402,10 @@ async def reanalyze(uuid: str):
     else:
         format_type, entries, parse_errors = _route_parse(original_name, decompressed_path)
 
+    # Post-process: enrich with Huawei ALM alarm code metadata
+    for e in entries:
+        enrich_entry_with_alm(e)
+
     rule_anomalies = detect_rule_anomalies(entries)
     stat_anomalies = detect_statistical_anomalies(entries)
     level_counts: dict[str, int] = {}
@@ -370,6 +440,7 @@ async def reanalyze(uuid: str):
         "level_counts": level_counts,
         "top_modules": sorted(module_counts.items(), key=lambda x: -x[1])[:5],
         "rule_anomaly_count": len(rule_anomalies),
+        "alm_anomaly_count": sum(1 for a in detect_alm_anomalies(entries) if a.severity == "ERROR"),
         "stat_anomaly_count": len(stat_anomalies),
         "parsers_used": {format_type: len(entries)},
     }
@@ -378,9 +449,10 @@ async def reanalyze(uuid: str):
         detail=f"重新分析 {original_name}，{len(entries)} 条日志",
         file_name=original_name,
         result="ok",
-        extra={"format": format_type, "entries": len(entries), "rule_anomalies": len(rule_anomalies), "stat_anomalies": len(stat_anomalies)},
+        extra={"format": format_type, "entries": len(entries), "rule_anomalies": len(rule_anomalies), "alm_anomalies": sum(1 for a in detect_alm_anomalies(entries) if a.severity == "ERROR"), "stat_anomalies": len(stat_anomalies)},
     )
-    return AnalysisResult(parsed_log=parsed_log, rule_anomalies=rule_anomalies, statistical_anomalies=stat_anomalies, summary=summary)
+    alm_detected = detect_alm_anomalies(entries)
+    return AnalysisResult(parsed_log=parsed_log, rule_anomalies=rule_anomalies, alm_anomalies=alm_detected, statistical_anomalies=stat_anomalies, summary=summary)
 
 
 def _decompress_if_needed(path: Path, job_id: str) -> tuple[Path, list[Path]]:
@@ -504,6 +576,35 @@ def _find_best_log_file(extract_dir: Path, filename: str) -> Optional[Path]:
         "net_nat_dfl",
         "PcieSwitch_dfl",
         "MaintDebug_dfl",
+        # IPMI / SEL (high diagnostic value)
+        "ipmi_sel",
+        "IPMI_SEL",
+        "ipmi_seld",
+        "BMC_dump",
+        "core_dump",
+        # High-availability / web / XML exports
+        "ha_log",
+        "web_log",
+        "export.xml",
+        # CPLD / FPGA version info
+        "cpld_info",
+        "fpga_info",
+        # Additional dfl modules
+        "webapp_dfl",
+        "restful_dfl",
+        # Additional sensor/hardware info
+        "sensor_data",
+        "psu_status",
+        "raid_status",
+        "disk_info",
+        # Linux / systemd
+        "syslog",
+        "journal",
+        # Mass / remote operate
+        "ipmi_mass",
+        "rmt_mnt_log",
+        # Module info
+        "module_info",
         # Sensor / hardware info
         "sensor_info",
         "fan_info",
@@ -756,6 +857,8 @@ def _parse_multi(file_paths: list[Path], original_filename: str) -> tuple[str, l
             # Tag each entry with its source file
             for e in entries:
                 e.source_file = path.name
+                # Enrich with Huawei ALM alarm code metadata
+                enrich_entry_with_alm(e)
             all_entries.extend(entries)
             total_errors += errs
             if len(entries) > 0:

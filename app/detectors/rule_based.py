@@ -3,6 +3,68 @@ from collections import defaultdict
 from datetime import datetime
 from app.schemas import LogEntry, AnomalyDetection, AnomalyRule
 
+# ----------------------------------------------------------------------
+# Diagnostic priority: domain order for "先外后内" sorting.
+# Categories are ordered from most-external/urgent to most-internal.
+# Within the same domain, severity (ERROR > WARNING > INFO) takes over.
+# ----------------------------------------------------------------------
+_DOMAIN_PRIORITY = {
+    # 1. 外部基础设施 (最紧急，影响整机)
+    "power": 1,
+    "fan": 2,
+    "thermal": 3,
+    "voltage": 4,
+    # 2. 系统级 (BMC / BIOS / 启动)
+    "bmc": 5,
+    "bios": 6,
+    "boot": 7,
+    "system": 8,
+    # 3. 核心组件 (CPU / 内存 / NPU)
+    "cpu": 9,
+    "memory": 10,
+    "npu": 11,
+    "gpu": 12,
+    # 4. 存储 / RAID
+    "raid": 13,
+    "disk": 14,
+    "storage": 15,
+    # 5. 网络 / 连接
+    "network": 16,
+    "link": 17,
+    "ssl": 18,
+    "socket": 19,
+    "video": 20,
+    "websocket": 21,
+    # 6. 服务 / 应用
+    "service": 22,
+    "app": 23,
+    "web": 24,
+    "kvm": 25,
+    # 7. 安全 / 审计
+    "security": 26,
+    "auth": 27,
+    # 8. 升级 / 维护
+    "upgrade": 28,
+    "maintenance": 29,
+    # 9. 其他
+    "default": 30,
+}
+
+_SEVERITY_ORDER = {"ERROR": 0, "WARNING": 1, "INFO": 2}
+
+
+def _rule_domain(rule_id: str) -> int:
+    """Return domain priority for a rule id (lower = more urgent)."""
+    for domain, priority in _DOMAIN_PRIORITY.items():
+        if domain in rule_id.lower():
+            return priority
+    return _DOMAIN_PRIORITY["default"]
+
+
+def _sort_key(ad: AnomalyDetection) -> tuple:
+    """Sort key: domain priority (先外后内) → severity (先高后低) → count desc."""
+    return (_rule_domain(ad.rule_id), _SEVERITY_ORDER.get(ad.severity, 2), -ad.count)
+
 # Known BMC error patterns
 RULES = [
     # === 网络/连接类 ===
@@ -78,8 +140,8 @@ RULES = [
     AnomalyRule(id="fdm_init", pattern=r"FDM process was initialized", description="FDM进程初始化", severity="INFO"),
     AnomalyRule(id="auth_fail", pattern=r"authentication.*fail|login.*fail|invalid.*user|认证.*失败", description="认证失败", severity="WARNING"),
 
-    # === 通用关键词兜底（无具体规则时） ===
-    # 注意：通用规则放最后，count作为补充指标，不单独展示
+    # === 华为ALM告警码（从 LogEntry.alm_code 字段检测）===
+    # 这些规则在 detect_alm_anomalies() 中单独处理，不走正则匹配
 ]
 
 def detect_rule_anomalies(entries: list[LogEntry]) -> list[AnomalyDetection]:
@@ -112,7 +174,50 @@ def detect_rule_anomalies(entries: list[LogEntry]) -> list[AnomalyDetection]:
             last_seen=max(timestamps) if timestamps else None,
         ))
 
-    # Sort by severity then count
-    severity_order = {"ERROR": 0, "WARNING": 1, "INFO": 2}
-    results.sort(key=lambda x: (severity_order.get(x.severity, 2), -x.count))
+    # Sort: diagnostic priority (先外后内) → severity (先高后低) → count desc
+    results.sort(key=_sort_key)
+    return results
+
+
+def detect_alm_anomalies(entries: list[LogEntry]) -> list[AnomalyDetection]:
+    """Detect anomalies from Huawei ALM alarm codes.
+
+    Groups entries by their alm_code field (populated by huawei_alm.enrich_entry_with_alm).
+    Only alarm codes with severity CRITICAL or MAJOR become anomalies;
+    MINOR and INFO are informational and skipped unless count is very high.
+    """
+    # Import here to avoid circular import at module load time
+    from app.parsers.huawei_alm import ALARM_DB, decode_alm
+
+    by_code: dict[str, list[LogEntry]] = defaultdict(list)
+    for e in entries:
+        if getattr(e, "alm_code", None):
+            by_code[e.alm_code].append(e)
+
+    results = []
+    for code, code_entries in by_code.items():
+        info = decode_alm(code)
+        if info is None:
+            continue
+
+        # Skip INFO alarms unless there are many of them
+        if info.severity == "INFO" and len(code_entries) > 50:
+            pass  # still include
+        elif info.severity == "INFO":
+            continue  # skip routine info events
+
+        timestamps = [e.timestamp for e in code_entries if e.timestamp]
+        level = info.to_level()
+        results.append(AnomalyDetection(
+            rule_id=info.to_rule_id(),
+            rule_description=f"{info.description} [{info.subsystem} {info.alm_severity_zh}]",
+            severity=level,
+            count=sum(e.repeat_count for e in code_entries),
+            entries=code_entries[:20],
+            first_seen=min(timestamps) if timestamps else None,
+            last_seen=max(timestamps) if timestamps else None,
+        ))
+
+    # Sort: diagnostic priority (先外后内) → severity (先高后低) → count desc
+    results.sort(key=_sort_key)
     return results

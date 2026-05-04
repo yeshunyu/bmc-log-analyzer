@@ -1,7 +1,11 @@
 # ===== Stage 1: Builder =====
 FROM python:3.11-alpine AS builder
+ARG APP_VERSION=dev
 
 WORKDIR /app
+
+# Write version file (consumed by FastAPI at runtime)
+RUN echo "{\"version\": \"$APP_VERSION\"}" > /tmp/app_version.json
 
 # Install build dependencies (compilers, etc.)
 RUN apk add --no-cache \
@@ -41,14 +45,19 @@ RUN apk add --no-cache musl \
 # Copy pre-built venv from builder (only venv, no base /usr/local/lib)
 COPY --from=builder /app/venv /app/venv
 
+# Copy app version (injected at build time)
+COPY --from=builder /tmp/app_version.json /app/app_version.json
+
 # Activate venv — override PYTHONPATH to prevent base image's site-packages from being loaded
 ENV PATH="/app/venv/bin:$PATH" \
     PYTHONUNBUFFERED=1 \
     PYTHONPATH="/app/venv/lib/python3.11/site-packages" \
     PYTHONHOME=""
 
-# Copy application source
+# Copy application source and entrypoint
 COPY --from=builder /app /app
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 8000
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["/entrypoint.sh"]

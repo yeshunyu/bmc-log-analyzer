@@ -81,6 +81,142 @@ SEL_TYPE_STR = {
     0xCF: "OEM Huawei Platform",
 }
 
+# ----------------------------------------------------------------------
+# Severity mapping for IPMI SEL events.
+# Maps sensor type + event type → severity.
+# Assert/Deassert is NOT the severity determinant — the sensor/event is.
+# ----------------------------------------------------------------------
+
+# Sensor types that are always ERROR when asserted (critical hardware failure)
+_ALWAYS_ERROR_SENSORS = {
+    0x03,  # Current
+    0x05,  # Physical Security (chassis intrusion)
+    0x07,  # Processor (CPU error)
+    0x0B,  # Memory (ECC error)
+    0x10,  # Watchdog1
+    0x12,  # Critical Interrupt
+    0x18,  # Chip Set
+    0x1D,  # OS Critical Stop
+    0x24,  # OS Critical Stop
+    0x2C,  # Physical Security
+    0x2D,  # Processor
+    0x31,  # Memory
+    0x35,  # System Event
+    0x36,  # Critical Interrupt
+    0x42,  # Fan (some fan failures)
+    0x46,  # CPU
+    0x68,  # Health Event
+    0x69,  # Run-Time HA
+    0x6B,  # BIOS/Startup
+    0x6C,  # GPU
+    0x6D,  # NVMe
+}
+
+# Sensor types that are WARNING when asserted (threshold/predictive)
+_THRESHOLD_WARN_SENSORS = {
+    0x01,  # Temperature (over-temp warning)
+    0x02,  # Voltage (over/under voltage)
+    0x04,  # Fan (fan slow/missing)
+    0x06,  # Platform Security
+    0x09,  # Power Unit
+    0x0A,  # Cooling Device
+    0x0C,  # Drive Bay
+    0x13,  # Button
+    0x14,  # Module/Board
+    0x19,  # Other FRU
+    0x1A,  # LAN
+    0x1C,  # Battery
+    0x1F,  # Version Change
+    0x25,  # Slot/Connector
+    0x28,  # Platform Alert
+    0x29,  # Entity Presence
+    0x2A,  # Monitor ASIC
+    0x2B,  # LAN
+    0x2E,  # Power Supply
+    0x2F,  # Power Unit
+    0x30,  # Cooling Device
+    0x32,  # Drive Bay
+    0x38,  # Module/Board
+    0x39,  # Microcontroller
+    0x3A,  # Add-in Card
+    0x3B,  # Chassis
+    0x3C,  # Chip Set
+    0x3D,  # Other FRU
+    0x3E,  # Non-critical
+    0x3F,  # Display
+    0x40,  # Disk
+    0x41,  # Disk Array
+    0x45,  # Fan
+    0x47,  # Power Unit
+    0x48,  # Fan
+    0x49,  # DC Voltage
+    0x4A,  # Current
+    0x4B,  # Current
+    0x4D,  # Power Cap
+    0x4E,  # Performance
+    0x57,  # IPMB
+    0x58,  # Mailbox
+    0x59,  # Bridge
+    0x5A,  # Management Subsystem
+    0x5B,  # Battery
+    0x5C,  # Management Subsystem
+    0x61,  # Platform Alert
+    0x62,  # Sensor
+    0x63,  # Battery
+    0x65,  # TPM
+    0x66,  # Storage
+    0x67,  # PCI
+}
+
+# Event types (event_type byte) that indicate a real fault
+_FAULT_EVENT_TYPES = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07}
+
+
+def _sel_severity(record: dict) -> str:
+    """Determine severity for an IPMI SEL record.
+
+    Priority:
+    1. OEM records (type >= 0xC0) → ERROR if direction=Assert, INFO if Deassert
+    2. Sensor in _ALWAYS_ERROR_SENSORS → ERROR
+    3. Sensor in _THRESHOLD_WARN_SENSORS + fault event type → ERROR
+    4. Sensor in _THRESHOLD_WARN_SENSORS + assertion → WARNING
+    5. Otherwise → INFO
+    """
+    rtype = record.get("record_type", 0)
+    sensor_type = record.get("sensor_type")
+    event_type = record.get("event_type")
+    direction = record.get("event_dir", 0)
+    is_asserted = direction == 0x20
+
+    # OEM Huawei events — type >= 0xC0
+    if rtype >= 0xC0:
+        # OEM events always indicate hardware-level issues
+        return "ERROR" if is_asserted else "INFO"
+
+    # Always-error sensor types
+    if sensor_type in _ALWAYS_ERROR_SENSORS:
+        # Watchdog timeout, critical interrupt, CPU/memory error, etc.
+        return "ERROR"
+
+    # Threshold/predictive sensors
+    if sensor_type in _THRESHOLD_WARN_SENSORS:
+        if is_asserted:
+            # Fault event types (transition to fault state)
+            if event_type in _FAULT_EVENT_TYPES:
+                return "ERROR"
+            return "WARNING"
+        else:
+            # Deassert = condition cleared = INFO (recovery)
+            return "INFO"
+
+    # System boot/restart events — usually INFO
+    if rtype in (0x00, 0x01, 0x0A):
+        return "INFO"
+
+    # Default: INFO (informational events)
+    return "INFO"
+
+
 # Event direction
 DIRECTION = {0x20: "Asserted", 0x00: "Deasserted"}
 
@@ -309,7 +445,7 @@ def _parse_sel_binary(path: Path):
             entries.append(LogEntry(
                 timestamp=record["timestamp"],
                 module=f"sel:{rtype_str}",
-                level="ERROR" if record["direction_str"] == "Asserted" else "INFO",
+                level=_sel_severity(record),
                 message=message,
                 raw=record_data.hex(),
             ))
@@ -378,11 +514,18 @@ def _parse_sel_tar(path: Path):
                                 pass
                         # Sanitize member name to prevent path traversal in module field
                         safe_name = member.name.replace("/", "_").replace("..", "_")
+                        msg = " | ".join(parts[3:])
+                        level = "ERROR" if record_type >= 0xC0 else "INFO"
+                        # Upgrade to ERROR if message contains fault keywords
+                        if any(k in msg.upper() for k in ("FAIL", "ERROR", "CRITICAL", "FATAL", "FAULT")):
+                            level = "ERROR"
+                        elif any(k in msg.upper() for k in ("WARN", "DEGRADED", "PREDICTIVE", "SLOW", "MISSING")):
+                            level = "WARNING"
                         entries.append(LogEntry(
                             timestamp=ts,
                             module=f"sel:tar:{safe_name}",
-                            level="ERROR" if record_type >= 0xC0 else "INFO",
-                            message=" | ".join(parts[3:]),
+                            level=level,
+                            message=msg,
                             raw=line,
                         ))
                     except (ValueError, IndexError):

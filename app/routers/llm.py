@@ -1,4 +1,5 @@
 import json
+import os
 import urllib.error
 import urllib.request
 from datetime import datetime
@@ -70,10 +71,16 @@ async def get_settings():
 
 @router.post("/llm-settings", response_model=LLMSettingsResponse)
 async def post_settings(req: LLMSettingsRequest):
-    # Require api_key for custom provider
-    if req.provider == "custom" and not req.api_key:
-        raise HTTPException(status_code=400, detail="自定义 API 需要提供 api_key")
+    if not req.api_key:
+        raise HTTPException(status_code=400, detail="API Key 不能为空")
     cfg = update_llm_config(req.provider, req.api_key, req.api_base, req.model)
+    return LLMSettingsResponse(provider=cfg.provider, api_base=cfg.api_base, model=cfg.model)
+
+
+@router.post("/llm-settings/reset")
+async def reset_settings():
+    """Reset LLM config to defaults."""
+    cfg = update_llm_config("custom", "", "https://api.deepseek.com", "")
     return LLMSettingsResponse(provider=cfg.provider, api_base=cfg.api_base, model=cfg.model)
 
 
@@ -254,42 +261,7 @@ def build_single_prompt(anomaly_type: str, rule_id: str, rule_description: str,
     return "\n".join(lines)
 
 
-# ---------------------------------------------------------------------------
-# MiniMax HTTP API driver
-# ---------------------------------------------------------------------------
-def _call_minimax(prompt: str, api_key: str = "", api_base: str = "https://api.minimax.chat/v1", model: str = "MiniMax-Text-01") -> str:
-    """Call MiniMax API via OpenAI-compatible endpoint."""
-    import urllib.request
-    import urllib.error
-    # Use provided api_key or fall back to env
-    key = api_key or os.environ.get("MINIMAX_API_KEY", "")
-    payload = {
-        "model": model,
-        "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0.3,
-    }
-    body = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(
-        f"{api_base.rstrip('/')}/chat/completions",
-        data=body,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {key}",
-        },
-        method="POST",
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            return data["choices"][0]["message"]["content"].strip()
-    except urllib.error.HTTPError as e:
-        body_str = e.read().decode("utf-8")
-        raise RuntimeError(f"MiniMax API 错误 {e.code}: {body_str[:500]}")
-    except (KeyError, IndexError) as e:
-        raise RuntimeError(f"MiniMax API 响应格式错误: {e}")
-
-
-# ---------------------------------------------------------------------------
+# --------------------------------------------------------------------------
 # Generic OpenAI-compatible custom API driver (auto-detects Anthropic vs OpenAI by URL)
 # ---------------------------------------------------------------------------
 def _call_custom(prompt: str, api_key: str, api_base: str, model: str) -> str:
@@ -376,7 +348,7 @@ def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: 
     try:
         with urllib.request.urlopen(req, timeout=120) as resp:
             data = json.loads(resp.read().decode("utf-8"))
-            # MiniMax Anthropic-compatible returns content as [{"type": "text", "text": "..."}]
+            # Anthropic-compatible returns content as [{"type": "text", "text": "..."}]
             # or [{"type": "thinking", ...}, {"type": "text", "text": "..."}]
             for item in (data.get("content") or []):
                 if item.get("type") == "text":
@@ -398,15 +370,12 @@ async def llm_analyze(req: LLMAnalysisRequest):
     cfg = get_llm_config()
 
     try:
-        if cfg.provider == "minimax":
-            result_text = _call_minimax(prompt, cfg.api_key, cfg.api_base, cfg.model)
-        else:
-            if not cfg.api_key:
-                raise HTTPException(
-                    status_code=400,
-                    detail="自定义 API Key 未设置，请先在设置中配置。",
-                )
-            result_text = _call_custom(prompt, cfg.api_key, cfg.api_base, cfg.model)
+        if not cfg.api_key:
+            raise HTTPException(
+                status_code=400,
+                detail="LLM API Key 未设置，请在页面右上角「LLM 配置」中进行配置。",
+            )
+        result_text = _call_custom(prompt, cfg.api_key, cfg.api_base, cfg.model)
 
         log_operation(
             operation="llm_analysis",
@@ -433,15 +402,12 @@ async def llm_analyze_single(req: LLMSingleRequest):
     cfg = get_llm_config()
 
     try:
-        if cfg.provider == "minimax":
-            result_text = _call_minimax(prompt, cfg.api_key, cfg.api_base, cfg.model)
-        else:
-            if not cfg.api_key:
-                raise HTTPException(
-                    status_code=400,
-                    detail="自定义 API Key 未设置，请先在设置中配置。",
-                )
-            result_text = _call_custom(prompt, cfg.api_key, cfg.api_base, cfg.model)
+        if not cfg.api_key:
+            raise HTTPException(
+                status_code=400,
+                detail="LLM API Key 未设置，请在页面右上角「LLM 配置」中进行配置。",
+            )
+        result_text = _call_custom(prompt, cfg.api_key, cfg.api_base, cfg.model)
 
         log_operation(
             operation="llm_analysis_single",

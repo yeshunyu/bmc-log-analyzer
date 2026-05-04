@@ -52,6 +52,8 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.tags.outputs.tags }}
+          build-args: |
+            APP_VERSION=${{ github.event.inputs.version || github.ref_name }}
           labels: |
             org.opencontainers.image.title=bmc-log-analyzer
             org.opencontainers.image.description=BMC日志解析+异常检测+LLM根因分析工具

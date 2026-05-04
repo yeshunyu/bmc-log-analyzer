@@ -59,6 +59,7 @@ _PARSER_MODULES = [
     "maintenance",
     "m7_imu",
     "nginx_access",
+    "ibmc_dump",
 ]
 
 _parsers: list[dict] = []
