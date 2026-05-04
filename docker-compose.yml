@@ -3,7 +3,7 @@ services:
     build:
       context: .
       args:
-        APP_VERSION: ${APP_VERSION:-v0.27}
+        APP_VERSION: ${APP_VERSION:-v0.31}
     container_name: bmc-log-analyzer
     ports:
       - "8000:8000"
