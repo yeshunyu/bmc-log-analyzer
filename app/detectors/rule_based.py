@@ -55,8 +55,23 @@ RULES = [
     # === NPU/昇腾类 ===
     AnomalyRule(id="npu_fault", pattern=r"npu.*fault|npu.*fail|npu.*error|devicecore.*error|aicore.*error", description="NPU昇腾设备故障", severity="ERROR"),
     AnomalyRule(id="npu_predictive", pattern=r"npu.*predictive|npu.*degraded|devicecore.*degraded", description="NPU昇腾预测性故障", severity="WARNING"),
+    AnomalyRule(id="npu_offline", pattern=r"npu.*offline|npu.*lost|npu.*absent|npu.*remove", description="NPU昇腾掉卡", severity="ERROR"),
+    AnomalyRule(id="npu_health", pattern=r"npu.*health|npu.*thermal|npu.*temp|npu.*overheat|npu.*die", description="NPU昇腾温度/健康异常", severity="ERROR"),
+    AnomalyRule(id="npu_hbm_error", pattern=r"hbm.*error|hbm.*fail|npu.*hbm|memory.*hbm|npu.*bandwidth", description="NPU HBM内存错误", severity="ERROR"),
     AnomalyRule(id="cann_error", pattern=r"cann.*error|aicpu.*error|dvpp.*error", description="CANN运行时错误", severity="ERROR"),
+    AnomalyRule(id="cann_version", pattern=r"cann.*version|aicpu.*version|ascend.*driver", description="CANN/驱动版本事件", severity="INFO"),
     AnomalyRule(id="hiai_fault", pattern=r"hiai.*error|ascend.*error|npu_sched.*fail|npuinfo.*error", description="昇腾海思子系统故障", severity="ERROR"),
+    AnomalyRule(id="xpu_error", pattern=r"xpu.*error|xpu.*fault|xpulink.*fail|xpumgr.*error", description="XPU通用错误（华为加速卡）", severity="ERROR"),
+
+    # === GPU/显卡类 ===
+    AnomalyRule(id="gpu_fault", pattern=r"gpu.*fault|gpu.*fail|gpu.*error|nvidia.*error|geforce.*error", description="GPU显卡故障", severity="ERROR"),
+    AnomalyRule(id="gpu_offline", pattern=r"gpu.*offline|gpu.*lost|gpu.*remove|gpu.*absent|gpu.*missing", description="GPU掉卡", severity="ERROR"),
+    AnomalyRule(id="gpu_thermal", pattern=r"gpu.*thermal|gpu.*overheat|gpu.*temp|gpu.*hot|nvidia.*thermal", description="GPU温度过高", severity="ERROR"),
+    AnomalyRule(id="gpu_predictive", pattern=r"gpu.*predictive|gpu.*degraded|nvsm.*degraded", description="GPU预测性故障", severity="WARNING"),
+    AnomalyRule(id="gpu_memory", pattern=r"gpu.*memory.*error|gpu.*ecc|gpu.*correctable|gpu.*uncorrectable", description="GPU显存错误", severity="ERROR"),
+    AnomalyRule(id="nvlink_error", pattern=r"nvlink.*error|nvlink.*fail|NVLink.*error", description="NVLink通信错误", severity="ERROR"),
+    AnomalyRule(id="nvsm_error", pattern=r"nvsm.*error|nvsm.*fail|NVSM.*error|NVSMI.*error", description="NVSM管理接口错误", severity="WARNING"),
+    AnomalyRule(id="dcgm_error", pattern=r"dcgm.*error|dcgm.*fail|DCGM.*error|GPU.*health.*fail", description="DCGM监控代理错误", severity="ERROR"),
 
     # === BMC/服务类 ===
     AnomalyRule(id="redfish_fail", pattern=r"get data fail|empty file", description="Redfish数据读取失败", severity="ERROR"),
