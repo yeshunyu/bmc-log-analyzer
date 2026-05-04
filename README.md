@@ -14,7 +14,10 @@ English version: [README_en.md](README_en.md)
 
 ### 异常检测
 - **规则异常检测**：基于专家规则（SSL握手失败、EDMA链路丢失、内存分配慢、主机注册异常、RAID阵列故障、物理磁盘故障、CPU错误、NPU昇腾设备故障、CANN运行时错误等，共70+条规则）
+- **华为ALM告警码检测**：自动解码 `ALM-0xNNXXXXXX` 格式告警码，识别14大类硬件故障（内存/电压/风扇/PCIe/驱动/RAID卡等200+告警），按诊断优先级排序
+- **IPMI SEL语义增强**：基于传感器类型+事件类型判断真实严重性（Assert≠Error，传感器语义才是依据），区分CPU/Memory/ Watchdog等ERROR与温度/电压等WARNING
 - **统计异常检测**：基于条目级别分布的统计模型，自动发现异常模块/级别
+- **诊断优先级排序**：先外后内（电源→风扇→散热→CPU/NPU→内存→RAID→网络→服务）、先高后低（ERROR→WARNING→INFO）
 - **硬件事件分类**：主板 / CPU / 内存 / 硬盘 / RAID卡 / 网卡 / NPU 七类硬件事件独立分组展示，支持点击查看详情和单独 LLM 分析
 
 ### LLM 根因分析
@@ -102,6 +105,9 @@ app/
 │   ├── maintenance.py   # 维护日志
 │   ├── nginx_access.py  # Nginx Access 日志
 │   ├── m7_imu.py        # M7 IMU 日志
+│   ├── sel.py           # IPMI SEL 二进制/文本解析 + 语义增强
+│   ├── huawei_alm.py    # 华为 ALM 告警码知识库
+│   ├── ibmc_dump.py     # iBMC Dump 归档解析
 │   └── __init__.py      # 自动格式识别
 ├── detectors/
 │   ├── rule_based.py    # 专家规则异常检测
@@ -126,6 +132,8 @@ app/
 | maintenance | maintenance_log, md_so_maintenance_log |
 | nginx_access + error | nginx access_log, nginx_error_log |
 | M7 IMU | imu, m7 |
+| iBMC Dump | BMC_dump, core_dump, dump_info, ibmc_dump |
+| Huawei ALM | ALM-0xNNXXXXXX 告警码（解析到告警级别） |
 
 ## API 接口
 
@@ -149,11 +157,15 @@ app/
 
 ### 快速启动
 
-```powershell
-docker run -d -p 8088:8000 yuyeshun2/bmc-log-analyzer
+```bash
+# 最新稳定版
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer
+
+# 指定版本 v0.29
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.29
 ```
 
-然后浏览器打开 **http://localhost:8088**。
+然后浏览器打开 **http://localhost:8000**。
 
 ### 自定义 LLM API（生产环境推荐）
 
@@ -161,12 +173,12 @@ docker run -d -p 8088:8000 yuyeshun2/bmc-log-analyzer
 
 也可通过环境变量配置，重启后配置持久化：
 
-```powershell
-docker run -d -p 8088:8000 \
-  -e LLM_API_KEY=your-api-key \
+```bash
+docker run -d -p 8000:8000 \
+  -e LLM_API_KEY=*** \
   -e LLM_API_BASE=https://api.deepseek.com \
   -e LLM_MODEL=deepseek-chat \
-  yuyeshun2/bmc-log-analyzer
+  yuyeshun2/bmc-log-analyzer:v0.29
 ```
 
 | 环境变量 | 说明 | 示例 |
