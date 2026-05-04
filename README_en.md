@@ -140,8 +140,8 @@ app/
 # Latest stable
 docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer
 
-# Specific version v0.31
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.31
+# Specific version v0.32
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.32
 ```
 
 Then open **http://localhost:8000** in your browser.
@@ -153,5 +153,5 @@ docker run -d -p 8000:8000 \
   -e LLM_API_KEY=*** \
   -e LLM_API_BASE=https://api.deepseek.com \
   -e LLM_MODEL=deepseek-chat \
-  yuyeshun2/bmc-log-analyzer:v0.31
+  yuyeshun2/bmc-log-analyzer:v0.32
 ```
