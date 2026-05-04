@@ -769,8 +769,25 @@ def _parse_multi(file_paths: list[Path], original_filename: str) -> tuple[str, l
 
 
 def _route_parse(filename: str, path: Path):
+    # If path is a directory (decompressed tar.gz), pick the primary log file
+    if path.is_dir():
+        # Sort by size desc, pick the largest file as primary
+        try:
+            candidates = sorted(path.rglob("*"), key=lambda p: p.stat().st_size if p.is_file() else -1, reverse=True)
+            # Skip very small files (<1KB) and hidden files
+            for p in candidates:
+                if p.is_file() and p.stat().st_size > 1024 and not p.name.startswith("."):
+                    path = p
+                    break
+            else:
+                raise HTTPException(status_code=422, detail=f"无法在解压目录中找到有效的日志文件")
+        except HTTPException:
+            raise
+        except Exception as e:
+            raise HTTPException(status_code=422, detail=f"解压目录扫描失败: {e}")
+
     # Registry lookup — discovers all registered parsers via __init__.py
-    parse_fn, format_name = get_parser(filename)
+    parse_fn, format_name = get_parser(filename if path.is_file() else path.name)
     if parse_fn is not None:
         return parse_fn(path)
 

@@ -1350,7 +1350,7 @@ function downloadMarkdown(c) {
   }
   md += `## 🔍 LLM 深度根因分析\n\n`;
   md += `> 以下内容由 LLM 基于上述日志数据生成，融合了模式识别、时序分析和硬件知识。\n\n`;
-  md += c.summary + `\n\n`;
+  md += (c.summary || '（暂无LLM分析结果）') + `\n\n`;
   md += `---\n\n`;
   md += `*本报告由 BMC 日志分析工具自动生成*\n`;
 
@@ -1554,12 +1554,16 @@ ${c.stats.length > 0 ? `<h2>📈 统计异常</h2>
   <tbody>${statRows}</tbody>
 </table>` : ''}
 <h2>🔍 LLM 深度根因分析</h2>
-<div class="summary-box"><pre>${c.summary}</pre></div>
+<div class="summary-box"><pre>${c.summary || '（暂无LLM分析结果）'}</pre></div>
 <div class="footer"><p>本报告由 BMC 日志分析工具自动生成</p></div>
 </body>
 </html>`;
 
   const w = window.open('', '_blank');
+  if (!w) {
+    alert('报告生成被浏览器拦截，请允许弹出窗口后重试。');
+    return;
+  }
   w.document.write(html);
   w.document.close();
   w.focus();
