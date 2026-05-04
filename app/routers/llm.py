@@ -355,7 +355,12 @@ def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: 
     try:
         with urllib.request.urlopen(req, timeout=120) as resp:
             data = json.loads(resp.read().decode("utf-8"))
-            return data["content"][0]["text"].strip()
+            # MiniMax Anthropic-compatible returns content as [{"type": "text", "text": "..."}]
+            # or [{"type": "thinking", ...}, {"type": "text", "text": "..."}]
+            for item in (data.get("content") or []):
+                if item.get("type") == "text":
+                    return item["text"].strip()
+            raise RuntimeError("响应中未找到 text 类型的 content")
     except urllib.error.HTTPError as e:
         body = e.read().decode("utf-8")
         raise RuntimeError(f"API 错误 {e.code}: {body[:500]}")
