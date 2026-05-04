@@ -23,8 +23,6 @@ RUN pip install --upgrade pip wheel setuptools
 COPY requirements.txt /tmp/
 RUN pip install -r /tmp/requirements.txt
 COPY app /app/app
-COPY scripts /app/scripts
-COPY pytest.ini /app/
 
 # ===== Stage 2: Runtime (fully offline, no network) =====
 FROM python:3.11-alpine
