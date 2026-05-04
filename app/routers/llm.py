@@ -343,7 +343,7 @@ def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: 
 
     # Anthropic-compatible base already contains /anthropic, just append /messages
     req = urllib.request.Request(
-        f"{api_base.rstrip('/')}/messages",
+        f"{api_base.rstrip('/')}/v1/messages",
         data=body,
         headers={
             "Content-Type": "application/json",
