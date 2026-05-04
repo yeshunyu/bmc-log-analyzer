@@ -481,9 +481,15 @@ def _parse_sel_tar(path: Path):
     entries = []
     parse_errors = 0
 
+    # 100 MB per-member limit to prevent OOM from malicious/ anomalous archives
+    MAX_MEMBER_SIZE = 100 * 1024 * 1024
+
     with tarfile.open(path, "r:*") as tar:
         for member in tar.getmembers():
             if not member.isfile():
+                continue
+            if member.size > MAX_MEMBER_SIZE:
+                # Skip oversized members rather than OOM-ing
                 continue
             f = tar.extractfile(member)
             if f is None:
@@ -637,8 +643,24 @@ def parse(path: Path):
         except Exception:
             parse_errors = 1
     elif path.suffix == ".bin":
+        # Guard against oversized binary SEL files (read_bytes is unbounded)
+        try:
+            bin_size = path.stat().st_size
+            MAX_BIN_SIZE = 200 * 1024 * 1024  # 200 MB
+            if bin_size > MAX_BIN_SIZE:
+                return [], 1
+        except OSError:
+            pass
         entries, parse_errors = _parse_sel_binary(path)
     elif path.suffix == ".db":
+        # Guard against oversized SQLite databases (keep memory bounded)
+        try:
+            db_size = path.stat().st_size
+            MAX_DB_SIZE = 500 * 1024 * 1024  # 500 MB
+            if db_size > MAX_DB_SIZE:
+                return [], 1  # Signal "unsupported/too large"
+        except OSError:
+            pass
         entries, parse_errors = _parse_sel_db(path)
     else:
         # Try as text
