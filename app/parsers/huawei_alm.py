@@ -710,10 +710,12 @@ def decode_alm(code: str) -> Optional[AlarmCodeInfo]:
     and with or without leading zeros.
     """
     code = code.strip().upper()
-    if code.startswith("ALM-0X"):
-        code = code[4:]   # strip "ALM-" prefix
-    elif code.startswith("ALM-"):
+    # Strip "ALM-" prefix first
+    if code.startswith("ALM-"):
         code = code[4:]
+    # Then strip "0X" prefix (if present after upper()) to get raw hex
+    if code.startswith("0X"):
+        code = code[2:]
 
     # Normalize: strip leading zeros, then re-pad to 8 hex digits
     if len(code) > 8:

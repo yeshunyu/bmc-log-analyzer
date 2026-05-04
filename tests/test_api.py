@@ -1,32 +1,8 @@
 """API endpoint tests — upload, history, reanalyze, llm-settings, operation-logs."""
 
 import pytest
-import json
-import tempfile
-from pathlib import Path
+from datetime import datetime
 from unittest.mock import patch
-from fastapi.testclient import TestClient
-
-# Import app factory to avoid module-level side effects
-import sys
-sys.path.insert(0, str(Path(__file__).parent.parent))
-
-from app.main import app, _cleanup_old_files
-
-
-@pytest.fixture
-def client():
-    """FastAPI test client."""
-    from app.main import app
-    return TestClient(app)
-
-
-@pytest.fixture
-def sample_log_bytes():
-    return (
-        b"2025-06-23 11:03:20.644848 kvm_vmm ERROR: comm.c(329): Pre-read ssl failed.\n"
-        b"2025-06-25 08:00:01.000000 host_mgr INFO: host is registered.\n"
-    )
 
 
 class TestUpload:
@@ -49,18 +25,41 @@ class TestUpload:
         assert res.status_code == 400
         assert "Unsupported" in res.json().get("detail", "")
 
-    def test_upload_accepts_log_file(self, client, sample_log_bytes):
-        """Valid .log file uploads and returns analysis result."""
+    def test_upload_accepts_log_file_returns_parsed_log(self, client, sample_log_bytes):
+        """Valid .log upload returns a parsed_log key."""
         res = client.post(
             "/api/upload",
             files={"file": ("test.log", sample_log_bytes, "text/plain")},
         )
         assert res.status_code == 200
-        data = res.json()
-        assert "parsed_log" in data
-        assert "rule_anomalies" in data
-        assert "summary" in data
-        assert data["summary"]["total_entries"] >= 1
+        assert "parsed_log" in res.json()
+
+    def test_upload_accepts_log_file_returns_rule_anomalies(self, client, sample_log_bytes):
+        """Valid .log upload returns a rule_anomalies key."""
+        res = client.post(
+            "/api/upload",
+            files={"file": ("test.log", sample_log_bytes, "text/plain")},
+        )
+        assert res.status_code == 200
+        assert "rule_anomalies" in res.json()
+
+    def test_upload_accepts_log_file_returns_summary(self, client, sample_log_bytes):
+        """Valid .log upload returns a summary key."""
+        res = client.post(
+            "/api/upload",
+            files={"file": ("test.log", sample_log_bytes, "text/plain")},
+        )
+        assert res.status_code == 200
+        assert "summary" in res.json()
+
+    def test_upload_summary_contains_entry_count(self, client, sample_log_bytes):
+        """Summary total_entries reflects the number of parsed log lines."""
+        res = client.post(
+            "/api/upload",
+            files={"file": ("test.log", sample_log_bytes, "text/plain")},
+        )
+        assert res.status_code == 200
+        assert res.json()["summary"]["total_entries"] >= 1
 
     def test_upload_accepts_gz_file(self, client):
         """Compressed .gz log file is accepted."""
@@ -331,3 +330,85 @@ class TestParserRegistry:
         fn, name = get_parser("sensor_alarm_sel.bin")
         assert fn is not None
         assert name == "sel"
+
+
+class TestLLMAnalysis:
+    """LLM analysis endpoints — mocked to avoid real API calls."""
+
+    def _mock_llm_config(self):
+        """Return a mock LLMConfig with valid credentials."""
+        from app.config import LLMConfig
+        return LLMConfig(provider="custom", api_key="test-key", api_base="https://test.example.com", model="test-model")
+
+    def test_llm_analyze_returns_summary(self, client):
+        """POST /api/analyze/llm returns a summary from the LLM."""
+        req_body = {
+            "anomalies": [
+                {
+                    "rule_id": "ssl_failed",
+                    "rule_description": "SSL handshake failure",
+                    "severity": "ERROR",
+                    "count": 3,
+                    "entries": [
+                        {
+                            "timestamp": "2025-06-23T11:03:20",
+                            "module": "kvm_vmm",
+                            "level": "ERROR",
+                            "message": "Pre-read ssl failed",
+                            "raw": "Pre-read ssl failed",
+                        }
+                    ],
+                }
+            ],
+            "statistical_anomalies": [],
+            "top_entries": [],
+        }
+
+        with patch("app.routers.llm.get_llm_config", return_value=self._mock_llm_config()):
+            with patch("app.routers.llm._call_custom") as mock_call:
+                mock_call.return_value = "SSL failure detected — check certificate configuration."
+                res = client.post("/api/analyze/llm", json=req_body)
+                assert res.status_code == 200
+                assert "summary" in res.json()
+                assert "SSL" in res.json()["summary"]
+                mock_call.assert_called_once()
+
+    def test_llm_analyze_rejects_missing_api_key(self, client):
+        """POST /api/analyze/llm with no API key configured returns 400."""
+        from app.config import LLMConfig
+
+        req_body = {"anomalies": [], "statistical_anomalies": [], "top_entries": []}
+
+        empty_config = LLMConfig(provider="custom", api_key="", api_base="", model="")
+        with patch("app.routers.llm.get_llm_config", return_value=empty_config):
+            res = client.post("/api/analyze/llm", json=req_body)
+            assert res.status_code == 400
+            assert "API Key" in res.json()["detail"]
+
+    def test_llm_analyze_single_returns_summary(self, client):
+        """POST /api/analyze/llm-single returns a summary for a single rule."""
+        req_body = {
+            "anomaly_type": "rule",
+            "rule_id": "ssl_failed",
+            "rule_description": "SSL handshake failure",
+            "severity": "ERROR",
+            "count": 5,
+            "entries": [
+                {
+                    "timestamp": "2025-06-23T11:03:20",
+                    "module": "kvm_vmm",
+                    "level": "ERROR",
+                    "message": "ssl failed",
+                    "raw": "ssl failed",
+                }
+            ],
+        }
+
+        with patch("app.routers.llm.get_llm_config", return_value=self._mock_llm_config()):
+            with patch("app.routers.llm._call_custom") as mock_call:
+                mock_call.return_value = "Multiple SSL failures indicate network misconfiguration."
+                res = client.post("/api/analyze/llm-single", json=req_body)
+                assert res.status_code == 200
+                assert "summary" in res.json()
+                assert "SSL" in res.json()["summary"]
+                mock_call.assert_called_once()

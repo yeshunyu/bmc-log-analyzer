@@ -384,6 +384,8 @@ async def llm_analyze(req: LLMAnalysisRequest):
             extra={"provider": cfg.provider, "model": cfg.model, "prompt_chars": len(prompt)},
         )
         return {"summary": result_text}
+    except HTTPException:
+        raise  # Re-raise HTTPException without wrapping it
     except Exception as e:
         log_operation(operation="llm_analysis", detail=f"LLM 分析失败: {e}", result="error", error=str(e))
         raise HTTPException(status_code=500, detail=str(e))
@@ -416,6 +418,8 @@ async def llm_analyze_single(req: LLMSingleRequest):
             extra={"provider": cfg.provider, "model": cfg.model, "rule_id": req.rule_id, "severity": req.severity},
         )
         return {"summary": result_text}
+    except HTTPException:
+        raise
     except Exception as e:
         log_operation(operation="llm_analysis_single", detail=f"LLM 单规则分析失败: {e}", result="error", error=str(e))
         raise HTTPException(status_code=500, detail=str(e))
