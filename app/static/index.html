@@ -417,6 +417,9 @@
 </div>
 
 <script>
+// Escape HTML special chars to prevent XSS in user-provided log content
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
 let analysisData = null;
 let allEntries = []; // raw list
 let timelineMode = 'all'; // 'all' | 'hw'
@@ -527,7 +530,7 @@ function renderAllEntries() {
       <div class="entry-item">
         <span class="entry-ts">${e.timestamp ? new Date(e.timestamp).toLocaleString('zh-CN') : ''}</span>
         <span class="anomaly-badge badge-${e.level}" style="margin-right:0.5rem">${e.level}</span>
-        <span class="entry-msg">[${e.module || ''}] ${e.message || ''}</span>
+        <span class="entry-msg">[${esc(e.module || '')}] ${esc(e.message || '')}</span>
         ${e.repeat_count > 1 ? `<span style="color:#f59e0b;margin-left:0.5rem">×${e.repeat_count}</span>` : ''}
       </div>
     </div>`).join('');
@@ -772,7 +775,7 @@ function showHwDetail(hw) {
   document.getElementById('hwDetailTitle').textContent = labels[hw] + ' 详情';
   const entryHtml = allEntries.slice(0, 20).map(e => {
     const ts = e.timestamp ? new Date(e.timestamp).toLocaleString('zh-CN', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).replace(/\//g,'-') : 'N/A';
-    return `<div class="hw-entry"><span class="ts">[${ts}]</span>[${e.module || '-'}] ${(e.message || '').substring(0, 120)}</div>`;
+    return `<div class="hw-entry"><span class="ts">[${ts}]</span>[${esc(e.module || '-')}] ${esc((e.message || '').substring(0, 120))}</div>`;
   }).join('');
   document.getElementById('hwDetailEntries').innerHTML = entryHtml || '<div class="hw-entry">无详细日志</div>';
   document.getElementById('hwDetailPanel').classList.add('open');
@@ -943,7 +946,7 @@ function openModulePanel(moduleName, entries) {
   el.innerHTML = entries.slice(0, 20).map(e => `
     <div class="entry-item">
       <span class="entry-ts">${e.timestamp ? new Date(e.timestamp).toLocaleString('zh-CN') : ''}</span>
-      <span class="entry-msg">[${e.module || ''}] ${e.message || ''}</span>
+      <span class="entry-msg">[${esc(e.module || '')}] ${esc(e.message || '')}</span>
     </div>`).join('');
   if (entries.length > 20) {
     el.innerHTML += `<div class="entry-item" style="color:#6b7280">还有 ${entries.length - 20} 条...</div>`;
@@ -1003,7 +1006,7 @@ function renderPie(data) {
   listEl.style.cssText = 'margin-top:0.5rem;display:flex;flex-wrap:wrap;gap:0.3rem;';
   sorted.slice(0, 8).forEach(([name, val]) => {
     const pct = ((val / total) * 100).toFixed(1);
-    listEl.innerHTML += `<span style="font-size:0.72rem;padding:0.15rem 0.5rem;background:#141620;border:1px solid #2d2f3d;border-radius:4px;color:#9ca3af;cursor:pointer" title="${val}条" onclick="openModulePanel('${name.replace(/'/g,"\\'")}', byModule['${name.replace(/'/g,"\\'")}'])">${name} <span style="color:#6b7280">${pct}%</span></span>`;
+    listEl.innerHTML += `<span style="font-size:0.72rem;padding:0.15rem 0.5rem;background:#141620;border:1px solid #2d2f3d;border-radius:4px;color:#9ca3af;cursor:pointer" title="${val}条" onclick="openModulePanel('${name.replace(/'/g,"\\'")}', byModule['${name.replace(/'/g,"\\'")}'])">${esc(name)} <span style="color:#6b7280">${pct}%</span></span>`;
   });
   const chartEl = document.getElementById('pieChart').parentElement;
   // Remove old list if any
@@ -1014,7 +1017,7 @@ function renderPie(data) {
   wrapper.style.cssText = 'margin-top:0.5rem;display:flex;flex-wrap:wrap;gap:0.3rem;';
   sorted.slice(0, 8).forEach(([name, val]) => {
     const pct = ((val / total) * 100).toFixed(1);
-    wrapper.innerHTML += `<span style="font-size:0.72rem;padding:0.15rem 0.5rem;background:#141620;border:1px solid #2d2f3d;border-radius:4px;color:#9ca3af;cursor:pointer" title="${val}条" onclick="openModulePanel('${name.replace(/'/g,"\\'")}', byModule['${name.replace(/'/g,"\\'")}'])">${name} <span style="color:#6b7280">${pct}%</span></span>`;
+    wrapper.innerHTML += `<span style="font-size:0.72rem;padding:0.15rem 0.5rem;background:#141620;border:1px solid #2d2f3d;border-radius:4px;color:#9ca3af;cursor:pointer" title="${val}条" onclick="openModulePanel('${name.replace(/'/g,"\\'")}', byModule['${name.replace(/'/g,"\\'")}'])">${esc(name)} <span style="color:#6b7280">${pct}%</span></span>`;
   });
 }
 

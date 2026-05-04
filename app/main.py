@@ -274,6 +274,7 @@ async def upload_log(request: Request, file: UploadFile) -> AnalysisResult:
     # Run anomaly detection
     rule_anomalies = detect_rule_anomalies(entries)
     stat_anomalies = detect_statistical_anomalies(entries)
+    alm_anomalies = detect_alm_anomalies(entries)  # cache — used 3× below
 
     # Summary stats
     level_counts: dict[str, int] = {}
@@ -290,7 +291,7 @@ async def upload_log(request: Request, file: UploadFile) -> AnalysisResult:
         "level_counts": level_counts,
         "top_modules": sorted(module_counts.items(), key=lambda x: -x[1])[:5],
         "rule_anomaly_count": len(rule_anomalies),
-        "alm_anomaly_count": sum(1 for a in detect_alm_anomalies(entries) if a.severity == "ERROR"),
+        "alm_anomaly_count": sum(1 for a in alm_anomalies if a.severity == "ERROR"),
         "stat_anomaly_count": len(stat_anomalies),
         "parsers_used": {format_type: len(entries)},
     }
@@ -300,13 +301,13 @@ async def upload_log(request: Request, file: UploadFile) -> AnalysisResult:
         detail=f"上传文件 {file.filename}，解析格式 {format_type}，{len(entries)} 条日志",
         file_name=file.filename,
         result="ok",
-        extra={"format": format_type, "entries": len(entries), "errors": parse_errors, "rule_anomalies": len(rule_anomalies), "alm_anomalies": sum(1 for a in detect_alm_anomalies(entries) if a.severity == "ERROR"), "stat_anomalies": len(stat_anomalies)},
+        extra={"format": format_type, "entries": len(entries), "errors": parse_errors, "rule_anomalies": len(rule_anomalies), "alm_anomalies": sum(1 for a in alm_anomalies if a.severity == "ERROR"), "stat_anomalies": len(stat_anomalies)},
     )
 
     return AnalysisResult(
         parsed_log=parsed_log,
         rule_anomalies=rule_anomalies,
-        alm_anomalies=detect_alm_anomalies(entries),
+        alm_anomalies=alm_anomalies,
         statistical_anomalies=stat_anomalies,
         summary=summary,
     )
@@ -408,6 +409,7 @@ async def reanalyze(uuid: str):
 
     rule_anomalies = detect_rule_anomalies(entries)
     stat_anomalies = detect_statistical_anomalies(entries)
+    alm_anomalies = detect_alm_anomalies(entries)  # cache — used 3× below
     level_counts: dict[str, int] = {}
     module_counts: dict[str, int] = {}
     for e in entries:
@@ -440,7 +442,7 @@ async def reanalyze(uuid: str):
         "level_counts": level_counts,
         "top_modules": sorted(module_counts.items(), key=lambda x: -x[1])[:5],
         "rule_anomaly_count": len(rule_anomalies),
-        "alm_anomaly_count": sum(1 for a in detect_alm_anomalies(entries) if a.severity == "ERROR"),
+        "alm_anomaly_count": sum(1 for a in alm_anomalies if a.severity == "ERROR"),
         "stat_anomaly_count": len(stat_anomalies),
         "parsers_used": {format_type: len(entries)},
     }
@@ -449,10 +451,26 @@ async def reanalyze(uuid: str):
         detail=f"重新分析 {original_name}，{len(entries)} 条日志",
         file_name=original_name,
         result="ok",
-        extra={"format": format_type, "entries": len(entries), "rule_anomalies": len(rule_anomalies), "alm_anomalies": sum(1 for a in detect_alm_anomalies(entries) if a.severity == "ERROR"), "stat_anomalies": len(stat_anomalies)},
+        extra={"format": format_type, "entries": len(entries), "rule_anomalies": len(rule_anomalies), "alm_anomalies": sum(1 for a in alm_anomalies if a.severity == "ERROR"), "stat_anomalies": len(stat_anomalies)},
     )
-    alm_detected = detect_alm_anomalies(entries)
+    alm_detected = alm_anomalies
     return AnalysisResult(parsed_log=parsed_log, rule_anomalies=rule_anomalies, alm_anomalies=alm_detected, statistical_anomalies=stat_anomalies, summary=summary)
+
+
+def _safe_extract(tar: tarfile.TarFile, dest: Path) -> None:
+    """Extract tar into dest with ZIP SLIP protection.
+
+    Validates each member name contains no '..' path traversal before extracting.
+    Raises ValueError if any member would escape the destination directory.
+    """
+    dest_resolved = dest.resolve()
+    for member in tar.getmembers():
+        if '..' in member.name or member.name.startswith('/'):
+            raise ValueError(f"Unsafe path in archive: {member.name}")
+        member_path = (dest / member.name).resolve()
+        if not member_path.is_relative_to(dest_resolved):
+            raise ValueError(f"Path traversal attempt: {member.name}")
+    tar.extractall(dest)
 
 
 def _decompress_if_needed(path: Path, job_id: str) -> tuple[Path, list[Path]]:
@@ -473,7 +491,7 @@ def _decompress_if_needed(path: Path, job_id: str) -> tuple[Path, list[Path]]:
                 shutil.rmtree(extract_dir)
             extract_dir.mkdir()
             with tarfile.open(path, "r:gz") as tar:
-                tar.extractall(extract_dir)
+                _safe_extract(tar, extract_dir)
             # Recurse into any inner tar files (tar inside tar.gz)
             all_files = _extract_inner_archives(extract_dir, job_id)
             return extract_dir, all_files
@@ -506,14 +524,14 @@ def _extract_inner_archives(extract_dir: Path, job_id: str) -> list:
             sub_dir = extract_dir / f"{job_id}_inner_{p.stem}"
             sub_dir.mkdir(exist_ok=True)
             with tarfile.open(p, "r:") as tar:
-                tar.extractall(sub_dir)
+                _safe_extract(tar, sub_dir)
             all_files.extend(p for p in sub_dir.rglob("*") if p.is_file())
             all_files.append(p)
         elif p.suffix == ".gz" and p.stem.endswith(".tar"):
             sub_dir = extract_dir / f"{job_id}_inner_{p.stem}"
             sub_dir.mkdir(exist_ok=True)
             with tarfile.open(p, "r:gz") as tar:
-                tar.extractall(sub_dir)
+                _safe_extract(tar, sub_dir)
             all_files.extend(p for p in sub_dir.rglob("*") if p.is_file())
             all_files.append(p)
     # Deduplicate while preserving order

@@ -39,6 +39,18 @@ FORMAT_NAME = "sel"
 FILE_PATTERNS = ["sel", "sensor_alarm_sel"]
 
 
+def _read_in_chunks(f: BinaryIO, max_size: int) -> bytes:
+    """Read file in chunks up to max_size bytes to prevent unbounded memory use."""
+    data = b""
+    chunk_size = 64 * 1024
+    while len(data) < max_size:
+        chunk = f.read(min(chunk_size, max_size - len(data)))
+        if not chunk:
+            break
+        data += chunk
+    return data
+
+
 # ---------------------------------------------------------------------
 # IPMI SEL record types
 # ---------------------------------------------------------------------
@@ -494,11 +506,11 @@ def _parse_sel_tar(path: Path):
             f = tar.extractfile(member)
             if f is None:
                 continue
-            # Try UTF-8, fall back to latin-1
+            raw = _read_in_chunks(f, MAX_MEMBER_SIZE)
             try:
-                content = f.read().decode("utf-8", errors="replace")
-            except Exception:
-                content = f.read().decode("latin-1", errors="replace")
+                content = raw.decode("utf-8", errors="strict")
+            except UnicodeDecodeError:
+                content = raw.decode("latin-1", errors="replace")
 
             for line in content.splitlines():
                 line = line.strip()
