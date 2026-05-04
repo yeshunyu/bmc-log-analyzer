@@ -8,5 +8,5 @@ services:
       - "8000:8000"
     volumes:
       # Persist uploads across restarts
-      - ./uploads:/app/app/uploads
+      - ./app/uploads:/app/app/uploads
     restart: unless-stopped

@@ -1,5 +1,6 @@
 import json
-import subprocess
+import urllib.error
+import urllib.request
 from datetime import datetime
 from typing import Any
 from fastapi import APIRouter, HTTPException
@@ -254,18 +255,38 @@ def build_single_prompt(anomaly_type: str, rule_id: str, rule_description: str,
 
 
 # ---------------------------------------------------------------------------
-# MiniMax (mmx CLI) driver
+# MiniMax HTTP API driver
 # ---------------------------------------------------------------------------
-def _call_minimax(prompt: str) -> str:
-    result = subprocess.run(
-        ["mmx", "text", "chat", "--output", "text", "--message", prompt],
-        capture_output=True,
-        text=True,
-        timeout=120,
+def _call_minimax(prompt: str, api_key: str = "", api_base: str = "https://api.minimax.chat/v1", model: str = "MiniMax-Text-01") -> str:
+    """Call MiniMax API via OpenAI-compatible endpoint."""
+    import urllib.request
+    import urllib.error
+    # Use provided api_key or fall back to env
+    key = api_key or os.environ.get("MINIMAX_API_KEY", "")
+    payload = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.3,
+    }
+    body = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(
+        f"{api_base.rstrip('/')}/chat/completions",
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {key}",
+        },
+        method="POST",
     )
-    if result.returncode != 0:
-        raise RuntimeError(result.stderr.strip() or "MiniMax CLI 返回非零")
-    return result.stdout.strip()
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            return data["choices"][0]["message"]["content"].strip()
+    except urllib.error.HTTPError as e:
+        body_str = e.read().decode("utf-8")
+        raise RuntimeError(f"MiniMax API 错误 {e.code}: {body_str[:500]}")
+    except (KeyError, IndexError) as e:
+        raise RuntimeError(f"MiniMax API 响应格式错误: {e}")
 
 
 # ---------------------------------------------------------------------------
@@ -378,7 +399,7 @@ async def llm_analyze(req: LLMAnalysisRequest):
 
     try:
         if cfg.provider == "minimax":
-            result_text = _call_minimax(prompt)
+            result_text = _call_minimax(prompt, cfg.api_key, cfg.api_base, cfg.model)
         else:
             if not cfg.api_key:
                 raise HTTPException(
@@ -394,8 +415,6 @@ async def llm_analyze(req: LLMAnalysisRequest):
             extra={"provider": cfg.provider, "model": cfg.model, "prompt_chars": len(prompt)},
         )
         return {"summary": result_text}
-    except subprocess.TimeoutExpired:
-        raise HTTPException(status_code=504, detail="LLM 分析超时（2分钟）")
     except Exception as e:
         log_operation(operation="llm_analysis", detail=f"LLM 分析失败: {e}", result="error", error=str(e))
         raise HTTPException(status_code=500, detail=str(e))
@@ -415,7 +434,7 @@ async def llm_analyze_single(req: LLMSingleRequest):
 
     try:
         if cfg.provider == "minimax":
-            result_text = _call_minimax(prompt)
+            result_text = _call_minimax(prompt, cfg.api_key, cfg.api_base, cfg.model)
         else:
             if not cfg.api_key:
                 raise HTTPException(
@@ -431,8 +450,6 @@ async def llm_analyze_single(req: LLMSingleRequest):
             extra={"provider": cfg.provider, "model": cfg.model, "rule_id": req.rule_id, "severity": req.severity},
         )
         return {"summary": result_text}
-    except subprocess.TimeoutExpired:
-        raise HTTPException(status_code=504, detail="LLM 分析超时（2分钟）")
     except Exception as e:
         log_operation(operation="llm_analysis_single", detail=f"LLM 单规则分析失败: {e}", result="error", error=str(e))
         raise HTTPException(status_code=500, detail=str(e))
