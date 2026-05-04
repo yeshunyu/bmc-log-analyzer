@@ -8,3 +8,5 @@ app/uploads/
 build/
 dist/
 .DS_Store
+.coverage
+logs/*.jsonl
