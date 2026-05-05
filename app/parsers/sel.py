@@ -39,6 +39,18 @@ FORMAT_NAME = "sel"
 FILE_PATTERNS = ["sel", "sensor_alarm_sel"]
 
 
+def _read_in_chunks(f: BinaryIO, max_size: int) -> bytes:
+    """Read file in chunks up to max_size bytes to prevent unbounded memory use."""
+    data = b""
+    chunk_size = 64 * 1024
+    while len(data) < max_size:
+        chunk = f.read(min(chunk_size, max_size - len(data)))
+        if not chunk:
+            break
+        data += chunk
+    return data
+
+
 # ---------------------------------------------------------------------
 # IPMI SEL record types
 # ---------------------------------------------------------------------
@@ -423,7 +435,10 @@ def _parse_sel_binary(path: Path):
     entries = []
     parse_errors = 0
 
-    data = path.read_bytes()
+    # Stream file in chunks to prevent OOM on pathological inputs
+    MAX_SEL_SIZE = 500 * 1024 * 1024  # 500 MB cap
+    with path.open("rb") as f:
+        data = _read_in_chunks(f, MAX_SEL_SIZE)
 
     # First byte may be header (0x00 means standard header)
     # Second byte is record size (usually 0x10 = 16 bytes minimum)
@@ -494,11 +509,12 @@ def _parse_sel_tar(path: Path):
             f = tar.extractfile(member)
             if f is None:
                 continue
-            # Try UTF-8, fall back to latin-1
+            # Try UTF-8 first, fall back to latin-1
+            raw = _read_in_chunks(f, MAX_MEMBER_SIZE)
             try:
-                content = f.read().decode("utf-8", errors="replace")
-            except Exception:
-                content = f.read().decode("latin-1", errors="replace")
+                content = raw.decode("utf-8", errors="strict")
+            except UnicodeDecodeError:
+                content = raw.decode("latin-1", errors="replace")
 
             for line in content.splitlines():
                 line = line.strip()
@@ -663,8 +679,12 @@ def parse(path: Path):
             pass
         entries, parse_errors = _parse_sel_db(path)
     else:
-        # Try as text
+        # Try as text — guard against huge files (cap at 100 MB)
+        MAX_TEXT_SIZE = 100 * 1024 * 1024
         try:
+            file_size = path.stat().st_size
+            if file_size > MAX_TEXT_SIZE:
+                return [], 1  # Signal "unsupported/too large"
             content = path.read_text(encoding="utf-8", errors="replace")
             lines = content.splitlines()
             for line in lines:

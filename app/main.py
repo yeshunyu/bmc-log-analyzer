@@ -8,7 +8,9 @@ import time
 from datetime import datetime as dt, timezone
 from pathlib import Path
 from typing import Optional
-from fastapi import FastAPI, UploadFile, HTTPException, Request
+from fastapi import FastAPI, UploadFile, HTTPException, Request, Depends
+from app.rate_limit import limiter
+from app.auth import require_api_key
 from fastapi.responses import HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
@@ -18,9 +20,9 @@ from slowapi import Limiter
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 import threading
+import concurrent.futures
 
 import json
-from pathlib import Path
 
 MAX_FILE_SIZE = 500 * 1024 * 1024  # 500 MB upload limit
 
@@ -62,7 +64,21 @@ from app.detectors.statistical import detect_statistical_anomalies
 from app.routers.llm import router as llm_router
 from app.operation_log import log_operation
 
-app = FastAPI(title="BMC Log Analyzer")
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app):
+    # Startup
+    _n = _cleanup_old_files()
+    if _n:
+        print(f"[cleanup] Removed {_n} stale upload(s) on startup")
+    _sync_manifest()
+    _thread = threading.Thread(target=_cleanup_loop, daemon=True)
+    _thread.start()
+    yield
+    # Shutdown: daemon thread exits with process
+
+app = FastAPI(title="BMC Log Analyzer", lifespan=lifespan)
 app.include_router(llm_router)
 
 # Rate limiter — 20 upload requests per minute per IP
@@ -88,9 +104,12 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         return response
 
 
+_cors_origins = os.environ.get("CORS_ORIGINS", "http://localhost:8000").split(",")
+if "*" in _cors_origins:
+    raise ValueError("CORS_ORIGINS cannot contain '*' — use specific origins")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Single-page tool, no credential-sensitive CORS needs
+    allow_origins=_cors_origins,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
@@ -116,6 +135,8 @@ MANIFEST_PATH = UPLOAD_DIR / "manifest.json"
 TTL_SECONDS = 24 * 3600  # 24 hours
 
 
+import fcntl
+
 def _load_manifest() -> list[dict]:
     """Returns list of {name, created_at, size}."""
     if not MANIFEST_PATH.exists():
@@ -123,15 +144,31 @@ def _load_manifest() -> list[dict]:
     try:
         import json
         with MANIFEST_PATH.open() as f:
-            return json.load(f)
+            fcntl.flock(f.fileno(), fcntl.LOCK_SH)
+            try:
+                return json.load(f)
+            finally:
+                fcntl.flock(f.fileno(), fcntl.LOCK_UN)
     except Exception:
         return []
 
 
 def _save_manifest(manifest: list[dict]) -> None:
     import json
-    with MANIFEST_PATH.open("w") as f:
-        json.dump(manifest, f, ensure_ascii=False)
+    # Write to temp file then rename (atomic on POSIX)
+    tmp = MANIFEST_PATH.with_suffix(".tmp")
+    try:
+        with MANIFEST_PATH.open("a") as f:
+            fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+            try:
+                with tmp.open("w") as tf:
+                    json.dump(manifest, tf, ensure_ascii=False)
+                os.replace(tmp, MANIFEST_PATH)
+            finally:
+                fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+    except Exception:
+        if tmp.exists():
+            tmp.unlink(missing_ok=True)
 
 
 def _sync_manifest() -> None:
@@ -189,14 +226,7 @@ def _cleanup_loop():
             print(f"[cleanup] Removed {n} stale upload(s)")
 
 
-# Start background cleanup thread
-_cleanup_thread = threading.Thread(target=_cleanup_loop, daemon=True)
-_cleanup_thread.start()
-# Also clean any stale files left from previous runs on startup
-_n = _cleanup_old_files()
-if _n:
-    print(f"[cleanup] Removed {_n} stale upload(s) on startup")
-_sync_manifest()
+
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -211,7 +241,7 @@ async def get_version():
 
 @app.post("/api/upload")
 @limiter.limit("20/minute")
-async def upload_log(request: Request, file: UploadFile) -> AnalysisResult:
+async def upload_log(request: Request, file: UploadFile, _auth: str = Depends(require_api_key)) -> AnalysisResult:
     if not file.filename:
         raise HTTPException(status_code=400, detail="No filename provided")
 
@@ -274,6 +304,7 @@ async def upload_log(request: Request, file: UploadFile) -> AnalysisResult:
     # Run anomaly detection
     rule_anomalies = detect_rule_anomalies(entries)
     stat_anomalies = detect_statistical_anomalies(entries)
+    alm_anomalies = detect_alm_anomalies(entries)  # cache — used 3× below
 
     # Summary stats
     level_counts: dict[str, int] = {}
@@ -290,7 +321,7 @@ async def upload_log(request: Request, file: UploadFile) -> AnalysisResult:
         "level_counts": level_counts,
         "top_modules": sorted(module_counts.items(), key=lambda x: -x[1])[:5],
         "rule_anomaly_count": len(rule_anomalies),
-        "alm_anomaly_count": sum(1 for a in detect_alm_anomalies(entries) if a.severity == "ERROR"),
+        "alm_anomaly_count": sum(1 for a in alm_anomalies if a.severity == "ERROR"),
         "stat_anomaly_count": len(stat_anomalies),
         "parsers_used": {format_type: len(entries)},
     }
@@ -300,13 +331,13 @@ async def upload_log(request: Request, file: UploadFile) -> AnalysisResult:
         detail=f"上传文件 {file.filename}，解析格式 {format_type}，{len(entries)} 条日志",
         file_name=file.filename,
         result="ok",
-        extra={"format": format_type, "entries": len(entries), "errors": parse_errors, "rule_anomalies": len(rule_anomalies), "alm_anomalies": sum(1 for a in detect_alm_anomalies(entries) if a.severity == "ERROR"), "stat_anomalies": len(stat_anomalies)},
+        extra={"format": format_type, "entries": len(entries), "errors": parse_errors, "rule_anomalies": len(rule_anomalies), "alm_anomalies": sum(1 for a in alm_anomalies if a.severity == "ERROR"), "stat_anomalies": len(stat_anomalies)},
     )
 
     return AnalysisResult(
         parsed_log=parsed_log,
         rule_anomalies=rule_anomalies,
-        alm_anomalies=detect_alm_anomalies(entries),
+        alm_anomalies=alm_anomalies,
         statistical_anomalies=stat_anomalies,
         summary=summary,
     )
@@ -315,7 +346,7 @@ async def upload_log(request: Request, file: UploadFile) -> AnalysisResult:
 
 
 @app.get("/api/history")
-async def get_history():
+async def get_history(_auth: str = Depends(require_api_key)):
     """Return last 20 uploaded file names (without uuid prefix)."""
     _sync_manifest()
     manifest = _load_manifest()
@@ -323,7 +354,7 @@ async def get_history():
 
 
 @app.delete("/api/history")
-async def clear_history():
+async def clear_history(_auth: str = Depends(require_api_key)):
     """Delete all history entries and their files from disk."""
     deleted = 0
     for p in UPLOAD_DIR.iterdir():
@@ -344,7 +375,7 @@ async def clear_history():
 
 
 @app.get("/api/operation-logs")
-async def get_operation_logs(days: int = 7):
+async def get_operation_logs(days: int = 7, _auth: str = Depends(require_api_key)):
     """Return operation logs for the last N days (default 7)."""
     from app.operation_log import read_logs
     if days < 1 or days > 30:
@@ -353,7 +384,7 @@ async def get_operation_logs(days: int = 7):
 
 
 @app.delete("/api/reanalyze/{uuid}")
-async def delete_reanalyze(uuid: str):
+async def delete_reanalyze(uuid: str, _auth: str = Depends(require_api_key)):
     """Delete a previously uploaded file from disk and manifest."""
     import shutil
     deleted = False
@@ -376,7 +407,7 @@ async def delete_reanalyze(uuid: str):
     return {"ok": True}
 
 @app.post("/api/reanalyze/{uuid}")
-async def reanalyze(uuid: str):
+async def reanalyze(uuid: str, _auth: str = Depends(require_api_key)):
     """Re-run analysis on a previously uploaded file stored on disk."""
     for p in UPLOAD_DIR.iterdir():
         if p.name.startswith(f"{uuid}_"):
@@ -408,6 +439,7 @@ async def reanalyze(uuid: str):
 
     rule_anomalies = detect_rule_anomalies(entries)
     stat_anomalies = detect_statistical_anomalies(entries)
+    alm_anomalies = detect_alm_anomalies(entries)  # cache — used 3× below
     level_counts: dict[str, int] = {}
     module_counts: dict[str, int] = {}
     for e in entries:
@@ -440,7 +472,7 @@ async def reanalyze(uuid: str):
         "level_counts": level_counts,
         "top_modules": sorted(module_counts.items(), key=lambda x: -x[1])[:5],
         "rule_anomaly_count": len(rule_anomalies),
-        "alm_anomaly_count": sum(1 for a in detect_alm_anomalies(entries) if a.severity == "ERROR"),
+        "alm_anomaly_count": sum(1 for a in alm_anomalies if a.severity == "ERROR"),
         "stat_anomaly_count": len(stat_anomalies),
         "parsers_used": {format_type: len(entries)},
     }
@@ -449,10 +481,26 @@ async def reanalyze(uuid: str):
         detail=f"重新分析 {original_name}，{len(entries)} 条日志",
         file_name=original_name,
         result="ok",
-        extra={"format": format_type, "entries": len(entries), "rule_anomalies": len(rule_anomalies), "alm_anomalies": sum(1 for a in detect_alm_anomalies(entries) if a.severity == "ERROR"), "stat_anomalies": len(stat_anomalies)},
+        extra={"format": format_type, "entries": len(entries), "rule_anomalies": len(rule_anomalies), "alm_anomalies": sum(1 for a in alm_anomalies if a.severity == "ERROR"), "stat_anomalies": len(stat_anomalies)},
     )
-    alm_detected = detect_alm_anomalies(entries)
+    alm_detected = alm_anomalies
     return AnalysisResult(parsed_log=parsed_log, rule_anomalies=rule_anomalies, alm_anomalies=alm_detected, statistical_anomalies=stat_anomalies, summary=summary)
+
+
+def _safe_extract(tar: tarfile.TarFile, dest: Path) -> None:
+    """Extract tar into dest with ZIP SLIP protection.
+
+    Validates each member name contains no '..' path traversal before extracting.
+    Raises ValueError if any member would escape the destination directory.
+    """
+    dest_resolved = dest.resolve()
+    for member in tar.getmembers():
+        if '..' in member.name or member.name.startswith('/'):
+            raise ValueError(f"Unsafe path in archive: {member.name}")
+        member_path = (dest / member.name).resolve()
+        if not member_path.is_relative_to(dest_resolved):
+            raise ValueError(f"Path traversal attempt: {member.name}")
+    tar.extractall(dest, filter="data")
 
 
 def _decompress_if_needed(path: Path, job_id: str) -> tuple[Path, list[Path]]:
@@ -473,7 +521,7 @@ def _decompress_if_needed(path: Path, job_id: str) -> tuple[Path, list[Path]]:
                 shutil.rmtree(extract_dir)
             extract_dir.mkdir()
             with tarfile.open(path, "r:gz") as tar:
-                tar.extractall(extract_dir)
+                _safe_extract(tar, extract_dir)
             # Recurse into any inner tar files (tar inside tar.gz)
             all_files = _extract_inner_archives(extract_dir, job_id)
             return extract_dir, all_files
@@ -506,14 +554,14 @@ def _extract_inner_archives(extract_dir: Path, job_id: str) -> list:
             sub_dir = extract_dir / f"{job_id}_inner_{p.stem}"
             sub_dir.mkdir(exist_ok=True)
             with tarfile.open(p, "r:") as tar:
-                tar.extractall(sub_dir)
+                _safe_extract(tar, sub_dir)
             all_files.extend(p for p in sub_dir.rglob("*") if p.is_file())
             all_files.append(p)
         elif p.suffix == ".gz" and p.stem.endswith(".tar"):
             sub_dir = extract_dir / f"{job_id}_inner_{p.stem}"
             sub_dir.mkdir(exist_ok=True)
             with tarfile.open(p, "r:gz") as tar:
-                tar.extractall(sub_dir)
+                _safe_extract(tar, sub_dir)
             all_files.extend(p for p in sub_dir.rglob("*") if p.is_file())
             all_files.append(p)
     # Deduplicate while preserving order
@@ -841,30 +889,43 @@ def _find_top_log_files(extract_dir: Path, top_n: int = _MAX_LOG_FILES) -> list[
     return result[:top_n]
 
 
+MAX_TOTAL_ENTRIES = 200_000  # cap to prevent OOM on pathological inputs
+
+
 def _parse_multi(file_paths: list[Path], original_filename: str) -> tuple[str, list, int]:
-    """Parse multiple log files, aggregate entries, merge parse_errors.
+    """Parse multiple log files in parallel, aggregate entries, merge parse_errors.
 
     Returns (format_type, all_entries, total_parse_errors).
     Each entry's source_file is set to the filename it came from.
     """
+    MAX_TOTAL_ENTRIES = 200_000
+
+    def _parse_one(path: Path) -> tuple[Path, str, list, int]:
+        """Parse a single file, return (path, format_type, entries, errors)."""
+        try:
+            ft, entries, errs = _route_parse(path.name, path)
+            for e in entries:
+                e.source_file = path.name
+                enrich_entry_with_alm(e)
+            return (path, ft, entries, errs)
+        except Exception:
+            return (path, "unknown", [], 1)
+
     all_entries: list = []
     total_errors = 0
     format_type = "multi"
 
-    for path in file_paths:
-        try:
-            ft, entries, errs = _route_parse(path.name, path)
-            # Tag each entry with its source file
-            for e in entries:
-                e.source_file = path.name
-                # Enrich with Huawei ALM alarm code metadata
-                enrich_entry_with_alm(e)
+    # Parallel parse — one thread per file, capped at 8 workers
+    with concurrent.futures.ThreadPoolExecutor(max_workers=min(len(file_paths), 8)) as executor:
+        futures = {executor.submit(_parse_one, p): p for p in file_paths}
+        for future in concurrent.futures.as_completed(futures):
+            if len(all_entries) >= MAX_TOTAL_ENTRIES:
+                continue
+            _, ft, entries, errs = future.result()
             all_entries.extend(entries)
             total_errors += errs
             if len(entries) > 0:
                 format_type = ft
-        except Exception:
-            total_errors += 1
 
     # Sort by timestamp if available
     all_entries.sort(key=lambda e: e.timestamp or dt.min)
@@ -900,4 +961,4 @@ def _route_parse(filename: str, path: Path):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, factory=True)

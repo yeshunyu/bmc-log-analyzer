@@ -161,8 +161,8 @@ app/
 # 最新稳定版
 docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer
 
-# 指定版本 v0.32
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.32
+# 指定版本 v0.40.rc1
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.40.rc1
 ```
 
 然后浏览器打开 **http://localhost:8000**。
@@ -178,7 +178,7 @@ docker run -d -p 8000:8000 \
   -e LLM_API_KEY=*** \
   -e LLM_API_BASE=https://api.deepseek.com \
   -e LLM_MODEL=deepseek-chat \
-  yuyeshun2/bmc-log-analyzer:v0.32
+  yuyeshun2/bmc-log-analyzer:v0.40.rc1
 ```
 
 | 环境变量 | 说明 | 示例 |

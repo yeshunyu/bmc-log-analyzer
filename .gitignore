@@ -3,6 +3,9 @@ __pycache__/
 *.pyc
 .pytest_cache/
 app/uploads/
+app_version.json
+.coverage
+logs/
 .env
 *.egg-info/
 build/

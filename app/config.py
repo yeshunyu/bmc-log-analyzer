@@ -25,6 +25,7 @@ class LLMConfig:
     api_key: str = ""
     api_base: str = "https://api.deepseek.com"
     model: str = ""
+    ssl_verify: bool = True  # False to disable SSL verification (for self-signed certs)
 
     def to_dict(self) -> dict:
         return {
@@ -32,6 +33,7 @@ class LLMConfig:
             "api_key": self.api_key,
             "api_base": self.api_base,
             "model": self.model,
+            "ssl_verify": self.ssl_verify,
         }
 
 
@@ -53,7 +55,7 @@ def get_llm_config() -> LLMConfig:
     return _llm_config
 
 
-def update_llm_config(provider: LLMProvider, api_key: str, api_base: str, model: str) -> LLMConfig:
+def update_llm_config(provider: LLMProvider, api_key: str, api_base: str, model: str, ssl_verify: bool = True) -> LLMConfig:
     global _llm_config
-    _llm_config = LLMConfig(provider=provider, api_key=api_key, api_base=api_base, model=model)
+    _llm_config = LLMConfig(provider=provider, api_key=api_key, api_base=api_base, model=model, ssl_verify=ssl_verify)
     return _llm_config

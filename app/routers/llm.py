@@ -43,6 +43,7 @@ class LLMSettingsRequest(BaseModel):
     api_key: str
     api_base: str
     model: str
+    ssl_verify: bool = True
 
 
 class LLMSingleRequest(BaseModel):
@@ -58,6 +59,7 @@ class LLMSettingsResponse(BaseModel):
     provider: LLMProvider
     api_base: str
     model: str
+    ssl_verify: bool
 
 
 # ---------------------------------------------------------------------------
@@ -66,22 +68,22 @@ class LLMSettingsResponse(BaseModel):
 @router.get("/llm-settings", response_model=LLMSettingsResponse)
 async def get_settings():
     cfg = get_llm_config()
-    return LLMSettingsResponse(provider=cfg.provider, api_base=cfg.api_base, model=cfg.model)
+    return LLMSettingsResponse(provider=cfg.provider, api_base=cfg.api_base, model=cfg.model, ssl_verify=cfg.ssl_verify)
 
 
 @router.post("/llm-settings", response_model=LLMSettingsResponse)
 async def post_settings(req: LLMSettingsRequest):
     if not req.api_key:
         raise HTTPException(status_code=400, detail="API Key 不能为空")
-    cfg = update_llm_config(req.provider, req.api_key, req.api_base, req.model)
-    return LLMSettingsResponse(provider=cfg.provider, api_base=cfg.api_base, model=cfg.model)
+    cfg = update_llm_config(req.provider, req.api_key, req.api_base, req.model, req.ssl_verify)
+    return LLMSettingsResponse(provider=cfg.provider, api_base=cfg.api_base, model=cfg.model, ssl_verify=cfg.ssl_verify)
 
 
 @router.post("/llm-settings/reset")
 async def reset_settings():
     """Reset LLM config to defaults."""
-    cfg = update_llm_config("custom", "", "https://api.deepseek.com", "")
-    return LLMSettingsResponse(provider=cfg.provider, api_base=cfg.api_base, model=cfg.model)
+    cfg = update_llm_config("custom", "", "https://api.deepseek.com", "", ssl_verify=True)
+    return LLMSettingsResponse(provider=cfg.provider, api_base=cfg.api_base, model=cfg.model, ssl_verify=cfg.ssl_verify)
 
 
 # ---------------------------------------------------------------------------
@@ -264,7 +266,7 @@ def build_single_prompt(anomaly_type: str, rule_id: str, rule_description: str,
 # --------------------------------------------------------------------------
 # Generic OpenAI-compatible custom API driver (auto-detects Anthropic vs OpenAI by URL)
 # ---------------------------------------------------------------------------
-def _call_custom(prompt: str, api_key: str, api_base: str, model: str) -> str:
+def _call_custom(prompt: str, api_key: str, api_base: str, model: str, ssl_verify: bool = True) -> str:
     """Try OpenAI-compatible first, fall back to Anthropic-compatible.
 
     Attempts both interfaces with the same prompt and returns whichever
@@ -272,14 +274,14 @@ def _call_custom(prompt: str, api_key: str, api_base: str, model: str) -> str:
     """
     # Try OpenAI /chat/completions
     try:
-        result = _call_openai_compatible(prompt, api_key, api_base, model)
+        result = _call_openai_compatible(prompt, api_key, api_base, model, ssl_verify)
         return result
     except (KeyError, IndexError, RuntimeError):
         pass
 
     # Fall back to Anthropic /messages
     try:
-        return _call_anthropic_compatible(prompt, api_key, api_base, model)
+        return _call_anthropic_compatible(prompt, api_key, api_base, model, ssl_verify)
     except (KeyError, IndexError, RuntimeError) as e:
         raise RuntimeError(
             f"API 接口响应格式错误（尝试了 OpenAI 和 Anthropic 两种接口），"
@@ -287,9 +289,10 @@ def _call_custom(prompt: str, api_key: str, api_base: str, model: str) -> str:
         )
 
 
-def _call_openai_compatible(prompt: str, api_key: str, api_base: str, model: str) -> str:
+def _call_openai_compatible(prompt: str, api_key: str, api_base: str, model: str, ssl_verify: bool = True) -> str:
     import urllib.request
     import urllib.error
+    import ssl
 
     payload = {
         "model": model,
@@ -297,6 +300,11 @@ def _call_openai_compatible(prompt: str, api_key: str, api_base: str, model: str
         "temperature": 0.3,
     }
     body = json.dumps(payload).encode("utf-8")
+
+    ctx = ssl.create_default_context()
+    if not ssl_verify:
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
 
     req = urllib.request.Request(
         f"{api_base.rstrip('/')}/chat/completions",
@@ -308,7 +316,7 @@ def _call_openai_compatible(prompt: str, api_key: str, api_base: str, model: str
         method="POST",
     )
     try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
+        with urllib.request.urlopen(req, timeout=120, context=ctx) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             return data["choices"][0]["message"]["content"].strip()
     except urllib.error.HTTPError as e:
@@ -318,10 +326,11 @@ def _call_openai_compatible(prompt: str, api_key: str, api_base: str, model: str
         raise RuntimeError(f"响应格式错误: {e}")
 
 
-def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: str) -> str:
+def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: str, ssl_verify: bool = True) -> str:
     """Anthropic Messages API compatible driver (e.g. DeepSeek Anthropic endpoint)."""
     import urllib.request
     import urllib.error
+    import ssl
 
     # Anthropic model names start with claude-*
     anthropic_model = model if model.startswith("claude-") else f"claude-{model}"
@@ -333,6 +342,11 @@ def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: 
         "temperature": 0.3,
     }
     body = json.dumps(payload).encode("utf-8")
+
+    ctx = ssl.create_default_context()
+    if not ssl_verify:
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
 
     # Anthropic-compatible base already contains /anthropic, just append /messages
     req = urllib.request.Request(
@@ -346,7 +360,7 @@ def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: 
         method="POST",
     )
     try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
+        with urllib.request.urlopen(req, timeout=120, context=ctx) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             # Anthropic-compatible returns content as [{"type": "text", "text": "..."}]
             # or [{"type": "thinking", ...}, {"type": "text", "text": "..."}]
@@ -375,7 +389,7 @@ async def llm_analyze(req: LLMAnalysisRequest):
                 status_code=400,
                 detail="LLM API Key 未设置，请在页面右上角「LLM 配置」中进行配置。",
             )
-        result_text = _call_custom(prompt, cfg.api_key, cfg.api_base, cfg.model)
+        result_text = _call_custom(prompt, cfg.api_key, cfg.api_base, cfg.model, cfg.ssl_verify)
 
         log_operation(
             operation="llm_analysis",
@@ -409,7 +423,7 @@ async def llm_analyze_single(req: LLMSingleRequest):
                 status_code=400,
                 detail="LLM API Key 未设置，请在页面右上角「LLM 配置」中进行配置。",
             )
-        result_text = _call_custom(prompt, cfg.api_key, cfg.api_base, cfg.model)
+        result_text = _call_custom(prompt, cfg.api_key, cfg.api_base, cfg.model, cfg.ssl_verify)
 
         log_operation(
             operation="llm_analysis_single",
