@@ -161,7 +161,7 @@ app/
 
 ## Docker 部署
 
-镜像支持 `linux/amd64` 和 `linux/arm64` 架构，适用于 x86 服务器和 Mac (Apple Silicon)。支持外网和**内网（离线）两种部署模式**，零已知运行时漏洞。
+镜像支持 `linux/amd64`（x86 服务器）和 `linux/arm64`（ARM 服务器 / Apple Silicon Mac）架构。支持外网和**内网（离线）两种部署模式**，零已知运行时漏洞。
 
 ### 快速启动
 

@@ -1,6 +1,8 @@
+# 支持 linux/amd64 和 linux/arm64 架构
+# x86 服务器使用 -amd64 后缀，ARM 服务器或 Apple Silicon Mac 使用 -arm64 后缀
 services:
   bmc-analyzer:
-    image: yuyeshun2/bmc-log-analyzer:v0.50rc1
+    image: yuyeshun2/bmc-log-analyzer:v0.50rc1-amd64  # 改为 -amd64 或 -arm64
     container_name: bmc-log-analyzer
     ports:
       - "8000:8000"

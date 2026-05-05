@@ -94,7 +94,7 @@ http://localhost:8000
 
 ## Docker Deployment
 
-Supports `linux/amd64` and `linux/arm64` architectures, suitable for x86 servers and Mac (Apple Silicon). Zero known runtime vulnerabilities. Supports both online and offline deployment.
+Supports `linux/amd64` (x86 servers) and `linux/arm64` (ARM servers / Apple Silicon Mac) architectures. Zero known runtime vulnerabilities. Supports both online and offline deployment.
 
 ### Quick Start
 
