@@ -1,14 +1,10 @@
 services:
   bmc-analyzer:
-    build:
-      context: .
-      args:
-        APP_VERSION: ${APP_VERSION:-v0.32}
+    image: yuyeshun2/bmc-log-analyzer:v0.50rc1
     container_name: bmc-log-analyzer
     ports:
       - "8000:8000"
-    env_file:
-      - .env
-    volumes:
-      - ./app/uploads:/app/app/uploads
+    # 可选：API 认证密钥（不配置则无需认证）
+    # environment:
+    #   - API_KEY=your-secret-key
     restart: unless-stopped
