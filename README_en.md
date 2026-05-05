@@ -2,6 +2,10 @@
 
 Intelligent BMC (Baseboard Management Controller) log parsing and analysis tool for Huawei iBMC servers. Supports automatic format detection, anomaly detection, and LLM-powered root cause analysis.
 
+## Version
+
+**v0.50rc1** - Latest release
+
 Chinese version: [README.md](README.md)
 
 ## Features
@@ -10,16 +14,23 @@ Chinese version: [README.md](README.md)
 - Automatic format detection for: app_debug_log, agentless, FDM, RAID, SEL/IPMI, syslog, maintenance, nginx_access, and more
 - Auto-decompress `.log`, `.txt`, `.gz`, `.tar.gz` files
 - Huawei iBMC Dump packages: automatically extracts nested archives and intelligently selects the most relevant log files
+- Large file protection: auto-sampling (max 200 lines per format) to avoid OOM
 
 ### Anomaly Detection
-- **Rule-based detection**: Expert rules covering SSL handshake failures, EDMA link loss, memory allocation issues, host registration anomalies, RAID array failures, physical disk failures, CPU errors, and more
+- **Rule-based detection**: Expert rules covering SSL handshake failures, EDMA link loss, memory allocation issues, RAID array failures, physical disk failures, CPU errors, NPU/Huawei Ascend failures, CANN runtime errors, and more (70+ rules)
+- **Huawei ALM Code Detection**: Auto-decodes `ALM-0xNNXXXXXX` alarm codes, identifies 14 major hardware categories (200+ alarms)
+- **IPMI SEL Semantic Enhancement**: Distinguishes true severity based on sensor semantics
 - **Statistical detection**: Entry-level distribution analysis to automatically surface anomalous modules/levels
-- **Hardware event classification**: CPU / Memory / Disk / RAID / Network hardware events grouped independently
+- **Diagnostic priority**: External→Internal (PSU→Fan→Thermal→CPU/NPU→Memory→RAID→Network→Service), High→Low (ERROR→WARNING→INFO)
+- **Hardware event classification**: CPU / Memory / Disk / RAID / Network / NPU / BMC independently grouped with dedicated LLM analysis
 
 ### LLM Root Cause Analysis
 - **Full analysis**: Batch analysis of all rule-based + statistical anomalies with 5-stage progress bar
 - **Per-card analysis**: Click the "🤖 Analyze" button on any anomaly card or hardware category to analyze that specific anomaly
-- Configurable LLM provider (Minimax GLM, etc.) with API key support
+- Supports any OpenAI-compatible or Anthropic-compatible LLM API (DeepSeek, etc.), dual-interface auto-detection
+- **Enhanced prompts**: Focus on hardware底层故障, specific slot/PCIe location, ignore management interface (PowerMgnt) timeouts
+- **Priority P0/P1/P2/P3**: Based on business impact, disk/RAID failures prioritized equally with fan/PSU
+- **Actionable steps**: Diagnostic commands (storcli64), physical operations, firmware fixes, vendor escalation
 
 ### All Events
 - Paginated listing (50/100/200/500 per page)
@@ -32,10 +43,11 @@ Chinese version: [README.md](README.md)
 - Error / warning count cards
 - Module distribution donut chart (click sector for details)
 - Anomaly timeline distribution chart
-- Rule anomaly / statistical anomaly / hardware event counts
+- Rule / statistical / hardware event counts
 
 ### Analysis Report
-- One-click download of Markdown format analysis report
+- One-click download of Markdown/HTML analysis report
+- Report filename includes device model and SN when available
 - Includes stats summary, hardware events, rule anomaly samples, and statistical anomaly details
 
 ## Tech Stack
@@ -46,9 +58,9 @@ Chinese version: [README.md](README.md)
 | Frontend | Vanilla HTML/CSS/JavaScript (no framework) |
 | Log Parsing | Python regex + structured parsers (multi-format) |
 | Anomaly Detection | Expert rule engine + statistical models |
-| LLM Integration | Minimax GLM API (mmx CLI) |
-| Charts | ECharts |
-| Deployment | Docker / Docker Compose |
+| LLM Integration | DeepSeek / OpenAI / Anthropic API |
+| Charts | ECharts (bundled locally, no CDN) |
+| Deployment | Docker |
 | Testing | pytest |
 
 ## Quick Start
@@ -62,17 +74,13 @@ pip install -r requirements.txt
 ### 2. Start the server
 
 ```bash
-# Default port 8088
-uvicorn app.main:app --port 8088 --reload
-
-# or run directly
-python -m app.main
+uvicorn app.main:app --port 8000 --reload
 ```
 
 ### 3. Open browser
 
 ```
-http://localhost:8088
+http://localhost:8000
 ```
 
 ### 4. Usage
@@ -82,7 +90,34 @@ http://localhost:8088
 3. View the stats overview and anomaly detection results
 4. Click "🤖 Full LLM Analysis" for batch analysis
 5. Or click the "🤖 Analyze" button on any anomaly card or hardware category for single-entry analysis
-6. Click "📄 Download Report" to export the Markdown report
+6. Click "📄 Download Report" to export the analysis report
+
+## Docker Deployment
+
+Zero known runtime vulnerabilities. Supports both online and offline deployment.
+
+### Quick Start
+
+```bash
+# Latest stable
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer
+
+# Specific version v0.50rc1
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc1
+```
+
+Then open **http://localhost:8000** in your browser.
+
+### LLM API Configuration (Recommended for Production)
+
+Configure LLM API via the ⚙️ gear icon in the top-right corner of the page. Supports DeepSeek / OpenAI / Anthropic compatible APIs.
+
+No API key required to start the container — users configure their own LLM API credentials in the UI.
+
+| Environment Variable | Description | Example |
+|---------------------|-------------|---------|
+| `API_KEY` | API authentication key (optional, defaults to no auth) | `sk-xxxxxxxx` |
+| `API_KEY_FILE` | API key file path | `/path/to/key` |
 
 ## Project Structure
 
@@ -101,6 +136,9 @@ app/
 │   ├── maintenance.py   # maintenance logs
 │   ├── nginx_access.py  # Nginx Access logs
 │   ├── m7_imu.py        # M7 IMU logs
+│   ├── sel.py           # IPMI SEL binary/text parser
+│   ├── huawei_alm.py    # Huawei ALM alarm code knowledge base
+│   ├── ibmc_dump.py    # iBMC Dump archive parser
 │   └── __init__.py      # automatic format detection
 ├── detectors/
 │   ├── rule_based.py    # expert rule anomaly detection
@@ -119,39 +157,27 @@ app/
 | agentless | agentless_dfl |
 | FDM | dfl files |
 | RAID/LSI MegaRAID | raid, lsi |
-| IPMI/SEL | ipmi, sel |
+| IPMI/SEL | ipmi, sel, sensor_alarm_sel |
+| SEL | sel |
 | syslog | linux_kernel_log, dmesg |
 | maintenance | maintenance_log, md_so_maintenance_log |
-| nginx_access | nginx access_log |
+| nginx_access + error | nginx access_log, nginx_error_log |
 | M7 IMU | imu, m7 |
+| iBMC Dump | BMC_dump, core_dump, dump_info, ibmc_dump |
+| Huawei ALM | ALM-0xNNXXXXXX alarm codes |
 
 ## API Endpoints
 
 | Method | Path | Description |
 |--------|------|-------------|
-| POST | `/api/upload` | Upload log file, returns parsed result + detections |
+| POST | `/api/upload` | Upload log file (max 500MB), returns parsed + detection results |
 | POST | `/api/analyze/llm` | Full LLM root cause analysis |
 | POST | `/api/analyze/llm-single` | Single anomaly LLM analysis |
-| GET | `/` | Frontend page |
-
-## Docker Deployment
-
-```bash
-# Latest stable
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer
-
-# Specific version v0.32
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.32
-```
-
-Then open **http://localhost:8000** in your browser.
-
-For production with custom LLM API:
-
-```bash
-docker run -d -p 8000:8000 \
-  -e LLM_API_KEY=*** \
-  -e LLM_API_BASE=https://api.deepseek.com \
-  -e LLM_MODEL=deepseek-chat \
-  yuyeshun2/bmc-log-analyzer:v0.32
-```
+| GET | `/api/history` | List uploaded file history |
+| DELETE | `/api/history` | Clear all history |
+| POST | `/api/reanalyze/{uuid}` | Re-analyze historical file |
+| DELETE | `/api/reanalyze/{uuid}` | Delete historical file |
+| GET | `/api/operation-logs` | Query operation logs (default last 7 days) |
+| GET | `/api/analyze/llm-settings` | Get LLM configuration |
+| POST | `/api/analyze/llm-settings` | Update LLM configuration |
+| POST | `/api/analyze/llm-settings/reset` | Reset LLM configuration |
