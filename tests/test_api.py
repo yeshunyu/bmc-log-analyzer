@@ -127,12 +127,12 @@ class TestHistory:
 class TestReanalyze:
     def test_reanalyze_not_found(self, client):
         """Reanalyze non-existent UUID returns 404."""
-        res = client.post("/api/reanalyze/nonexistent_uuid_12345678")
+        res = client.post("/api/reanalyze/00000000000000000000000000000000")
         assert res.status_code == 404
 
     def test_reanalyze_not_found_on_delete(self, client):
         """Delete-reanalyze non-existent UUID returns 404."""
-        res = client.delete("/api/reanalyze/nonexistent_uuid_12345678")
+        res = client.delete("/api/reanalyze/00000000000000000000000000000000")
         assert res.status_code == 404
 
 

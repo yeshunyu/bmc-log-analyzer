@@ -27,6 +27,7 @@ RUN pip install --upgrade pip wheel setuptools
 COPY requirements.txt /tmp/
 RUN pip install -r /tmp/requirements.txt
 COPY app /app/app
+RUN find /app/app/static -name "*.html" -exec touch {} + || true
 
 # ===== Stage 2: Runtime (fully offline, no network) =====
 FROM python:3.11-alpine
@@ -60,4 +61,14 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 EXPOSE 8000
+
+# Create non-root user for security
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# Create logs and uploads directories writable by appuser
+RUN mkdir -p /app/logs /app/app/uploads && chown -R appuser:appgroup /app/logs /app/app/uploads
+
 ENTRYPOINT ["/entrypoint.sh"]
+
+# Run as non-root user for security
+USER appuser

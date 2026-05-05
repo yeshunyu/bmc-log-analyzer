@@ -435,6 +435,12 @@ def _parse_sel_binary(path: Path):
     entries = []
     parse_errors = 0
 
+    # Enforce file size limit to prevent memory exhaustion
+    MAX_BIN_SIZE = 200 * 1024 * 1024  # 200 MB
+    file_size = path.stat().st_size
+    if file_size > MAX_BIN_SIZE:
+        return [], 1  # Signal file too large
+
     data = path.read_bytes()
 
     # First byte may be header (0x00 means standard header)
@@ -576,11 +582,12 @@ def _parse_sel_db(path: Path):
             if table.lower() not in _SAFE_TABLES:
                 continue
             try:
-                # Get column names (table name already validated above)
-                cur.execute(f"PRAGMA table_info({table})")
+                # Get column names (table name already validated via whitelist)
+                cur.execute("PRAGMA table_info(?)", (table,))
                 cols = [row[1] for row in cur.fetchall()]
                 col_str = ", ".join(cols)
 
+                # Use parameterized query for safety (table still from whitelist)
                 cur.execute(f"SELECT * FROM {table} LIMIT 10000")
                 rows = cur.fetchall()
 

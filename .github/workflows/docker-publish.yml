@@ -50,18 +50,23 @@ jobs:
 
       - name: Determine image tags
         id: tags
+        env:
+          INPUT_VERSION: '${{ github.event.inputs.version }}'
+          REF_NAME: '${{ github.ref_name }}'
+          USERNAME: '${{ secrets.DOCKER_HUB_USERNAME }}'
+          SHA: '${{ github.sha }}'
         run: |
           VERSION=""
-          if [ -n "${{ github.event.inputs.version }}" ]; then
-            VERSION="${{ github.event.inputs.version }}"
-          elif [ -n "${{ github.ref_name }}" ] && [[ "${{ github.ref_name }}" == v* ]]; then
-            VERSION="${{ github.ref_name }}"
+          if [ -n "$INPUT_VERSION" ]; then
+            VERSION="$INPUT_VERSION"
+          elif [ -n "$REF_NAME" ] && [[ "$REF_NAME" == v* ]]; then
+            VERSION="$REF_NAME"
           fi
 
-          TAGS="${{ secrets.DOCKER_HUB_USERNAME }}/bmc-log-analyzer:latest"
-          TAGS="$TAGS\n${{ secrets.DOCKER_HUB_USERNAME }}/bmc-log-analyzer:${{ github.sha }}"
+          TAGS="${USERNAME}/bmc-log-analyzer:latest"
+          TAGS="$TAGS\n${USERNAME}/bmc-log-analyzer:${SHA}"
           if [ -n "$VERSION" ]; then
-            TAGS="$TAGS\n${{ secrets.DOCKER_HUB_USERNAME }}/bmc-log-analyzer:$VERSION"
+            TAGS="$TAGS\n${USERNAME}/bmc-log-analyzer:${VERSION}"
           fi
           printf "tags<<EOF\n$TAGS\nEOF\n" >> $GITHUB_OUTPUT
 

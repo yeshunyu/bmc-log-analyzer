@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BMC 日志分析</title>
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+  <script src="/static/echarts.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0f1117; color: #e0e0e0; min-height: 100vh; }
@@ -179,7 +179,19 @@
     }
     .btn-llm-single:hover { opacity: 0.8; }
     .btn-llm-single:disabled { opacity: 0.4; cursor: not-allowed; }
-    .llm-card-result { font-size: 0.82rem; line-height: 1.65; color: #d1d5db; white-space: pre-wrap; background: #0f1117; border: 1px solid #2d2f3d; border-radius: 6px; padding: 0.75rem; box-sizing: border-box; }
+    .llm-card-result { font-size: 0.82rem; line-height: 1.65; color: #d1d5db; background: #0f1117; border: 1px solid #2d2f3d; border-radius: 6px; padding: 0.75rem; box-sizing: border-box; }
+    .llm-card-result h1, .llm-card-result h2, .llm-card-result h3 { color: #f3f4f6; margin: 0.5em 0 0.3em; }
+    .llm-card-result h1 { font-size: 0.95rem; }
+    .llm-card-result h2 { font-size: 0.9rem; }
+    .llm-card-result h3 { font-size: 0.85rem; }
+    .llm-card-result p { margin: 0.4em 0; }
+    .llm-card-result ul { margin: 0.4em 0; padding-left: 1.2em; }
+    .llm-card-result li { margin: 0.2em 0; }
+    .llm-card-result pre { background: #111; padding: 0.5em; border-radius: 4px; overflow-x: auto; margin: 0.4em 0; }
+    .llm-card-result code { background: #111; padding: 0.1em 0.3em; border-radius: 3px; font-size: 0.9em; }
+    .llm-card-result pre code { background: none; padding: 0; }
+    .llm-card-result hr { border: none; border-top: 1px solid #2d2f3d; margin: 0.6em 0; }
+    .llm-card-result strong { color: #fbbf24; }
     .llm-spinner { display: inline-block; width: 12px; height: 12px; border: 2px solid rgba(124,58,237,0.3); border-top-color: #7c3aed; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 4px; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -198,7 +210,19 @@
     .llm-progress-time span { min-width: 80px; }
     .llm-progress-time .elapsed { text-align: left; }
     .llm-progress-time .remaining { text-align: right; }
-    .llm-result { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1.25rem; margin-top: 1rem; font-size: 0.875rem; line-height: 1.7; color: #d1d5db; white-space: pre-wrap; }
+    .llm-result { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1.25rem; margin-top: 1rem; font-size: 0.875rem; line-height: 1.7; color: #d1d5db; }
+    .llm-result h1, .llm-result h2, .llm-result h3 { color: #f3f4f6; margin: 1em 0 0.5em; }
+    .llm-result h1 { font-size: 1.1rem; }
+    .llm-result h2 { font-size: 1rem; }
+    .llm-result h3 { font-size: 0.9rem; }
+    .llm-result p { margin: 0.5em 0; }
+    .llm-result ul { margin: 0.5em 0; padding-left: 1.5em; }
+    .llm-result li { margin: 0.25em 0; }
+    .llm-result pre { background: #111; padding: 0.75em; border-radius: 6px; overflow-x: auto; margin: 0.5em 0; }
+    .llm-result code { background: #111; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.85em; }
+    .llm-result pre code { background: none; padding: 0; }
+    .llm-result hr { border: none; border-top: 1px solid #2d2f3d; margin: 1em 0; }
+    .llm-result strong { color: #fbbf24; }
 
     /* Settings gear icon */
     .gear-btn {
@@ -419,6 +443,38 @@
 <script>
 // Escape HTML special chars to prevent XSS in user-provided log content
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+// Simple Markdown to HTML converter for LLM output
+function mdToHtml(md) {
+  if (!md) return '';
+  let h = md
+    // Escape HTML first
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    // Headers
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    // Bold
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    // Code blocks
+    .replace(/```[\s\S]*?```/g, m => '<pre><code>' + m.slice(3,-3).replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code></pre>')
+    // Inline code
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    // Lists
+    .replace(/^\- (.+)$/gm, '<li>$1</li>')
+    .replace(/^\* (.+)$/gm, '<li>$1</li>')
+    // Horizontal rule
+    .replace(/^---$/gm, '<hr>')
+    // Paragraphs (lines separated by blank lines)
+    .replace(/\n\n/g, '</p><p>')
+    // Line breaks
+    .replace(/\n/g, '<br>');
+  // Wrap loose <li> in <ul>
+  h = h.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
+  // Wrap in paragraph if not already wrapped
+  if (!h.startsWith('<')) h = '<p>' + h + '</p>';
+  return h;
+}
 
 let analysisData = null;
 let allEntries = []; // raw list
@@ -666,8 +722,17 @@ async function uploadFile(file) {
 
   try {
     const resp = await fetch('/api/upload', { method: 'POST', body: formData });
-    if (!resp.ok) throw new Error(await resp.text());
-    analysisData = await resp.json();
+    const text = await resp.text();
+    if (!resp.ok) {
+      // Try to parse as JSON for error detail
+      try {
+        const json = JSON.parse(text);
+        throw new Error(json.detail || text);
+      } catch {
+        throw new Error(text || `HTTP ${resp.status}`);
+      }
+    }
+    analysisData = JSON.parse(text);
     allEntries = analysisData.parsed_log.entries;
     // Reset filter state
     state.search = '';
@@ -808,12 +873,26 @@ async function analyzeHw(hw, entries, label) {
     document.getElementById('hwDetailPanel').parentNode.insertBefore(resultEl, document.getElementById('hwDetailPanel').nextSibling);
   }
 
+  // Cache for hw analysis result
+  if (!window._hwLlmCache) window._hwLlmCache = null;
+
   const isLoading = btn.innerHTML.includes('llm-spinner');
-  // Toggle: click again while loading/done collapses the result
-  if (isLoading || resultEl.classList.contains('show')) {
+  // Toggle: click again while loading collapses, click again while shown restores cached result
+  if (isLoading) {
+    return;
+  }
+  if (resultEl.classList.contains('show')) {
     resultEl.classList.remove('show');
     resultEl.style.display = 'none';
     btn.innerHTML = '🤖 分析此异常';
+    return;
+  }
+  // If we have cached result, restore it
+  if (window._hwLlmCache) {
+    resultEl.innerHTML = window._hwLlmCache;
+    resultEl.classList.add('show');
+    resultEl.style.display = 'block';
+    btn.innerHTML = '🤖 收起分析';
     return;
   }
 
@@ -821,7 +900,7 @@ async function analyzeHw(hw, entries, label) {
   btn.innerHTML = '<span class="llm-spinner"></span>分析中...';
   resultEl.classList.remove('show');
   resultEl.style.display = 'none';
-  resultEl.textContent = '';
+  resultEl.innerHTML = '';
 
   try {
     const payload = {
@@ -839,12 +918,13 @@ async function analyzeHw(hw, entries, label) {
     });
     if (!resp.ok) throw new Error(await resp.text());
     const data = await resp.json();
-    resultEl.textContent = data.summary;
+    window._hwLlmCache = mdToHtml(data.summary);
+    resultEl.innerHTML = window._hwLlmCache;
     resultEl.style.display = 'block';
     resultEl.classList.add('show');
     btn.innerHTML = '🤖 收起分析';
   } catch (err) {
-    resultEl.textContent = '分析失败: ' + err.message;
+    resultEl.innerHTML = '<p style="color:#f87171">分析失败: ' + esc(err.message) + '</p>';
     resultEl.style.display = 'block';
     resultEl.classList.add('show');
     btn.innerHTML = '🤖 分析此异常';
@@ -1039,11 +1119,11 @@ function renderRuleAnomalies(anomalies) {
         ${a.entries.slice(0, 5).map(e => `
           <div class="entry-item">
             <span class="entry-ts">${e.timestamp ? new Date(e.timestamp).toLocaleString('zh-CN') : ''}</span>
-            <span class="entry-msg">${e.message}</span>
+            <span class="entry-msg">${esc(e.message || '')}</span>
           </div>`).join('')}
       </div>
       <div class="anomaly-card-actions">
-        <button class="btn-llm-single" data-type="rule" data-id="${a.rule_id}" data-desc="${a.rule_description}" data-sev="${a.severity}" data-count="${a.count}" data-idx="${idx}">
+        <button class="btn-llm-single" data-type="rule" data-id="${a.rule_id}" data-desc="${esc(a.rule_description)}" data-sev="${a.severity}" data-count="${a.count}" data-idx="${idx}">
           🤖 分析此异常
         </button>
       </div>
@@ -1066,12 +1146,12 @@ function renderStatAnomalies(anomalies) {
         <span class="anomaly-title">${a.metric === 'error_burst' ? '⚡ 错误爆发' : '🌊 重复 flood'}</span>
       </div>
       <div class="anomaly-meta">${a.window_start ? new Date(a.window_start).toLocaleString('zh-CN') : ''}</div>
-      <div class="anomaly-count">${a.description}</div>
+      <div class="anomaly-count">${esc(a.description || '')}</div>
       <div class="anomaly-entries">
-        ${a.entries.slice(0, 5).map(e => `<div class="entry-item"><span class="entry-ts">${e.timestamp ? new Date(e.timestamp).toLocaleString('zh-CN') : ''}</span><span class="entry-msg">${e.message}</span></div>`).join('')}
+        ${a.entries.slice(0, 5).map(e => `<div class="entry-item"><span class="entry-ts">${e.timestamp ? new Date(e.timestamp).toLocaleString('zh-CN') : ''}</span><span class="entry-msg">${esc(e.message || '')}</span></div>`).join('')}
       </div>
       <div class="anomaly-card-actions">
-        <button class="btn-llm-single" data-type="stat" data-id="${a.metric}" data-desc="${a.description}" data-sev="${a.severity}" data-count="${a.entries.length}" data-idx="${idx}">
+        <button class="btn-llm-single" data-type="stat" data-id="${a.metric}" data-desc="${esc(a.description || '')}" data-sev="${a.severity}" data-count="${a.entries.length}" data-idx="${idx}">
           🤖 分析此异常
         </button>
       </div>
@@ -1091,10 +1171,25 @@ async function analyzeCard(btn, type) {
   const resultEl = document.getElementById(`llm-result-${type}-${idx}`);
   const isLoading = btn.innerHTML.includes('llm-spinner');
 
-  // Toggle: click again while loading/done collapses the result
-  if (isLoading || resultEl.classList.contains('show')) {
+  // Cache key for this card
+  const cacheKey = `llm_${type}_${idx}`;
+  if (!window._cardLlmCache) window._cardLlmCache = {};
+  const cache = window._cardLlmCache;
+
+  // Toggle: if loading, ignore; if shown, collapse; if cached, restore
+  if (isLoading) return;
+  if (resultEl.classList.contains('show')) {
     resultEl.classList.remove('show');
+    resultEl.style.display = 'none';
     btn.innerHTML = '🤖 分析此异常';
+    return;
+  }
+  // Restore cached result if available
+  if (cache[cacheKey]) {
+    resultEl.innerHTML = cache[cacheKey];
+    resultEl.classList.add('show');
+    resultEl.style.display = 'block';
+    btn.innerHTML = '🤖 收起分析';
     return;
   }
 
@@ -1123,12 +1218,15 @@ async function analyzeCard(btn, type) {
     });
     if (!resp.ok) throw new Error(await resp.text());
     const data = await resp.json();
-    resultEl.textContent = data.summary;
+    cache[cacheKey] = mdToHtml(data.summary);
+    resultEl.innerHTML = cache[cacheKey];
     resultEl.classList.add('show');
+    resultEl.style.display = 'block';
     btn.innerHTML = '🤖 收起分析';
   } catch (err) {
-    resultEl.textContent = '分析失败: ' + err.message;
+    resultEl.innerHTML = '<p style="color:#f87171">分析失败: ' + esc(err.message) + '</p>';
     resultEl.classList.add('show');
+    resultEl.style.display = 'block';
     btn.innerHTML = '🤖 分析此异常';
   } finally {
     btn.disabled = false;
@@ -1217,7 +1315,7 @@ document.getElementById('llmBtn').addEventListener('click', async () => {
       statistical_anomalies: analysisData.statistical_anomalies,
       top_entries: analysisData.parsed_log.entries.filter(e => e.level === 'ERROR').slice(0, 30),
     }, '正在分析日志模式与硬件关联性...');
-    result.textContent = data.summary;
+    result.innerHTML = mdToHtml(data.summary);
     result.classList.add('show');
     result.style.display = 'block';
   } catch (err) {
@@ -1243,6 +1341,31 @@ async function downloadReport(fmt) {
     }, '正在生成深度分析报告，请稍候...');
 
     const s = analysisData.summary;
+
+    // Extract device model and SN from log entries if available
+    function getDeviceInfo() {
+      const entries = analysisData.parsed_log?.entries || [];
+      let model = '', sn = '';
+      const modelPat = /model[:\s]*([^\s,]+)/i;
+      const snPat = /sn[:\s]*([A-Za-z0-9]+)/i;
+      const hwSnPat = /HW\s*(?:SN|S\/N|Serial)[:\s]*([A-Za-z0-9]+)/i;
+      const productPat = /Product\s*(?:Name|ID)[:\s]*([^\s,]+)/i;
+      for (const e of entries.slice(0, 100)) {
+        const text = (e.message || '') + ' ' + (e.module || '');
+        if (!model) {
+          const m = text.match(modelPat) || text.match(productPat);
+          if (m) model = m[1].replace(/[^A-Za-z0-9\-]/g, '').slice(0, 20);
+        }
+        if (!sn) {
+          const s = text.match(snPat) || text.match(hwSnPat);
+          if (s) sn = s[1].replace(/[^A-Za-z0-9]/g, '').slice(0, 20);
+        }
+        if (model && sn) break;
+      }
+      return { model, sn };
+    }
+    const deviceInfo = getDeviceInfo();
+
     const hwKeywords = {
       mb:   ['motherboard', 'mainboard', 'chassis', 'intrusion', 'power supply', 'psu', 'fan', 'voltage', 'vcore', 'vdd', '12v', '5v', '3.3v', 'sensor', 'thermal', 'overheat', 'over_temp', 'shutdown', 'boot', 'bios', 'uefi', 'boot device'],
       cpu:  ['cpu', 'core', 'processor', 'core_temp', 'package_temp', 'cpu_temp', 'tempera', 'cpu_v', 'cpu_freq', 'instruction'],
@@ -1267,13 +1390,21 @@ async function downloadReport(fmt) {
       if (ht) hwCounts[ht]++;
     }
     const hwTotal = Object.values(hwCounts).reduce((a, b) => a + b, 0);
-    const now = new Date().toLocaleString('zh-CN');
     const logName = analysisData.parsed_log?.file_name || 'unknown';
     const ts = new Date().toISOString().slice(0, 10);
     const timeRange = analysisData.parsed_log?.time_range || [];
 
+    // Build filename with device info
+    const parts = ['bmc'];
+    if (deviceInfo.model) parts.push(deviceInfo.model);
+    if (deviceInfo.sn) parts.push('SN' + deviceInfo.sn);
+    parts.push(ts);
+    const filename = parts.join('-') + '.md';
+    const now = new Date().toLocaleString('zh-CN');
+
     // Build report content
     const content = buildReportContent(s, hwCounts, hwLabels, hwTotal, now, logName, summary, timeRange);
+    content.filename = filename;
 
     if (fmt === 'md') {
       downloadMarkdown(content, ts);
@@ -1359,7 +1490,7 @@ function downloadMarkdown(c) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `bmc-report-${c.ts || new Date().toISOString().slice(0,10)}.md`;
+  a.download = c.filename || `bmc-report-${c.ts || new Date().toISOString().slice(0,10)}.md`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -1370,7 +1501,7 @@ function downloadHtml(c, ts, now, logName) {
   const rows = c.errors.map(a => `
     <tr class="severity-${a.severity.toLowerCase()}">
       <td><span class="badge badge-${a.severity.toLowerCase()}">${a.severity}</span></td>
-      <td>${a.rule_description}</td>
+      <td>${esc(a.rule_description || '')}</td>
       <td>${a.count}</td>
       <td>${a.first_seen}</td>
       <td>${a.last_seen}</td>
@@ -1378,8 +1509,8 @@ function downloadHtml(c, ts, now, logName) {
 
   const statRows = c.stats.map(a => `
     <tr>
-      <td>${a.metric}</td>
-      <td>${a.description}</td>
+      <td>${esc(a.metric || '')}</td>
+      <td>${esc(a.description || '')}</td>
       <td>${a.window_start} ~ ${a.window_end}</td>
       <td>${a.threshold}</td>
       <td>${a.peak_value}</td>
@@ -1457,7 +1588,7 @@ ${c.stats.length > 0 ? `<h2>📈 统计异常</h2>
 
 <h2>🔍 LLM 深度根因分析</h2>
 <div class="summary-box">
-  <pre>${c.summary}</pre>
+  <pre>${esc(c.summary || '')}</pre>
 </div>
 
 <div class="footer">
@@ -1470,7 +1601,7 @@ ${c.stats.length > 0 ? `<h2>📈 统计异常</h2>
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `bmc-report-${ts}.html`;
+  a.download = c.filename?.replace('.md', '.html') || `bmc-report-${ts}.html`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -1481,14 +1612,14 @@ function printHtml(c, ts, now, logName) {
   const rows = c.errors.map(a => `
     <tr class="severity-${a.severity.toLowerCase()}">
       <td><span class="badge badge-${a.severity.toLowerCase()}">${a.severity}</span></td>
-      <td>${a.rule_description}</td>
+      <td>${esc(a.rule_description || '')}</td>
       <td>${a.count}</td>
       <td>${a.first_seen}</td>
       <td>${a.last_seen}</td>
     </tr>`).join('');
 
   const statRows = c.stats.map(a => `
-    <tr><td>${a.metric}</td><td>${a.description}</td><td>${a.window_start} ~ ${a.window_end}</td><td>${a.threshold}</td><td>${a.peak_value}</td></tr>`).join('');
+    <tr><td>${esc(a.metric || '')}</td><td>${esc(a.description || '')}</td><td>${a.window_start} ~ ${a.window_end}</td><td>${a.threshold}</td><td>${a.peak_value}</td></tr>`).join('');
 
   const html = `<!DOCTYPE html>
 <html lang="zh-CN">

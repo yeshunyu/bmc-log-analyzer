@@ -1,5 +1,10 @@
 """Shared pytest fixtures for bmc-log-analyzer tests."""
 
+import os
+# Set test mode and API key before importing app
+os.environ["TESTING"] = "true"
+os.environ["API_KEY"] = "test-secret-key-for-testing-only"
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -7,9 +12,14 @@ from fastapi.testclient import TestClient
 @pytest.fixture
 def client():
     """FastAPI test client — shared across all API tests."""
-    # Defer import to avoid module-level side effects at collection time
     from app.main import app
-    return TestClient(app)
+    client = TestClient(app)
+    # Clear rate limit storage between tests
+    from app.limiters import limiter, llm_limiter, reanalyze_limiter
+    limiter._storage.reset()
+    llm_limiter._storage.reset()
+    reanalyze_limiter._storage.reset()
+    return client
 
 
 @pytest.fixture

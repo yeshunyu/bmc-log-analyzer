@@ -8,7 +8,7 @@ import time
 from datetime import datetime as dt, timezone
 from pathlib import Path
 from typing import Optional
-from fastapi import FastAPI, UploadFile, HTTPException, Request
+from fastapi import FastAPI, UploadFile, HTTPException, Request, Depends
 from fastapi.responses import HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
@@ -17,6 +17,8 @@ from starlette.middleware.cors import CORSMiddleware
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
+from app.limiters import limiter, llm_limiter, reanalyze_limiter
+from app.auth import require_api_key
 import threading
 
 import json
@@ -80,9 +82,6 @@ async def lifespan(app):
 app = FastAPI(title="BMC Log Analyzer", lifespan=lifespan)
 app.include_router(llm_router)
 
-# Rate limiter — 20 upload requests per minute per IP
-limiter = Limiter(key_func=get_remote_address, default_limits=["20/minute"])
-
 
 class SecurityHeadersMiddleware(BaseHTTPMiddleware):
     """Add security headers to every response."""
@@ -105,7 +104,7 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Single-page tool, no credential-sensitive CORS needs
+    allow_origins=os.environ.get("CORS_ORIGINS", "http://localhost:8000").split(","),
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
@@ -118,7 +117,7 @@ async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
     from fastapi.responses import JSONResponse
     return JSONResponse(
         status_code=429,
-        content={"detail": "请求过于频繁，请稍后再试（20次/分钟）"},
+        content={"detail": "请求过于频繁，请稍后再试（请稍候再试）"},
     )
 
 
@@ -145,9 +144,12 @@ def _load_manifest() -> list[dict]:
 
 
 def _save_manifest(manifest: list[dict]) -> None:
-    import json
-    with MANIFEST_PATH.open("w") as f:
+    import json, tempfile, os
+    # Atomic write: write to temp file then rename
+    tmp = MANIFEST_PATH.with_suffix('.tmp')
+    with tmp.open("w") as f:
         json.dump(manifest, f, ensure_ascii=False)
+    tmp.rename(MANIFEST_PATH)
 
 
 def _sync_manifest() -> None:
@@ -220,7 +222,7 @@ async def get_version():
 
 @app.post("/api/upload")
 @limiter.limit("20/minute")
-async def upload_log(request: Request, file: UploadFile) -> AnalysisResult:
+async def upload_log(request: Request, file: UploadFile, _auth: str = Depends(require_api_key)) -> AnalysisResult:
     if not file.filename:
         raise HTTPException(status_code=400, detail="No filename provided")
 
@@ -228,15 +230,21 @@ async def upload_log(request: Request, file: UploadFile) -> AnalysisResult:
     if suffix not in (".log", ".txt", ".gz", ".tar.gz", ""):
         raise HTTPException(status_code=400, detail="Unsupported file type")
 
+    # Sanitize filename: remove dangerous characters to prevent path traversal
+    import re
+    safe_name = re.sub(r'[^\w\-.]', '_', file.filename or 'unknown')
+    # Prevent null bytes
+    safe_name = safe_name.replace('\x00', '')
+
     # Save uploaded file (streaming to disk, with size limit)
     job_id = uuid.uuid4().hex
-    save_path = UPLOAD_DIR / f"{job_id}_{file.filename}"
+    save_path = UPLOAD_DIR / f"{job_id}_{safe_name}"
     file_size = _streaming_copy(file, save_path, MAX_FILE_SIZE)
 
-    # Record in manifest
+    # Record in manifest (use safe_name to prevent path traversal)
     import json
     manifest = _load_manifest()
-    manifest.insert(0, {"uuid": job_id, "name": file.filename, "created_at": time.time(), "size": file_size})
+    manifest.insert(0, {"uuid": job_id, "name": safe_name, "created_at": time.time(), "size": file_size})
     # Keep last 20
     _save_manifest(manifest[:20])
 
@@ -325,7 +333,7 @@ async def upload_log(request: Request, file: UploadFile) -> AnalysisResult:
 
 
 @app.get("/api/history")
-async def get_history():
+async def get_history(_auth: str = Depends(require_api_key)):
     """Return last 20 uploaded file names (without uuid prefix)."""
     _sync_manifest()
     manifest = _load_manifest()
@@ -333,7 +341,7 @@ async def get_history():
 
 
 @app.delete("/api/history")
-async def clear_history():
+async def clear_history(_auth: str = Depends(require_api_key)):
     """Delete all history entries and their files from disk."""
     deleted = 0
     for p in UPLOAD_DIR.iterdir():
@@ -354,7 +362,7 @@ async def clear_history():
 
 
 @app.get("/api/operation-logs")
-async def get_operation_logs(days: int = 7):
+async def get_operation_logs(days: int = 7, _auth: str = Depends(require_api_key)):
     """Return operation logs for the last N days (default 7)."""
     from app.operation_log import read_logs
     if days < 1 or days > 30:
@@ -363,8 +371,13 @@ async def get_operation_logs(days: int = 7):
 
 
 @app.delete("/api/reanalyze/{uuid}")
-async def delete_reanalyze(uuid: str):
+@reanalyze_limiter.limit("5/minute")
+async def delete_reanalyze(request: Request, uuid: str, _auth: str = Depends(require_api_key)):
     """Delete a previously uploaded file from disk and manifest."""
+    # Validate UUID format (32 hex characters)
+    import re
+    if not re.match(r'^[a-f0-9]{32}$', uuid):
+        raise HTTPException(status_code=400, detail="Invalid UUID format")
     import shutil
     deleted = False
     original_name = ""
@@ -386,8 +399,13 @@ async def delete_reanalyze(uuid: str):
     return {"ok": True}
 
 @app.post("/api/reanalyze/{uuid}")
-async def reanalyze(uuid: str):
+@reanalyze_limiter.limit("5/minute")
+async def reanalyze(request: Request, uuid: str, _auth: str = Depends(require_api_key)):
     """Re-run analysis on a previously uploaded file stored on disk."""
+    # Validate UUID format (32 hex characters)
+    import re
+    if not re.match(r'^[a-f0-9]{32}$', uuid):
+        raise HTTPException(status_code=400, detail="Invalid UUID format")
     for p in UPLOAD_DIR.iterdir():
         if p.name.startswith(f"{uuid}_"):
             file_path = p

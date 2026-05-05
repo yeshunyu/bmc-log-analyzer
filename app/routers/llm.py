@@ -4,11 +4,13 @@ import urllib.error
 import urllib.request
 from datetime import datetime
 from typing import Any
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request, Depends
 from pydantic import BaseModel
 from app.schemas import LLMAnalysisRequest
 from app.config import get_llm_config, update_llm_config, LLMProvider
 from app.operation_log import log_operation
+from app.auth import require_api_key
+from app.limiters import llm_limiter
 
 router = APIRouter(prefix="/api/analyze", tags=["analysis"])
 
@@ -58,21 +60,45 @@ class LLMSettingsResponse(BaseModel):
     provider: LLMProvider
     api_base: str
     model: str
+    api_key: str = ""
 
 
 # ---------------------------------------------------------------------------
 # Settings endpoints
 # ---------------------------------------------------------------------------
 @router.get("/llm-settings", response_model=LLMSettingsResponse)
-async def get_settings():
+async def get_settings(req: Request):
     cfg = get_llm_config()
-    return LLMSettingsResponse(provider=cfg.provider, api_base=cfg.api_base, model=cfg.model)
+    from app.auth import get_api_key
+    effective_key = get_api_key()
+    return LLMSettingsResponse(
+        provider=cfg.provider,
+        api_base=cfg.api_base,
+        model=cfg.model,
+        api_key=effective_key,
+    )
 
 
 @router.post("/llm-settings", response_model=LLMSettingsResponse)
 async def post_settings(req: LLMSettingsRequest):
     if not req.api_key:
         raise HTTPException(status_code=400, detail="API Key 不能为空")
+    # SSRF protection: validate api_base URL
+    import ipaddress
+    from urllib.parse import urlparse
+    parsed = urlparse(req.api_base or "")
+    if parsed.scheme not in ("https", "http") or not parsed.netloc:
+        raise HTTPException(status_code=400, detail="api_base 必须是有效的 HTTP/HTTPS URL")
+    # Block private/internal IP ranges using ipaddress module
+    try:
+        host_ip = ipaddress.ip_address(parsed.hostname)
+        if host_ip.is_private or host_ip.is_loopback or host_ip.is_reserved or host_ip.is_multicast:
+            raise HTTPException(status_code=400, detail="api_base 不能使用内网地址")
+    except ValueError:
+        # Not an IP address, check if it's a blocked hostname
+        blocked_hosts = {"localhost", "localhost.localdomain", "ip6-localhost", "ip6-loopback"}
+        if parsed.hostname.lower() in blocked_hosts:
+            raise HTTPException(status_code=400, detail="api_base 不能使用内网地址")
     cfg = update_llm_config(req.provider, req.api_key, req.api_base, req.model)
     return LLMSettingsResponse(provider=cfg.provider, api_base=cfg.api_base, model=cfg.model)
 
@@ -206,15 +232,34 @@ def build_prompt(req: LLMAnalysisRequest) -> str:
                 lines.append(f"[{ts}] [{e.module}] {e.message}")
             lines.append("")
 
-    lines.append("""请分析以上日志，回答以下三点：
-1. **根因判断**：这些异常最可能的根本原因是什么？（是否涉及 CPU/内存/硬盘/RAID/网卡/NPU 等硬件？是否是固件/配置问题？）
-2. **优先级建议**：哪些异常需要优先处理？（特别是电源、风扇、温度、过载类异常应最高优先级）
-3. **解决步骤**：建议的解决步骤或进一步调查方向？（如检查硬件健康状态、更新固件、联系华为技术支持等）
+    lines.append("""---
+【重要指令】请根据以上日志中的**硬件底层故障特征**，而不是上层管理接口（如 PowerMgnt/API）的异常，分析以下三点。
 
-**回答要求**：
-- 用中文回答，简洁专业，突出重点，每点 2-4 句话
-- 重点关注 CPU、内存、硬盘/RAID、网络等硬件问题
-- 如果异常具有时间相关性（如每次重启后出现），请特别指出""")
+**1. 根因判断（需要更加具体）**
+*   **故障部件**：请明确判断是 物理硬盘(HDD/SSD)、RAID卡、背板(Backplane) 还是 SAS/PCIe 链路。
+*   **故障位置**：请**务必提取具体的故障槽位号（如 SlotId=4）、Enclosure ID、物理驱动器编号、或 PCIe 地址**。如果无法识别准确位置，请指出推测的故障域。
+*   **错误码/关键日志**：提取核心错误码（如 GetPDInfo failed 0x1001）或 S.M.A.R.T 错误详情。请忽略 `[PowerMgnt]`、`[portal]` 等管理层面的 pull 数据错误，因为它们可能是定期轮询的超时，而非物理故障本源。
+
+**2. 优先级建议（业务导向，而非仅看温度/电源）**
+*   请基于**对业务连续性和数据安全的影响**来划分优先级。
+*   **P0/P1（最高优先）**：涉及数据丢失风险、盘阵降级、硬盘即将离线、业务读写中断、核心部件掉电。
+*   **P2（中优先）**：风扇转速过高，温度超过阈值、硬盘预警但未完全掉线、RAID 组成员降级。
+*   **P3（低优先）**：日志报错但业务无感、传感器轻微偏移、BMC 自身管理接口报错。
+*   **特别说明**：硬盘故障/RAID 成员失效的优先级**不应低于**风扇或电源模块异常。
+
+**3. 解决步骤（给出可执行的命令行与工单建议）**
+请按以下结构编写操作指南，包含**诊断命令 + 物理操作 + 兜底方案**：
+*   **命令级诊断**：给出具体的排查命令，例如 `storcli64 /c0 /eall /sall show` 或对应厂商工具查询故障盘状态。
+*   **物理操作**：明确指出具体操作（如"加固背板及 SAS 线缆连接"、或"尝试重新插拔 SlotId=4 的硬盘"）。
+*   **系统/固件修复**：如果物理操作无效，建议执行哪些操作（如"更新 RAID 卡固件"或"更换特定 SlotId 的硬盘"）。
+*   **兜底方案**：如问题持续导致业务受损，建议联系对应服务器厂商（如华为、超聚变等）提供完整日志进行固件/驱动升级或 RMA 换件。
+
+---
+**回答要求（精简调整版）：**
+- 中文，专业，语言**明确**。使用 Markdown 加粗关键信息，例如 `**SlotId=4**`。
+- 根因判断请**直接定位到具体的 Slot 或 PCIe 位置**，避免笼统描述。
+- 解决步骤请参考对应厂商（华为/超聚变等）的现有运维工具与手段。
+- 必须**先排除 `PowerMgnt`、`[portal]` 等管理接口偶发超时层面的干扰**，聚焦底层硬件报错。""")
 
     return "\n".join(lines)
 
@@ -253,11 +298,25 @@ def build_single_prompt(anomaly_type: str, rule_id: str, rule_description: str,
         lvl = entry_level(e)
         lines.append(f"- `[{lvl}]` [{ts}] [{_get_entry(e, 'module')}] {_get_entry(e, 'message')}")
     lines.append("")
-    lines.append("""请分析这条异常，回答：
-1. **根因判断**：最可能的根本原因是什么？（是否涉及 CPU/内存/硬盘/RAID/网卡/NPU 等硬件？是否是固件/配置/BMC 问题？）
-2. **解决步骤**：建议的解决步骤或进一步调查方向？（如检查硬件健康状态命令、固件版本、联系华为技术支持等）
+    lines.append("""【重要指令】请根据这条异常的**硬件底层故障特征**进行分析。
 
-**回答要求**：用中文回答，简洁专业，突出重点，3-5句话为宜。""")
+**1. 根因判断**
+*   **故障部件**：判断是物理硬盘、RAID卡、背板还是 SAS/PCIe 链路故障。
+*   **故障位置**：提取具体的故障槽位号（如 SlotId=4）、Enclosure ID 或 PCIe 地址。
+*   **错误码/关键日志**：提取核心错误码（如 GetPDInfo failed 0x1001）或 S.M.A.R.T 错误。请忽略 `PowerMgnt`、`portal` 等管理接口超时，它们可能是轮询超时而非物理故障本源。
+
+**2. 优先级建议**
+*   **P0/P1**：数据丢失风险、盘阵降级、硬盘即将离线、业务中断 → 最高优先
+*   **P2**：硬盘预警未掉线、RAID 成员降级 → 中优先
+*   **P3**：业务无感的日志报错 → 低优先
+
+**3. 解决步骤**
+*   **命令诊断**：`storcli64 /c0 /eall /sall show` 或厂商工具
+*   **物理操作**：如"加固背板 SAS 线缆"或"重新插拔 SlotId=X 硬盘"
+*   **固件修复**：更新 RAID 卡固件或更换故障硬盘
+*   **兜底方案**：联系华为/超聚变厂商进行固件升级或 RMA 换件
+
+**回答要求**：中文回答，使用 Markdown 加粗关键位置（如 `**SlotId=4**`），直接定位到具体槽位，避免笼统描述。""")
     return "\n".join(lines)
 
 
@@ -362,11 +421,12 @@ def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: 
 
 
 # ---------------------------------------------------------------------------
-# Main analysis endpoint
+# Main analysis endpoint (rate limited: 10/min per IP)
 # ---------------------------------------------------------------------------
+@llm_limiter.limit("10/minute")
 @router.post("/llm")
-async def llm_analyze(req: LLMAnalysisRequest):
-    prompt = build_prompt(req)
+async def llm_analyze(request: Request, data: LLMAnalysisRequest):
+    prompt = build_prompt(data)
     cfg = get_llm_config()
 
     try:
@@ -391,15 +451,16 @@ async def llm_analyze(req: LLMAnalysisRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@llm_limiter.limit("10/minute")
 @router.post("/llm-single")
-async def llm_analyze_single(req: LLMSingleRequest):
+async def llm_analyze_single(request: Request, data: LLMSingleRequest):
     prompt = build_single_prompt(
-        anomaly_type=req.anomaly_type,
-        rule_id=req.rule_id,
-        rule_description=req.rule_description,
-        severity=req.severity,
-        count=req.count,
-        entries=req.entries,
+        anomaly_type=data.anomaly_type,
+        rule_id=data.rule_id,
+        rule_description=data.rule_description,
+        severity=data.severity,
+        count=data.count,
+        entries=data.entries,
     )
     cfg = get_llm_config()
 
@@ -413,9 +474,9 @@ async def llm_analyze_single(req: LLMSingleRequest):
 
         log_operation(
             operation="llm_analysis_single",
-            detail=f"LLM 单规则分析，provider={cfg.provider}，model={cfg.model}，rule={req.rule_id}",
+            detail=f"LLM 单规则分析，provider={cfg.provider}，model={cfg.model}，rule={data.rule_id}",
             result="ok",
-            extra={"provider": cfg.provider, "model": cfg.model, "rule_id": req.rule_id, "severity": req.severity},
+            extra={"provider": cfg.provider, "model": cfg.model, "rule_id": data.rule_id, "severity": data.severity},
         )
         return {"summary": result_text}
     except HTTPException:

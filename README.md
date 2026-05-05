@@ -2,6 +2,10 @@
 
 华为 iBMC 服务器 BMC 日志解析与智能分析工具。支持日志格式自动识别、异常检测与 LLM 根因分析。
 
+## 版本
+
+**v0.50rc1** - 最新测试版
+
 English version: [README_en.md](README_en.md)
 
 ## 功能特性
@@ -24,6 +28,9 @@ English version: [README_en.md](README_en.md)
 - **全量分析**：对所有规则+统计异常进行批量分析，带5阶段进度条
 - **单条分析**：点击任意异常卡片或硬件分类的「🤖 分析此异常」按钮，单独分析该条异常
 - 支持配置任意 OpenAI-compatible 或 Anthropic-compatible LLM API（DeepSeek 等），支持双接口自动探测
+- **智能 Prompt**：聚焦硬件底层故障特征，忽略管理接口（如 PowerMgnt）偶发超时，定位具体槽位号（SlotId/PCIe地址）
+- **优先级建议**：按业务影响（P0/P1/P2/P3）划分，强调硬盘/RAID故障不低于风扇/电源异常
+- **可执行解决步骤**：提供诊断命令（如 `storcli64`）、物理操作、固件修复、厂商兜底方案
 
 ### 全部事件
 - 分页展示（50/100/200/500 条每页）
@@ -39,8 +46,9 @@ English version: [README_en.md](README_en.md)
 - 规则异常数 / 统计异常数 / 硬件事件数
 
 ### 分析报告
-- 一键下载 Markdown 格式分析报告
+- 一键下载 Markdown/HTML 格式分析报告
 - 包含统计摘要、硬件事件汇总、规则异常采样、统计异常详情的完整报告
+- 报告文件名自动包含设备型号和 SN（如有）
 
 ## 技术栈
 
@@ -161,8 +169,8 @@ app/
 # 最新稳定版
 docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer
 
-# 指定版本 v0.32
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.32
+# 指定版本 v0.50rc1
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc1
 ```
 
 然后浏览器打开 **http://localhost:8000**。
@@ -175,16 +183,13 @@ docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.32
 
 ```bash
 docker run -d -p 8000:8000 \
-  -e LLM_API_KEY=*** \
-  -e LLM_API_BASE=https://api.deepseek.com \
-  -e LLM_MODEL=deepseek-chat \
-  yuyeshun2/bmc-log-analyzer:v0.32
+  -e API_KEY=your-secret-key \
+  yuyeshun2/bmc-log-analyzer:v0.50rc1
 ```
 
 | 环境变量 | 说明 | 示例 |
 |---------|------|------|
-| `LLM_API_KEY` | 你的 API Key | `sk-xxxxxxxx` |
-| `LLM_API_BASE` | API 地址 | `https://api.deepseek.com` 或 `https://api.deepseek.com/anthropic` |
-| `LLM_MODEL` | 模型名称 | `deepseek-chat` |
+| `API_KEY` | API 认证密钥（可选，不配置则无需认证） | `sk-xxxxxxxx` |
+| `API_KEY_FILE` | API 密钥文件路径 | `/path/to/key` |
 
 DeepSeek 同时提供 OpenAI-compatible（`/chat/completions`）和 Anthropic-compatible（`/anthropic`）接口。
