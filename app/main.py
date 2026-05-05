@@ -62,7 +62,22 @@ from app.detectors.statistical import detect_statistical_anomalies
 from app.routers.llm import router as llm_router
 from app.operation_log import log_operation
 
-app = FastAPI(title="BMC Log Analyzer")
+
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app):
+    # Startup
+    _n = _cleanup_old_files()
+    if _n:
+        print(f"[cleanup] Removed {_n} stale upload(s) on startup")
+    _sync_manifest()
+    _thread = threading.Thread(target=_cleanup_loop, daemon=True)
+    _thread.start()
+    yield
+    # Shutdown: daemon thread exits with process
+
+app = FastAPI(title="BMC Log Analyzer", lifespan=lifespan)
 app.include_router(llm_router)
 
 # Rate limiter — 20 upload requests per minute per IP
@@ -105,6 +120,7 @@ async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
         status_code=429,
         content={"detail": "请求过于频繁，请稍后再试（20次/分钟）"},
     )
+
 
 STATIC_DIR = Path(__file__).parent / "static"
 STATIC_DIR.mkdir(exist_ok=True)
@@ -157,6 +173,7 @@ def _sync_manifest() -> None:
     if len(kept) != len(manifest):
         _save_manifest(kept)
 
+
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 templates = Jinja2Templates(directory=str(STATIC_DIR))
 
@@ -189,14 +206,6 @@ def _cleanup_loop():
             print(f"[cleanup] Removed {n} stale upload(s)")
 
 
-# Start background cleanup thread
-_cleanup_thread = threading.Thread(target=_cleanup_loop, daemon=True)
-_cleanup_thread.start()
-# Also clean any stale files left from previous runs on startup
-_n = _cleanup_old_files()
-if _n:
-    print(f"[cleanup] Removed {_n} stale upload(s) on startup")
-_sync_manifest()
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -918,4 +927,4 @@ def _route_parse(filename: str, path: Path):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, factory=True)
