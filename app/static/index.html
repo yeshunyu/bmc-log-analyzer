@@ -1342,25 +1342,54 @@ async function downloadReport(fmt) {
 
     const s = analysisData.summary;
 
-    // Extract device model and SN from log entries if available
+    // Extract device model and SN from filename and log entries
     function getDeviceInfo() {
-      const entries = analysisData.parsed_log?.entries || [];
+      const fileName = analysisData.parsed_log?.file_name || '';
       let model = '', sn = '';
-      const modelPat = /model[:\s]*([^\s,]+)/i;
-      const snPat = /sn[:\s]*([A-Za-z0-9]+)/i;
-      const hwSnPat = /HW\s*(?:SN|S\/N|Serial)[:\s]*([A-Za-z0-9]+)/i;
-      const productPat = /Product\s*(?:Name|ID)[:\s]*([^\s,]+)/i;
-      for (const e of entries.slice(0, 100)) {
-        const text = (e.message || '') + ' ' + (e.module || '');
-        if (!model) {
-          const m = text.match(modelPat) || text.match(productPat);
-          if (m) model = m[1].replace(/[^A-Za-z0-9\-]/g, '').slice(0, 20);
+
+      // First try to extract from filename patterns like:
+      // BMC_dump_Taishan200_2024-01-01.tar.gz, Taishan200_BMC_xxx.tar.gz
+      const fnModelPats = [
+        /(?:BMC_dump[_-]?|dump[_-]?)([A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)?)[_-]\d{4}[-_]/,  // BMC_dump_Taishan200_2024-01-01
+        /([A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)?)[_-]?(?:BMC_dump|dump)[_-]/,  // Taishan200_BMC_dump
+        /([A-Za-z0-9]+-[A-Fa-f0-9]{8,})/i,  // model-SN like Taishan200-ABC123456
+        /(Taishan\d+|RH\d+|Kunpeng\d+)/i,  // Known Huawei server models
+      ];
+      for (const pat of fnModelPats) {
+        const m = fileName.match(pat);
+        if (m) { model = m[1].replace(/[^A-Za-z0-9\-]/g, '').slice(0, 20); break; }
+      }
+
+      // Try to extract SN from filename (patterns like SN=xxx, S/N:xxx, _SN, -SN)
+      const fnSnPats = [
+        /[_\-]SN[A-Za-z0-9]?[=:]-?([A-Fa-f0-9]{6,})/i,  // _SNA:ABC123 or _SN-ABC123
+        /[_\-]S\/N[A-Za-z0-9]?[=:]-?([A-Fa-f0-9]{6,})/i,
+        /(?:SN|S\/N|Serial)[_=\-:]?([A-Za-z0-9]{6,})/i,
+      ];
+      for (const pat of fnSnPats) {
+        const m = fileName.match(pat);
+        if (m) { sn = m[1].replace(/[^A-Za-z0-9]/g, '').slice(0, 20); break; }
+      }
+
+      // Fallback: try to extract from log entries
+      if (!model || !sn) {
+        const entries = analysisData.parsed_log?.entries || [];
+        const modelPat = /model[:\s]*([^\s,]+)/i;
+        const snPat = /sn[:\s]*([A-Za-z0-9]+)/i;
+        const hwSnPat = /HW\s*(?:SN|S\/N|Serial)[:\s]*([A-Za-z0-9]+)/i;
+        const productPat = /Product\s*(?:Name|ID)[:\s]*([^\s,]+)/i;
+        for (const e of entries.slice(0, 100)) {
+          const text = (e.message || '') + ' ' + (e.module || '');
+          if (!model) {
+            const m = text.match(modelPat) || text.match(productPat);
+            if (m) model = m[1].replace(/[^A-Za-z0-9\-]/g, '').slice(0, 20);
+          }
+          if (!sn) {
+            const s = text.match(snPat) || text.match(hwSnPat);
+            if (s) sn = s[1].replace(/[^A-Za-z0-9]/g, '').slice(0, 20);
+          }
+          if (model && sn) break;
         }
-        if (!sn) {
-          const s = text.match(snPat) || text.match(hwSnPat);
-          if (s) sn = s[1].replace(/[^A-Za-z0-9]/g, '').slice(0, 20);
-        }
-        if (model && sn) break;
       }
       return { model, sn };
     }
@@ -1428,7 +1457,8 @@ function buildReportContent(s, hwCounts, hwLabels, hwTotal, now, logName, summar
   const errors = (analysisData.rule_anomalies || []).map(a => {
     const samples = (a.entries || []).slice(0, 5).map(e => {
       const ets = e.timestamp ? new Date(e.timestamp).toLocaleString('zh-CN', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).replace(/\//g,'-') : 'N/A';
-      return `[${ets}] [${e.module || 'N/A'}] ${e.message || ''}`;
+      const src = e.source_file ? `【来源: ${e.source_file}】` : '';
+      return `[${ets}] [${e.module || 'N/A'}] ${src} ${e.message || ''}`;
     }).join('\n');
     return { severity: a.severity, rule_description: a.rule_description, count: a.count, first_seen: a.first_seen || 'N/A', last_seen: a.last_seen || 'N/A', samples };
   });
@@ -1436,55 +1466,105 @@ function buildReportContent(s, hwCounts, hwLabels, hwTotal, now, logName, summar
   const stats = (analysisData.statistical_anomalies || []).map(a => ({
     metric: a.metric, description: a.description,
     window_start: a.window_start, window_end: a.window_end,
-    threshold: a.threshold, peak_value: a.peak_value
+    threshold: a.threshold, event_count: a.event_count
   }));
 
   return { s, hwCounts, hwLabels, hwTotal, now, logName, summary, errors, stats, time_range: tr };
 }
 
 function downloadMarkdown(c) {
+  // Determine risk level
+  const errorCount = c.s.error_count || 0;
+  const warnCount = c.s.warning_count || 0;
+  const ruleAnomalies = c.s.rule_anomaly_count || 0;
+  const statAnomalies = c.s.stat_anomaly_count || 0;
+  const criticalErrors = c.errors.filter(a => a.severity === 'CRITICAL' || a.severity === 'HIGH').length;
+
+  let riskLevel = '🟢 低风险';
+  let riskDesc = '未检测到严重异常，建议常规监控。';
+  if (criticalErrors > 0 || errorCount > 1000) {
+    riskLevel = '🔴 高风险';
+    riskDesc = `检测到 ${criticalErrors} 个严重规则异常或大量错误事件，需要立即关注！`;
+  } else if (ruleAnomalies > 5 || statAnomalies > 3 || errorCount > 100) {
+    riskLevel = '🟡 中风险';
+    riskDesc = `检测到 ${ruleAnomalies} 个规则异常和 ${statAnomalies} 个统计异常，建议检查。`;
+  }
+
+  // Build action items
+  const actions = [];
+  if (criticalErrors > 0) actions.push('1. 【紧急】处理所有严重规则异常（见下文）');
+  if (actions.length === 0 && ruleAnomalies > 0) actions.push('1. 【建议】检查规则异常列表，按严重程度优先处理');
+  if (statAnomalies > 0) actions.push('2. 【建议】关注统计异常时段，排查突发流量或异常峰值');
+  const hwItems = Object.entries(c.hwCounts).filter(([k,v]) => v > 0).sort((a,b) => b[1]-a[1]);
+  if (hwItems.length > 0) {
+    const topHW = hwItems.slice(0,2).map(([k,v]) => `${c.hwLabels[k]}(${v}条)`).join('、');
+    actions.push(`3. 【关注】硬件相关事件：${topHW}，建议查看硬件事件详情`);
+  }
+  if (actions.length === 0) actions.push('1. 【常规】日志未检测到明显异常，保持常规监控即可。');
+  const actionText = actions.join('\n');
+
   let md = `# BMC 日志深度分析报告\n\n`;
-  md += `> 生成时间：${c.now}  \n> 日志文件：${c.logName}\n\n`;
+  md += `> 生成时间：${c.now}  \n> 日志文件：${c.logName}  \n> 日志时间范围：${c.time_range}\n\n`;
+
+  // Risk Assessment Section (at the top for customer visibility)
+  md += `## ⚠️ 风险评估\n\n`;
+  md += `**${riskLevel}** — ${riskDesc}\n\n`;
+  md += `### 📋 建议操作\n\n`;
+  md += `${actionText}\n\n`;
+
+  // Stats Overview
   md += `## 📊 日志概览\n\n`;
   md += `| 指标 | 数值 |\n|------|------|\n`;
   md += `| 总事件数 | ${c.s.total_entries.toLocaleString()} |\n`;
-  md += `| ERROR | ${c.s.error_count.toLocaleString()} |\n`;
-  md += `| WARNING | ${c.s.warning_count.toLocaleString()} |\n`;
+  md += `| 🔴 ERROR | ${c.s.error_count.toLocaleString()} |\n`;
+  md += `| 🟡 WARNING | ${c.s.warning_count.toLocaleString()} |\n`;
   md += `| 规则异常 | ${c.s.rule_anomaly_count} |\n`;
-  md += `| 统计异常 | ${c.s.stat_anomaly_count} |\n`;
-  md += `| 时间范围 | ${c.time_range} |\n\n`;
-  md += `## 💡 硬件相关事件统计\n\n`;
+  md += `| 统计异常 | ${c.s.stat_anomaly_count} |\n\n`;
+
+  // Hardware Events
+  md += `## 💡 硬件相关事件（${c.hwTotal}条）\n\n`;
   if (c.hwTotal > 0) {
-    md += `共检测到 **${c.hwTotal} 条**硬件相关事件：\n\n`;
+    md += `| 类别 | 数量 |\n|------|------|\n`;
     for (const [hw, cnt] of Object.entries(c.hwCounts)) {
-      if (cnt > 0) md += `- **${c.hwLabels[hw]}**：${cnt} 条\n`;
+      if (cnt > 0) md += `| ${c.hwLabels[hw]} | ${cnt} |\n`;
     }
     md += `\n`;
   } else {
     md += `未检测到明显的硬件相关关键词。\n\n`;
   }
-  md += `## 🚨 规则异常（按严重程度排序）\n\n`;
-  for (const a of c.errors) {
-    md += `### [${a.severity}] ${a.rule_description}\n`;
-    md += `- 出现次数：${a.count}  \n`;
-    md += `- 首次发生：${a.first_seen}  \n`;
-    md += `- 最后发生：${a.last_seen}\n\n`;
-    md += `**采样日志：**\n${a.samples}\n\n`;
+
+  // Rule Anomalies
+  md += `## 🚨 规则异常（${c.errors.length}项，按严重程度排序）\n\n`;
+  if (c.errors.length > 0) {
+    for (const a of c.errors) {
+      const sevIcon = a.severity === 'CRITICAL' ? '🔴' : a.severity === 'HIGH' ? '🟠' : a.severity === 'MEDIUM' ? '🟡' : '🔵';
+      md += `### ${sevIcon} [${a.severity}] ${a.rule_description}\n`;
+      md += `- 出现次数：${a.count}  \n`;
+      md += `- 首次发生：${a.first_seen}  \n`;
+      md += `- 最后发生：${a.last_seen}\n\n`;
+      md += `**采样日志：**\n${a.samples}\n\n`;
+    }
+  } else {
+    md += `未检测到规则异常。\n\n`;
   }
+
+  // Statistical Anomalies
   if (c.stats.length > 0) {
-    md += `## 📈 统计异常\n\n`;
+    md += `## 📈 统计异常（${c.stats.length}项）\n\n`;
     for (const a of c.stats) {
       md += `### ${a.metric} - ${a.description}\n`;
       md += `- 时间窗口：${a.window_start} ~ ${a.window_end}  \n`;
       md += `- 异常阈值：${a.threshold}  \n`;
-      md += `- 峰值：${a.peak_value}\n\n`;
+      md += `- 实际峰值：${a.event_count}条\n\n`;
     }
   }
+
+  // LLM Analysis
   md += `## 🔍 LLM 深度根因分析\n\n`;
   md += `> 以下内容由 LLM 基于上述日志数据生成，融合了模式识别、时序分析和硬件知识。\n\n`;
   md += (c.summary || '（暂无LLM分析结果）') + `\n\n`;
   md += `---\n\n`;
-  md += `*本报告由 BMC 日志分析工具 v${appVersion} 自动生成 · AI 生成 · 仅供参考，注意识别，如有疑问请联系设备厂家*\n`;
+  md += `*本报告由 BMC 日志分析工具 v${appVersion} 自动生成 · AI 生成 · 仅供参考，如有疑问请联系设备厂家*\n`;
 
   const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
   const url = URL.createObjectURL(blob);
@@ -1498,6 +1578,35 @@ function downloadMarkdown(c) {
 }
 
 function downloadHtml(c, ts, now, logName) {
+  const errorCount = c.s.error_count || 0;
+  const ruleAnomalies = c.s.rule_anomaly_count || 0;
+  const statAnomalies = c.s.stat_anomaly_count || 0;
+  const criticalErrors = c.errors.filter(a => a.severity === 'CRITICAL' || a.severity === 'HIGH').length;
+
+  let riskLevel = '🟢 低风险';
+  let riskClass = 'risk-low';
+  let riskDesc = '未检测到严重异常，建议常规监控。';
+  if (criticalErrors > 0 || errorCount > 1000) {
+    riskLevel = '🔴 高风险';
+    riskClass = 'risk-high';
+    riskDesc = `检测到 ${criticalErrors} 个严重规则异常或大量错误事件，需要立即关注！`;
+  } else if (ruleAnomalies > 5 || statAnomalies > 3 || errorCount > 100) {
+    riskLevel = '🟡 中风险';
+    riskClass = 'risk-med';
+    riskDesc = `检测到 ${ruleAnomalies} 个规则异常和 ${statAnomalies} 个统计异常，建议检查。`;
+  }
+
+  const actions = [];
+  if (criticalErrors > 0) actions.push('【紧急】处理所有严重规则异常（见下文）');
+  if (actions.length === 0 && ruleAnomalies > 0) actions.push('【建议】检查规则异常列表，按严重程度优先处理');
+  if (statAnomalies > 0) actions.push('【关注】统计异常时段，排查突发流量或异常峰值');
+  const hwItems = Object.entries(c.hwCounts).filter(([k,v]) => v > 0).sort((a,b) => b[1]-a[1]);
+  if (hwItems.length > 0) {
+    const topHW = hwItems.slice(0,2).map(([k,v]) => `${c.hwLabels[k]}(${v}条)`).join('、');
+    actions.push(`【关注】硬件相关事件：${topHW}，建议查看硬件事件详情`);
+  }
+  if (actions.length === 0) actions.push('【常规】日志未检测到明显异常，保持常规监控即可。');
+
   const rows = c.errors.map(a => `
     <tr class="severity-${a.severity.toLowerCase()}">
       <td><span class="badge badge-${a.severity.toLowerCase()}">${a.severity}</span></td>
@@ -1513,7 +1622,7 @@ function downloadHtml(c, ts, now, logName) {
       <td>${esc(a.description || '')}</td>
       <td>${a.window_start} ~ ${a.window_end}</td>
       <td>${a.threshold}</td>
-      <td>${a.peak_value}</td>
+      <td>${a.event_count}</td>
     </tr>`).join('');
 
   const html = `<!DOCTYPE html>
@@ -1527,6 +1636,16 @@ function downloadHtml(c, ts, now, logName) {
   h2 { color: #333; border-left: 4px solid #1a73e8; padding-left: 10px; margin-top: 30px; }
   .meta { background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 20px 0; }
   .meta p { margin: 5px 0; }
+  .risk-banner { padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; }
+  .risk-banner.risk-high { background: linear-gradient(135deg, #d93025 0%, #ea8600 100%); color: #fff; }
+  .risk-banner.risk-med { background: linear-gradient(135deg, #f09900 0%, #f8d44c 100%); color: #333; }
+  .risk-banner.risk-low { background: linear-gradient(135deg, #1e8e3e 0%, #81c995 100%); color: #fff; }
+  .risk-banner h2 { color: #fff; border: none; margin: 0 0 10px 0; padding: 0; }
+  .risk-banner.risk-med h2 { color: #333; }
+  .action-box { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 15px; margin: 15px 0; }
+  .action-box h3 { margin: 0 0 10px 0; color: #856404; }
+  .action-box ul { margin: 0; padding-left: 20px; }
+  .action-box li { margin: 5px 0; color: #856404; }
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
   .stat-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
   .stat-card .num { font-size: 28px; font-weight: bold; color: #1a73e8; }
@@ -1558,6 +1677,18 @@ function downloadHtml(c, ts, now, logName) {
   <p><strong>生成时间：</strong>${now}</p>
   <p><strong>日志文件：</strong>${logName}</p>
   <p><strong>时间范围：</strong>${c.time_range}</p>
+</div>
+
+<div class="risk-banner ${riskClass}">
+  <h2>${riskLevel}</h2>
+  <p>${riskDesc}</p>
+</div>
+
+<div class="action-box">
+  <h3>📋 建议操作</h3>
+  <ul>
+    ${actions.map(a => `<li>${a}</li>`).join('')}
+  </ul>
 </div>
 
 <h2>📊 日志概览</h2>
@@ -1592,7 +1723,7 @@ ${c.stats.length > 0 ? `<h2>📈 统计异常</h2>
 </div>
 
 <div class="footer">
-  <p>本报告由 BMC 日志分析工具 v${appVersion} 自动生成 · AI 生成 · 仅供参考，注意识别，如有疑问请联系设备厂家</p>
+  <p>本报告由 BMC 日志分析工具 v${appVersion} 自动生成 · AI 生成 · 仅供参考，如有疑问请联系设备厂家</p>
 </div>
 </body>
 </html>`;
@@ -1619,7 +1750,36 @@ function printHtml(c, ts, now, logName) {
     </tr>`).join('');
 
   const statRows = c.stats.map(a => `
-    <tr><td>${esc(a.metric || '')}</td><td>${esc(a.description || '')}</td><td>${a.window_start} ~ ${a.window_end}</td><td>${a.threshold}</td><td>${a.peak_value}</td></tr>`).join('');
+    <tr><td>${esc(a.metric || '')}</td><td>${esc(a.description || '')}</td><td>${a.window_start} ~ ${a.window_end}</td><td>${a.threshold}</td><td>${a.event_count}</td></tr>`).join('');
+
+  const errorCount = c.s.error_count || 0;
+  const ruleAnomalies = c.s.rule_anomaly_count || 0;
+  const statAnomalies = c.s.stat_anomaly_count || 0;
+  const criticalErrors = c.errors.filter(a => a.severity === 'CRITICAL' || a.severity === 'HIGH').length;
+
+  let riskLevel = '🟢 低风险';
+  let riskClass = 'risk-low';
+  let riskDesc = '未检测到严重异常，建议常规监控。';
+  if (criticalErrors > 0 || errorCount > 1000) {
+    riskLevel = '🔴 高风险';
+    riskClass = 'risk-high';
+    riskDesc = `检测到 ${criticalErrors} 个严重规则异常或大量错误事件，需要立即关注！`;
+  } else if (ruleAnomalies > 5 || statAnomalies > 3 || errorCount > 100) {
+    riskLevel = '🟡 中风险';
+    riskClass = 'risk-med';
+    riskDesc = `检测到 ${ruleAnomalies} 个规则异常和 ${statAnomalies} 个统计异常，建议检查。`;
+  }
+
+  const actions = [];
+  if (criticalErrors > 0) actions.push('【紧急】处理所有严重规则异常（见下文）');
+  if (actions.length === 0 && ruleAnomalies > 0) actions.push('【建议】检查规则异常列表，按严重程度优先处理');
+  if (statAnomalies > 0) actions.push('【关注】统计异常时段，排查突发流量或异常峰值');
+  const hwItems = Object.entries(c.hwCounts).filter(([k,v]) => v > 0).sort((a,b) => b[1]-a[1]);
+  if (hwItems.length > 0) {
+    const topHW = hwItems.slice(0,2).map(([k,v]) => `${c.hwLabels[k]}(${v}条)`).join('、');
+    actions.push(`【关注】硬件相关事件：${topHW}，建议查看硬件事件详情`);
+  }
+  if (actions.length === 0) actions.push('【常规】日志未检测到明显异常，保持常规监控即可。');
 
   const html = `<!DOCTYPE html>
 <html lang="zh-CN">
@@ -1632,6 +1792,16 @@ function printHtml(c, ts, now, logName) {
   h2 { color: #333; border-left: 4px solid #1a73e8; padding-left: 10px; margin-top: 30px; }
   .meta { background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 20px 0; }
   .meta p { margin: 5px 0; }
+  .risk-banner { padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; }
+  .risk-banner.risk-high { background: linear-gradient(135deg, #d93025 0%, #ea8600 100%); color: #fff; }
+  .risk-banner.risk-med { background: linear-gradient(135deg, #f09900 0%, #f8d44c 100%); color: #333; }
+  .risk-banner.risk-low { background: linear-gradient(135deg, #1e8e3e 0%, #81c995 100%); color: #fff; }
+  .risk-banner h2 { color: #fff; border: none; margin: 0 0 10px 0; padding: 0; }
+  .risk-banner.risk-med h2 { color: #333; }
+  .action-box { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 15px; margin: 15px 0; }
+  .action-box h3 { margin: 0 0 10px 0; color: #856404; }
+  .action-box ul { margin: 0; padding-left: 20px; }
+  .action-box li { margin: 5px 0; color: #856404; }
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
   .stat-card { border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; text-align: center; }
   .stat-card .num { font-size: 28px; font-weight: bold; color: #1a73e8; }
@@ -1663,6 +1833,19 @@ function printHtml(c, ts, now, logName) {
   <p><strong>日志文件：</strong>${logName}</p>
   <p><strong>时间范围：</strong>${c.time_range}</p>
 </div>
+
+<div class="risk-banner ${riskClass}">
+  <h2>${riskLevel}</h2>
+  <p>${riskDesc}</p>
+</div>
+
+<div class="action-box">
+  <h3>📋 建议操作</h3>
+  <ul>
+    ${actions.map(a => `<li>${a}</li>`).join('')}
+  </ul>
+</div>
+
 <h2>📊 日志概览</h2>
 <div class="stats-grid">
   <div class="stat-card"><div class="num">${c.s.total_entries.toLocaleString()}</div><div class="label">总事件数</div></div>
@@ -1671,10 +1854,12 @@ function printHtml(c, ts, now, logName) {
   <div class="stat-card"><div class="num">${c.s.rule_anomaly_count}</div><div class="label">规则异常</div></div>
   <div class="stat-card"><div class="num">${c.s.stat_anomaly_count}</div><div class="label">统计异常</div></div>
 </div>
+
 <h2>💡 硬件相关事件统计</h2>
 ${c.hwTotal > 0 ? Object.entries(c.hwCounts).filter(([,v]) => v > 0).map(([k, v]) =>
   `<div class="hw-bar"><span class="hw-label">${c.hwLabels[k]}：</span><span class="hw-fill">${v}</span></div>`).join('') :
   '<p>未检测到明显的硬件相关关键词。</p>'}
+
 <h2>🚨 规则异常</h2>
 ${c.errors.length > 0 ? `<table>
   <thead><tr><th>级别</th><th>描述</th><th>次数</th><th>首次</th><th>最近</th></tr></thead>
@@ -1685,9 +1870,10 @@ ${c.stats.length > 0 ? `<h2>📈 统计异常</h2>
   <thead><tr><th>指标</th><th>描述</th><th>时间窗口</th><th>阈值</th><th>峰值</th></tr></thead>
   <tbody>${statRows}</tbody>
 </table>` : ''}
+
 <h2>🔍 LLM 深度根因分析</h2>
 <div class="summary-box"><pre>${c.summary || '（暂无LLM分析结果）'}</pre></div>
-<div class="footer"><p>本报告由 BMC 日志分析工具 v${appVersion} 自动生成 · AI 生成 · 仅供参考，注意识别，如有疑问请联系设备厂家</p></div>
+<div class="footer"><p>本报告由 BMC 日志分析工具 v${appVersion} 自动生成 · AI 生成 · 仅供参考，如有疑问请联系设备厂家</p></div>
 </body>
 </html>`;
 

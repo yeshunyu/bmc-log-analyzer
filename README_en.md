@@ -99,11 +99,15 @@ Supports `linux/amd64` (x86 servers) and `linux/arm64` (ARM servers / Apple Sili
 ### Quick Start
 
 ```bash
-# Latest stable
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer
+# Choose image based on your server architecture
+# x86 servers (Intel/AMD CPU)
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc1-amd64
 
-# Specific version v0.50rc1
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc1
+# ARM servers (Huawei Kunpeng, Amazon Graviton, Apple Silicon Mac)
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc1-arm64
+
+# Or use latest tag (auto-selects architecture, slower first download)
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:latest
 ```
 
 Then open **http://localhost:8000** in your browser.

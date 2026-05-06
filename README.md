@@ -166,11 +166,15 @@ app/
 ### 快速启动
 
 ```bash
-# 最新稳定版
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer
+# 根据服务器架构选择对应镜像
+# x86 服务器 (Intel/AMD CPU)
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc1-amd64
 
-# 指定版本 v0.50rc1
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc1
+# ARM 服务器 (华为鲲鹏、亚马逊 Graviton、Apple Silicon Mac)
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc1-arm64
+
+# 或者使用 latest 标签（自动选择对应架构，首次下载慢）
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:latest
 ```
 
 然后浏览器打开 **http://localhost:8000**。
