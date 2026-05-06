@@ -4,7 +4,7 @@ Intelligent BMC (Baseboard Management Controller) log parsing and analysis tool 
 
 ## Version
 
-**v0.50rc1** - Latest release
+**v0.50rc2** - Latest release
 
 Chinese version: [README.md](README.md)
 
@@ -101,10 +101,10 @@ Supports `linux/amd64` (x86 servers) and `linux/arm64` (ARM servers / Apple Sili
 ```bash
 # Choose image based on your server architecture
 # x86 servers (Intel/AMD CPU)
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc1-amd64
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc2-amd64
 
 # ARM servers (Huawei Kunpeng, Amazon Graviton, Apple Silicon Mac)
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc1-arm64
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc2-arm64
 
 # Or use latest tag (auto-selects architecture, slower first download)
 docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:latest

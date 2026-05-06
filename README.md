@@ -4,7 +4,7 @@
 
 ## 版本
 
-**v0.50rc1** - 最新测试版
+**v0.50rc2** - 最新测试版
 
 English version: [README_en.md](README_en.md)
 
@@ -168,10 +168,10 @@ app/
 ```bash
 # 根据服务器架构选择对应镜像
 # x86 服务器 (Intel/AMD CPU)
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc1-amd64
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc2-amd64
 
 # ARM 服务器 (华为鲲鹏、亚马逊 Graviton、Apple Silicon Mac)
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc1-arm64
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v0.50rc2-arm64
 
 # 或者使用 latest 标签（自动选择对应架构，首次下载慢）
 docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:latest
@@ -188,7 +188,7 @@ docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:latest
 ```bash
 docker run -d -p 8000:8000 \
   -e API_KEY=your-secret-key \
-  yuyeshun2/bmc-log-analyzer:v0.50rc1
+  yuyeshun2/bmc-log-analyzer:v0.50rc2
 ```
 
 | 环境变量 | 说明 | 示例 |
