@@ -394,14 +394,21 @@ def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: 
     body = json.dumps(payload).encode("utf-8")
 
     # Anthropic-compatible base already contains /anthropic, just append /messages
+    # MiniMax uses Authorization: Bearer like OpenAI, not x-api-key like standard Anthropic
+    is_minimax = "minimax" in api_base.lower()
+    auth_header = f"Bearer {api_key}" if is_minimax else api_key
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": auth_header,
+        "anthropic-version": "2023-06-01",
+    }
+    if not is_minimax:
+        headers["x-api-key"] = api_key
+
     req = urllib.request.Request(
         f"{api_base.rstrip('/')}/v1/messages",
         data=body,
-        headers={
-            "Content-Type": "application/json",
-            "x-api-key": api_key,
-            "anthropic-version": "2023-06-01",
-        },
+        headers=headers,
         method="POST",
     )
     try:
