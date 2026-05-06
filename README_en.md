@@ -47,7 +47,8 @@ Chinese version: [README.md](README.md)
 
 ### Analysis Report
 - One-click download of Markdown/HTML analysis report
-- Report filename includes device model and SN when available
+- Top risk assessment (Low/Medium/High) + recommended actions for quick ops visibility
+- Report filename includes device model and SN when extractable from filename or log content
 - Includes stats summary, hardware events, rule anomaly samples, and statistical anomaly details
 
 ## Tech Stack
@@ -117,6 +118,20 @@ Then open **http://localhost:8000** in your browser.
 Configure LLM API via the ⚙️ gear icon in the top-right corner of the page. Supports DeepSeek / OpenAI / Anthropic compatible APIs.
 
 No API key required to start the container — users configure their own LLM API credentials in the UI.
+
+Or configure via environment variables:
+
+```bash
+# x86 servers
+docker run -d -p 8000:8000 \
+  -e API_KEY=your-secret-key \
+  yuyeshun2/bmc-log-analyzer:v0.50rc2-amd64
+
+# ARM servers
+docker run -d -p 8000:8000 \
+  -e API_KEY=your-secret-key \
+  yuyeshun2/bmc-log-analyzer:v0.50rc2-arm64
+```
 
 | Environment Variable | Description | Example |
 |---------------------|-------------|---------|

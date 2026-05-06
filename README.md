@@ -47,8 +47,9 @@ English version: [README_en.md](README_en.md)
 
 ### 分析报告
 - 一键下载 Markdown/HTML 格式分析报告
+- 顶部风险评估（低/中/高）+ 建议操作列表，运维一目了然
 - 包含统计摘要、硬件事件汇总、规则异常采样、统计异常详情的完整报告
-- 报告文件名自动包含设备型号和 SN（如有）
+- 报告文件名自动包含设备型号和 SN（如能从文件名或日志内容提取）
 
 ## 技术栈
 
@@ -74,7 +75,6 @@ pip install -r requirements.txt
 ### 2. 启动服务
 
 ```bash
-# 默认 8088 端口
 uvicorn app.main:app --port 8000 --reload
 
 # 或直接运行
@@ -84,7 +84,7 @@ python -m app.main
 ### 3. 打开浏览器
 
 ```
-http://localhost:8088
+http://localhost:8000
 ```
 
 ### 4. 使用
@@ -186,9 +186,15 @@ docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:latest
 也可通过环境变量配置，重启后配置持久化：
 
 ```bash
+# x86 服务器
 docker run -d -p 8000:8000 \
   -e API_KEY=your-secret-key \
-  yuyeshun2/bmc-log-analyzer:v0.50rc2
+  yuyeshun2/bmc-log-analyzer:v0.50rc2-amd64
+
+# ARM 服务器
+docker run -d -p 8000:8000 \
+  -e API_KEY=your-secret-key \
+  yuyeshun2/bmc-log-analyzer:v0.50rc2-arm64
 ```
 
 | 环境变量 | 说明 | 示例 |
