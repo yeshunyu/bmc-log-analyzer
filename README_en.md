@@ -28,7 +28,7 @@ Chinese version: [README.md](README.md)
 - **Full analysis**: Batch analysis of all rule-based + statistical anomalies with 5-stage progress bar
 - **Per-card analysis**: Click the "🤖 Analyze" button on any anomaly card or hardware category to analyze that specific anomaly
 - Supports any OpenAI-compatible or Anthropic-compatible LLM API (DeepSeek, etc.), dual-interface auto-detection
-- **Enhanced prompts**: Focus on hardware底层故障, specific slot/PCIe location, ignore management interface (PowerMgnt) timeouts
+- **Enhanced prompts**: Focus on low-level hardware fault root cause, specific slot/PCIe location, ignore management interface (PowerMgnt) timeouts
 - **Priority P0/P1/P2/P3**: Based on business impact, disk/RAID failures prioritized equally with fan/PSU
 - **Actionable steps**: Diagnostic commands (storcli64), physical operations, firmware fixes, vendor escalation
 

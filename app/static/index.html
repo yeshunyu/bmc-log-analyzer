@@ -9,6 +9,9 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0f1117; color: #e0e0e0; min-height: 100vh; }
     .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.page-footer { text-align: center; padding: 1.5rem; color: #6b7280; font-size: 0.8rem; border-top: 1px solid #2d2f3d; margin-top: 2rem; }
+.page-footer a { color: #3b82f6; text-decoration: none; }
+.page-footer a:hover { text-decoration: underline; }
     h1 { font-size: 1.5rem; font-weight: 600; color: #fff; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
     .header-row { display: flex; align-items: center; justify-content: space-between; }
 
@@ -210,7 +213,7 @@
     .llm-progress-time span { min-width: 80px; }
     .llm-progress-time .elapsed { text-align: left; }
     .llm-progress-time .remaining { text-align: right; }
-    .llm-result { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1.25rem; margin-top: 1rem; font-size: 0.875rem; line-height: 1.7; color: #d1d5db; }
+    .llm-result { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1.25rem; margin-top: 1rem; font-size: 0.875rem; line-height: 1.7; color: #d1d5db; max-height: 60vh; overflow-y: auto; }
     .llm-result h1, .llm-result h2, .llm-result h3 { color: #f3f4f6; margin: 1em 0 0.5em; }
     .llm-result h1 { font-size: 1.1rem; }
     .llm-result h2 { font-size: 1rem; }
@@ -265,6 +268,26 @@
     .modal .btn-save:hover { opacity: 0.85; }
     .modal .btn-save:disabled { opacity: 0.4; cursor: not-allowed; }
     .modal .current-provider { font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem; }
+    /* LLM Result Modal */
+    .modal-llm { max-width: 900px; width: 95vw; max-height: 85vh; display: flex; flex-direction: column; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #2d2f3d; margin-bottom: 1rem; }
+    .modal-header h2 { margin: 0; font-size: 1.1rem; color: #f3f4f6; border: none; padding: 0; }
+    .modal-close { background: none; border: none; color: #9ca3af; font-size: 1.2rem; cursor: pointer; padding: 0.25rem 0.5rem; }
+    .modal-close:hover { color: #fff; }
+    .modal-body { flex: 1; overflow-y: auto; padding: 0 0.5rem; font-size: 0.875rem; line-height: 1.7; color: #d1d5db; }
+    .modal-body h1, .modal-body h2, .modal-body h3 { color: #f3f4f6; margin: 1em 0 0.5em; }
+    .modal-body h1 { font-size: 1.1rem; }
+    .modal-body h2 { font-size: 1rem; }
+    .modal-body h3 { font-size: 0.9rem; }
+    .modal-body p { margin: 0.5em 0; }
+    .modal-body ul { margin: 0.5em 0; padding-left: 1.5em; }
+    .modal-body li { margin: 0.25em 0; }
+    .modal-body pre { background: #111; padding: 0.75em; border-radius: 6px; overflow-x: auto; margin: 0.5em 0; }
+    .modal-body code { background: #111; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.85em; }
+    .modal-body pre code { background: none; padding: 0; }
+    .modal-body hr { border: none; border-top: 1px solid #2d2f3d; margin: 1em 0; }
+    .modal-body strong { color: #fbbf24; }
+    .modal-footer { padding-top: 1rem; border-top: 1px solid #2d2f3d; margin-top: 1rem; display: flex; justify-content: flex-end; }
   </style>
 </head>
 <body>
@@ -308,7 +331,6 @@
           <option value="" disabled selected>— 选择格式 —</option>
           <option value="md">Markdown (.md)</option>
           <option value="html">HTML (.html)</option>
-          <option value="pdf">PDF（打印）</option>
         </select>
       </button>
       <div id="llmProgress" class="llm-progress-wrap">
@@ -436,6 +458,20 @@
       <button class="btn btn-reset" id="resetSettings">重置</button>
       <button class="btn btn-cancel" id="cancelSettings">取消</button>
       <button class="btn btn-save" id="saveSettings">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- LLM Result Modal -->
+<div class="modal-overlay" id="llmResultModal">
+  <div class="modal modal-llm">
+    <div class="modal-header">
+      <h2>🤖 LLM 深度根因分析</h2>
+      <button class="modal-close" id="closeLlmModal">✕</button>
+    </div>
+    <div class="modal-body" id="llmResultContent"></div>
+    <div class="modal-footer">
+      <button class="btn btn-cancel" id="closeLlmBtn">关闭</button>
     </div>
   </div>
 </div>
@@ -747,6 +783,7 @@ async function uploadFile(file) {
     document.getElementById('lv-warn').checked = true;
     document.getElementById('lv-info').checked = true;
     renderResults(analysisData);
+    loadHistory(); // Refresh history list
   } catch (err) {
     alert('分析失败: ' + err.message);
   } finally {
@@ -1139,14 +1176,30 @@ function renderRuleAnomalies(anomalies) {
 function renderStatAnomalies(anomalies) {
   const el = document.getElementById('tab-stat');
   if (!anomalies || !anomalies.length) { el.innerHTML = '<p style="color:#6b7280;font-size:0.85rem">未检测到统计异常</p>'; return; }
-  el.innerHTML = anomalies.map((a, idx) => `
+  el.innerHTML = anomalies.map((a, idx) => {
+    // Format description to be more user-friendly
+    let displayDesc = a.description || '';
+    if (a.metric === 'error_burst') {
+      // Extract numbers from description like "ERROR事件突增：39条/分钟（阈值=17.5），主要集中在 StorageMgnt"
+      const m = a.description.match(/(\d+)条\/分钟.*?阈值=(\d+\.?\d*).*?主要在 (.*)/);
+      if (m) {
+        displayDesc = `该分钟内发生了 <strong>${m[1]} 条错误</strong>，超过正常阈值 ${m[2]} 条/分钟，主要由 <strong>${m[3]}</strong> 模块触发`;
+      }
+    } else if (a.metric === 'repeat_flood') {
+      // Extract from "模块 kvm_vmm 重复事件 flood：1135次重复（去重后29种）"
+      const m = a.description.match(/模块\s*(\S+)\s*重复事件.*?(\d+)次重复.*?(\d+)种/);
+      if (m) {
+        displayDesc = `模块 <strong>${m[1]}</strong> 重复产生 <strong>${m[2]} 次</strong>相同日志（共 ${m[3]} 种不同日志），可能存在循环故障`;
+      }
+    }
+    return `
     <div class="anomaly-item ${a.severity}">
       <div class="anomaly-header">
         <span class="anomaly-badge badge-${a.severity}">${a.severity}</span>
         <span class="anomaly-title">${a.metric === 'error_burst' ? '⚡ 错误爆发' : '🌊 重复 flood'}</span>
       </div>
       <div class="anomaly-meta">${a.window_start ? new Date(a.window_start).toLocaleString('zh-CN') : ''}</div>
-      <div class="anomaly-count">${esc(a.description || '')}</div>
+      <div class="anomaly-count">${displayDesc}</div>
       <div class="anomaly-entries">
         ${a.entries.slice(0, 5).map(e => `<div class="entry-item"><span class="entry-ts">${e.timestamp ? new Date(e.timestamp).toLocaleString('zh-CN') : ''}</span><span class="entry-msg">${esc(e.message || '')}</span></div>`).join('')}
       </div>
@@ -1156,7 +1209,8 @@ function renderStatAnomalies(anomalies) {
         </button>
       </div>
       <div class="llm-card-result" id="llm-result-stat-${idx}"></div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 
   el.querySelectorAll('.btn-llm-single[data-type="stat"]').forEach(btn => {
     btn.addEventListener('click', () => analyzeCard(btn, 'stat'));
@@ -1309,12 +1363,18 @@ document.getElementById('llmBtn').addEventListener('click', async () => {
   result.style.display = 'none';
   result.classList.remove('show');
 
+  // Cache for full LLM analysis result
+  if (!window._fullLlmCache) window._fullLlmCache = null;
+  if (!window._fullLlmCacheTime) window._fullLlmCacheTime = 0;
+
   try {
     const data = await callLLMWithProgress({
       anomalies: analysisData.rule_anomalies,
       statistical_anomalies: analysisData.statistical_anomalies,
       top_entries: analysisData.parsed_log.entries.filter(e => e.level === 'ERROR').slice(0, 30),
     }, '正在分析日志模式与硬件关联性...');
+    window._fullLlmCache = data.summary;
+    window._fullLlmCacheTime = Date.now();
     result.innerHTML = mdToHtml(data.summary);
     result.classList.add('show');
     result.style.display = 'block';
@@ -1334,11 +1394,24 @@ async function downloadReport(fmt) {
   btn.disabled = true;
 
   try {
-    const { summary } = await callLLMWithProgress({
-      anomalies: analysisData.rule_anomalies,
-      statistical_anomalies: analysisData.statistical_anomalies,
-      top_entries: analysisData.parsed_log.entries.filter(e => e.level === 'ERROR').slice(0, 50),
-    }, '正在生成深度分析报告，请稍候...');
+    // Use cached LLM result if available and fresh (within 5 minutes), otherwise call LLM
+    let summary = window._fullLlmCache || null;
+    if (!summary || (Date.now() - window._fullLlmCacheTime > 300000)) {
+      // Call LLM internally if no cache or cache is stale
+      summary = null;
+    }
+
+    if (!summary) {
+      // No cache, need to call LLM internally
+      const data = await callLLMWithProgress({
+        anomalies: analysisData.rule_anomalies,
+        statistical_anomalies: analysisData.statistical_anomalies,
+        top_entries: analysisData.parsed_log.entries.filter(e => e.level === 'ERROR').slice(0, 50),
+      }, '正在生成深度分析报告，请稍候...');
+      summary = data.summary;
+      window._fullLlmCache = summary;
+      window._fullLlmCacheTime = Date.now();
+    }
 
     const s = analysisData.summary;
 
@@ -1439,8 +1512,6 @@ async function downloadReport(fmt) {
       downloadMarkdown(content, ts);
     } else if (fmt === 'html') {
       downloadHtml(content, ts, now, logName);
-    } else if (fmt === 'pdf') {
-      printHtml(content, ts, now, logName);
     }
   } catch (err) {
     alert('报告生成失败: ' + err.message);
@@ -1484,7 +1555,13 @@ function downloadMarkdown(c) {
   let riskDesc = '未检测到严重异常，建议常规监控。';
   if (criticalErrors > 0 || errorCount > 1000) {
     riskLevel = '🔴 高风险';
-    riskDesc = `检测到 ${criticalErrors} 个严重规则异常或大量错误事件，需要立即关注！`;
+    if (criticalErrors > 0 && errorCount > 1000) {
+      riskDesc = `检测到 ${criticalErrors} 个严重规则异常和大量错误事件(${errorCount}条)，需要立即关注！`;
+    } else if (criticalErrors > 0) {
+      riskDesc = `检测到 ${criticalErrors} 个严重规则异常，需要立即关注！`;
+    } else {
+      riskDesc = `检测到大量错误事件(${errorCount}条)，需要立即关注！`;
+    }
   } else if (ruleAnomalies > 5 || statAnomalies > 3 || errorCount > 100) {
     riskLevel = '🟡 中风险';
     riskDesc = `检测到 ${ruleAnomalies} 个规则异常和 ${statAnomalies} 个统计异常，建议检查。`;
@@ -1564,7 +1641,7 @@ function downloadMarkdown(c) {
   md += `> 以下内容由 LLM 基于上述日志数据生成，融合了模式识别、时序分析和硬件知识。\n\n`;
   md += (c.summary || '（暂无LLM分析结果）') + `\n\n`;
   md += `---\n\n`;
-  md += `*本报告由 BMC 日志分析工具 v${appVersion} 自动生成 · AI 生成 · 仅供参考，如有疑问请联系设备厂家*\n`;
+  md += `*本报告由 BMC 日志分析工具自动生成 · AI 生成 · 仅供参考 · [项目地址](https://github.com/yeshunyu/bmc-log-analyzer)*\n`;
 
   const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
   const url = URL.createObjectURL(blob);
@@ -1589,7 +1666,13 @@ function downloadHtml(c, ts, now, logName) {
   if (criticalErrors > 0 || errorCount > 1000) {
     riskLevel = '🔴 高风险';
     riskClass = 'risk-high';
-    riskDesc = `检测到 ${criticalErrors} 个严重规则异常或大量错误事件，需要立即关注！`;
+    if (criticalErrors > 0 && errorCount > 1000) {
+      riskDesc = `检测到 ${criticalErrors} 个严重规则异常和大量错误事件(${errorCount}条)，需要立即关注！`;
+    } else if (criticalErrors > 0) {
+      riskDesc = `检测到 ${criticalErrors} 个严重规则异常，需要立即关注！`;
+    } else {
+      riskDesc = `检测到大量错误事件(${errorCount}条)，需要立即关注！`;
+    }
   } else if (ruleAnomalies > 5 || statAnomalies > 3 || errorCount > 100) {
     riskLevel = '🟡 中风险';
     riskClass = 'risk-med';
@@ -1719,11 +1802,11 @@ ${c.stats.length > 0 ? `<h2>📈 统计异常</h2>
 
 <h2>🔍 LLM 深度根因分析</h2>
 <div class="summary-box">
-  <pre>${esc(c.summary || '')}</pre>
+${mdToHtml(c.summary || '（暂无LLM分析结果）')}
 </div>
 
 <div class="footer">
-  <p>本报告由 BMC 日志分析工具 v${appVersion} 自动生成 · AI 生成 · 仅供参考，如有疑问请联系设备厂家</p>
+  <p>本报告由 BMC 日志分析工具自动生成 · AI 生成 · 仅供参考 · <a href="https://github.com/yeshunyu/bmc-log-analyzer" target="_blank">项目地址</a></p>
 </div>
 </body>
 </html>`;
@@ -1763,7 +1846,13 @@ function printHtml(c, ts, now, logName) {
   if (criticalErrors > 0 || errorCount > 1000) {
     riskLevel = '🔴 高风险';
     riskClass = 'risk-high';
-    riskDesc = `检测到 ${criticalErrors} 个严重规则异常或大量错误事件，需要立即关注！`;
+    if (criticalErrors > 0 && errorCount > 1000) {
+      riskDesc = `检测到 ${criticalErrors} 个严重规则异常和大量错误事件(${errorCount}条)，需要立即关注！`;
+    } else if (criticalErrors > 0) {
+      riskDesc = `检测到 ${criticalErrors} 个严重规则异常，需要立即关注！`;
+    } else {
+      riskDesc = `检测到大量错误事件(${errorCount}条)，需要立即关注！`;
+    }
   } else if (ruleAnomalies > 5 || statAnomalies > 3 || errorCount > 100) {
     riskLevel = '🟡 中风险';
     riskClass = 'risk-med';
@@ -1872,8 +1961,8 @@ ${c.stats.length > 0 ? `<h2>📈 统计异常</h2>
 </table>` : ''}
 
 <h2>🔍 LLM 深度根因分析</h2>
-<div class="summary-box"><pre>${c.summary || '（暂无LLM分析结果）'}</pre></div>
-<div class="footer"><p>本报告由 BMC 日志分析工具 v${appVersion} 自动生成 · AI 生成 · 仅供参考，如有疑问请联系设备厂家</p></div>
+<div class="summary-box">${mdToHtml(c.summary || '（暂无LLM分析结果）')}</div>
+<div class="footer"><p>本报告由 BMC 日志分析工具自动生成 · AI 生成 · 仅供参考 · <a href="https://github.com/yeshunyu/bmc-log-analyzer" target="_blank">项目地址</a></p></div>
 </body>
 </html>`;
 
@@ -2039,5 +2128,8 @@ async function clearAllHistory() {
 // Load history on startup
 loadHistory();
 </script>
+<div class="page-footer">
+  <a href="https://github.com/yeshunyu/bmc-log-analyzer" target="_blank">BMC Log Analyzer</a> · 基于 DeepSeek/Claude AI 驱动
+</div>
 </body>
 </html>

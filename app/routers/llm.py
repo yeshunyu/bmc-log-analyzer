@@ -69,13 +69,11 @@ class LLMSettingsResponse(BaseModel):
 @router.get("/llm-settings", response_model=LLMSettingsResponse)
 async def get_settings(req: Request):
     cfg = get_llm_config()
-    from app.auth import get_api_key
-    effective_key = get_api_key()
     return LLMSettingsResponse(
         provider=cfg.provider,
         api_base=cfg.api_base,
         model=cfg.model,
-        api_key=effective_key,
+        api_key=cfg.api_key,
     )
 
 
@@ -100,7 +98,7 @@ async def post_settings(req: LLMSettingsRequest):
         if parsed.hostname.lower() in blocked_hosts:
             raise HTTPException(status_code=400, detail="api_base 不能使用内网地址")
     cfg = update_llm_config(req.provider, req.api_key, req.api_base, req.model)
-    return LLMSettingsResponse(provider=cfg.provider, api_base=cfg.api_base, model=cfg.model)
+    return LLMSettingsResponse(provider=cfg.provider, api_base=cfg.api_base, model=cfg.model, api_key=cfg.api_key)
 
 
 @router.post("/llm-settings/reset")
@@ -388,21 +386,21 @@ def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: 
     payload = {
         "model": anthropic_model,
         "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 1024,
+        "max_tokens": 4096,
         "temperature": 0.3,
     }
     body = json.dumps(payload).encode("utf-8")
 
     # Anthropic-compatible base already contains /anthropic, just append /messages
-    # MiniMax uses Authorization: Bearer like OpenAI, not x-api-key like standard Anthropic
-    is_minimax = "minimax" in api_base.lower()
-    auth_header = f"Bearer {api_key}" if is_minimax else api_key
+    # MiniMax/DeepSeek use Authorization: Bearer like OpenAI, not x-api-key like standard Anthropic
+    is_special = "minimax" in api_base.lower() or "deepseek" in api_base.lower()
+    auth_header = f"Bearer {api_key}" if is_special else api_key
     headers = {
         "Content-Type": "application/json",
         "Authorization": auth_header,
         "anthropic-version": "2023-06-01",
     }
-    if not is_minimax:
+    if not is_special:
         headers["x-api-key"] = api_key
 
     req = urllib.request.Request(
