@@ -4,7 +4,7 @@ Intelligent BMC (Baseboard Management Controller) log parsing and analysis tool 
 
 ## Version
 
-**v0.50rc2** - Latest release
+**v0.57** - Latest release
 
 Chinese version: [README.md](README.md)
 

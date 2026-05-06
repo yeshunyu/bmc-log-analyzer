@@ -4,7 +4,7 @@
 
 ## 版本
 
-**v0.50rc2** - 最新测试版
+**v0.57** - 最新版
 
 English version: [README_en.md](README_en.md)
 
