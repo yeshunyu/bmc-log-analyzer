@@ -382,8 +382,8 @@ def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: 
     import urllib.request
     import urllib.error
 
-    # Anthropic model names start with claude-*
-    anthropic_model = model if model.startswith("claude-") else f"claude-{model}"
+    # Don't auto-prepend claude- for non-Anthropic models like MiniMax-M2.7
+    anthropic_model = model if model.startswith("claude-") or model.startswith("anthropic") else model
 
     payload = {
         "model": anthropic_model,
@@ -409,9 +409,18 @@ def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: 
             data = json.loads(resp.read().decode("utf-8"))
             # Anthropic-compatible returns content as [{"type": "text", "text": "..."}]
             # or [{"type": "thinking", ...}, {"type": "text", "text": "..."}]
-            for item in (data.get("content") or []):
-                if item.get("type") == "text":
-                    return item["text"].strip()
+            # Some providers like MiniMax may return simpler formats
+            content = data.get("content") or []
+            if isinstance(content, list):
+                for item in content:
+                    if isinstance(item, dict) and item.get("type") == "text":
+                        return item["text"].strip()
+            # MiniMax may return content directly as a string
+            if isinstance(content, str) and content:
+                return content.strip()
+            # Fallback: try common response structures
+            if data.get("text"):
+                return data["text"].strip()
             raise RuntimeError("响应中未找到 text 类型的 content")
     except urllib.error.HTTPError as e:
         body = e.read().decode("utf-8")
