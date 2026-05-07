@@ -1,9 +1,11 @@
 """Shared pytest fixtures for bmc-log-analyzer tests."""
 
 import os
-# Set test mode and API key before importing app
+# Set test mode before importing app
+# NOTE: TESTING=true allows auth bypass, do NOT set API_KEY in test mode
 os.environ["TESTING"] = "true"
-os.environ["API_KEY"] = "test-secret-key-for-testing-only"
+# Remove API_KEY if set in environment to ensure TESTING bypass works
+os.environ.pop("API_KEY", None)
 
 import pytest
 from fastapi.testclient import TestClient

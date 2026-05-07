@@ -1,9 +1,12 @@
 import json
 import os
+import ipaddress
+import time
 import urllib.error
 import urllib.request
 from datetime import datetime
-from typing import Any
+from typing import Any, Optional
+from urllib.parse import urlparse
 from fastapi import APIRouter, HTTPException, Request, Depends
 from pydantic import BaseModel
 from app.schemas import LLMAnalysisRequest
@@ -13,6 +16,74 @@ from app.auth import require_api_key
 from app.limiters import llm_limiter
 
 router = APIRouter(prefix="/api/analyze", tags=["analysis"])
+
+
+# ---------------------------------------------------------------------------
+# SSRF protection: DNS cache with short TTL (5 minutes)
+# ---------------------------------------------------------------------------
+# Cache: {hostname: (resolved_ip, timestamp)}
+_dns_cache: dict[str, tuple[str, float]] = {}
+_DNS_CACHE_TTL = 300  # 5 minutes
+
+
+def _is_ip_blocked(ip_str: str) -> bool:
+    """Check if an IP address is private/reserved/multicast."""
+    try:
+        ip = ipaddress.ip_address(ip_str)
+        return ip.is_private or ip.is_loopback or ip.is_reserved or ip.is_multicast
+    except ValueError:
+        return True  # Invalid IP should be blocked
+
+
+def _validate_ssrf_at_request_time(api_base: str) -> None:
+    """Re-validate URL to prevent DNS rebinding attacks.
+
+    Validates DNS resolution at request time (not just config time) to block
+    DNS rebinding attacks where a domain initially resolves to a safe IP but
+    later changes to an internal IP.
+    """
+    if not api_base:
+        return
+    parsed = urlparse(api_base)
+    hostname = parsed.hostname
+    if not hostname:
+        return
+    # Check cache first
+    now = time.time()
+    if hostname in _dns_cache:
+        cached_ip, cached_time = _dns_cache[hostname]
+        if now - cached_time < _DNS_CACHE_TTL:
+            # Use cached result if still valid
+            if _is_ip_blocked(cached_ip):
+                raise HTTPException(
+                    status_code=400,
+                    detail="api_base 域名解析到内网地址（DNS 缓存）"
+                )
+            return
+    # Re-resolve DNS and validate
+    try:
+        import socket
+        addr_info = socket.getaddrinfo(hostname, None, socket.AF_UNSPEC, socket.SOCK_STREAM)
+        if not addr_info:
+            return
+        # Check all resolved IPs
+        for family, _, _, _, sockaddr in addr_info:
+            ip = sockaddr[0]
+            if _is_ip_blocked(ip):
+                # Don't cache blocked IPs
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"api_base 域名解析到内网地址: {ip}"
+                )
+        # Cache the first valid IP (prefer IPv4 for consistency)
+        for family, _, _, _, sockaddr in addr_info:
+            ip = sockaddr[0]
+            if not _is_ip_blocked(ip):
+                _dns_cache[hostname] = (ip, now)
+                break
+    except socket.gaierror:
+        # DNS resolution failed - let the actual request fail with a clearer error
+        pass
 
 
 def _get_entry(e: Any, field: str, default: Any = None) -> Any:
@@ -348,6 +419,9 @@ def _call_openai_compatible(prompt: str, api_key: str, api_base: str, model: str
     import urllib.request
     import urllib.error
 
+    # SSRF protection: re-validate DNS at request time
+    _validate_ssrf_at_request_time(api_base)
+
     payload = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
@@ -379,6 +453,9 @@ def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: 
     """Anthropic Messages API compatible driver (e.g. DeepSeek Anthropic endpoint)."""
     import urllib.request
     import urllib.error
+
+    # SSRF protection: re-validate DNS at request time
+    _validate_ssrf_at_request_time(api_base)
 
     # Don't auto-prepend claude- for non-Anthropic models like MiniMax-M2.7
     anthropic_model = model if model.startswith("claude-") or model.startswith("anthropic") else model

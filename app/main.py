@@ -102,9 +102,16 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         return response
 
 
+# Validate CORS origins - reject wildcard in production
+_cors_origins_env = os.environ.get("CORS_ORIGINS", "http://localhost:8000")
+_cors_origins = [o.strip() for o in _cors_origins_env.split(",") if o.strip()]
+# Security: reject wildcard origin in production (allow only in dev)
+if "*" in _cors_origins:
+    import warnings
+    warnings.warn("CORS_ORIGINS contains '*' which allows any origin. This is insecure for production!")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=os.environ.get("CORS_ORIGINS", "http://localhost:8000").split(","),
+    allow_origins=_cors_origins,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )

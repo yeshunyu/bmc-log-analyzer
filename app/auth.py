@@ -32,6 +32,11 @@ def _load_or_generate_key() -> str:
         else:
             key_file = Path("/tmp/.bmc_api_key")
     if key_file.exists():
+        # Ensure file has correct permissions (owner read/write only)
+        try:
+            key_file.chmod(0o600)
+        except OSError:
+            pass  # May fail on some filesystems
         return key_file.read_text().strip()
     # No key configured
     return ""
@@ -49,8 +54,9 @@ def get_api_key() -> str:
 
 async def require_api_key(request: Request) -> str:
     """Dependency that enforces API key auth when configured, otherwise allows all."""
-    # Skip auth in test mode
-    if os.environ.get("TESTING", "") == "true":
+    # SECURITY: Skip auth in test mode ONLY if no production API_KEY is configured
+    # If API_KEY env var is set (production key), TESTING mode must not bypass auth
+    if os.environ.get("TESTING", "") == "true" and not os.environ.get("API_KEY"):
         return "test-key"
 
     effective_key = get_api_key()
