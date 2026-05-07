@@ -202,28 +202,3 @@ docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:latest
 ```
 
 然后浏览器打开 **http://localhost:8000**。
-
-### 自定义 LLM API（生产环境推荐）
-
-启动后点击页面右上角 ⚙️ 按钮配置 API，支持 DeepSeek / OpenAI / Anthropic 等兼容接口。
-
-也可通过环境变量配置，重启后配置持久化：
-
-```bash
-# x86 服务器
-docker run -d -p 8000:8000 \
-  -e API_KEY=your-secret-key \
-  yuyeshun2/bmc-log-analyzer:v1.0.0-amd64
-
-# ARM 服务器
-docker run -d -p 8000:8000 \
-  -e API_KEY=your-secret-key \
-  yuyeshun2/bmc-log-analyzer:v1.0.0-arm64
-```
-
-| 环境变量 | 说明 | 示例 |
-|---------|------|------|
-| `API_KEY` | API 认证密钥（可选，不配置则无需认证） | `sk-xxxxxxxx` |
-| `API_KEY_FILE` | API 密钥文件路径 | `/path/to/key` |
-
-DeepSeek 同时提供 OpenAI-compatible（`/chat/completions`）和 Anthropic-compatible（`/anthropic`）接口。

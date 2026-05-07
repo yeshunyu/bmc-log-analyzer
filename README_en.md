@@ -137,31 +137,6 @@ docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:latest
 
 Then open **http://localhost:8000** in your browser.
 
-### LLM API Configuration (Recommended for Production)
-
-Configure LLM API via the ⚙️ gear icon in the top-right corner of the page. Supports DeepSeek / OpenAI / Anthropic compatible APIs.
-
-No API key required to start the container — users configure their own LLM API credentials in the UI.
-
-Or configure via environment variables:
-
-```bash
-# x86 servers
-docker run -d -p 8000:8000 \
-  -e API_KEY=your-secret-key \
-  yuyeshun2/bmc-log-analyzer:v1.0.0-amd64
-
-# ARM servers
-docker run -d -p 8000:8000 \
-  -e API_KEY=your-secret-key \
-  yuyeshun2/bmc-log-analyzer:v1.0.0-arm64
-```
-
-| Environment Variable | Description | Example |
-|---------------------|-------------|---------|
-| `API_KEY` | API authentication key (optional, defaults to no auth) | `sk-xxxxxxxx` |
-| `API_KEY_FILE` | API key file path | `/path/to/key` |
-
 ## Project Structure
 
 ```
