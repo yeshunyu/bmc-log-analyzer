@@ -7,23 +7,26 @@
   <script src="/static/echarts.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0f1117; color: #e0e0e0; min-height: 100vh; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0d0f14; color: #e0e0e0; min-height: 100vh; }
     .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 .page-footer { text-align: center; padding: 1.5rem; color: #6b7280; font-size: 0.8rem; border-top: 1px solid #2d2f3d; margin-top: 2rem; }
 .page-footer a { color: #3b82f6; text-decoration: none; }
 .page-footer a:hover { text-decoration: underline; }
     h1 { font-size: 1.5rem; font-weight: 600; color: #fff; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
-    .header-row { display: flex; align-items: center; justify-content: space-between; }
+    .header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.25rem; }
+    .site-title { display: flex; align-items: center; gap: 0.6rem; }
+    .site-title svg { flex-shrink: 0; }
+    .site-title span { font-size: 1.5rem; font-weight: 600; color: #fff; background: linear-gradient(135deg, #e0e0e0 30%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
     .btn { display: inline-block; padding: 0.5rem 1.25rem; border-radius: 6px; border: none; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: opacity 0.2s; }
     .btn-primary { background: #3b82f6; color: #fff; }
     .btn-primary:hover { opacity: 0.85; }
     .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
 
-    .upload-zone { border: 2px dashed #374151; border-radius: 12px; padding: 3rem 2rem; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 1rem; }
+    .upload-zone { border: 2px dashed #374151; border-radius: 12px; padding: 3rem 2rem; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 1rem; position: relative; }
     .upload-zone:hover, .upload-zone.dragover { border-color: #3b82f6; background: rgba(59,130,246,0.05); }
     .upload-zone input { display: none; }
-    .upload-zone .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .upload-zone .upload-icon { margin: 0 auto 0.75rem; width: 48px; height: 48px; display: block; }
     .upload-zone p { color: #9ca3af; font-size: 0.9rem; }
     .upload-zone .hint { font-size: 0.8rem; color: #6b7280; margin-top: 0.5rem; }
 
@@ -44,14 +47,19 @@
     .hist-clear-all:hover { color: #ef4444; border-color: #ef4444; }
     .history-empty { font-size: 0.8rem; color: #6b7280; padding: 0.25rem 0; }
 
-    .loading { display: none; text-align: center; padding: 2rem; color: #9ca3af; }
+    .loading { display: none; text-align: center; padding: 2.5rem 2rem; color: #9ca3af; }
     .loading.show { display: block; }
+    .loading .pulse { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #6366f1; margin: 0 4px; animation: pulse 1.2s ease-in-out infinite; }
+    .loading .pulse:nth-child(2) { animation-delay: 0.15s; }
+    .loading .pulse:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes pulse { 0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1.2); } }
 
     .results { display: none; }
     .results.show { display: block; }
 
     .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
-    .card { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1rem 1.25rem; }
+    .card { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1rem 1.25rem; transition: border-color 0.2s, box-shadow 0.2s; }
+    .card:hover { border-color: #3b4252; box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
     .card .label { font-size: 0.75rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
     .card .value { font-size: 1.75rem; font-weight: 700; }
     .card .value.error { color: #ef4444; }
@@ -60,7 +68,8 @@
     .card .value.neutral { color: #9ca3af; }
 
     .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
-    .chart { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1rem; }
+    .chart { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1rem; transition: border-color 0.2s; }
+    .chart:hover { border-color: #3b4252; }
     .chart-title { font-size: 0.85rem; color: #9ca3af; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; }
     .chart-title .chip { font-size: 0.7rem; padding: 0.1rem 0.5rem; border-radius: 10px; background: rgba(59,130,246,0.15); color: #3b82f6; cursor: pointer; }
     .chart-title .chip:hover { background: rgba(59,130,246,0.3); }
@@ -79,7 +88,8 @@
     .module-panel-entries .entry-item { font-size: 0.78rem; }
 
     /* Hardware highlight section */
-    .hw-section { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem; }
+    .hw-section { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem; transition: border-color 0.2s; }
+    .hw-section:hover { border-color: #3b4252; }
     .hw-section h3 { font-size: 0.85rem; color: #9ca3af; margin-bottom: 0.75rem; }
     .hw-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .hw-chip { display: flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.8rem; cursor: default; }
@@ -102,9 +112,9 @@
     .hw-entry .ts { color: #6b7280; margin-right: 0.5rem; }
 
     .tabs { display: flex; gap: 0.25rem; margin-bottom: 0.75rem; border-bottom: 1px solid #2d2f3d; }
-    .tab { padding: 0.5rem 1rem; font-size: 0.85rem; color: #6b7280; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.2s; }
+    .tab { padding: 0.5rem 1rem; font-size: 0.85rem; color: #6b7280; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.2s; }
     .tab:hover { color: #9ca3af; }
-    .tab.active { color: #3b82f6; border-bottom-color: #3b82f6; }
+    .tab.active { color: #8b5cf6; border-bottom-color: #8b5cf6; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
@@ -158,7 +168,8 @@
     .pagination .page-num.active { background: rgba(59,130,246,0.2); border-color: #3b82f6; color: #3b82f6; }
     .pagination .gap { color: #4b5563; font-size: 0.8rem; padding: 0 0.1rem; }
 
-    .anomaly-item { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; }
+    .anomaly-item { background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; transition: border-color 0.2s, box-shadow 0.2s; }
+    .anomaly-item:hover { border-color: #3b4252; }
     .anomaly-item.ERROR { border-left: 3px solid #ef4444; }
     .anomaly-item.WARNING { border-left: 3px solid #f59e0b; }
     .anomaly-item.INFO { border-left: 3px solid #3b82f6; }
@@ -177,7 +188,7 @@
     .entry-msg { color: #d1d5db; }
     .anomaly-card-actions { margin-top: 0.75rem; display: flex; gap: 0.5rem; align-items: center; }
     .btn-llm-single {
-      padding: 0.35rem 0.85rem; background: #7c3aed; color: #fff; border: none;
+      padding: 0.35rem 0.85rem; background: linear-gradient(135deg, #7c3aed, #6366f1); color: #fff; border: none;
       border-radius: 5px; font-size: 0.8rem; cursor: pointer; transition: opacity 0.2s;
     }
     .btn-llm-single:hover { opacity: 0.8; }
@@ -199,9 +210,9 @@
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .llm-section { margin-top: 1.5rem; }
-    .llm-btn { background: #7c3aed; }
+    .llm-btn { background: linear-gradient(135deg, #7c3aed, #6366f1); }
     .llm-btn:hover { opacity: 0.85; }
-    #reportBtn { background: #059669; margin-left: 0.5rem; }
+    #reportBtn { background: linear-gradient(135deg, #059669, #10b981); margin-left: 0.5rem; }
     #reportBtn:hover { opacity: 0.85; }
     #reportBtn:disabled { opacity: 0.4; cursor: not-allowed; }
     .llm-progress-wrap { display: none; margin-top: 0.6rem; background: #1a1d27; border: 1px solid #2d2f3d; border-radius: 8px; padding: 0.75rem 1rem; }
@@ -288,29 +299,155 @@
     .modal-body hr { border: none; border-top: 1px solid #2d2f3d; margin: 1em 0; }
     .modal-body strong { color: #fbbf24; }
     .modal-footer { padding-top: 1rem; border-top: 1px solid #2d2f3d; margin-top: 1rem; display: flex; justify-content: flex-end; }
+
+    /* AI Chat Button */
+    .chat-ai-btn {
+      background: none; border: none; cursor: pointer; padding: 0.25rem;
+      border-radius: 6px; transition: all 0.25s; position: relative;
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+    }
+    .chat-ai-btn:hover { background: #1a1d27; }
+    .chat-ai-btn svg { width: 20px; height: 20px; }
+    .chat-ai-btn .ai-spark {
+      fill: none; stroke: url(#aiGrad); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+      filter: drop-shadow(0 0 3px rgba(139,92,246,0.5));
+    }
+    .chat-ai-btn:hover .ai-spark { filter: drop-shadow(0 0 6px rgba(139,92,246,0.8)); }
+    .chat-ai-btn .ai-dot { fill: url(#aiGrad2); }
+
+    /* Chat Drawer */
+    .chat-drawer-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+      z-index: 200; transition: opacity 0.2s;
+    }
+    .chat-drawer-overlay.show { display: block; }
+    .chat-drawer {
+      position: fixed; top: 0; right: -440px; width: 420px; height: 100vh;
+      background: #141620; border-left: 1px solid #2d2f3d;
+      z-index: 201; display: flex; flex-direction: column;
+      transition: right 0.25s ease;
+      box-shadow: -8px 0 30px rgba(0,0,0,0.3);
+    }
+    .chat-drawer.open { right: 0; }
+    .chat-drawer-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1rem; border-bottom: 1px solid #2d2f3d;
+      background: #1a1d27; flex-shrink: 0;
+    }
+    .chat-drawer-header h3 { font-size: 0.95rem; color: #e0e0e0; margin: 0; display: flex; align-items: center; gap: 0.4rem; }
+    .chat-drawer-close {
+      background: none; border: none; color: #6b7280; font-size: 1.2rem;
+      cursor: pointer; padding: 0.25rem 0.5rem; border-radius: 4px;
+    }
+    .chat-drawer-close:hover { color: #e0e0e0; background: #2d2f3d; }
+    .chat-messages {
+      flex: 1; overflow-y: auto; padding: 1rem; display: flex;
+      flex-direction: column; gap: 0.75rem;
+    }
+    .chat-msg { max-width: 88%; padding: 0.6rem 0.85rem; border-radius: 10px; font-size: 0.85rem; line-height: 1.6; word-break: break-word; }
+    .chat-msg.user {
+      align-self: flex-end; background: #3b82f6; color: #fff;
+      border-bottom-right-radius: 2px;
+    }
+    .chat-msg.assistant {
+      align-self: flex-start; background: #1a1d27; border: 1px solid #2d2f3d;
+      color: #d1d5db; border-bottom-left-radius: 2px;
+    }
+    .chat-msg.assistant h1, .chat-msg.assistant h2, .chat-msg.assistant h3 { color: #f3f4f6; margin: 0.5em 0 0.3em; }
+    .chat-msg.assistant h1 { font-size: 0.95rem; }
+    .chat-msg.assistant h2 { font-size: 0.9rem; }
+    .chat-msg.assistant h3 { font-size: 0.85rem; }
+    .chat-msg.assistant p { margin: 0.4em 0; }
+    .chat-msg.assistant ul, .chat-msg.assistant ol { margin: 0.4em 0; padding-left: 1.2em; }
+    .chat-msg.assistant li { margin: 0.2em 0; }
+    .chat-msg.assistant pre { background: #0f1117; padding: 0.5em; border-radius: 4px; overflow-x: auto; margin: 0.4em 0; }
+    .chat-msg.assistant code { background: #0f1117; padding: 0.1em 0.3em; border-radius: 3px; font-size: 0.9em; }
+    .chat-msg.assistant pre code { background: none; padding: 0; }
+    .chat-msg.assistant strong { color: #fbbf24; }
+    .chat-msg.assistant hr { border: none; border-top: 1px solid #2d2f3d; margin: 0.5em 0; }
+    .chat-msg.system { align-self: center; background: #2d2f3d; color: #9ca3af; font-size: 0.75rem; border-radius: 12px; padding: 0.3rem 0.75rem; }
+    .chat-msg.loading { align-self: flex-start; background: #1a1d27; border: 1px solid #2d2f3d; color: #9ca3af; }
+    .chat-input-area {
+      padding: 0.75rem; border-top: 1px solid #2d2f3d; background: #1a1d27;
+      display: flex; gap: 0.5rem; align-items: flex-end; flex-shrink: 0;
+    }
+    .chat-input-area textarea {
+      flex: 1; resize: none; background: #0f1117; border: 1px solid #374151;
+      border-radius: 8px; padding: 0.5rem 0.75rem; color: #e0e0e0;
+      font-size: 0.85rem; outline: none; min-height: 38px; max-height: 120px;
+      line-height: 1.5; font-family: inherit;
+    }
+    .chat-input-area textarea:focus { border-color: #3b82f6; }
+    .chat-input-area textarea::placeholder { color: #6b7280; }
+    .chat-send-btn {
+      background: #3b82f6; color: #fff; border: none; border-radius: 8px;
+      padding: 0.5rem 0.85rem; font-size: 0.85rem; cursor: pointer;
+      transition: opacity 0.2s; white-space: nowrap; height: 38px;
+    }
+    .chat-send-btn:hover { opacity: 0.85; }
+    .chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .chat-empty { color: #4b5563; font-size: 0.8rem; text-align: center; padding: 2rem 1rem; }
+    .chat-hint { color: #6b7280; font-size: 0.72rem; text-align: center; padding: 0.25rem 0; }
   </style>
 </head>
 <body>
 <div class="container">
   <div class="header-row">
-    <h1>🔍 BMC 日志分析工具</h1>
-    <button class="gear-btn" id="settingsBtn" title="LLM 设置">⚙️</button>
+    <div class="site-title">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="2" y="6" width="24" height="16" rx="3" stroke="url(#titleGrad)" stroke-width="1.5"/>
+        <path d="M9 14h3v3" stroke="url(#titleGrad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M19 14h-3v-3" stroke="url(#titleGrad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="7" cy="10" r="1" fill="url(#titleGrad)"/>
+        <circle cx="21" cy="18" r="1" fill="url(#titleGrad)"/>
+        <defs><linearGradient id="titleGrad" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs>
+      </svg>
+      <span>BMC Log Analyzer</span>
+    </div>
+    <div style="display:flex;gap:0.25rem;align-items:center;">
+      <!-- SVG gradient defs -->
+      <svg width="0" height="0" style="position:absolute">
+        <defs>
+          <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8b5cf6"/>
+            <stop offset="50%" stop-color="#6366f1"/>
+            <stop offset="100%" stop-color="#3b82f6"/>
+          </linearGradient>
+          <linearGradient id="aiGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#a78bfa"/>
+            <stop offset="100%" stop-color="#818cf8"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <button class="chat-ai-btn" id="chatBtn" title="AI 对话">
+        <svg viewBox="0 0 24 24">
+          <path class="ai-spark" d="M12 2L13.4 8.6L20 10L13.4 11.4L12 18L10.6 11.4L4 10L10.6 8.6Z"/>
+          <circle class="ai-dot" cx="18" cy="4" r="1.5"/>
+          <circle class="ai-dot" cx="5" cy="19" r="1.2"/>
+          <path class="ai-spark" d="M7 14H14V17L17 14H17.5C18.3 14 19 13.3 19 12.5V7.5C19 6.7 18.3 6 17.5 6H6.5C5.7 6 5 6.7 5 7.5V12.5C5 13.3 5.7 14 6.5 14H7Z" opacity="0.3"/>
+        </svg>
+      </button>
+      <button class="gear-btn" id="settingsBtn" title="LLM 设置">⚙️</button>
+    </div>
   </div>
 
   <div class="upload-zone" id="uploadZone">
     <input type="file" id="fileInput" accept=".log,.txt,.gz,.tar.gz">
-    <div class="icon">📂</div>
+    <svg class="upload-icon" viewBox="0 0 48 48" fill="none">
+      <path d="M24 6v24M24 6l-8 8M24 6l8 8" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M8 26v12a4 4 0 004 4h24a4 4 0 004-4V26" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
     <p>点击或拖拽上传 BMC 日志文件</p>
     <div class="hint">支持 .log .txt .gz .tar.gz</div>
   </div>
 
   <div class="history-zone" id="historyZone">
-    <h3>📋 最近历史 <button class="hist-clear-all" id="clearAllBtn" onclick="clearAllHistory()" style="display:none">清空全部</button></h3>
+    <h3>最近历史 <button class="hist-clear-all" id="clearAllBtn" onclick="clearAllHistory()" style="display:none">清空全部</button></h3>
     <div class="history-list" id="historyList"></div>
   </div>
 
   <div class="loading" id="loading">
-    <p>🌀 分析中，请稍候...</p>
+    <p><span class="pulse"></span><span class="pulse"></span><span class="pulse"></span> 分析中，请稍候...</p>
   </div>
 
   <div class="results" id="results">
@@ -325,8 +462,8 @@
 
     <!-- LLM Analysis (global) -->
     <div class="llm-section" id="globalLlM">
-      <button class="btn btn-primary llm-btn" id="llmBtn" disabled>🤖 全量 LLM 根因分析</button>
-      <button class="btn btn-primary llm-btn" id="reportBtn" disabled>📄 下载分析报告
+      <button class="btn btn-primary llm-btn" id="llmBtn" disabled>全量 LLM 根因分析</button>
+      <button class="btn btn-primary llm-btn" id="reportBtn" disabled>下载分析报告
         <select id="reportFormat" onchange="downloadReport(this.value); this.value=''">
           <option value="" disabled selected>— 选择格式 —</option>
           <option value="md">Markdown (.md)</option>
@@ -371,7 +508,7 @@
 
     <!-- Hardware Summary -->
     <div class="hw-section" id="hwSection">
-      <h3>💡 硬件相关事件 <span style="font-size:0.7rem;color:#6b7280;font-weight:normal">（CPU / 内存 / 硬盘 / RAID / 网卡 / NPU）</span></h3>
+      <h3>硬件相关事件 <span style="font-size:0.7rem;color:#6b7280;font-weight:normal">（CPU / 内存 / 硬盘 / RAID / 网卡 / NPU）</span></h3>
       <div class="hw-chips" id="hwChips"></div>
       <div class="hw-detail-panel" id="hwDetailPanel">
         <div class="hw-detail-header">
@@ -394,7 +531,7 @@
     <div class="tab-content" id="tab-all">
       <div class="search-bar">
         <input type="text" id="logSearch" placeholder="搜索日志内容、模块名... (回车搜索)" />
-        <button class="btn btn-primary" id="searchBtn" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">🔍 搜索</button>
+        <button class="btn btn-primary" id="searchBtn" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">搜索</button>
         <label class="regex-toggle"><input type="checkbox" id="regexMode" /><span>.* 正则</span></label>
         <div class="filter-group">
           <label>从</label>
@@ -466,13 +603,30 @@
 <div class="modal-overlay" id="llmResultModal">
   <div class="modal modal-llm">
     <div class="modal-header">
-      <h2>🤖 LLM 深度根因分析</h2>
+      <h2>LLM 深度根因分析</h2>
       <button class="modal-close" id="closeLlmModal">✕</button>
     </div>
     <div class="modal-body" id="llmResultContent"></div>
     <div class="modal-footer">
       <button class="btn btn-cancel" id="closeLlmBtn">关闭</button>
     </div>
+  </div>
+</div>
+
+<!-- Chat Drawer -->
+<div class="chat-drawer-overlay" id="chatDrawerOverlay"></div>
+<div class="chat-drawer" id="chatDrawer">
+  <div class="chat-drawer-header">
+    <h3><svg viewBox="0 0 24 24" width="16" height="16" style="vertical-align:middle;margin-right:0.3rem"><path d="M12 2L13.4 8.6L20 10L13.4 11.4L12 18L10.6 11.4L4 10L10.6 8.6Z" fill="none" stroke="url(#aiGrad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18" cy="4" r="1.5" fill="url(#aiGrad2)"/></svg> AI 对话</h3>
+    <button class="chat-drawer-close" id="chatDrawerClose">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-empty" id="chatEmpty">输入问题开始对话，AI 会参考当前日志分析结果回答</div>
+  </div>
+  <div class="chat-hint" id="chatHint"></div>
+  <div class="chat-input-area">
+    <textarea id="chatInput" placeholder="输入问题，Enter 发送，Shift+Enter 换行" rows="1"></textarea>
+    <button class="chat-send-btn" id="chatSendBtn">发送</button>
   </div>
 </div>
 
@@ -894,7 +1048,7 @@ function showHwDetail(hw) {
     analyzeBtn = btn;
   }
   analyzeBtn.dataset.hw = hw;
-  analyzeBtn.innerHTML = '🤖 分析此异常';
+  analyzeBtn.innerHTML = 'AI 分析此异常';
   analyzeBtn.disabled = false;
 }
 
@@ -921,7 +1075,7 @@ async function analyzeHw(hw, entries, label) {
   if (resultEl.classList.contains('show')) {
     resultEl.classList.remove('show');
     resultEl.style.display = 'none';
-    btn.innerHTML = '🤖 分析此异常';
+    btn.innerHTML = 'AI 分析此异常';
     return;
   }
   // If we have cached result, restore it
@@ -929,7 +1083,7 @@ async function analyzeHw(hw, entries, label) {
     resultEl.innerHTML = window._hwLlmCache;
     resultEl.classList.add('show');
     resultEl.style.display = 'block';
-    btn.innerHTML = '🤖 收起分析';
+    btn.innerHTML = '收起分析';
     return;
   }
 
@@ -959,12 +1113,12 @@ async function analyzeHw(hw, entries, label) {
     resultEl.innerHTML = window._hwLlmCache;
     resultEl.style.display = 'block';
     resultEl.classList.add('show');
-    btn.innerHTML = '🤖 收起分析';
+    btn.innerHTML = '收起分析';
   } catch (err) {
     resultEl.innerHTML = '<p style="color:#f87171">分析失败: ' + esc(err.message) + '</p>';
     resultEl.style.display = 'block';
     resultEl.classList.add('show');
-    btn.innerHTML = '🤖 分析此异常';
+    btn.innerHTML = 'AI 分析此异常';
   } finally {
     btn.disabled = false;
   }
@@ -1161,7 +1315,7 @@ function renderRuleAnomalies(anomalies) {
       </div>
       <div class="anomaly-card-actions">
         <button class="btn-llm-single" data-type="rule" data-id="${a.rule_id}" data-desc="${esc(a.rule_description)}" data-sev="${a.severity}" data-count="${a.count}" data-idx="${idx}">
-          🤖 分析此异常
+          AI 分析此异常
         </button>
       </div>
       <div class="llm-card-result" id="llm-result-rule-${idx}"></div>
@@ -1196,7 +1350,7 @@ function renderStatAnomalies(anomalies) {
     <div class="anomaly-item ${a.severity}">
       <div class="anomaly-header">
         <span class="anomaly-badge badge-${a.severity}">${a.severity}</span>
-        <span class="anomaly-title">${a.metric === 'error_burst' ? '⚡ 错误爆发' : '🌊 重复 flood'}</span>
+        <span class="anomaly-title">${a.metric === 'error_burst' ? '错误爆发' : '重复 flood'}</span>
       </div>
       <div class="anomaly-meta">${a.window_start ? new Date(a.window_start).toLocaleString('zh-CN') : ''}</div>
       <div class="anomaly-count">${displayDesc}</div>
@@ -1205,7 +1359,7 @@ function renderStatAnomalies(anomalies) {
       </div>
       <div class="anomaly-card-actions">
         <button class="btn-llm-single" data-type="stat" data-id="${a.metric}" data-desc="${esc(a.description || '')}" data-sev="${a.severity}" data-count="${a.entries.length}" data-idx="${idx}">
-          🤖 分析此异常
+          AI 分析此异常
         </button>
       </div>
       <div class="llm-card-result" id="llm-result-stat-${idx}"></div>
@@ -1235,7 +1389,7 @@ async function analyzeCard(btn, type) {
   if (resultEl.classList.contains('show')) {
     resultEl.classList.remove('show');
     resultEl.style.display = 'none';
-    btn.innerHTML = '🤖 分析此异常';
+    btn.innerHTML = 'AI 分析此异常';
     return;
   }
   // Restore cached result if available
@@ -1243,7 +1397,7 @@ async function analyzeCard(btn, type) {
     resultEl.innerHTML = cache[cacheKey];
     resultEl.classList.add('show');
     resultEl.style.display = 'block';
-    btn.innerHTML = '🤖 收起分析';
+    btn.innerHTML = '收起分析';
     return;
   }
 
@@ -1276,12 +1430,12 @@ async function analyzeCard(btn, type) {
     resultEl.innerHTML = cache[cacheKey];
     resultEl.classList.add('show');
     resultEl.style.display = 'block';
-    btn.innerHTML = '🤖 收起分析';
+    btn.innerHTML = '收起分析';
   } catch (err) {
     resultEl.innerHTML = '<p style="color:#f87171">分析失败: ' + esc(err.message) + '</p>';
     resultEl.classList.add('show');
     resultEl.style.display = 'block';
-    btn.innerHTML = '🤖 分析此异常';
+    btn.innerHTML = 'AI 分析此异常';
   } finally {
     btn.disabled = false;
   }
@@ -2124,6 +2278,195 @@ async function clearAllHistory() {
     alert('清空失败: ' + err.message);
   }
 }
+
+// ---------------------------------------------------------------------------
+// Chat Drawer
+// ---------------------------------------------------------------------------
+const chatDrawer = document.getElementById('chatDrawer');
+const chatOverlay = document.getElementById('chatDrawerOverlay');
+const chatMessagesEl = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const chatSendBtn = document.getElementById('chatSendBtn');
+const chatEmpty = document.getElementById('chatEmpty');
+const chatHint = document.getElementById('chatHint');
+
+let chatHistory = []; // {role, content}
+let chatSystemPrompt = '';
+let chatIsLoading = false;
+
+function buildChatSystemPrompt() {
+  if (!analysisData) return '你是 BMC 服务器日志分析助手，擅长分析华为 iBMC、IPMI、RAID 等服务器日志。请用中文回答。';
+  const s = analysisData.summary || {};
+  const log = analysisData.parsed_log || {};
+  const lines = ['你是 BMC 服务器日志分析助手，擅长分析华为 iBMC、IPMI、RAID 等服务器日志。请用中文回答，简洁专业。', '',
+    '## 当前日志概况'];
+  if (log.file_name) lines.push(`- 文件：${log.file_name}`);
+  const tr = log.time_range || [];
+  if (tr[0] || tr[1]) lines.push(`- 时间范围：${tr[0] || 'N/A'} ~ ${tr[1] || 'N/A'}`);
+  lines.push(`- 总事件数：${(s.total_entries || 0).toLocaleString()}`);
+  lines.push(`- ERROR：${s.error_count || 0}，WARNING：${s.warning_count || 0}`);
+  lines.push(`- 规则异常：${s.rule_anomaly_count || 0} 项，统计异常：${s.stat_anomaly_count || 0} 项`);
+  const rules = analysisData.rule_anomalies || [];
+  if (rules.length) {
+    lines.push('', '## 规则异常列表');
+    rules.forEach(a => lines.push(`- [${a.severity}] ${a.rule_description}（${a.count}次）`));
+  }
+  const stats = analysisData.statistical_anomalies || [];
+  if (stats.length) {
+    lines.push('', '## 统计异常列表');
+    stats.forEach(a => lines.push(`- ${a.description}`));
+  }
+  return lines.join('\n');
+}
+
+function openChatDrawer() {
+  // Build system prompt on open (captures latest analysisData)
+  chatSystemPrompt = buildChatSystemPrompt();
+  if (analysisData) {
+    chatHint.textContent = '已注入当前日志分析摘要作为上下文';
+  } else {
+    chatHint.textContent = '';
+  }
+  chatDrawer.classList.add('open');
+  chatOverlay.classList.add('show');
+  chatInput.focus();
+}
+
+function closeChatDrawer() {
+  chatDrawer.classList.remove('open');
+  chatOverlay.classList.remove('show');
+}
+
+function clearChat() {
+  chatHistory = [];
+  chatSystemPrompt = '';
+  renderChatMessages();
+}
+
+function renderChatMessages() {
+  if (chatHistory.length === 0) {
+    chatEmpty.style.display = 'block';
+    chatMessagesEl.innerHTML = '';
+    chatMessagesEl.appendChild(chatEmpty);
+    return;
+  }
+  chatEmpty.style.display = 'none';
+  chatMessagesEl.innerHTML = chatHistory.map(m => {
+    if (m.role === 'user') {
+      return `<div class="chat-msg user">${esc(m.content)}</div>`;
+    } else if (m.role === 'assistant') {
+      return `<div class="chat-msg assistant">${mdToHtml(m.content)}</div>`;
+    }
+    return '';
+  }).join('');
+  chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+}
+
+function appendChatMessage(role, content) {
+  chatHistory.push({ role, content });
+  chatEmpty.style.display = 'none';
+  const div = document.createElement('div');
+  div.className = `chat-msg ${role}`;
+  if (role === 'user') {
+    div.textContent = content;
+  } else {
+    div.innerHTML = mdToHtml(content);
+  }
+  chatMessagesEl.appendChild(div);
+  chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+}
+
+function showChatLoading() {
+  const div = document.createElement('div');
+  div.className = 'chat-msg assistant loading';
+  div.id = 'chatLoadingMsg';
+  div.innerHTML = '<span class="llm-spinner"></span> 思考中...';
+  chatMessagesEl.appendChild(div);
+  chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+}
+
+function removeChatLoading() {
+  const el = document.getElementById('chatLoadingMsg');
+  if (el) el.remove();
+}
+
+async function sendChatMessage() {
+  const text = chatInput.value.trim();
+  if (!text || chatIsLoading) return;
+
+  chatIsLoading = true;
+  chatSendBtn.disabled = true;
+  chatInput.value = '';
+  chatInput.style.height = 'auto';
+
+  appendChatMessage('user', text);
+  showChatLoading();
+
+  try {
+    const messages = chatHistory.map(m => ({ role: m.role, content: m.content }));
+    const resp = await fetch('/api/analyze/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: messages,
+        system_prompt: chatSystemPrompt,
+      }),
+    });
+    if (!resp.ok) {
+      const errText = await resp.text();
+      let detail = errText;
+      try { detail = JSON.parse(errText).detail || errText; } catch {}
+      throw new Error(detail);
+    }
+    const data = await resp.json();
+    removeChatLoading();
+    appendChatMessage('assistant', data.reply);
+  } catch (err) {
+    removeChatLoading();
+    appendChatMessage('assistant', '请求失败: ' + err.message);
+  } finally {
+    chatIsLoading = false;
+    chatSendBtn.disabled = false;
+    chatInput.focus();
+  }
+}
+
+document.getElementById('chatBtn').addEventListener('click', openChatDrawer);
+document.getElementById('chatDrawerClose').addEventListener('click', closeChatDrawer);
+chatOverlay.addEventListener('click', closeChatDrawer);
+
+chatSendBtn.addEventListener('click', sendChatMessage);
+chatInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendChatMessage();
+  }
+});
+
+// Auto-resize textarea
+chatInput.addEventListener('input', () => {
+  chatInput.style.height = 'auto';
+  chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + 'px';
+});
+
+// Clear chat on new file upload (hooked into uploadFile)
+const _origUploadFile = uploadFile;
+uploadFile = async function(file) {
+  clearChat();
+  return _origUploadFile(file);
+};
+
+// Sync localStorage LLM config to backend on startup
+(function syncLlmConfig() {
+  const saved = JSON.parse(localStorage.getItem('llm_custom') || '{}');
+  if (saved.apiKey && saved.apiBase && saved.model) {
+    fetch('/api/analyze/llm-settings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ provider: 'custom', api_key: saved.apiKey, api_base: saved.apiBase, model: saved.model }),
+    }).catch(() => {});
+  }
+})();
 
 // Load history on startup
 loadHistory();

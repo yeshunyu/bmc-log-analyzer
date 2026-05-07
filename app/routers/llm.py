@@ -9,7 +9,7 @@ from typing import Any, Optional
 from urllib.parse import urlparse
 from fastapi import APIRouter, HTTPException, Request, Depends
 from pydantic import BaseModel
-from app.schemas import LLMAnalysisRequest
+from app.schemas import LLMAnalysisRequest, ChatRequest
 from app.config import get_llm_config, update_llm_config, LLMProvider
 from app.operation_log import log_operation
 from app.auth import require_api_key
@@ -512,6 +512,120 @@ def _call_anthropic_compatible(prompt: str, api_key: str, api_base: str, model: 
 
 
 # ---------------------------------------------------------------------------
+# Multi-turn chat drivers (for /chat endpoint)
+# ---------------------------------------------------------------------------
+def _call_custom_chat(messages: list[dict], api_key: str, api_base: str, model: str,
+                      system_prompt: str = "") -> str:
+    """Multi-turn version of _call_custom. Tries OpenAI first, then Anthropic."""
+    try:
+        return _call_openai_chat(messages, api_key, api_base, model, system_prompt)
+    except (KeyError, IndexError, RuntimeError):
+        pass
+    try:
+        return _call_anthropic_chat(messages, api_key, api_base, model, system_prompt)
+    except (KeyError, IndexError, RuntimeError) as e:
+        raise RuntimeError(
+            f"API 接口响应格式错误（尝试了 OpenAI 和 Anthropic 两种接口），"
+            f"请检查 api_base 是否正确。底层错误: {e}"
+        )
+
+
+def _call_openai_chat(messages: list[dict], api_key: str, api_base: str, model: str,
+                      system_prompt: str = "") -> str:
+    import urllib.request
+    import urllib.error
+
+    _validate_ssrf_at_request_time(api_base)
+
+    api_messages = []
+    if system_prompt:
+        api_messages.append({"role": "system", "content": system_prompt})
+    api_messages.extend(messages)
+
+    payload = {
+        "model": model,
+        "messages": api_messages,
+        "temperature": 0.3,
+    }
+    body = json.dumps(payload).encode("utf-8")
+
+    req = urllib.request.Request(
+        f"{api_base.rstrip('/')}/chat/completions",
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {api_key}",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            return data["choices"][0]["message"]["content"].strip()
+    except urllib.error.HTTPError as e:
+        err_body = e.read().decode("utf-8")
+        raise RuntimeError(f"API 错误 {e.code}: {err_body[:500]}")
+    except (KeyError, IndexError) as e:
+        raise RuntimeError(f"响应格式错误: {e}")
+
+
+def _call_anthropic_chat(messages: list[dict], api_key: str, api_base: str, model: str,
+                         system_prompt: str = "") -> str:
+    import urllib.request
+    import urllib.error
+
+    _validate_ssrf_at_request_time(api_base)
+
+    anthropic_model = model if model.startswith("claude-") or model.startswith("anthropic") else model
+
+    # Anthropic API uses system as a top-level param, not a message
+    payload = {
+        "model": anthropic_model,
+        "messages": messages,
+        "max_tokens": 4096,
+        "temperature": 0.3,
+    }
+    if system_prompt:
+        payload["system"] = system_prompt
+    body = json.dumps(payload).encode("utf-8")
+
+    is_special = "minimax" in api_base.lower() or "deepseek" in api_base.lower()
+    auth_header = f"Bearer {api_key}" if is_special else api_key
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": auth_header,
+        "anthropic-version": "2023-06-01",
+    }
+    if not is_special:
+        headers["x-api-key"] = api_key
+
+    req = urllib.request.Request(
+        f"{api_base.rstrip('/')}/v1/messages",
+        data=body,
+        headers=headers,
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            content = data.get("content") or []
+            if isinstance(content, list):
+                for item in content:
+                    if isinstance(item, dict) and item.get("type") == "text":
+                        return item["text"].strip()
+            if isinstance(content, str) and content:
+                return content.strip()
+            if data.get("text"):
+                return data["text"].strip()
+            raise RuntimeError("响应中未找到 text 类型的 content")
+    except urllib.error.HTTPError as e:
+        err_body = e.read().decode("utf-8")
+        raise RuntimeError(f"API 错误 {e.code}: {err_body[:500]}")
+    except (KeyError, IndexError) as e:
+        raise RuntimeError(f"响应格式错误: {e}")
+
+
+# ---------------------------------------------------------------------------
 # Main analysis endpoint (rate limited: 10/min per IP)
 # ---------------------------------------------------------------------------
 @llm_limiter.limit("10/minute")
@@ -574,4 +688,32 @@ async def llm_analyze_single(request: Request, data: LLMSingleRequest):
         raise
     except Exception as e:
         log_operation(operation="llm_analysis_single", detail=f"LLM 单规则分析失败: {e}", result="error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ---------------------------------------------------------------------------
+# Chat endpoint (multi-turn, rate limited: 20/min per IP)
+# ---------------------------------------------------------------------------
+@llm_limiter.limit("20/minute")
+@router.post("/chat")
+async def llm_chat(request: Request, data: ChatRequest):
+    cfg = get_llm_config()
+
+    try:
+        if not cfg.api_key:
+            raise HTTPException(
+                status_code=400,
+                detail="LLM API Key 未设置，请在页面右上角「LLM 配置」中进行配置。",
+            )
+
+        messages = [{"role": m.role, "content": m.content} for m in data.messages]
+        result_text = _call_custom_chat(
+            messages, cfg.api_key, cfg.api_base, cfg.model,
+            system_prompt=data.system_prompt,
+        )
+
+        return {"reply": result_text}
+    except HTTPException:
+        raise
+    except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

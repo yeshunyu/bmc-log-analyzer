@@ -4,7 +4,7 @@
 
 ## 版本
 
-**v1.0.0** - 最新版（安全稳定版）
+**v1.0.1** - 最新版（新增 AI 对话、UI 优化）
 
 English version: [README_en.md](README_en.md)
 
@@ -26,7 +26,8 @@ English version: [README_en.md](README_en.md)
 
 ### LLM 根因分析
 - **全量分析**：对所有规则+统计异常进行批量分析，带5阶段进度条
-- **单条分析**：点击任意异常卡片或硬件分类的「🤖 分析此异常」按钮，单独分析该条异常
+- **单条分析**：点击任意异常卡片或硬件分类的「AI 分析此异常」按钮，单独分析该条异常
+- **AI 对话**：右侧滑出对话抽屉，自动注入当前日志分析摘要作为上下文，支持多轮对话追问
 - 支持配置任意 OpenAI-compatible 或 Anthropic-compatible LLM API（DeepSeek 等），支持双接口自动探测
 - **智能 Prompt**：聚焦硬件底层故障特征，忽略管理接口（如 PowerMgnt）偶发超时，定位具体槽位号（SlotId/PCIe地址）
 - **优先级建议**：按业务影响（P0/P1/P2/P3）划分，强调硬盘/RAID故障不低于风扇/电源异常
@@ -70,7 +71,7 @@ English version: [README_en.md](README_en.md)
 
 **一键启动**（推荐）：
 ```bash
-tar -xzf bmc-log-analyzer_v1.0.0.tar.gz
+tar -xzf bmc-log-analyzer_v1.0.1.tar.gz
 cd bmc-log-analyzer
 ./start.sh
 ```
@@ -130,7 +131,7 @@ http://localhost:8000
 app/
 ├── main.py              # FastAPI 入口，上传/解析/检测逻辑
 ├── routers/
-│   └── llm.py          # LLM 分析接口（/llm、/llm-single）
+│   └── llm.py          # LLM 分析接口（/llm、/llm-single、/chat）
 ├── parsers/             # 各格式解析器
 │   ├── app_debug.py     # app_debug_log 格式
 │   ├── agentless.py     # agentless 格式
@@ -196,10 +197,10 @@ app/
 ```bash
 # 根据服务器架构选择对应镜像
 # x86 服务器 (Intel/AMD CPU)
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v1.0.0-amd64
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v1.0.1-amd64
 
 # ARM 服务器 (华为鲲鹏、亚马逊 Graviton、Apple Silicon Mac)
-docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v1.0.0-arm64
+docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:v1.0.1-arm64
 
 # 或者使用 latest 标签（自动选择对应架构，首次下载慢）
 docker run -d -p 8000:8000 yuyeshun2/bmc-log-analyzer:latest

@@ -66,6 +66,14 @@ class AnalysisResult(BaseModel):
     summary: dict
 
 
+class ChatMessage(BaseModel):
+    role: str  # "user" | "assistant" | "system"
+    content: str
+
+class ChatRequest(BaseModel):
+    messages: list[ChatMessage]
+    system_prompt: str = ""
+
 class LLMAnalysisRequest(BaseModel):
     anomalies: list[AnomalyDetection]
     statistical_anomalies: list[StatisticalAnomaly]
