@@ -68,21 +68,25 @@ English version: [README_en.md](README_en.md)
 
 ### macOS 直接运行（无需 Docker）
 
+**一键启动**（推荐）：
 ```bash
-# 1. 下载并解压 v1.0.0 版本
 tar -xzf bmc-log-analyzer_v1.0.0.tar.gz
 cd bmc-log-analyzer
+./start.sh
+```
 
-# 2. 创建虚拟环境
+**或手动分步运行**：
+```bash
+# 1. 创建虚拟环境
 python3 -m venv .venv
 
-# 3. 激活虚拟环境
+# 2. 激活虚拟环境
 source .venv/bin/activate
 
-# 4. 安装依赖
+# 3. 安装依赖
 pip install -r requirements.txt
 
-# 5. 启动服务
+# 4. 启动服务
 python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 

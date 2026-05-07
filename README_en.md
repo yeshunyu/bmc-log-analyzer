@@ -68,21 +68,25 @@ Chinese version: [README.md](README.md)
 
 ### macOS Native (Without Docker)
 
+**One-click start** (recommended):
 ```bash
-# 1. Download and extract v1.0.0
 tar -xzf bmc-log-analyzer_v1.0.0.tar.gz
 cd bmc-log-analyzer
+./start.sh
+```
 
-# 2. Create virtual environment
+**Or manually step by step**:
+```bash
+# 1. Create virtual environment
 python3 -m venv .venv
 
-# 3. Activate virtual environment
+# 2. Activate virtual environment
 source .venv/bin/activate
 
-# 4. Install dependencies
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# 5. Start the server
+# 4. Start the server
 python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
