@@ -4,9 +4,19 @@ Drivers handle HTTP communication, error parsing, and response normalization.
 Auto-detects API style from URL, with explicit provider-specific tweaks.
 """
 import json
+import os
+import ssl
 from typing import Any
 
 from app.security.ssrf import validate_ssrf
+
+# Unverified SSL context — used when the user explicitly disables SSL verification.
+# This is configured via the DANGEROUS_DISABLE_SSL_VERIFY environment variable.
+_SSL_UNVERIFY = ssl.create_default_context()
+_SSL_UNVERIFY.check_hostname = False
+_SSL_UNVERIFY.verify_mode = ssl.CERT_NONE
+
+_DISABLE_SSL = bool(os.environ.get("DANGEROUS_DISABLE_SSL_VERIFY"))
 
 
 # -----------------------------------------------------------------------------
@@ -82,8 +92,9 @@ def _call_openai(prompt: str, api_key: str, api_base: str, model: str) -> str:
         },
         method="POST",
     )
+    _ctx = _SSL_UNVERIFY if _DISABLE_SSL else None
     try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
+        with urllib.request.urlopen(req, timeout=120, context=_ctx) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             return data["choices"][0]["message"]["content"].strip()
     except urllib.error.HTTPError as e:
@@ -127,8 +138,9 @@ def _call_openai_chat(
         },
         method="POST",
     )
+    _ctx = _SSL_UNVERIFY if _DISABLE_SSL else None
     try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
+        with urllib.request.urlopen(req, timeout=120, context=_ctx) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             return data["choices"][0]["message"]["content"].strip()
     except urllib.error.HTTPError as e:
@@ -180,8 +192,9 @@ def _call_anthropic(prompt: str, api_key: str, api_base: str, model: str) -> str
         headers=headers,
         method="POST",
     )
+    _ctx = _SSL_UNVERIFY if _DISABLE_SSL else None
     try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
+        with urllib.request.urlopen(req, timeout=120, context=_ctx) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             content = data.get("content") or []
             if isinstance(content, list):
@@ -245,8 +258,9 @@ def _call_anthropic_chat(
         headers=headers,
         method="POST",
     )
+    _ctx = _SSL_UNVERIFY if _DISABLE_SSL else None
     try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
+        with urllib.request.urlopen(req, timeout=120, context=_ctx) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             content = data.get("content") or []
             if isinstance(content, list):
