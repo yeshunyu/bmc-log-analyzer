@@ -365,7 +365,7 @@ class TestLLMAnalysis:
         }
 
         with patch("app.routers.llm.get_llm_config", return_value=self._mock_llm_config()):
-            with patch("app.routers.llm._call_custom") as mock_call:
+            with patch("app.routers.llm.call_llm") as mock_call:
                 mock_call.return_value = "SSL failure detected — check certificate configuration."
                 res = client.post("/api/analyze/llm", json=req_body)
                 assert res.status_code == 200
@@ -405,7 +405,7 @@ class TestLLMAnalysis:
         }
 
         with patch("app.routers.llm.get_llm_config", return_value=self._mock_llm_config()):
-            with patch("app.routers.llm._call_custom") as mock_call:
+            with patch("app.routers.llm.call_llm") as mock_call:
                 mock_call.return_value = "Multiple SSL failures indicate network misconfiguration."
                 res = client.post("/api/analyze/llm-single", json=req_body)
                 assert res.status_code == 200
