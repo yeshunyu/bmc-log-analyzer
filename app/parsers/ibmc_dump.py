@@ -12,6 +12,7 @@ import re
 
 from app.schemas import LogEntry
 from app.parsers import read_file_sample_lines
+from app.data.log_priority import LOG_PRIORITY_PATTERNS
 
 FORMAT_NAME = "ibmc_dump"
 FILE_PATTERNS = [
@@ -57,67 +58,10 @@ def _scan_dump_dir(dump_dir: Path):
     if not dump_info.exists():
         dump_info = dump_dir
 
-    # Priority patterns — ordered by diagnostic value
-    priority_patterns = [
-        # Application / IPMI logs
-        "app_debug_log_all",
-        "ipmi_mass_operate_log",
-        "ipmi_debug_log",
-        "ipmi_sel",
-        "BMC_sel",
-        "operate_log",
-        "security_log",
-        "strategy_log",
-        "mass_operate_log",
-        "remote_log",
-        # BMC dfl structured logs
-        "BMC_dfl",
-        "sensor_alarm_dfl",
-        "PowerMgnt_dfl",
-        "UPGRADE_dfl",
-        "BIOS_dfl",
-        "card_manage_dfl",
-        "CpuMem_dfl",
-        "cooling_app_dfl",
-        "Snmp_dfl",
-        "diagnose_dfl",
-        "discovery_dfl",
-        "agentless_dfl",
-        "kvm_vmm_dfl",
-        "ipmi_app_dfl",
-        "fileManage_dfl",
-        "StorageMgnt_dfl",
-        "redfish_dfl",
-        "Dft_dfl",
-        "MaintDebug_dfl",
-        # Linux / kernel
-        "linux_kernel_log",
-        "dmesg",
-        "app_debug",
-        "syslog",
-        # Maintenance
-        "maintenance_log",
-        "md_so_maintenance_log",
-        # Sensor info
-        "sensor_info",
-        "fan_info",
-        "cpu_info",
-        "mem_info",
-        "psu_info",
-        "fruinfo",
-        "bios_info",
-        # Misc high-value
-        "ha_log",
-        "web_log",
-        "cpld_info",
-        "fpga_info",
-        "raid_status",
-        "disk_info",
-    ]
-
+    # Priority patterns — ordered by diagnostic value (shared with main.py / log_scanner.py)
     # Collect all matching files
     seen_files = []
-    for pat in priority_patterns:
+    for pat in LOG_PRIORITY_PATTERNS:
         for p in dump_info.rglob(f"{pat}*"):
             if p.is_file() and p not in seen_files:
                 seen_files.append(p)
@@ -127,7 +71,7 @@ def _scan_dump_dir(dump_dir: Path):
         if p.is_file() and p.suffix in {".log", ".txt", ".dfl"} and p not in seen_files:
             seen_files.append(p)
 
-    # Parse each file
+    # Parse each file (lazy import to avoid circular)
     from app.parsers import get_parser
 
     for p in seen_files[:20]:  # Cap at 20 files to avoid OOM
